@@ -2,16 +2,16 @@
 // Created by Александр Баташев on 25.05.2018.
 //
 
-#ifndef ATHENA_GRAPH_H
-#define ATHENA_GRAPH_H
+#ifndef ATHENA_OPKERNEL_H
+#define ATHENA_OPKERNEL_H
 
 namespace athena {
     namespace core {
-        class Graph {
+        class OpKernel {
 
         };
     }
 }
 
 
-#endif //ATHENA_GRAPH_H
+#endif //ATHENA_OPKERNEL_H
