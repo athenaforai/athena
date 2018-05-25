@@ -8,4 +8,7 @@ set(CORE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/InputNode.h
         ${CMAKE_CURRENT_SOURCE_DIR}/Session.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Session.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp
         PARENT_SCOPE)

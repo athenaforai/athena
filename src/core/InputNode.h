@@ -7,15 +7,13 @@
 
 #include "Node.h"
 
-namespace athena {
-    namespace core {
-        class InputNode : public Node {
-        public:
-            InputNode(OpKernel *);
-            bool isInputNode();
+namespace athena::core {
+    class InputNode : public Node {
+    public:
+        InputNode(OpKernel *);
+        bool isInputNode();
 
-        };
-    }
+    };
 }
 
 

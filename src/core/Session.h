@@ -8,15 +8,13 @@
 #include "Node.h"
 #include "InputNode.h"
 
-namespace athena {
-    namespace core {
-        class Session {
-        private:
-            std::vector<InputNode*> headNodes;
-        public:
-            void prepare(Node * logits);
-        };
-    }
+namespace athena::core {
+    class Session {
+    private:
+        std::vector<InputNode*> headNodes;
+    public:
+        void prepare(Node * logits);
+    };
 }
 
 

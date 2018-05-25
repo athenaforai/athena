@@ -5,12 +5,13 @@
 #ifndef ATHENA_OPKERNEL_H
 #define ATHENA_OPKERNEL_H
 
-namespace athena {
-    namespace core {
-        class OpKernel {
+#include "opcodes.h"
 
-        };
-    }
+namespace athena::core {
+    class OpKernel {
+    protected:
+        OpCode opCode;
+    };
 }
 
 

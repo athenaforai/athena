@@ -414,6 +414,15 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h">
 			<Option target="athena"/>
 		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.h">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/opcodes.h">
+			<Option target="athena"/>
+		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/core/Tensor.cpp">
 			<Option target="runTests"/>
 		</Unit>
