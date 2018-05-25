@@ -198,6 +198,33 @@ src/core/Tensor.cpp.s:
 	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.s
 .PHONY : src/core/Tensor.cpp.s
 
+src/core/kernels/AddOpKernel.o: src/core/kernels/AddOpKernel.cpp.o
+
+.PHONY : src/core/kernels/AddOpKernel.o
+
+# target to build an object file
+src/core/kernels/AddOpKernel.cpp.o:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/kernels/AddOpKernel.cpp.o
+.PHONY : src/core/kernels/AddOpKernel.cpp.o
+
+src/core/kernels/AddOpKernel.i: src/core/kernels/AddOpKernel.cpp.i
+
+.PHONY : src/core/kernels/AddOpKernel.i
+
+# target to preprocess a source file
+src/core/kernels/AddOpKernel.cpp.i:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/kernels/AddOpKernel.cpp.i
+.PHONY : src/core/kernels/AddOpKernel.cpp.i
+
+src/core/kernels/AddOpKernel.s: src/core/kernels/AddOpKernel.cpp.s
+
+.PHONY : src/core/kernels/AddOpKernel.s
+
+# target to generate assembly for a file
+src/core/kernels/AddOpKernel.cpp.s:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/kernels/AddOpKernel.cpp.s
+.PHONY : src/core/kernels/AddOpKernel.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -214,6 +241,9 @@ help:
 	@echo "... src/core/Tensor.o"
 	@echo "... src/core/Tensor.i"
 	@echo "... src/core/Tensor.s"
+	@echo "... src/core/kernels/AddOpKernel.o"
+	@echo "... src/core/kernels/AddOpKernel.i"
+	@echo "... src/core/kernels/AddOpKernel.s"
 .PHONY : help
 
 

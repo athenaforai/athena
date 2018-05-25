@@ -3,3 +3,7 @@
 //
 
 #include "AddOpKernel.h"
+
+int athena::core::kernels::AddOpKernel::getOperandsCount() {
+    return 2;
+}

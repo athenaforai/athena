@@ -4,9 +4,10 @@
 #include "../OpKernel.h"
 
 namespace athena::core::kernels {
-    class AddOpKernel : OpKernel {
+    class AddOpKernel : public OpKernel {
     public:
-        AddOpKernel() : OpKernel(), opCode(OpCode::ADD) {};
+        AddOpKernel() : OpKernel(OpCode::ADD) {};
+        int getOperandsCount() override;
     };
 }
 

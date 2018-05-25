@@ -11,6 +11,9 @@ namespace athena::core {
     class OpKernel {
     protected:
         OpCode opCode;
+    public:
+        explicit OpKernel(OpCode opCode) : opCode(opCode) {};
+        virtual int getOperandsCount() = 0;
     };
 }
 

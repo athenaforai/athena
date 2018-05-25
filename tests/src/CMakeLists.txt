@@ -1,1 +1,2 @@
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core)
+set(SRC_TEST ${CORE_TEST} PARENT_SCOPE)
