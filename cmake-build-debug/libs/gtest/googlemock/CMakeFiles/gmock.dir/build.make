@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake"
+CMAKE_COMMAND = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -E remove -f
+RM = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aleksandrbatasev/CLionProjects/athena
+CMAKE_SOURCE_DIR = /home/geron1mo/Documents/Projects/athena
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug
+CMAKE_BINARY_DIR = /home/geron1mo/Documents/Projects/athena/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include libs/gtest/googlemock/CMakeFiles/gmock.dir/depend.make
@@ -59,16 +59,16 @@ include libs/gtest/googlemock/CMakeFiles/gmock.dir/flags.make
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: libs/gtest/googlemock/CMakeFiles/gmock.dir/flags.make
 libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: ../libs/gtest/googlemock/src/gmock-all.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock/src/gmock-all.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o"
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/geron1mo/Documents/Projects/athena/libs/gtest/googlemock/src/gmock-all.cc
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/gmock.dir/src/gmock-all.cc.i"
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock/src/gmock-all.cc > CMakeFiles/gmock.dir/src/gmock-all.cc.i
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/geron1mo/Documents/Projects/athena/libs/gtest/googlemock/src/gmock-all.cc > CMakeFiles/gmock.dir/src/gmock-all.cc.i
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/gmock.dir/src/gmock-all.cc.s"
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock/src/gmock-all.cc -o CMakeFiles/gmock.dir/src/gmock-all.cc.s
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/geron1mo/Documents/Projects/athena/libs/gtest/googlemock/src/gmock-all.cc -o CMakeFiles/gmock.dir/src/gmock-all.cc.s
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o.requires:
 
@@ -91,9 +91,9 @@ gmock_EXTERNAL_OBJECTS =
 libs/gtest/googlemock/libgmockd.a: libs/gtest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
 libs/gtest/googlemock/libgmockd.a: libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make
 libs/gtest/googlemock/libgmockd.a: libs/gtest/googlemock/CMakeFiles/gmock.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libgmockd.a"
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -P CMakeFiles/gmock.dir/cmake_clean_target.cmake
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gmock.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libgmockd.a"
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -P CMakeFiles/gmock.dir/cmake_clean_target.cmake
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/gmock.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 libs/gtest/googlemock/CMakeFiles/gmock.dir/build: libs/gtest/googlemock/libgmockd.a
@@ -105,10 +105,10 @@ libs/gtest/googlemock/CMakeFiles/gmock.dir/requires: libs/gtest/googlemock/CMake
 .PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/requires
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/clean:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -P CMakeFiles/gmock.dir/cmake_clean.cmake
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock && $(CMAKE_COMMAND) -P CMakeFiles/gmock.dir/cmake_clean.cmake
 .PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
 
 libs/gtest/googlemock/CMakeFiles/gmock.dir/depend:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/aleksandrbatasev/CLionProjects/athena /Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/geron1mo/Documents/Projects/athena /home/geron1mo/Documents/Projects/athena/libs/gtest/googlemock /home/geron1mo/Documents/Projects/athena/cmake-build-debug /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/depend
 
