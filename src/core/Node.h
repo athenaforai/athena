@@ -6,21 +6,19 @@
 #include "OpKernel.h"
 #include "Tensor.h"
 
-namespace athena {
-    namespace core {
-        class Node {
-        protected:
-            std::vector<Node*> incomingNodes;
-            std::vector<Node*> outcomingNodes;
-            OpKernel* operation;
-            std::string name;
-            std::string getRandomNodeName();
-        public:
-            Node(OpKernel*);
-            void after(Node* predecessor);
-            bool isInputNode();
-        };
-    }
+namespace athena::core {
+    class Node {
+    protected:
+        std::vector<Node*> incomingNodes;
+        std::vector<Node*> outcomingNodes;
+        OpKernel* operation;
+        std::string name;
+        std::string getRandomNodeName();
+    public:
+        Node(OpKernel*);
+        void after(Node* predecessor);
+        bool isInputNode();
+    };
 }
 
 

@@ -328,8 +328,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/src"/>
 					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../libs/gtest/googletest/include"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../src"/>
 					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
@@ -353,8 +353,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/src"/>
 					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../libs/gtest/googletest/include"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../src"/>
 					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
@@ -414,7 +414,19 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h">
 			<Option target="athena"/>
 		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.h">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/opcodes.h">
+			<Option target="athena"/>
+		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/core/Tensor.cpp">
+			<Option target="runTests"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/core/kernels/AddOpKernel.cpp">
 			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/CMakeLists.txt">
