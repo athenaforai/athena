@@ -1,16 +1,14 @@
 language: cpp
+compiler: clang
+sudo: required
 
-addons:
-  apt:
-    sources:
-     - ubuntu-toolchain-r-test
-     - llvm-toolchain-trusty
-    packages:
-     - llvm-dev
-     - libclang-dev
-     - clang
+os:
+    - linux
 
 before_install:
+ - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+ - sudo apt-add-repository "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main"
+ - sudo apt-get update -qq
  # Install a supported cmake version (>= 3.4.3)
  - wget -O cmake.sh https://cmake.org/files/v3.11/cmake-3.11.2-Linux-x86_64.sh
  - sudo sh cmake.sh --skip-license --exclude-subdir --prefix=/usr/local
@@ -21,6 +19,11 @@ before_install:
  # Absolute paths to LLVM's root and bin directory
  - ROOT_PATH=`llvm-config-$VERSION --prefix`
  - BIN_PATH=`llvm-config-$VERSION --bindir`
+
+install:
+  - sudo apt-get install libboost-all-dev
+  - sudo apt-get install --allow-unauthenticated -qq clang++-4.0
+  - export CXX="clang++-4.0"
 
 script:
 # Build IWYU
