@@ -5,7 +5,7 @@
 		<Option title="gtest"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="clang"/>
-		<Option virtualFolders="CMake Files\;CMake Files\backend\;CMake Files\backend\core\;CMake Files\backend\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock/gtest"/>
@@ -123,14 +123,14 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\core\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\core\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/ops/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\ops\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/ops/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\ops\"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\gtest\"/>

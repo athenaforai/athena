@@ -8,9 +8,6 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
-  "../backend/CMakeLists.txt"
-  "../backend/core/CMakeLists.txt"
-  "../backend/ops/CMakeLists.txt"
   "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.10.3/CMakeSystem.cmake"
@@ -22,6 +19,9 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../libs/gtest/googletest/cmake/gtest.pc.in"
   "../libs/gtest/googletest/cmake/gtest_main.pc.in"
   "../libs/gtest/googletest/cmake/internal_utils.cmake"
+  "../src/CMakeLists.txt"
+  "../src/core/CMakeLists.txt"
+  "../src/ops/CMakeLists.txt"
   "../tests/CMakeLists.txt"
   "../tests/backend/CMakeLists.txt"
   "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
@@ -67,9 +67,9 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "backend/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "backend/core/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "backend/ops/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/core/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/ops/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -79,7 +79,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "backend/CMakeFiles/athena.dir/DependInfo.cmake"
+  "src/CMakeFiles/athena.dir/DependInfo.cmake"
   "libs/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "libs/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"

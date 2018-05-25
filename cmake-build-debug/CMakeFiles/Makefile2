@@ -60,100 +60,100 @@ CMAKE_SOURCE_DIR = /Users/aleksandrbatasev/CLionProjects/athena
 CMAKE_BINARY_DIR = /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug
 
 #=============================================================================
-# Directory level rules for directory backend
+# Directory level rules for directory src
 
 # Convenience name for "all" pass in the directory.
-backend/all: backend/CMakeFiles/athena.dir/all
-backend/all: backend/core/all
-backend/all: backend/ops/all
+src/all: src/CMakeFiles/athena.dir/all
+src/all: src/core/all
+src/all: src/ops/all
 
-.PHONY : backend/all
+.PHONY : src/all
 
 # Convenience name for "clean" pass in the directory.
-backend/clean: backend/CMakeFiles/athena.dir/clean
-backend/clean: backend/core/clean
-backend/clean: backend/ops/clean
+src/clean: src/CMakeFiles/athena.dir/clean
+src/clean: src/core/clean
+src/clean: src/ops/clean
 
-.PHONY : backend/clean
+.PHONY : src/clean
 
 # Convenience name for "preinstall" pass in the directory.
-backend/preinstall: backend/core/preinstall
-backend/preinstall: backend/ops/preinstall
+src/preinstall: src/core/preinstall
+src/preinstall: src/ops/preinstall
 
-.PHONY : backend/preinstall
+.PHONY : src/preinstall
 
 #=============================================================================
-# Target rules for target backend/CMakeFiles/athena.dir
+# Target rules for target src/CMakeFiles/athena.dir
 
 # All Build rule for target.
-backend/CMakeFiles/athena.dir/all:
-	$(MAKE) -f backend/CMakeFiles/athena.dir/build.make backend/CMakeFiles/athena.dir/depend
-	$(MAKE) -f backend/CMakeFiles/athena.dir/build.make backend/CMakeFiles/athena.dir/build
+src/CMakeFiles/athena.dir/all:
+	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/depend
+	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target athena"
-.PHONY : backend/CMakeFiles/athena.dir/all
+.PHONY : src/CMakeFiles/athena.dir/all
 
 # Include target in all.
-all: backend/CMakeFiles/athena.dir/all
+all: src/CMakeFiles/athena.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-backend/CMakeFiles/athena.dir/rule: cmake_check_build_system
+src/CMakeFiles/athena.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 backend/CMakeFiles/athena.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/athena.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
-.PHONY : backend/CMakeFiles/athena.dir/rule
+.PHONY : src/CMakeFiles/athena.dir/rule
 
 # Convenience name for target.
-athena: backend/CMakeFiles/athena.dir/rule
+athena: src/CMakeFiles/athena.dir/rule
 
 .PHONY : athena
 
 # clean rule for target.
-backend/CMakeFiles/athena.dir/clean:
-	$(MAKE) -f backend/CMakeFiles/athena.dir/build.make backend/CMakeFiles/athena.dir/clean
-.PHONY : backend/CMakeFiles/athena.dir/clean
+src/CMakeFiles/athena.dir/clean:
+	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/clean
+.PHONY : src/CMakeFiles/athena.dir/clean
 
 # clean rule for target.
-clean: backend/CMakeFiles/athena.dir/clean
+clean: src/CMakeFiles/athena.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory backend/core
+# Directory level rules for directory src/core
 
 # Convenience name for "all" pass in the directory.
-backend/core/all:
+src/core/all:
 
-.PHONY : backend/core/all
+.PHONY : src/core/all
 
 # Convenience name for "clean" pass in the directory.
-backend/core/clean:
+src/core/clean:
 
-.PHONY : backend/core/clean
+.PHONY : src/core/clean
 
 # Convenience name for "preinstall" pass in the directory.
-backend/core/preinstall:
+src/core/preinstall:
 
-.PHONY : backend/core/preinstall
+.PHONY : src/core/preinstall
 
 #=============================================================================
-# Directory level rules for directory backend/ops
+# Directory level rules for directory src/ops
 
 # Convenience name for "all" pass in the directory.
-backend/ops/all:
+src/ops/all:
 
-.PHONY : backend/ops/all
+.PHONY : src/ops/all
 
 # Convenience name for "clean" pass in the directory.
-backend/ops/clean:
+src/ops/clean:
 
-.PHONY : backend/ops/clean
+.PHONY : src/ops/clean
 
 # Convenience name for "preinstall" pass in the directory.
-backend/ops/preinstall:
+src/ops/preinstall:
 
-.PHONY : backend/ops/preinstall
+.PHONY : src/ops/preinstall
 
 #=============================================================================
 # Directory level rules for directory libs/gtest

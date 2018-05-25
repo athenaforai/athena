@@ -3,7 +3,7 @@ project(athena)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_subdirectory(backend)
+add_subdirectory(src)
 
 add_subdirectory(libs/gtest)
 add_subdirectory(tests)

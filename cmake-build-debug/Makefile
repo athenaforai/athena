@@ -166,7 +166,7 @@ athena: cmake_check_build_system
 
 # fast build rule for target.
 athena/fast:
-	$(MAKE) -f backend/CMakeFiles/athena.dir/build.make backend/CMakeFiles/athena.dir/build
+	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/build
 .PHONY : athena/fast
 
 #=============================================================================

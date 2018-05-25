@@ -8,9 +8,11 @@
 
 namespace athena {
     namespace core {
+        template <typename T>
         class Tensor {
         private:
             int *shape;
+            int dimension;
         };
     }
 }

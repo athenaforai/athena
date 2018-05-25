@@ -5,7 +5,7 @@
 		<Option title="athena"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\backend\;CMake Files\backend\core\;CMake Files\backend\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug"/>
@@ -78,8 +78,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="athena">
-				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/libathena.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend"/>
+				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/libathena.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -93,15 +93,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 athena"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 athena"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="athena/fast">
-				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/libathena.a" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend"/>
+				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/libathena.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src"/>
 				<Option object_output="./"/>
 				<Option type="2"/>
 				<Option compiler="gcc"/>
@@ -115,10 +115,10 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 athena/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/backend/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 athena/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="gmock">
@@ -322,18 +322,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/Graph.cpp">
-			<Option target="athena"/>
-		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/Graph.h">
-			<Option target="athena"/>
-		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/Tensor.cpp">
-			<Option target="athena"/>
-		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/Tensor.h">
-			<Option target="athena"/>
-		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
 		</Unit>
@@ -346,17 +334,29 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Graph.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Graph.h">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h">
+			<Option target="athena"/>
+		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/core/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\core\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\core\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/backend/ops/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\backend\ops\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/ops/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\ops\"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\libs\gtest\"/>
