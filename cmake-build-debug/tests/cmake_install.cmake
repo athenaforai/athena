@@ -1,4 +1,4 @@
-# Install script for directory: /home/geron1mo/Documents/Projects/athena/tests
+# Install script for directory: /Users/aleksandrbatasev/CLionProjects/athena/tests
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,11 +27,6 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "1")
-endif()
-
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
@@ -39,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/geron1mo/Documents/Projects/athena/cmake-build-debug/tests/src/cmake_install.cmake")
+  include("/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/src/cmake_install.cmake")
 
 endif()
 

@@ -5,10 +5,19 @@
 #ifndef ATHENA_SESSION_H
 #define ATHENA_SESSION_H
 
+#include "Node.h"
+#include "InputNode.h"
 
-class Session {
-
-};
+namespace athena {
+    namespace core {
+        class Session {
+        private:
+            std::vector<InputNode*> headNodes;
+        public:
+            void prepare(Node * logits);
+        };
+    }
+}
 
 
 #endif //ATHENA_SESSION_H
