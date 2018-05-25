@@ -11,11 +11,26 @@ namespace athena {
         template <typename T>
         class Tensor {
         private:
-            int *shape;
-            int dimension;
+            T *heap;    //Array with unordered data
+            int *shape;     //Array with sizes of dimensions
+            int dimensionality;      //Count dimensions
+            int sizeHeap;
+
+        public:
+            //** CONSTRUCTORS **//
+            Tensor(int dimensionality, const int* shape);
+
+            //** DESTRUCTOR **//
+            ~Tensor();
+
+            //** METHODS ACCESS **//
+            T get(const int *indexes);       //Size of *indexes* must be equals to *dimensionality*
+            void set(const int *indexes, T value);       //Size of *indexes* must be equals to *dimensionality*
         };
+
+
     }
 }
 
 
-#endif //ATHENA_TENSOR_H
+#endif

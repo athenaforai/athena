@@ -45,32 +45,30 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake"
+CMAKE_COMMAND = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -E remove -f
+RM = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aleksandrbatasev/CLionProjects/athena
+CMAKE_SOURCE_DIR = /home/geron1mo/Documents/Projects/athena
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug
+CMAKE_BINARY_DIR = /home/geron1mo/Documents/Projects/athena/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for directory src
 
 # Convenience name for "all" pass in the directory.
-src/all: src/CMakeFiles/athena.dir/all
 src/all: src/core/all
 src/all: src/ops/all
 
 .PHONY : src/all
 
 # Convenience name for "clean" pass in the directory.
-src/clean: src/CMakeFiles/athena.dir/clean
 src/clean: src/core/clean
 src/clean: src/ops/clean
 
@@ -81,43 +79,6 @@ src/preinstall: src/core/preinstall
 src/preinstall: src/ops/preinstall
 
 .PHONY : src/preinstall
-
-#=============================================================================
-# Target rules for target src/CMakeFiles/athena.dir
-
-# All Build rule for target.
-src/CMakeFiles/athena.dir/all:
-	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/depend
-	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target athena"
-.PHONY : src/CMakeFiles/athena.dir/all
-
-# Include target in all.
-all: src/CMakeFiles/athena.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-src/CMakeFiles/athena.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/athena.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
-.PHONY : src/CMakeFiles/athena.dir/rule
-
-# Convenience name for target.
-athena: src/CMakeFiles/athena.dir/rule
-
-.PHONY : athena
-
-# clean rule for target.
-src/CMakeFiles/athena.dir/clean:
-	$(MAKE) -f src/CMakeFiles/athena.dir/build.make src/CMakeFiles/athena.dir/clean
-.PHONY : src/CMakeFiles/athena.dir/clean
-
-# clean rule for target.
-clean: src/CMakeFiles/athena.dir/clean
-
-.PHONY : clean
 
 #=============================================================================
 # Directory level rules for directory src/core
@@ -177,15 +138,15 @@ libs/gtest/preinstall: libs/gtest/googlemock/preinstall
 # Directory level rules for directory libs/gtest/googlemock
 
 # Convenience name for "all" pass in the directory.
-libs/gtest/googlemock/all: libs/gtest/googlemock/CMakeFiles/gmock.dir/all
 libs/gtest/googlemock/all: libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all
+libs/gtest/googlemock/all: libs/gtest/googlemock/CMakeFiles/gmock.dir/all
 libs/gtest/googlemock/all: libs/gtest/googlemock/gtest/all
 
 .PHONY : libs/gtest/googlemock/all
 
 # Convenience name for "clean" pass in the directory.
-libs/gtest/googlemock/clean: libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
 libs/gtest/googlemock/clean: libs/gtest/googlemock/CMakeFiles/gmock_main.dir/clean
+libs/gtest/googlemock/clean: libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
 libs/gtest/googlemock/clean: libs/gtest/googlemock/gtest/clean
 
 .PHONY : libs/gtest/googlemock/clean
@@ -196,43 +157,6 @@ libs/gtest/googlemock/preinstall: libs/gtest/googlemock/gtest/preinstall
 .PHONY : libs/gtest/googlemock/preinstall
 
 #=============================================================================
-# Target rules for target libs/gtest/googlemock/CMakeFiles/gmock.dir
-
-# All Build rule for target.
-libs/gtest/googlemock/CMakeFiles/gmock.dir/all: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
-	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/depend
-	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=4,5 "Built target gmock"
-.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/all
-
-# Include target in all.
-all: libs/gtest/googlemock/CMakeFiles/gmock.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-libs/gtest/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/CMakeFiles/gmock.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
-.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/rule
-
-# Convenience name for target.
-gmock: libs/gtest/googlemock/CMakeFiles/gmock.dir/rule
-
-.PHONY : gmock
-
-# clean rule for target.
-libs/gtest/googlemock/CMakeFiles/gmock.dir/clean:
-	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
-.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
-
-# clean rule for target.
-clean: libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target libs/gtest/googlemock/CMakeFiles/gmock_main.dir
 
 # All Build rule for target.
@@ -240,7 +164,7 @@ libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all: libs/gtest/googlemock/CMake
 libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock_main.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock_main.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=6,7 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=3,4 "Built target gmock_main"
 .PHONY : libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Include target in all.
@@ -250,9 +174,9 @@ all: libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
 libs/gtest/googlemock/CMakeFiles/gmock_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/CMakeFiles/gmock_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 0
 .PHONY : libs/gtest/googlemock/CMakeFiles/gmock_main.dir/rule
 
 # Convenience name for target.
@@ -267,6 +191,43 @@ libs/gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 
 # clean rule for target.
 clean: libs/gtest/googlemock/CMakeFiles/gmock_main.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target libs/gtest/googlemock/CMakeFiles/gmock.dir
+
+# All Build rule for target.
+libs/gtest/googlemock/CMakeFiles/gmock.dir/all: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
+	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/depend
+	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target gmock"
+.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/all
+
+# Include target in all.
+all: libs/gtest/googlemock/CMakeFiles/gmock.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+libs/gtest/googlemock/CMakeFiles/gmock.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/CMakeFiles/gmock.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 0
+.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/rule
+
+# Convenience name for target.
+gmock: libs/gtest/googlemock/CMakeFiles/gmock.dir/rule
+
+.PHONY : gmock
+
+# clean rule for target.
+libs/gtest/googlemock/CMakeFiles/gmock.dir/clean:
+	$(MAKE) -f libs/gtest/googlemock/CMakeFiles/gmock.dir/build.make libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
+.PHONY : libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
+
+# clean rule for target.
+clean: libs/gtest/googlemock/CMakeFiles/gmock.dir/clean
 
 .PHONY : clean
 
@@ -297,7 +258,7 @@ libs/gtest/googlemock/gtest/preinstall:
 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=10,11 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=7,8 "Built target gtest_main"
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all
 
 # Include target in all.
@@ -307,9 +268,9 @@ all: libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 0
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -334,7 +295,7 @@ clean: libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/clean
 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles --progress-num=8,9 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles --progress-num=5,6 "Built target gtest"
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 
 # Include target in all.
@@ -344,9 +305,9 @@ all: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 0
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.

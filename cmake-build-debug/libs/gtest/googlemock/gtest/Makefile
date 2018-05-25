@@ -39,34 +39,58 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake"
+CMAKE_COMMAND = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -E remove -f
+RM = /home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/aleksandrbatasev/CLionProjects/athena
+CMAKE_SOURCE_DIR = /home/geron1mo/Documents/Projects/athena
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug
+CMAKE_BINARY_DIR = /home/geron1mo/Documents/Projects/athena/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target list_install_components
 list_install_components:
@@ -78,21 +102,10 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -100,40 +113,27 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	"/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/bin/cmake" -P cmake_install.cmake
-.PHONY : install/fast
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock/gtest/CMakeFiles/progress.marks
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/CMakeFiles 0
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles /home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock/gtest/CMakeFiles/progress.marks
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/geron1mo/Documents/Projects/athena/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/clean
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/preinstall
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/preinstall
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 
 # Convenience name for target.
@@ -168,12 +168,12 @@ gtest_main: libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/rule
 
 # fast build rule for target.
 gtest_main/fast:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
 # Convenience name for target.
 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 .PHONY : libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 
 # Convenience name for target.
@@ -183,7 +183,7 @@ gtest: libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/rule
 
 # fast build rule for target.
 gtest/fast:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
 src/gtest-all.o: src/gtest-all.cc.o
@@ -192,7 +192,7 @@ src/gtest-all.o: src/gtest-all.cc.o
 
 # target to build an object file
 src/gtest-all.cc.o:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
 .PHONY : src/gtest-all.cc.o
 
 src/gtest-all.i: src/gtest-all.cc.i
@@ -201,7 +201,7 @@ src/gtest-all.i: src/gtest-all.cc.i
 
 # target to preprocess a source file
 src/gtest-all.cc.i:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.i
 .PHONY : src/gtest-all.cc.i
 
 src/gtest-all.s: src/gtest-all.cc.s
@@ -210,7 +210,7 @@ src/gtest-all.s: src/gtest-all.cc.s
 
 # target to generate assembly for a file
 src/gtest-all.cc.s:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.s
 .PHONY : src/gtest-all.cc.s
 
 src/gtest_main.o: src/gtest_main.cc.o
@@ -219,7 +219,7 @@ src/gtest_main.o: src/gtest_main.cc.o
 
 # target to build an object file
 src/gtest_main.cc.o:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
 .PHONY : src/gtest_main.cc.o
 
 src/gtest_main.i: src/gtest_main.cc.i
@@ -228,7 +228,7 @@ src/gtest_main.i: src/gtest_main.cc.i
 
 # target to preprocess a source file
 src/gtest_main.cc.i:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.i
 .PHONY : src/gtest_main.cc.i
 
 src/gtest_main.s: src/gtest_main.cc.s
@@ -237,7 +237,7 @@ src/gtest_main.s: src/gtest_main.cc.s
 
 # target to generate assembly for a file
 src/gtest_main.cc.s:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/build.make libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.s
 .PHONY : src/gtest_main.cc.s
 
 # Help Target
@@ -246,14 +246,14 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/local"
-	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
 	@echo "... install/strip"
+	@echo "... install/local"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... gtest_main"
+	@echo "... edit_cache"
 	@echo "... gtest"
+	@echo "... rebuild_cache"
 	@echo "... src/gtest-all.o"
 	@echo "... src/gtest-all.i"
 	@echo "... src/gtest-all.s"
@@ -271,6 +271,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
