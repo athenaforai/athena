@@ -5,7 +5,7 @@
 		<Option title="athena"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\src\;CMake Files\tests\src\core\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug"/>
@@ -321,6 +321,56 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/libs/gtest/googlemock/gtest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="runTests">
+				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/runTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/src"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../libs/gtest/googletest/include"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 runTests"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="runTests/fast">
+				<Option output="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/runTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/src"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/tests/../libs/gtest/googletest/include"/>
+					<Add directory="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.1.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 runTests/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googlemock/src/gmock-all.cc">
 			<Option target="gmock"/>
@@ -345,6 +395,9 @@
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h">
 			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/core/Tensor.cpp">
+			<Option target="runTests"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
@@ -385,8 +438,11 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\tests\"/>
 		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/backend/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\tests\backend\"/>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\src\"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/tests/src/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\src\core\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

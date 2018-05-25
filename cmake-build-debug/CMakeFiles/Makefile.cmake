@@ -23,7 +23,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../src/core/CMakeLists.txt"
   "../src/ops/CMakeLists.txt"
   "../tests/CMakeLists.txt"
-  "../tests/backend/CMakeLists.txt"
+  "../tests/src/CMakeLists.txt"
+  "../tests/src/core/CMakeLists.txt"
   "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
   "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCXXInformation.cmake"
   "/Users/aleksandrbatasev/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/181.4668.70/CLion.app/Contents/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
@@ -74,7 +75,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "libs/gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "tests/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "tests/backend/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tests/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tests/src/core/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -84,4 +86,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "libs/gtest/googlemock/CMakeFiles/gmock_main.dir/DependInfo.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "tests/CMakeFiles/runTests.dir/DependInfo.cmake"
   )

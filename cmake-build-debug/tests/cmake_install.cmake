@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/backend/cmake_install.cmake")
+  include("/Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug/tests/src/cmake_install.cmake")
 
 endif()
 

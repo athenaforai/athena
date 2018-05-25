@@ -2,5 +2,4 @@ set(CORE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.h
         ${CMAKE_CURRENT_SOURCE_DIR}/Graph.h
         ${CMAKE_CURRENT_SOURCE_DIR}/Graph.cpp
-
         PARENT_SCOPE)

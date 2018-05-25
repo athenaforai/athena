@@ -1,0 +1,2 @@
+set(CORE_TEST ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
+        PARENT_SCOPE)

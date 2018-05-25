@@ -156,6 +156,48 @@ depend:
 	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+tests/CMakeFiles/runTests.dir/rule:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/runTests.dir/rule
+.PHONY : tests/CMakeFiles/runTests.dir/rule
+
+# Convenience name for target.
+runTests: tests/CMakeFiles/runTests.dir/rule
+
+.PHONY : runTests
+
+# fast build rule for target.
+runTests/fast:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/build
+.PHONY : runTests/fast
+
+src/core/Tensor.o: src/core/Tensor.cpp.o
+
+.PHONY : src/core/Tensor.o
+
+# target to build an object file
+src/core/Tensor.cpp.o:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.o
+.PHONY : src/core/Tensor.cpp.o
+
+src/core/Tensor.i: src/core/Tensor.cpp.i
+
+.PHONY : src/core/Tensor.i
+
+# target to preprocess a source file
+src/core/Tensor.cpp.i:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.i
+.PHONY : src/core/Tensor.cpp.i
+
+src/core/Tensor.s: src/core/Tensor.cpp.s
+
+.PHONY : src/core/Tensor.s
+
+# target to generate assembly for a file
+src/core/Tensor.cpp.s:
+	cd /Users/aleksandrbatasev/CLionProjects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.s
+.PHONY : src/core/Tensor.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,9 +207,13 @@ help:
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... install"
+	@echo "... runTests"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... src/core/Tensor.o"
+	@echo "... src/core/Tensor.i"
+	@echo "... src/core/Tensor.s"
 .PHONY : help
 
 
