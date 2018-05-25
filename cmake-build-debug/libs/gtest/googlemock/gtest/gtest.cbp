@@ -5,7 +5,7 @@
 		<Option title="gtest"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\backend\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\core\;CMake Files\src\ops\;CMake Files\libs\;CMake Files\libs\gtest\;CMake Files\libs\gtest\googlemock\;CMake Files\libs\gtest\googlemock\cmake\;CMake Files\libs\gtest\googletest\;CMake Files\libs\gtest\googletest\cmake\;CMake Files\tests\;CMake Files\tests\src\;CMake Files\tests\src\core\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/geron1mo/Documents/Projects/athena/cmake-build-debug/libs/gtest/googlemock/gtest"/>
@@ -163,8 +163,11 @@
 		<Unit filename="/home/geron1mo/Documents/Projects/athena/tests/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\tests\"/>
 		</Unit>
-		<Unit filename="/home/geron1mo/Documents/Projects/athena/tests/backend/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\tests\backend\"/>
+		<Unit filename="/home/geron1mo/Documents/Projects/athena/tests/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\src\"/>
+		</Unit>
+		<Unit filename="/home/geron1mo/Documents/Projects/athena/tests/src/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\tests\src\core\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

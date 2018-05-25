@@ -102,16 +102,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -123,6 +113,16 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/home/geron1mo/Documents/Soft/CLion/bin/cmake/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -156,6 +156,48 @@ depend:
 	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+# Convenience name for target.
+tests/CMakeFiles/runTests.dir/rule:
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f CMakeFiles/Makefile2 tests/CMakeFiles/runTests.dir/rule
+.PHONY : tests/CMakeFiles/runTests.dir/rule
+
+# Convenience name for target.
+runTests: tests/CMakeFiles/runTests.dir/rule
+
+.PHONY : runTests
+
+# fast build rule for target.
+runTests/fast:
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/build
+.PHONY : runTests/fast
+
+src/core/Tensor.o: src/core/Tensor.cpp.o
+
+.PHONY : src/core/Tensor.o
+
+# target to build an object file
+src/core/Tensor.cpp.o:
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.o
+.PHONY : src/core/Tensor.cpp.o
+
+src/core/Tensor.i: src/core/Tensor.cpp.i
+
+.PHONY : src/core/Tensor.i
+
+# target to preprocess a source file
+src/core/Tensor.cpp.i:
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.i
+.PHONY : src/core/Tensor.cpp.i
+
+src/core/Tensor.s: src/core/Tensor.cpp.s
+
+.PHONY : src/core/Tensor.s
+
+# target to generate assembly for a file
+src/core/Tensor.cpp.s:
+	cd /home/geron1mo/Documents/Projects/athena/cmake-build-debug && $(MAKE) -f tests/CMakeFiles/runTests.dir/build.make tests/CMakeFiles/runTests.dir/src/core/Tensor.cpp.s
+.PHONY : src/core/Tensor.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -164,10 +206,14 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... runTests"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... list_install_components"
 	@echo "... install"
+	@echo "... list_install_components"
+	@echo "... src/core/Tensor.o"
+	@echo "... src/core/Tensor.i"
+	@echo "... src/core/Tensor.s"
 .PHONY : help
 
 

@@ -23,7 +23,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../src/core/CMakeLists.txt"
   "../src/ops/CMakeLists.txt"
   "../tests/CMakeLists.txt"
-  "../tests/backend/CMakeLists.txt"
+  "../tests/src/CMakeLists.txt"
+  "../tests/src/core/CMakeLists.txt"
   "/home/geron1mo/Documents/Soft/CLion/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
   "/home/geron1mo/Documents/Soft/CLion/bin/cmake/share/cmake-3.10/Modules/CMakeCXXInformation.cmake"
   "/home/geron1mo/Documents/Soft/CLion/bin/cmake/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake"
@@ -70,7 +71,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "libs/gtest/googlemock/CMakeFiles/CMakeDirectoryInformation.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/CMakeDirectoryInformation.cmake"
   "tests/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "tests/backend/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tests/src/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tests/src/core/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -79,4 +81,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "libs/gtest/googlemock/CMakeFiles/gmock.dir/DependInfo.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/gtest_main.dir/DependInfo.cmake"
   "libs/gtest/googlemock/gtest/CMakeFiles/gtest.dir/DependInfo.cmake"
+  "tests/CMakeFiles/runTests.dir/DependInfo.cmake"
   )
