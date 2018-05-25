@@ -8,9 +8,18 @@
 #include "Node.h"
 
 namespace athena::core {
+    /**
+     * Subclass of athena::core::Node
+     * Represents a node that has no predecessors
+     */
     class InputNode : public Node {
     public:
-        InputNode(OpKernel *);
+        explicit InputNode(OpKernel *);
+
+        /**
+         * Check if it is an input node
+         * @return true
+         */
         bool isInputNode() override;
 
     };
