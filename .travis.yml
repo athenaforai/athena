@@ -26,6 +26,6 @@ script:
 # Build IWYU
  - mkdir build
  - cd build
- - cmake ..
+ - /usr/local/cmake ..
  - make
  - ctest
