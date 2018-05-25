@@ -14,6 +14,7 @@ namespace athena::core {
     public:
         explicit OpKernel(OpCode opCode) : opCode(opCode) {};
         virtual int getOperandsCount() = 0;
+        virtual int* getOutputShape(int* shape, int dim) = 0;
     };
 }
 

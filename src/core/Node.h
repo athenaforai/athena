@@ -17,7 +17,8 @@ namespace athena::core {
     public:
         Node(OpKernel*);
         void after(Node* predecessor);
-        bool isInputNode();
+
+        virtual bool isInputNode();
     };
 }
 

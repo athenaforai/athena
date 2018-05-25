@@ -11,7 +11,7 @@ namespace athena::core {
     class InputNode : public Node {
     public:
         InputNode(OpKernel *);
-        bool isInputNode();
+        bool isInputNode() override;
 
     };
 }
