@@ -384,6 +384,18 @@
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/libs/gtest/googletest/src/gtest_main.cc">
 			<Option target="gtest_main"/>
 		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Graph.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Graph.h">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/InputNode.cpp">
+			<Option target="athena"/>
+		</Unit>
+		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/InputNode.h">
+			<Option target="athena"/>
+		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Node.cpp">
 			<Option target="athena"/>
 		</Unit>
@@ -394,12 +406,6 @@
 			<Option target="athena"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/OpKernel.h">
-			<Option target="athena"/>
-		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Session.cpp">
-			<Option target="athena"/>
-		</Unit>
-		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Session.h">
 			<Option target="athena"/>
 		</Unit>
 		<Unit filename="/Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.cpp">

@@ -3,3 +3,7 @@
 //
 
 #include "Session.h"
+
+void athena::core::Session::prepare(athena::core::Node *logits) {
+
+}
