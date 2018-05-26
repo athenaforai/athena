@@ -35,6 +35,12 @@ namespace athena::core {
          * @return false
          */
         virtual bool isInputNode();
+
+        OpKernel* getOp();
+
+        std::vector<Node*>& getIncomingNodes();
+
+        std::string getName();
     };
 }
 

@@ -4,7 +4,11 @@
 
 #ifndef ATHENA_OPCODES_H
 #define ATHENA_OPCODES_H
-enum class OpCode {
+enum class OpCode : uint32_t {
+    DEL,
+    PUSH,
+    POP,
+    JMP,
     ADD
 };
 #endif //ATHENA_OPCODES_H

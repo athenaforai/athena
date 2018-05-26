@@ -13,6 +13,8 @@ namespace athena::core {
      * Represents a node that has no predecessors
      */
     class InputNode : public Node {
+    private:
+        int mappedMemCell;
     public:
         explicit InputNode(OpKernel *);
 
@@ -21,6 +23,9 @@ namespace athena::core {
          * @return true
          */
         bool isInputNode() override;
+
+        void setMappedMemCell(int cell);
+        int getMappedMemCell();
 
     };
 }
