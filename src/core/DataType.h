@@ -23,6 +23,17 @@ namespace athena::core {
                 return sizeof(int);
         }
     };
+
+//    std::type_info& cpptype(DataType type) {
+//        switch (type) {
+//            case DataType::FLOAT:
+//                return typeid(float);
+//            case DataType::DOUBLE:
+//                return typeid(double);
+//            case DataType::INT:
+//                return typeid(int);
+//        }
+//    }
 }
 
 #endif //ATHENA_DATATYPE_H

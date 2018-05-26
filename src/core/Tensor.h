@@ -32,6 +32,12 @@ namespace athena::core {
         void set(unsigned int *idx, double item);
 
         void set(unsigned int *idx, int item);
+
+        const TensorShape& getShape();
+
+        unsigned char* raw();
+
+        DataType getType();
     };
 }
 

@@ -61,4 +61,16 @@ namespace athena::core {
         memcpy(data + innerIdx, &item, sizeof(int));
     }
 
+    const TensorShape &Tensor::getShape() {
+        return shape;
+    }
+
+    unsigned char *Tensor::raw() {
+        return data;
+    }
+
+    DataType Tensor::getType() {
+        return dataType;
+    }
+
 }

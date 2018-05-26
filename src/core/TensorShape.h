@@ -15,9 +15,12 @@ namespace athena::core {
         explicit TensorShape(std::vector<unsigned int> shape) : shape(std::move(shape)) {};
         TensorShape(unsigned int* shape, unsigned int length);
 
-        unsigned int dimensions();
-        unsigned int dim(unsigned int n);
+        unsigned int dimensions() const;
+        unsigned int dim(unsigned int n) const;
         unsigned int total_size();
+
+        friend bool operator==(const TensorShape &, const TensorShape &);
+        friend bool operator!=(const TensorShape &, const TensorShape &);
     };
 }
 

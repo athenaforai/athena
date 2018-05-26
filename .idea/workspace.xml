@@ -17,20 +17,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87b9a1b6-91de-46ca-a109-abbd3025829f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/DataType.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/TensorShape.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/TensorShape.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/openblas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/gtest" beforeDir="false" afterPath="$PROJECT_DIR$/libs/gtest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ExecutorService.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ExecutorService.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/generic/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/generic/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/generic/GenericExecutor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/generic/GenericExecutor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/generic/GenericExecutor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/generic/GenericExecutor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/backend/generic/add.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/generic/add.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/DataType.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/DataType.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Tensor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Tensor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/core/Tensor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/Tensor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/TensorShape.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/TensorShape.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/TensorShape.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/TensorShape.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,41 +42,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Tensor.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/Tensor.h">
+      <file leaf-file-name="add.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/backend/generic/add.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="115">
+              <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
               <folding>
-                <element signature="e#104#122#0" expanded="true" />
+                <element signature="e#136#154#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TensorShape.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/TensorShape.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataType.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/DataType.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tensor.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/Tensor.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="54" selection-start-line="54" selection-end-line="54" />
             </state>
           </provider>
         </entry>
@@ -85,8 +57,8 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
+            <state>
+              <caret column="22" selection-start-column="22" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -94,35 +66,26 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/backend/generic/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="299">
+              <caret line="13" column="48" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conanfile.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conanfile.txt">
+      <file leaf-file-name="DataType.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/DataType.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
+            <state relative-caret-position="49">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="TensorShape.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/TensorShape.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FindBoost.cmake" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_HOME_DIR$/bin/cmake/share/cmake-3.10/Modules/FindBoost.cmake">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="1269" selection-start-line="1269" selection-end-line="1269" />
+            <state relative-caret-position="392">
+              <caret line="42" column="3" selection-start-line="40" selection-start-column="20" selection-end-line="42" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -184,21 +147,21 @@
         <option value="$PROJECT_DIR$/src/backend/AbstractExecutor.h" />
         <option value="$PROJECT_DIR$/src/backend/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/backend/ExecutorService.cpp" />
-        <option value="$PROJECT_DIR$/src/backend/generic/add.cpp" />
         <option value="$PROJECT_DIR$/cmake/FindBoost.cmake" />
         <option value="$PROJECT_DIR$/src/core/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/backend/generic/GenericExecutor.cpp" />
         <option value="$PROJECT_DIR$/src/backend/generic/GenericExecutor.h" />
-        <option value="$PROJECT_DIR$/src/core/TensorShape.h" />
-        <option value="$PROJECT_DIR$/src/core/TensorShape.cpp" />
         <option value="$PROJECT_DIR$/src/backend/ExecutorService.h" />
-        <option value="$PROJECT_DIR$/src/core/Tensor.h" />
-        <option value="$PROJECT_DIR$/src/core/DataType.h" />
-        <option value="$PROJECT_DIR$/src/core/Tensor.cpp" />
-        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/conanfile.txt" />
+        <option value="$PROJECT_DIR$/src/core/TensorShape.h" />
+        <option value="$PROJECT_DIR$/src/core/Tensor.h" />
+        <option value="$PROJECT_DIR$/src/core/Tensor.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/backend/generic/add.cpp" />
+        <option value="$PROJECT_DIR$/src/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/backend/generic/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/core/DataType.h" />
+        <option value="$PROJECT_DIR$/src/core/TensorShape.cpp" />
       </list>
     </option>
   </component>
@@ -232,17 +195,6 @@
             <path>
               <item name="athena" type="b2602c69:ProjectViewProjectNode" />
               <item name="athena" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
-              <item name="athena" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
-              <item name="athena" type="462c0819:PsiDirectoryNode" />
               <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -263,6 +215,38 @@
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="generic" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
+              <item name="athena" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
+              <item name="athena" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
+              <item name="athena" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
+              <item name="athena" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="athena" type="b2602c69:ProjectViewProjectNode" />
+              <item name="athena" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+              <item name="kernels" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -272,7 +256,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="SearchEverywhereHistoryKey" value="еут&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.cpp&#10;еуты&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h&#10;opcode&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/opcodes.h&#10;A&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.h&#10;OpKer&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/OpKernel.h" />
+    <property name="SearchEverywhereHistoryKey" value="data&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/DataType.h&#10;Tensor&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/TensorShape.h&#10;еут&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.cpp&#10;еуты&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/Tensor.h&#10;opcode&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/opcodes.h&#10;A&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/kernels/AddOpKernel.h&#10;OpKer&#9;FILE&#9;file:///Users/aleksandrbatasev/CLionProjects/athena/src/core/OpKernel.h" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -542,7 +526,7 @@
       <workItem from="1525623111149" duration="2795000" />
       <workItem from="1527230674482" duration="3630000" />
       <workItem from="1527248664872" duration="16047000" />
-      <workItem from="1527305989704" duration="21690000" />
+      <workItem from="1527305989704" duration="26831000" />
     </task>
     <task id="LOCAL-00001" summary="Initial">
       <created>1527239339219</created>
@@ -719,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1527340164352</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="completely new Tensor">
+      <created>1527352990938</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1527352990938</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -755,7 +746,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47358000" />
+    <option name="totallyTimeSpent" value="52499000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -763,11 +754,12 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.4989429" weight="0.32969698" />
-      <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.4989429" weight="0.32848486" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.4989429" visible="true" weight="0.32969698" />
+      <window_info anchor="bottom" id="CMake" order="7" sideWeight="0.4989429" weight="0.43030304" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5010571" side_tool="true" weight="0.32848486" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32969698" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32969698" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32969698" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.46424243" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -778,7 +770,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32969698" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32848486" />
@@ -831,7 +822,8 @@
     <MESSAGE value="add some docs" />
     <MESSAGE value="fix compiler version" />
     <MESSAGE value="add boost library" />
-    <option name="LAST_COMMIT_MESSAGE" value="add boost library" />
+    <MESSAGE value="completely new Tensor" />
+    <option name="LAST_COMMIT_MESSAGE" value="completely new Tensor" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/core/Session.cpp">
@@ -951,16 +943,6 @@
           <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
             <element signature="e#45#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/src/core/kernels/AddOpKernel.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1087,13 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/generic/add.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
@@ -1122,13 +1097,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/TensorShape.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93">
-          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/ExecutorService.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -1149,48 +1117,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/DataType.h">
+    <entry file="file://$PROJECT_DIR$/conanfile.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Tensor.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-          <folding>
-            <element signature="e#104#122#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Tensor.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="54" selection-start-line="54" selection-end-line="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/TensorShape.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="70" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        <state relative-caret-position="23">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1201,17 +1131,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conanfile.txt">
+    <entry file="file://$PROJECT_DIR$/tests/src/core/kernels/AddOpKernel.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
+        <state relative-caret-position="460">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Tensor.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/TensorShape.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Tensor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+          <folding>
+            <element signature="e#104#122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="30" selection-start-line="5" selection-start-column="30" selection-end-line="5" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/generic/add.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+          <folding>
+            <element signature="e#136#154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/TensorShape.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="42" column="3" selection-start-line="40" selection-start-column="20" selection-end-line="42" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/DataType.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/generic/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="299">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="48" />
         </state>
       </provider>
     </entry>
