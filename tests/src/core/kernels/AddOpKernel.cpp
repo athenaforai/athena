@@ -19,4 +19,5 @@ TEST(op_shape_test, add_op_kernel_test) {
     ASSERT_EQ(newShape[0], shape[0]);
     ASSERT_EQ(newShape[1], shape[1]);
     ASSERT_EQ(newShape[2], shape[2]);
+
 }

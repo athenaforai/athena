@@ -6,30 +6,33 @@
 #define ATHENA_TENSOR_H
 
 
-namespace athena {
-    namespace core {
-        template <typename T>
-        class Tensor {
-        private:
-            T *heap;    //Array with unordered data
-            int *shape;     //Array with sizes of dimensions
-            int dimensionality;      //Count dimensions
-            int sizeHeap;
+#include <cstddef>
+#include <utility>
+#include "TensorShape.h"
+#include "DataType.h"
 
-        public:
-            //** CONSTRUCTORS **//
-            Tensor(int dimensionality, const int* shape);
+namespace athena::core {
 
-            //** DESTRUCTOR **//
-            ~Tensor();
+    class Tensor {
+    private:
+        TensorShape shape;
+        unsigned char *data;
+        DataType dataType;
 
-            //** METHODS ACCESS **//
-            T get(const int *indexes);       //Size of *indexes* must be equals to *dimensionality*
-            void set(const int *indexes, T value);       //Size of *indexes* must be equals to *dimensionality*
-        };
+    public:
+        explicit Tensor(TensorShape shape, DataType dataType) : shape(std::move(shape)), dataType(dataType),
+                                                                data(new unsigned char[shape.total_size()]) {};
 
+        unsigned char *get(unsigned int *idx);
 
-    }
+        void set(unsigned int *idx, void *item);
+
+        void set(unsigned int *idx, float item);
+
+        void set(unsigned int *idx, double item);
+
+        void set(unsigned int *idx, int item);
+    };
 }
 
 
