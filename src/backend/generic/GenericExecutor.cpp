@@ -4,9 +4,9 @@
 
 #include "GenericExecutor.h"
 
-athena::backend::generic::GenericExecutor::GenericExecutor(std::vector<int>, int maxMem) {
-    memory = new athena::core::Tensor &[maxMem];
-}
+//athena::backend::generic::GenericExecutor::GenericExecutor(std::vector<int>, int maxMem) {
+//
+//}
 
 void athena::backend::generic::GenericExecutor::execute() {
 

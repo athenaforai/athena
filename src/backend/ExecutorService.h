@@ -15,12 +15,13 @@ namespace athena::backend {
         std::vector<int> bytecode;
         unsigned long maxMem;
         unsigned long resultCell;
+
+
     public:
         ExecutorService(std::vector<int> bytecode, unsigned long maxMem, unsigned long resultCell) :
                 bytecode(std::move(bytecode)), maxMem(maxMem), resultCell(resultCell) {};
 
-        template <typename T>
-        void setMemoryCell(unsigned long id, athena::core::Tensor<T>* tensor) {
+        void setMemoryCell(unsigned long id, athena::core::Tensor* tensor) {
 
         }
     };

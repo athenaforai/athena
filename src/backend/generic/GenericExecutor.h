@@ -13,13 +13,15 @@
 namespace athena::backend::generic {
     class GenericExecutor : public athena::backend::AbstractExecutor {
     private:
-        athena::core::Tensor& *memory;
+        athena::core::Tensor **memory;
         int *intRegisters;
         std::stack<int> intStack;
 
         std::vector<int> bytecode;
     public:
-        explicit GenericExecutor(std::vector<int> bytecode, int maxMem) : bytecode(std::move(bytecode));
+        explicit GenericExecutor(std::vector<int> bytecode, int maxMem) : bytecode(std::move(bytecode)) {
+            memory = new athena::core::Tensor*[maxMem];
+        };
         void execute();
     };
 }
