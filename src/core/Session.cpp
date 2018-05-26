@@ -6,4 +6,7 @@
 
 void athena::core::Session::prepare(athena::core::Node *logits) {
 
+    if (logits != nullptr) {
+
+    }
 }

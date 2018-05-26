@@ -8,6 +8,7 @@ namespace athena::core::kernels {
     public:
         AddOpKernel() : OpKernel(OpCode::ADD) {};
         int getOperandsCount() override;
+        int* getOutputShape(int* shape, int dim) override;
     };
 }
 
