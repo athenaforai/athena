@@ -3,7 +3,9 @@
 //
 
 #include <stack>
+#include <stdexcept>
 #include "Session.h"
+#include <tuple>
 
 void athena::core::Session::prepare(athena::core::Node *logits) {
 
