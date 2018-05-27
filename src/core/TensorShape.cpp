@@ -25,12 +25,12 @@ unsigned int athena::core::TensorShape::dim(unsigned int n) const {
     return n < shape.size() ? shape[n] : 0;
 }
 
-bool operator==(const athena::core::TensorShape &lhs, const athena::core::TensorShape &rhs) {
-    if (lhs.dimensions() != rhs.dimensions()) {
+bool athena::core::TensorShape::operator==(const athena::core::TensorShape &rhs) const {
+    if (dimensions() != rhs.dimensions()) {
         return false;
     } else {
-        for (unsigned int i = 0; i < lhs.dimensions(); i++) {
-            if (lhs.dim(i) != rhs.dim(i)) {
+        for (unsigned int i = 0; i < dimensions(); i++) {
+            if (dim(i) != rhs.dim(i)) {
                 return false;
             }
         }

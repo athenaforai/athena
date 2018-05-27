@@ -15,4 +15,7 @@ target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/Session.h
         ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
         ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp)
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.cpp
+        )
