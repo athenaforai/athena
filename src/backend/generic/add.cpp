@@ -4,16 +4,16 @@
 #include <core/Tensor.h>
 #include <core/DataType.h>
 #include "ops.h"
-#ifdef __APPLE__
+#if defined(__APPLE__) && !defined(FORCE_OPENBLAS)
 #include <Accelerate/Accelerate.h>
 #else
-#include <cblas.h>
+#include "cblas.h"
 #endif
 
 namespace athena::backend::generic {
 
     athena::core::Tensor* addf_1d(athena::core::Tensor* a, athena::core::Tensor* b) {
-#ifdef __APPLE__
+#if defined(__APPLE__) && !defined(FORCE_OPENBLAS)
         auto y = new float[b->getShape().dim(0)];
         memcpy(y, b->raw(), b->getShape().dim(0) * athena::core::typesize(b->getType()));
 
@@ -21,8 +21,18 @@ namespace athena::backend::generic {
         return new athena::core::Tensor(b->getShape(),
                                         athena::core::DataType::FLOAT,
                                         reinterpret_cast<unsigned char *>(y));
+#else
+        auto af = reinterpret_cast<float *>(a->raw());
+        auto bf = reinterpret_cast<float *>(b->raw());
+        auto cf = new float[b->getShape().dim(0)];
+
+        for (int i = 0; i < b->getShape().dim(0); i++) {
+            cf[i] = af[i] + bf[i];
+        }
+        return new athena::core::Tensor(b->getShape(),
+                                        athena::core::DataType::FLOAT,
+                                        reinterpret_cast<unsigned char *>(cf));
 #endif
-        return nullptr;
     }
 
     athena::core::Tensor* add(athena::core::Tensor* a, athena::core::Tensor* b) {
