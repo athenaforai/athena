@@ -6,11 +6,12 @@
 
 #ifdef APPLE_ACCELERATE
 #include <Accelerate/Accelerate.h>
-#define NO_TRANS CBLAS_TRANSPOSE::CblasNoTrans
-#define C_ORDER CBLAS_ORDER::CblasRowMajor
 #else
 #include "cblas.h"
 #endif
+
+#define NO_TRANS CBLAS_TRANSPOSE::CblasNoTrans
+#define C_ORDER CBLAS_ORDER::CblasRowMajor
 
 #include <core/Tensor.h>
 #include <core/DataType.h>
@@ -88,3 +89,6 @@ namespace athena::backend::generic {
         return nullptr;
     }
 }
+
+#undef NO_TRANS
+#undef C_ORDER

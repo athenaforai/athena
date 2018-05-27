@@ -59,15 +59,17 @@ function(getblis)
 endfunction(getblis)
 
 
-option(FORCE_OPENBLAS "Require library to use OpenBLAS" OFF)
 option(FORCE_BLIS "Require library to use BLIS" OFF)
+option(FORCE_OPENBLAS "Require library to use OpenBLAS" OFF)
 
-if (FORCE_OPENBLAS)
-    message(STATUS "OpenBLAS will be downloaded and compiled")
-    getOpenBLAS()
-elseif(FORCE_BLIS)
+
+if (FORCE_BLIS)
     message(STATUS "BLIS will be downloaded and compiled")
     getblis()
+
+elseif(FORCE_OPENBLAS)
+    message(STATUS "OpenBLAS will be downloaded and compiled")
+    getOpenBLAS()
 else()
     if (APPLE)
         set(BLA_VENDOR Apple)
