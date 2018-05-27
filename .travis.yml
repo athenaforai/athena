@@ -22,7 +22,8 @@ before_install:
  - BIN_PATH=`llvm-config-$VERSION --bindir`
 
 install:
-  - sudo apt-get install libboost-all-dev
+#  - sudo apt-get install libboost-all-dev
+  - sudo apt-get install libopenblas-dev
   - sudo apt-get install --allow-unauthenticated -qq clang++-6.0
   - export CXX="clang++-6.0"
 
