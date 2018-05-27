@@ -5,6 +5,7 @@
 #include <gtest/gtest.h>
 #include <core/Tensor.h>
 #include <backend/generic/ops.h>
+#include <vecLib/vecLib.h>
 
 using namespace athena::core;
 using namespace athena::backend::generic;
@@ -23,8 +24,16 @@ TEST(add_op_test, add_1d)
 
     float res[] = {5, 7, 9};
     unsigned int idx[] = {0};
+    auto *cres = reinterpret_cast<unsigned char *>(res);
+    for (unsigned int j = 0; j < 3 * sizeof(float); j++) {
+//        idx[0] = j;
+        EXPECT_EQ(cres[j], c->raw()[j]);
+    }
+
+    catlas_saxpby(3, 1.0f, af, 1, 1.0f, bf, 1);
+
     for (unsigned int j = 0; j < 3; j++) {
-        idx[0] = j;
-        EXPECT_FLOAT_EQ(res[j], reinterpret_cast<float*>(c->get(idx))[0]);
+//        idx[0] = j;
+        EXPECT_FLOAT_EQ(res[j], bf[j]);
     }
 }

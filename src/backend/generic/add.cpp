@@ -1,8 +1,8 @@
 //
 // Created by Александр Баташев on 26.05.2018.
 //
-//#include <core/Tensor.h>
-//#include <core/DataType.h>
+#include <core/Tensor.h>
+#include <core/DataType.h>
 #include "ops.h"
 #ifdef __APPLE__
 #include <Accelerate/Accelerate.h>
@@ -15,10 +15,12 @@ namespace athena::backend::generic {
     athena::core::Tensor* addf_1d(athena::core::Tensor* a, athena::core::Tensor* b) {
 #ifdef __APPLE__
         auto y = new float[b->getShape().dim(0)];
-        memcpy(y, b->raw(), b->getShape().dim(0));
+        memcpy(y, b->raw(), b->getShape().dim(0) * athena::core::typesize(b->getType()));
 
         catlas_saxpby(a->getShape().dim(0), 1.0f, reinterpret_cast<float *>(a->raw()), 1, 1.0f, y, 1);
-        return new athena::core::Tensor(a->getShape(), athena::core::DataType::FLOAT, reinterpret_cast<u_char *>(y));
+        return new athena::core::Tensor(b->getShape(),
+                                        athena::core::DataType::FLOAT,
+                                        reinterpret_cast<unsigned char *>(y));
 #endif
         return nullptr;
     }

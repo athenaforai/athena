@@ -9,6 +9,15 @@ TEST(sample_test_case, sample_test)
     EXPECT_EQ(1, 1);
 }
 
+TEST(tensor_test, tensor_test_shape_constructor_Test) {
+    unsigned int i[] = {3};
+    TensorShape shape(i, 1);
+    Tensor a(shape, DataType::FLOAT);
+
+    ASSERT_EQ(a.getShape().dimensions(), 1);
+    ASSERT_EQ(a.getShape().dim(0), 3);
+}
+
 TEST(tensor_test, tensor_test_data_load_Test) {
     unsigned int i[] = {3};
     TensorShape shape(i, 1);
