@@ -1,2 +1,4 @@
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/core)
-set(SRC_TEST ${CORE_TEST} PARENT_SCOPE)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/backend)
+
+set(SRC_TEST ${CORE_TEST} ${BACKEND_TEST} PARENT_SCOPE)

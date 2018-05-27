@@ -20,8 +20,12 @@ namespace athena::core {
         DataType dataType;
 
     public:
-        explicit Tensor(TensorShape shape, DataType dataType) : shape(std::move(shape)), dataType(dataType),
+        Tensor(TensorShape shape, DataType dataType) : shape(std::move(shape)), dataType(dataType),
                                                                 data(new unsigned char[shape.total_size()]) {};
+
+        Tensor(TensorShape shape, DataType dataType, unsigned char* data) : shape(std::move(shape)),
+                                                                            dataType(dataType),
+                                                                            data(data) {};
 
         unsigned char *get(unsigned int *idx);
 

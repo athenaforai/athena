@@ -20,7 +20,7 @@ namespace athena::core {
         unsigned int total_size();
 
         friend bool operator==(const TensorShape &, const TensorShape &);
-        friend bool operator!=(const TensorShape &, const TensorShape &);
+//        friend bool operator!=(const TensorShape &, const TensorShape &);
     };
 }
 

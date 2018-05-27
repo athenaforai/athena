@@ -13,27 +13,7 @@ namespace athena::core {
         INT = 2
     };
 
-    unsigned int typesize(DataType type) {
-        switch (type) {
-            case DataType::FLOAT:
-                return sizeof(float);
-            case DataType::DOUBLE:
-                return sizeof(double);
-            case DataType::INT:
-                return sizeof(int);
-        }
-    };
-
-//    std::type_info& cpptype(DataType type) {
-//        switch (type) {
-//            case DataType::FLOAT:
-//                return typeid(float);
-//            case DataType::DOUBLE:
-//                return typeid(double);
-//            case DataType::INT:
-//                return typeid(int);
-//        }
-//    }
+    unsigned int typesize(DataType type);
 }
 
 #endif //ATHENA_DATATYPE_H

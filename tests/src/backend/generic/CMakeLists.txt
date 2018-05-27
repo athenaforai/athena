@@ -1,0 +1,3 @@
+set(GENERIC_SRC_TEST
+        ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
+        PARENT_SCOPE)

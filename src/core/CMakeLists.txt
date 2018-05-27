@@ -4,6 +4,7 @@ set(CORE_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/TensorShape.h
         ${CMAKE_CURRENT_SOURCE_DIR}/TensorShape.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/DataType.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/DataType.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OpKernel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OpKernel.h
         ${CMAKE_CURRENT_SOURCE_DIR}/Node.cpp
