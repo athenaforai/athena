@@ -1,65 +1,82 @@
 #include "Tensor.h"
 #include <cstring>
 #include <stdexcept>
+#include <iostream>
 
 namespace athena::core {
 
-    unsigned char *Tensor::get(unsigned int *idx) {
+    unsigned char *Tensor::get(const unsigned int *idx) {
+        return this->get(idx, shape.dimensions());
+    }
+
+    unsigned char *Tensor::get(const unsigned int *idx, unsigned int length) {
         auto *item = new unsigned char[typesize(dataType)];
-        int innerIdx = 1;
-        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
-            innerIdx *= idx[i] * typesize(dataType);
+        int helperDim = shape.total_size(), innerIdx = 0;
+
+        for (unsigned int i = 0; i < length; i++) {
+            helperDim /= shape.dim(i);
+            innerIdx += idx[i] * typesize(dataType) * helperDim;
         }
-        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
         memcpy(item, this->data + innerIdx, typesize(dataType));
         return item;
     }
 
-    void Tensor::set(unsigned int *idx, void *item) {
-        int innerIdx = 1;
-        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
-            innerIdx *= idx[i] * typesize(dataType);
+    Tensor Tensor::getSubtensor(unsigned int *idx, unsigned int length)
+    {
+        TensorShape tensorShape(idx, length);
+        Tensor tensor(shape, dataType, this->get(idx, length));
+        return tensor;
+    }
+
+    void Tensor::set(const unsigned int *idx, void *item) {
+        int helperDim = shape.total_size(), innerIdx = 0;
+
+        for (unsigned int i = 0; i < shape.dimensions(); i++) {
+            helperDim /= shape.dim(i);
+            innerIdx += idx[i] * typesize(dataType) * helperDim;
         }
-        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
         memcpy(data + innerIdx, item, typesize(dataType));
     }
 
-    void Tensor::set(unsigned int *idx, float item) {
+    void Tensor::set(const unsigned int *idx, float item) {
         if (dataType != DataType::FLOAT) {
             throw std::runtime_error("Wrong type for tensor item");
         }
 
-        int innerIdx = 1;
-        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
-            innerIdx *= idx[i] * typesize(dataType);
+        int helperDim = shape.total_size(), innerIdx = 0;
+
+        for (unsigned int i = 0; i < shape.dimensions(); i++) {
+            helperDim /= shape.dim(i);
+            innerIdx += idx[i] * typesize(dataType) * helperDim;
         }
-        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
         memcpy(data + innerIdx, &item, sizeof(float));
     }
 
-    void Tensor::set(unsigned int *idx, double item) {
-        if (dataType != DataType::FLOAT) {
+    void Tensor::set(const unsigned int *idx, double item) {
+        if (dataType != DataType::DOUBLE) {
             throw std::runtime_error("Wrong type for tensor item");
         }
 
-        int innerIdx = 1;
-        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
-            innerIdx *= idx[i] * typesize(dataType);
+        int helperDim = shape.total_size(), innerIdx = 0;
+
+        for (unsigned int i = 0; i < shape.dimensions(); i++) {
+            helperDim /= shape.dim(i);
+            innerIdx += idx[i] * typesize(dataType) * helperDim;
         }
-        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
         memcpy(data + innerIdx, &item, sizeof(double));
     }
 
-    void Tensor::set(unsigned int *idx, int item) {
-        if (dataType != DataType::FLOAT) {
+    void Tensor::set(const unsigned int *idx, int item) {
+        if (dataType != DataType::INT) {
             throw std::runtime_error("Wrong type for tensor item");
         }
 
-        int innerIdx = 1;
-        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
-            innerIdx *= idx[i] * typesize(dataType);
+        int helperDim = shape.total_size(), innerIdx = 0;
+
+        for (unsigned int i = 0; i < shape.dimensions(); i++) {
+            helperDim /= shape.dim(i);
+            innerIdx += idx[i] * typesize(dataType) * helperDim;
         }
-        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
         memcpy(data + innerIdx, &item, sizeof(int));
     }
 

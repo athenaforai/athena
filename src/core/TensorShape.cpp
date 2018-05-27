@@ -2,6 +2,7 @@
 // Created by Александр Баташев on 26.05.2018.
 //
 
+#include <iostream>
 #include "TensorShape.h"
 
 unsigned int athena::core::TensorShape::total_size() {
