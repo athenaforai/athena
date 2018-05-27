@@ -1,4 +1,6 @@
 #include "Tensor.h"
+#include <cstring>
+#include <stdexcept>
 
 namespace athena::core {
 

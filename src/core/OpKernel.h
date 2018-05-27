@@ -7,6 +7,8 @@
 
 #include <string>
 #include "opcodes.h"
+#include <string>
+#include <vector>
 
 namespace athena::core {
     /**
@@ -18,7 +20,7 @@ namespace athena::core {
         OpCode opCode;
         std::string name;
     public:
-        explicit OpKernel(OpCode opCode, std::string_view name) : opCode(opCode), name(name) {};
+        explicit OpKernel(OpCode opCode, std::string name) : opCode(opCode), name(name) {};
 
         /**
          * There can be unary, binary and other operations
