@@ -1,4 +1,4 @@
-set(CORE_SRC
+target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.h
         ${CMAKE_CURRENT_SOURCE_DIR}/TensorShape.h
@@ -15,5 +15,4 @@ set(CORE_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/Session.h
         ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
         ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp
-        PARENT_SCOPE)
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp)

@@ -4,7 +4,7 @@
 #include <core/Tensor.h>
 #include <core/DataType.h>
 #include "ops.h"
-#if defined(__APPLE__) && !defined(FORCE_OPENBLAS)
+#ifdef APPLE_ACCELERATE
 #include <Accelerate/Accelerate.h>
 #else
 #include "cblas.h"
@@ -13,7 +13,7 @@
 namespace athena::backend::generic {
 
     athena::core::Tensor* addf_1d(athena::core::Tensor* a, athena::core::Tensor* b) {
-#if defined(__APPLE__) && !defined(FORCE_OPENBLAS)
+#ifdef APPLE_ACCELERATE
         auto y = new float[b->getShape().dim(0)];
         memcpy(y, b->raw(), b->getShape().dim(0) * athena::core::typesize(b->getType()));
 

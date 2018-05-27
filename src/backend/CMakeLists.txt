@@ -1,4 +1,4 @@
-set(BACKEND_SRC
+target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ExecutorService.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ExecutorService.h
         ${CMAKE_CURRENT_SOURCE_DIR}/AbstractExecutor.cpp
@@ -9,10 +9,4 @@ set(BACKEND_SRC
 
 add_subdirectory(generic)
 
-set(BACKEND_SRC
-        ${BACKEND_SRC}
-        ${GENERIC_EXEC_SRC})
-
-set(BACKEND_SRC ${BACKEND_SRC} PARENT_SCOPE)
 set(BACKEND_LIBS ${GENERIC_BACKEND_LIBS} PARENT_SCOPE)
-set(BACKEND_DEPS ${GENERIC_BACKEND_DEPS} PARENT_SCOPE)
