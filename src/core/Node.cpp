@@ -23,3 +23,15 @@ std::string athena::core::Node::getRandomNodeName() {
 bool athena::core::Node::isInputNode() {
     return false;
 }
+
+athena::core::OpKernel *athena::core::Node::getOp() {
+    return this->operation;
+}
+
+std::vector<athena::core::Node *> &athena::core::Node::getIncomingNodes() {
+    return incomingNodes;
+}
+
+std::string athena::core::Node::getName() {
+    return name;
+}

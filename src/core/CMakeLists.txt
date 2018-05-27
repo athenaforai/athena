@@ -1,5 +1,10 @@
-set(CORE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
+target_sources(athena PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/TensorShape.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/TensorShape.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/DataType.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/DataType.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OpKernel.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OpKernel.h
         ${CMAKE_CURRENT_SOURCE_DIR}/Node.cpp
@@ -11,4 +16,6 @@ set(CORE_SRC ${CMAKE_CURRENT_SOURCE_DIR}/Tensor.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
         ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.h
         ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp
-        PARENT_SCOPE)
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.cpp
+        )

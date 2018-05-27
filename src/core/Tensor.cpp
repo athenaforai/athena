@@ -1,58 +1,78 @@
-//
-// Created by Александр Баташев on 25.05.2018.
-//
-
 #include "Tensor.h"
+#include <cstring>
+#include <stdexcept>
 
+namespace athena::core {
 
-
-namespace athena {
-    namespace core {
-        //** CONSTRUCTORS **//
-        template<typename T>
-        Tensor<T>::Tensor(int dimensionality, const int *shape) : dimensionality(dimensionality),
-                                                                  shape(new int[dimensionality]) {
-            int i;
-
-            sizeHeap = 1;
-            for (i = 0; i < dimensionality; i++)
-                sizeHeap *= shape[i];
-            heap = new T[sizeHeap];
-
-            for (i = 0; i < dimensionality; i++)
-                this->shape[i] = shape[i];
+    unsigned char *Tensor::get(unsigned int *idx) {
+        auto *item = new unsigned char[typesize(dataType)];
+        int innerIdx = 1;
+        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
+            innerIdx *= idx[i] * typesize(dataType);
         }
-
-        //** DESTRUCTOR **//
-        template<typename T>
-        Tensor<T>::~Tensor() {
-            delete[] heap;
-            delete[] shape;
-        }
-
-        //** METHODS ACCESS **//
-        template<typename T>
-        T Tensor<T>::get(const int *indexes) {
-            int i;
-            T *target = heap;
-
-            for (i = 0; i < dimensionality; i++) {
-                target = target + indexes[i] * shape[i];
-            }
-
-            return *target;
-        }
-
-        template<typename T>
-        void Tensor<T>::set(const int *indexes, T value) {
-            int i;
-            T *target = heap;
-
-            for (i = 0; i < dimensionality; i++) {
-                target = target + indexes[i] * shape[i];
-            }
-
-            *target = value;
-        }
+        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
+        memcpy(item, this->data + innerIdx, typesize(dataType));
+        return item;
     }
+
+    void Tensor::set(unsigned int *idx, void *item) {
+        int innerIdx = 1;
+        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
+            innerIdx *= idx[i] * typesize(dataType);
+        }
+        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
+        memcpy(data + innerIdx, item, typesize(dataType));
+    }
+
+    void Tensor::set(unsigned int *idx, float item) {
+        if (dataType != DataType::FLOAT) {
+            throw std::runtime_error("Wrong type for tensor item");
+        }
+
+        int innerIdx = 1;
+        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
+            innerIdx *= idx[i] * typesize(dataType);
+        }
+        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
+        memcpy(data + innerIdx, &item, sizeof(float));
+    }
+
+    void Tensor::set(unsigned int *idx, double item) {
+        if (dataType != DataType::FLOAT) {
+            throw std::runtime_error("Wrong type for tensor item");
+        }
+
+        int innerIdx = 1;
+        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
+            innerIdx *= idx[i] * typesize(dataType);
+        }
+        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
+        memcpy(data + innerIdx, &item, sizeof(double));
+    }
+
+    void Tensor::set(unsigned int *idx, int item) {
+        if (dataType != DataType::FLOAT) {
+            throw std::runtime_error("Wrong type for tensor item");
+        }
+
+        int innerIdx = 1;
+        for (unsigned int i = 0; i < shape.dimensions() - 1; i++) {
+            innerIdx *= idx[i] * typesize(dataType);
+        }
+        innerIdx += idx[shape.dimensions() - 1] * typesize(dataType);
+        memcpy(data + innerIdx, &item, sizeof(int));
+    }
+
+    const TensorShape &Tensor::getShape() {
+        return shape;
+    }
+
+    unsigned char *Tensor::raw() {
+        return data;
+    }
+
+    DataType Tensor::getType() {
+        return dataType;
+    }
+
 }

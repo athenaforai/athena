@@ -4,9 +4,21 @@
 
 #include "InputNode.h"
 
-athena::core::InputNode::InputNode(athena::core::OpKernel *op) : Node(op) {
-}
+//athena::core::InputNode::InputNode(athena::core::OpKernel *op) : Node(op) {
+//}
 
 bool athena::core::InputNode::isInputNode() {
     return true;
+}
+
+void athena::core::InputNode::setMappedMemCell(unsigned long cell) {
+    mappedMemCell = cell;
+}
+
+unsigned long athena::core::InputNode::getMappedMemCell() {
+    return mappedMemCell;
+}
+
+athena::core::Tensor *athena::core::InputNode::getData() {
+    return this->input;
 }

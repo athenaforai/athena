@@ -28,13 +28,19 @@ namespace athena::core {
          * from predecessor to this node
          * @param predecessor A predecessor node
          */
-        void after(Node* predecessor);
+        virtual void after(Node* predecessor);
 
         /**
          * Check if it is an input node
          * @return false
          */
         virtual bool isInputNode();
+
+        OpKernel* getOp();
+
+        std::vector<Node*>& getIncomingNodes();
+
+        std::string getName();
     };
 }
 

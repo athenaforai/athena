@@ -1,4 +1,5 @@
-set(OPS_SRC
+target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/add.h
-        PARENT_SCOPE)
+        ${CMAKE_CURRENT_SOURCE_DIR}/ops.h
+        )
