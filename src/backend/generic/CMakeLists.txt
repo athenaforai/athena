@@ -40,7 +40,6 @@ else()
         message(STATUS "Apple Accelerate Framework will be used")
     endif()
     find_package(BLAS)
-
 endif()
 
 target_sources(athena PUBLIC

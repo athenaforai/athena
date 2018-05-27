@@ -14,14 +14,14 @@
 namespace athena::backend {
     class ExecutorService {
     private:
-        std::vector<int> bytecode;
+        std::vector<int>& bytecode;
         unsigned long maxMem;
         unsigned long resultCell;
 
         AbstractExecutor* executor;
     public:
-        ExecutorService(std::vector<int> bytecode, unsigned long maxMem, unsigned long resultCell) :
-                bytecode(std::move(bytecode)), maxMem(maxMem), resultCell(resultCell) {
+        ExecutorService(std::vector<int>& bytecode, unsigned long maxMem, unsigned long resultCell) :
+                bytecode(bytecode), maxMem(maxMem), resultCell(resultCell) {
             executor = new athena::backend::generic::GenericExecutor(this->bytecode, maxMem);
         };
 

@@ -18,9 +18,9 @@ namespace athena::backend::generic {
         int *intRegisters{};
         std::stack<int> intStack;
 
-        std::vector<int> bytecode;
+        std::vector<int> &bytecode;
     public:
-        explicit GenericExecutor(std::vector<int> bytecode, unsigned long maxMem) : bytecode(std::move(bytecode)) {
+        explicit GenericExecutor(std::vector<int> &bytecode, unsigned long maxMem) : bytecode(bytecode) {
             memory = new athena::core::Tensor*[maxMem];
         };
         void execute() override;

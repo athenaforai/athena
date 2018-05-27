@@ -29,10 +29,9 @@ TEST(vm_test, vm_test_simple_Test) {
 
     sess.prepare(logits);
     auto res = sess.run();
-    res->raw();
 
-    float resf[] = {3, 6, 7};
-    auto resc = reinterpret_cast<float*>(res);
+    float resf[] = {3, 5, 7};
+    auto resc = reinterpret_cast<float*>(res->raw());
 
     for (int j = 0; j < 3; j++) {
          EXPECT_FLOAT_EQ(resc[j], resf[j]);
