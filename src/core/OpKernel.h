@@ -8,6 +8,7 @@
 #include <string>
 #include "opcodes.h"
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace athena::core {
@@ -20,7 +21,7 @@ namespace athena::core {
         OpCode opCode;
         std::string name;
     public:
-        explicit OpKernel(OpCode opCode, std::string name) : opCode(opCode), name(name) {};
+        explicit OpKernel(OpCode opCode, std::string name) : opCode(opCode), name(std::move(name)) {};
 
         /**
          * There can be unary, binary and other operations
@@ -37,7 +38,7 @@ namespace athena::core {
          */
         virtual int *getOutputShape(int *shape, int dim) = 0;
 
-        virtual std::vector<int> getOpBytecode(std::vector<int> args) = 0;
+        virtual std::vector<int> getOpBytecode(std::vector<int> args, unsigned long resultCell) = 0;
     };
 }
 

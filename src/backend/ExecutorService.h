@@ -8,6 +8,8 @@
 #include <utility>
 #include <vector>
 #include <core/Tensor.h>
+#include "AbstractExecutor.h"
+#include "generic/GenericExecutor.h"
 
 namespace athena::backend {
     class ExecutorService {
@@ -16,14 +18,16 @@ namespace athena::backend {
         unsigned long maxMem;
         unsigned long resultCell;
 
-
+        AbstractExecutor* executor;
     public:
         ExecutorService(std::vector<int> bytecode, unsigned long maxMem, unsigned long resultCell) :
-                bytecode(std::move(bytecode)), maxMem(maxMem), resultCell(resultCell) {};
+                bytecode(std::move(bytecode)), maxMem(maxMem), resultCell(resultCell) {
+            executor = new athena::backend::generic::GenericExecutor(this->bytecode, maxMem);
+        };
 
-        void setMemoryCell(unsigned long id, athena::core::Tensor* tensor) {
+        void setMemoryCell(unsigned long id, athena::core::Tensor* tensor);
 
-        }
+        athena::core::Tensor* execute();
     };
 }
 

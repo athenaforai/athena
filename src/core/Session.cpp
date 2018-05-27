@@ -15,12 +15,14 @@ void athena::core::Session::prepare(athena::core::Node *logits) {
         this->bytecode.insert(std::end(this->bytecode), std::begin(bytecode), std::end(bytecode));
         this->resultCell = resultCell;
     }
+
+    executorService = new athena::backend::ExecutorService(bytecode, maxMemSize, resultCell);
 }
 
-std::tuple<std::vector<int>, int> athena::core::Session::getByteCode(Node *logits) {
+std::tuple<std::vector<int>, unsigned long> athena::core::Session::getByteCode(Node *logits) {
 
     std::vector<int> curBC;
-    int resultCell = 0;
+    unsigned long resultCell = 0;
 
     if (logits->isInputNode()) {
         auto inpNode = dynamic_cast<InputNode *>(logits);
@@ -39,10 +41,12 @@ std::tuple<std::vector<int>, int> athena::core::Session::getByteCode(Node *logit
             for (Node *pred : logits->getIncomingNodes()) {
                 auto[predBC, predResCell] = getByteCode(pred);
                 curBC.insert(std::end(curBC), std::begin(predBC), std::end(predBC));
-                resCells.push_back(predResCell);
+                resCells.push_back(static_cast<int>(predResCell));
             }
 
             resultCell = getFreeMemCell();
+            std::vector<int> op_bytecode = logits->getOp()->getOpBytecode(resCells, resultCell);
+            curBC.insert(std::end(curBC), std::begin(op_bytecode), std::end(op_bytecode));
 
         }
     }
@@ -50,8 +54,8 @@ std::tuple<std::vector<int>, int> athena::core::Session::getByteCode(Node *logit
     return std::make_tuple(curBC, resultCell);
 }
 
-int athena::core::Session::getFreeMemCell() {
-    int res;
+unsigned long athena::core::Session::getFreeMemCell() {
+    unsigned long res;
     if (!free_mem.empty()) {
         res = free_mem.top();
         free_mem.pop();
@@ -66,4 +70,13 @@ int athena::core::Session::getFreeMemCell() {
 
 
     return res;
+}
+
+athena::core::Tensor* athena::core::Session::run() {
+    // todo implement a better solution
+    for (InputNode *node : headNodes) {
+        executorService->setMemoryCell(node->getMappedMemCell(), node->getData());
+    }
+
+    return executorService->execute();
 }

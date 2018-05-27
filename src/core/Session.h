@@ -8,24 +8,32 @@
 #include "Node.h"
 #include "InputNode.h"
 #include <stack>
+#include <backend/ExecutorService.h>
 
 namespace athena::core {
     class Session {
     private:
         std::vector<InputNode*> headNodes;
         std::vector<int> bytecode;
-        int resultCell;
+        unsigned long resultCell;
 
         std::vector<bool> memory_map;
-        std::stack<int> free_mem;
+        std::stack<unsigned long> free_mem;
 
-        int maxMemSize;
+        unsigned long maxMemSize;
 
-        std::tuple<std::vector<int>, int> getByteCode(Node* logits);
-        int getFreeMemCell();
+        std::tuple<std::vector<int>, unsigned long> getByteCode(Node* logits);
+        unsigned long getFreeMemCell();
+
+        athena::backend::ExecutorService *executorService{};
 
     public:
+        Session() : resultCell(0), maxMemSize(0) {};
+        ~Session() = default;
+
         void prepare(Node * logits);
+
+        Tensor* run();
     };
 }
 

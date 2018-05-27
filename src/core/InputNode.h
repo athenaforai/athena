@@ -14,9 +14,12 @@ namespace athena::core {
      */
     class InputNode : public Node {
     private:
-        int mappedMemCell;
+        unsigned long mappedMemCell;
+        Tensor* input;
     public:
-        explicit InputNode(OpKernel *);
+//        explicit InputNode(OpKernel *);
+
+        explicit InputNode(Tensor * input) : Node(nullptr), input(input){};
 
         /**
          * Check if it is an input node
@@ -24,9 +27,12 @@ namespace athena::core {
          */
         bool isInputNode() override;
 
-        void setMappedMemCell(int cell);
-        int getMappedMemCell();
+        void setMappedMemCell(unsigned long cell);
+        unsigned long getMappedMemCell();
 
+        void after(Node*) override {};
+
+        Tensor* getData();
     };
 }
 
