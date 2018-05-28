@@ -42,7 +42,7 @@ namespace athena::backend::generic {
                     cf, // Matrix C
                     a->getShape().dim(0)); // The size of the first dimention of matrix C; if you are passing a matrix C[m][n], the value should be m
 
-        return new athena::core::Tensor(b->getShape(),
+        return new athena::core::Tensor(const_cast<core::TensorShape &>(b->getShape()),
                                         athena::core::DataType::FLOAT,
                                         reinterpret_cast<unsigned char *>(cf));
     }
@@ -68,7 +68,7 @@ namespace athena::backend::generic {
                     cf, // Matrix C
                     a->getShape().dim(0)); // The size of the first dimention of matrix C; if you are passing a matrix C[m][n], the value should be m
 
-        return new athena::core::Tensor(b->getShape(),
+        return new athena::core::Tensor(const_cast<core::TensorShape &>(b->getShape()),
                                         athena::core::DataType::FLOAT,
                                         reinterpret_cast<unsigned char *>(cf));
     }

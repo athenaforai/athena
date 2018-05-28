@@ -16,7 +16,7 @@ namespace athena::backend::generic {
         for (int i = 0; i < b->getShape().dim(0); i++) {
             cf[i] = af[i] + bf[i];
         }
-        return new athena::core::Tensor(b->getShape(),
+        return new athena::core::Tensor(const_cast<core::TensorShape &>(b->getShape()),
                                         athena::core::DataType::FLOAT,
                                         reinterpret_cast<unsigned char *>(cf));
     }
@@ -29,7 +29,7 @@ namespace athena::backend::generic {
         for (int i = 0; i < b->getShape().dim(0); i++) {
             cf[i] = af[i] + bf[i];
         }
-        return new athena::core::Tensor(b->getShape(),
+        return new athena::core::Tensor(const_cast<core::TensorShape &>(b->getShape()),
                                         athena::core::DataType::DOUBLE,
                                         reinterpret_cast<unsigned char *>(cf));
     }
@@ -42,7 +42,7 @@ namespace athena::backend::generic {
         for (int i = 0; i < b->getShape().dim(0); i++) {
             cf[i] = af[i] + bf[i];
         }
-        return new athena::core::Tensor(b->getShape(),
+        return new athena::core::Tensor(const_cast<core::TensorShape &>(b->getShape()),
                                         athena::core::DataType::INT,
                                         reinterpret_cast<unsigned char *>(cf));
     }

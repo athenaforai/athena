@@ -9,7 +9,7 @@ TEST(tensor_test, tensor_test_set_get_int)
     unsigned int ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     int a = 5;
     TensorShape shape(ar, 3);
-    Tensor tensor(TensorShape(shape), DataType::INT);
+    Tensor tensor(shape, DataType::INT);
     tensor.set(ar2, a);
     ASSERT_EQ(a, *((int*)tensor.get(ar3)));
 }
@@ -19,7 +19,7 @@ TEST(tensor_test, tensor_test_set_get_float)
     unsigned int ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     float a = 5;
     TensorShape shape(ar, 3);
-    Tensor tensor(TensorShape(shape), DataType::FLOAT);
+    Tensor tensor(shape, DataType::FLOAT);
     tensor.set(ar2, a);
     ASSERT_EQ(a, *((float*)tensor.get(ar3)));
 }
@@ -29,17 +29,17 @@ TEST(tensor_test, tensor_test_set_get_double)
     unsigned int ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     double a = 5;
     TensorShape shape(ar, 3);
-    Tensor tensor(TensorShape(shape), DataType::DOUBLE);
+    Tensor tensor(shape, DataType::DOUBLE);
     tensor.set(ar2, a);
     ASSERT_EQ(a, *((double*)tensor.get(ar3)));
 }
 
 TEST(tensor_test, tensor_test_set_get_void_pointer)
 {
-    unsigned int ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
+    unsigned int ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     double a = 5;
-    TensorShape shape(ar, 3);
-    Tensor tensor(TensorShape(shape), DataType::DOUBLE);
+    TensorShape shape({3, 3, 3});
+    Tensor tensor(shape, DataType::DOUBLE);
     tensor.set(ar2, &a);
     ASSERT_EQ(a, *((double*)tensor.get(ar3)));
 }
@@ -71,7 +71,7 @@ TEST(tensor_test, tensor_test_get_subtensor)    //todo
     unsigned int ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2}, ind[3];
     int val = 0;
     TensorShape shape(ar, 3);
-    Tensor tensor(TensorShape(shape), DataType::INT);
+    Tensor tensor(shape, DataType::INT);
 
     for(unsigned int i = 0; i < 3; i++)
         for(unsigned int j = 0; j < 3; j++)

@@ -39,6 +39,6 @@ bool athena::core::TensorShape::operator==(const athena::core::TensorShape &rhs)
     return true;
 }
 
-//bool operator!=(const athena::core::TensorShape &lhs, const athena::core::TensorShape &rhs) {
-//    return !(lhs == rhs);
-//}
+bool athena::core::TensorShape::operator!=(const athena::core::TensorShape &rhs) const {
+    return !(*this == rhs);
+}

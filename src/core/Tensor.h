@@ -16,17 +16,17 @@ namespace athena::core {
 
     class Tensor {
     private:
-        TensorShape shape;
+        TensorShape& shape;
         unsigned char *data;
         DataType dataType;
 
     public:
-        Tensor(TensorShape shape, DataType dataType) : shape(std::move(shape)), dataType(dataType),
-                                                                data(new unsigned char[this->shape.total_size() * typesize(dataType)]) {};
+        Tensor(TensorShape &shape, DataType dataType) : shape(shape), dataType(dataType),
+                                                        data(new unsigned char[this->shape.total_size() * typesize(dataType)]) {};
 
-        Tensor(TensorShape shape, DataType dataType, unsigned char* data) : shape(std::move(shape)),
-                                                                            dataType(dataType),
-                                                                            data(data) {};
+        Tensor(TensorShape &shape, DataType dataType, unsigned char *data) : shape(shape),
+                                                                             dataType(dataType),
+                                                                             data(data) {};
 
         unsigned char *get(const unsigned int *idx);
 

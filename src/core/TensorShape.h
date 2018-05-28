@@ -6,6 +6,7 @@
 #define ATHENA_TENSORSHAPE_H
 
 #include <vector>
+#include <array>
 
 namespace athena::core {
     class TensorShape {
@@ -20,6 +21,7 @@ namespace athena::core {
         unsigned int total_size();
 
         bool operator==(const TensorShape &) const;
+        bool operator!=(const TensorShape &rhs) const;
 //        friend bool operator!=(const TensorShape &, const TensorShape &);
     };
 }
