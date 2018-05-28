@@ -22,3 +22,11 @@ unsigned long athena::core::InputNode::getMappedMemCell() {
 athena::core::Tensor *athena::core::InputNode::getData() {
     return this->input;
 }
+
+bool athena::core::InputNode::isFrozen() {
+    return _isFrozen;
+}
+
+void athena::core::InputNode::setFrozen(bool frozen) {
+    _isFrozen = frozen;
+}
