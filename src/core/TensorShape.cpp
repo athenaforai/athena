@@ -2,6 +2,7 @@
 // Created by Александр Баташев on 26.05.2018.
 //
 
+#include <iostream>
 #include "TensorShape.h"
 
 unsigned int athena::core::TensorShape::total_size() {
@@ -25,6 +26,10 @@ unsigned int athena::core::TensorShape::dim(unsigned int n) const {
     return n < shape.size() ? shape[n] : 0;
 }
 
+const std::vector<unsigned int>& athena::core::TensorShape::getShape() const {
+    return shape;
+}
+
 bool athena::core::TensorShape::operator==(const athena::core::TensorShape &rhs) const {
     if (dimensions() != rhs.dimensions()) {
         return false;
@@ -38,6 +43,6 @@ bool athena::core::TensorShape::operator==(const athena::core::TensorShape &rhs)
     return true;
 }
 
-//bool operator!=(const athena::core::TensorShape &lhs, const athena::core::TensorShape &rhs) {
-//    return !(lhs == rhs);
-//}
+bool athena::core::TensorShape::operator!=(const athena::core::TensorShape &rhs) const {
+    return !(*this == rhs);
+}

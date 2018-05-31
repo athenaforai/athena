@@ -8,6 +8,7 @@
 
 #include <cstddef>
 #include <utility>
+#include <iostream>
 #include "TensorShape.h"
 #include "DataType.h"
 
@@ -15,33 +16,39 @@ namespace athena::core {
 
     class Tensor {
     private:
-        TensorShape shape;
+        TensorShape *shape;
         unsigned char *data;
         DataType dataType;
 
     public:
-        Tensor(TensorShape shape, DataType dataType) : shape(std::move(shape)), dataType(dataType),
-                                                                data(new unsigned char[shape.total_size()]) {};
+        Tensor(TensorShape &shape, DataType dataType) : shape(new TensorShape(shape)), dataType(dataType),
+                                                        data(new unsigned char[this->shape->total_size() * typesize(dataType)]) {};
 
-        Tensor(TensorShape shape, DataType dataType, unsigned char* data) : shape(std::move(shape)),
-                                                                            dataType(dataType),
-                                                                            data(data) {};
+        Tensor(TensorShape &shape, DataType dataType, unsigned char *data) : shape(new TensorShape(shape)),
+                                                                             dataType(dataType),
+                                                                             data(data) {};
 
-        unsigned char *get(unsigned int *idx);
+        unsigned char *get(const unsigned int *idx) const;
 
-        void set(unsigned int *idx, void *item);
+        unsigned char *get(const unsigned int *idx, unsigned int length) const;
 
-        void set(unsigned int *idx, float item);
+        Tensor getSubtensor(unsigned int *idx, unsigned int depth) const;
 
-        void set(unsigned int *idx, double item);
+        Tensor getSubtensor(unsigned int id) const;
 
-        void set(unsigned int *idx, int item);
+        void set(const unsigned int *idx, void *item);
 
-        const TensorShape& getShape();
+        void set(const unsigned int *idx, float item);
 
-        unsigned char* raw();
+        void set(const unsigned int *idx, double item);
 
-        DataType getType();
+        void set(const unsigned int *idx, int item);
+
+        const TensorShape& getShape() const;
+
+        unsigned char* raw() const;
+
+        DataType getType() const;
     };
 }
 

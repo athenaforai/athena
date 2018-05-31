@@ -14,12 +14,22 @@ namespace athena::core {
      */
     class InputNode : public Node {
     private:
-        unsigned long mappedMemCell;
-        Tensor* input;
-    public:
-//        explicit InputNode(OpKernel *);
+        unsigned long mappedMemCell{};
+        Tensor *input;
+        TensorShape initialShape;
 
-        explicit InputNode(Tensor * input) : Node(nullptr), input(input){};
+        InputNode(const TensorShape &inputShape) : Node(nullptr), input(nullptr),
+                                                   initialShape(TensorShape(initialShape)) {};
+    public:
+        explicit InputNode(Tensor *input) : Node(nullptr), input(input),
+                                            initialShape(TensorShape(input->getShape())) {};
+
+        /**
+         * Creates an InputNode without data
+         * @param inputShape TensorShape of your future data
+         * @return Pointer to an InputShape without data
+         */
+        static InputNode *placeholder(const TensorShape &inputShape);
 
         /**
          * Check if it is an input node
@@ -28,11 +38,14 @@ namespace athena::core {
         bool isInputNode() override;
 
         void setMappedMemCell(unsigned long cell);
+
         unsigned long getMappedMemCell();
 
-        void after(Node*) override {};
+        void after(Node *) override {};
 
-        Tensor* getData();
+        Tensor *getData();
+
+        void setData(Tensor *data);
     };
 }
 

@@ -19,8 +19,8 @@ TEST(vm_test, vm_test_simple_Test) {
     float af[] = {1, 2, 3};
     float bf[] = {2, 3, 4};
 
-    Tensor *a = new Tensor(shape, DataType::FLOAT, reinterpret_cast<u_char *>(af));
-    Tensor *b = new Tensor(shape, DataType::FLOAT, reinterpret_cast<u_char *>(bf));
+    auto *a = new Tensor(shape, DataType::FLOAT, reinterpret_cast<u_char *>(af));
+    auto *b = new Tensor(shape, DataType::FLOAT, reinterpret_cast<u_char *>(bf));
 
     auto an = InputNode(a);
     auto bn = InputNode(b);
