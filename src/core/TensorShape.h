@@ -19,6 +19,7 @@ namespace athena::core {
         unsigned int dimensions() const;
         unsigned int dim(unsigned int n) const;
         unsigned int total_size();
+        const std::vector<unsigned int>& getShape() const;
 
         bool operator==(const TensorShape &) const;
         bool operator!=(const TensorShape &rhs) const;

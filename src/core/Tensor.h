@@ -16,23 +16,25 @@ namespace athena::core {
 
     class Tensor {
     private:
-        TensorShape& shape;
+        TensorShape *shape;
         unsigned char *data;
         DataType dataType;
 
     public:
-        Tensor(TensorShape &shape, DataType dataType) : shape(shape), dataType(dataType),
-                                                        data(new unsigned char[this->shape.total_size() * typesize(dataType)]) {};
+        Tensor(TensorShape &shape, DataType dataType) : shape(new TensorShape(shape)), dataType(dataType),
+                                                        data(new unsigned char[this->shape->total_size() * typesize(dataType)]) {};
 
-        Tensor(TensorShape &shape, DataType dataType, unsigned char *data) : shape(shape),
+        Tensor(TensorShape &shape, DataType dataType, unsigned char *data) : shape(new TensorShape(shape)),
                                                                              dataType(dataType),
                                                                              data(data) {};
 
-        unsigned char *get(const unsigned int *idx);
+        unsigned char *get(const unsigned int *idx) const;
 
-        unsigned char *get(const unsigned int *idx, unsigned int length);
+        unsigned char *get(const unsigned int *idx, unsigned int length) const;
 
-        Tensor getSubtensor(unsigned int *idx, unsigned int depth);
+        Tensor getSubtensor(unsigned int *idx, unsigned int depth) const;
+
+        Tensor getSubtensor(unsigned int id) const;
 
         void set(const unsigned int *idx, void *item);
 
@@ -42,11 +44,11 @@ namespace athena::core {
 
         void set(const unsigned int *idx, int item);
 
-        const TensorShape& getShape();
+        const TensorShape& getShape() const;
 
-        unsigned char* raw();
+        unsigned char* raw() const;
 
-        DataType getType();
+        DataType getType() const;
     };
 }
 

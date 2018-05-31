@@ -26,6 +26,10 @@ unsigned int athena::core::TensorShape::dim(unsigned int n) const {
     return n < shape.size() ? shape[n] : 0;
 }
 
+const std::vector<unsigned int>& athena::core::TensorShape::getShape() const {
+    return shape;
+}
+
 bool athena::core::TensorShape::operator==(const athena::core::TensorShape &rhs) const {
     if (dimensions() != rhs.dimensions()) {
         return false;
