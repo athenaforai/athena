@@ -38,11 +38,15 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
         Node* curNode = nodesQueue.front();
         nodesQueue.pop();
 
-        curNode->setDerivativeMarked();
-
-        for (int i = 0; i < curNode->getIncomingNodes().size(); i++) {
-            
-        }
+        /*
+         * todo:
+         * for every incoming node
+         * 1) Pop error from errorCells
+         * 2) Multiply error cell by corresponding derivative
+         * 3) Push result back to queue
+         * 4) If current incoming node is InputNode and it is not frozen, update values
+         * 5) Else push current incoming node to queue
+         */
     }
 
     return std::make_tuple(bytecode, static_cast<unsigned long>(0));

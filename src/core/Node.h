@@ -21,9 +21,15 @@ namespace athena::core {
         std::string name;
         std::string getRandomNodeName();
 
+        bool calculated;
+        std::vector<unsigned long> derivatives;
+        unsigned long resultCell;
+
+        unsigned long usageCount;
+
         bool derivativeMark;
     public:
-        explicit Node(OpKernel*) : derivativeMark(false) {};
+        explicit Node(OpKernel*);
 
         /**
          * Makes a new oriented edge in execution graph
@@ -46,6 +52,17 @@ namespace athena::core {
 
         bool isDerivativeMarked();
         void setDerivativeMarked();
+
+        void addDerivative(unsigned long d);
+        unsigned long getDerivative(int i);
+
+        void setCalculated(unsigned long resCell);
+        bool isCalculated();
+        unsigned long getResult();
+
+        void updateUsageCount();
+        bool isGarbage();
+
     };
 }
 
