@@ -38,7 +38,17 @@ namespace athena::core {
          */
         virtual int *getOutputShape(int *shape, int dim) = 0;
 
-        virtual std::vector<int> getOpBytecode(std::vector<int> args, unsigned long resultCell) = 0;
+        virtual std::vector<unsigned long> getOpBytecode(std::vector<unsigned long> args, unsigned long resultCell) = 0;
+
+        /**
+         * Generates bytecode to calculate partial derivative
+         * @param d Number of variable with respect to which derivative is calculated
+         * @param args Function arguments
+         * @param resultCell Number of memory cell where results are saved
+         * @return
+         */
+        virtual std::vector<unsigned long> getDerivativeBytecode(int d, std::vector<unsigned long> args,
+                                                       unsigned long resultCell) = 0;
     };
 }
 

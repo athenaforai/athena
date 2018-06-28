@@ -7,6 +7,8 @@
 
 
 #include <core/InputNode.h>
+#include <core/loss/AbstractLossFunction.h>
+#include <core/Session.h>
 #include "core/Node.h"
 
 namespace athena::core::optimizers {
@@ -15,10 +17,17 @@ namespace athena::core::optimizers {
         std::vector<InputNode*> headNodes;
         std::vector<int> bytecode;
 
-        Node* logits;
+        unsigned long lastResultCell;
+        Session* session;
+
+        AbstractLossFunction* loss;
     public:
-        explicit AbstractOptimizer(Node* logits) : logits(logits){};
+        explicit AbstractOptimizer(AbstractLossFunction* loss) : loss(loss),
+                                                                 lastResultCell(0),
+                                                                 session(nullptr){};
         ~AbstractOptimizer() = default;
+
+        void init(Session* session);
 
         virtual void prepare() = 0;
         virtual void minimize() = 0;

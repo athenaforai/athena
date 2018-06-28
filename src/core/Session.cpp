@@ -19,9 +19,9 @@ void athena::core::Session::prepare(athena::core::Node *logits) {
     executorService = new athena::backend::ExecutorService(bytecode, maxMemSize, resultCell);
 }
 
-std::tuple<std::vector<int>, unsigned long> athena::core::Session::getByteCode(Node *logits) {
+std::tuple<std::vector<unsigned long>, unsigned long> athena::core::Session::getByteCode(Node *logits) {
 
-    std::vector<int> curBC;
+    std::vector<unsigned long> curBC;
     unsigned long resultCell = 0;
 
     if (logits->isInputNode()) {
@@ -37,15 +37,15 @@ std::tuple<std::vector<int>, unsigned long> athena::core::Session::getByteCode(N
         } else {
 
             // todo check shape compatibility
-            std::vector<int> resCells;
+            std::vector<unsigned long> resCells;
             for (Node *pred : logits->getIncomingNodes()) {
                 auto[predBC, predResCell] = getByteCode(pred);
                 curBC.insert(std::end(curBC), std::begin(predBC), std::end(predBC));
-                resCells.push_back(static_cast<int>(predResCell));
+                resCells.push_back(predResCell);
             }
 
             resultCell = getFreeMemCell();
-            std::vector<int> op_bytecode = logits->getOp()->getOpBytecode(resCells, resultCell);
+            std::vector<unsigned long> op_bytecode = logits->getOp()->getOpBytecode(resCells, resultCell);
             curBC.insert(std::end(curBC), std::begin(op_bytecode), std::end(op_bytecode));
 
         }
@@ -79,4 +79,8 @@ athena::core::Tensor* athena::core::Session::run() {
     }
 
     return executorService->execute();
+}
+
+unsigned long athena::core::Session::getResultCell() {
+    return resultCell;
 }

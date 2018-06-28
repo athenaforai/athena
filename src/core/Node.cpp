@@ -35,3 +35,11 @@ std::vector<athena::core::Node *> &athena::core::Node::getIncomingNodes() {
 std::string athena::core::Node::getName() {
     return name;
 }
+
+bool athena::core::Node::isDerivativeMarked() {
+    return derivativeMark;
+}
+
+void athena::core::Node::setDerivativeMarked() {
+    derivativeMark = true;
+}

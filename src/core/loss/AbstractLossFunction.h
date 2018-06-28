@@ -6,8 +6,12 @@
 #define ATHENA_ABSTRACTLOSSFUNCTION_H
 
 
+#include <core/Node.h>
+
 namespace athena::core::optimizers {
-    class AbstractLossFunction {
+    class AbstractLossFunction : public Node {
+    public:
+        AbstractLossFunction(OpKernel*);
 
     };
 }

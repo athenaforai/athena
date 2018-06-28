@@ -20,8 +20,10 @@ namespace athena::core {
         OpKernel* operation;
         std::string name;
         std::string getRandomNodeName();
+
+        bool derivativeMark;
     public:
-        explicit Node(OpKernel*);
+        explicit Node(OpKernel*) : derivativeMark(false) {};
 
         /**
          * Makes a new oriented edge in execution graph
@@ -41,6 +43,9 @@ namespace athena::core {
         std::vector<Node*>& getIncomingNodes();
 
         std::string getName();
+
+        bool isDerivativeMarked();
+        void setDerivativeMarked();
     };
 }
 

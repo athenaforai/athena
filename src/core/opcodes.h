@@ -10,6 +10,7 @@ enum class OpCode : int {
     POP = 0x02,
     JMP = 0x03,
     ADD = 0x04,
-    MATMUL = 0x05
+    MATMUL = 0x05,
+    MKSCALAR = 0x06
 };
 #endif //ATHENA_OPCODES_H
