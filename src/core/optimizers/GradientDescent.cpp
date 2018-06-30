@@ -30,7 +30,7 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
     node->getOp()->getOpBytecode(lossArgs, errorCell);
 
     std::queue<Node *> nodesQueue;
-    nodesQueue.push(node);
+    nodesQueue.push(node->getIncomingNodes()[0]);
     std::queue<unsigned long> errorCells;
     errorCells.push(errorCell);
 
@@ -38,11 +38,47 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
         Node* curNode = nodesQueue.front();
         nodesQueue.pop();
 
+        for (int i = 0; i < curNode->getIncomingNodes().size(); i++) {
+            Node *inNode = curNode->getIncomingNodes()[i];
+            unsigned long err = errorCells.front();
+            errorCells.pop();
+
+            unsigned long newErr = session->getFreeMemCell();
+
+            bytecode.push_back(static_cast<unsigned long>(OpCode::MATMUL));
+            bytecode.push_back(err);
+            bytecode.push_back(curNode->getDerivative(i));
+            bytecode.push_back(newErr);
+
+            errorCells.push(newErr);
+
+            if (inNode->isInputNode()) {
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCDFAInspection"
+                auto inputNode = dynamic_cast<InputNode*>(inNode);
+                if (!inputNode->isFrozen()) {
+                    bytecode.push_back(static_cast<unsigned long>(OpCode::SCALE));
+                    bytecode.push_back(reinterpret_cast<unsigned long>(-1*learningRate));
+                    bytecode.push_back(newErr);
+                    unsigned long delta = session->getFreeMemCell();
+                    bytecode.push_back(delta);
+
+                    bytecode.push_back(static_cast<unsigned long>(OpCode::ADD));
+                    bytecode.push_back(inputNode->getMappedMemCell());
+                    bytecode.push_back(delta);
+                    bytecode.push_back(inputNode->getMappedMemCell());
+                }
+#pragma clang diagnostic pop
+            } else {
+                nodesQueue.push(inNode);
+            }
+        }
+
         /*
          * todo:
          * for every incoming node
          * 1) Pop error from errorCells
-         * 2) Multiply error cell by corresponding derivative
+         * 2) Multiply error cell by corresponding derivative of curNode
          * 3) Push result back to queue
          * 4) If current incoming node is InputNode and it is not frozen, update values
          * 5) Else push current incoming node to queue
