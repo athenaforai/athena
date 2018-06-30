@@ -22,7 +22,7 @@ namespace athena::core {
         std::string getRandomNodeName();
 
         bool calculated;
-        std::vector<unsigned long> derivatives;
+        std::vector<vm_word> derivatives;
         unsigned long resultCell;
 
         unsigned long usageCount;

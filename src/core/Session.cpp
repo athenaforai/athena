@@ -21,11 +21,11 @@ void athena::core::Session::prepare(athena::core::Node* logits) {
                                                            resultCell);
 }
 
-std::tuple<std::vector<unsigned long>, unsigned long>
+std::tuple<std::vector<vm_word>, vm_word>
 athena::core::Session::getByteCode(Node* logits) {
 
-    std::vector<unsigned long> curBC;
-    unsigned long resultCell = 0;
+    std::vector<vm_word> curBC;
+    vm_word resultCell = 0;
 
     if (logits->isInputNode()) {
         auto inpNode = dynamic_cast<InputNode*>(logits);
@@ -41,7 +41,7 @@ athena::core::Session::getByteCode(Node* logits) {
         } else {
 
             // todo check shape compatibility
-            std::vector<unsigned long> resCells;
+            std::vector<vm_word> resCells;
             for (Node* pred : logits->getIncomingNodes()) {
                 if (pred->isCalculated()) {
                     resCells.push_back(pred->getResult());
@@ -57,13 +57,13 @@ athena::core::Session::getByteCode(Node* logits) {
             }
 
             resultCell = getFreeMemCell();
-            std::vector<unsigned long> op_bytecode = logits->getOp()->getOpBytecode(
+            std::vector<vm_word> op_bytecode = logits->getOp()->getOpBytecode(
                     resCells, resultCell);
             curBC.insert(std::end(curBC), std::begin(op_bytecode), std::end(op_bytecode));
 
             for (int i = 0; i < logits->getIncomingNodes().size(); i++) {
-                unsigned long derivCell = getFreeMemCell();
-                std::vector<unsigned long> deriv_bytecode =
+                vm_word derivCell = getFreeMemCell();
+                std::vector<vm_word> deriv_bytecode =
                         logits->getOp()->getDerivativeBytecode(i, resCells, derivCell);
                 logits->addDerivative(derivCell);
                 curBC.insert(std::end(curBC),

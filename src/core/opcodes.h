@@ -4,7 +4,10 @@
 
 #ifndef ATHENA_OPCODES_H
 #define ATHENA_OPCODES_H
-enum class OpCode : unsigned long {
+
+typedef unsigned long vm_word;
+
+enum class OpCode : vm_word {
     DEL = 0x00,
     PUSH = 0x01,
     POP = 0x02,

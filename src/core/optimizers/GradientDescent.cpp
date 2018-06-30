@@ -22,16 +22,16 @@ void athena::core::optimizers::GradientDescent::prepare() {
 std::tuple<std::vector<unsigned long>, unsigned long>
 athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* node) {
 
-    std::vector<unsigned long> bytecode;
+    std::vector<vm_word> bytecode;
 
-    unsigned long errorCell = this->session->getFreeMemCell();
-    std::vector<unsigned long> lossArgs(1);
+    vm_word errorCell = this->session->getFreeMemCell();
+    std::vector<vm_word> lossArgs(1);
     lossArgs.push_back(lastResultCell);
     node->getOp()->getOpBytecode(lossArgs, errorCell);
 
     std::queue<Node *> nodesQueue;
     nodesQueue.push(node->getIncomingNodes()[0]);
-    std::queue<unsigned long> errorCells;
+    std::queue<vm_word> errorCells;
     errorCells.push(errorCell);
 
     while (!nodesQueue.empty()) {
@@ -40,12 +40,12 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
 
         for (int i = 0; i < curNode->getIncomingNodes().size(); i++) {
             Node *inNode = curNode->getIncomingNodes()[i];
-            unsigned long err = errorCells.front();
+            vm_word err = errorCells.front();
             errorCells.pop();
 
-            unsigned long newErr = session->getFreeMemCell();
+            vm_word newErr = session->getFreeMemCell();
 
-            bytecode.push_back(static_cast<unsigned long>(OpCode::MATMUL));
+            bytecode.push_back(static_cast<vm_word>(OpCode::MATMUL));
             bytecode.push_back(err);
             bytecode.push_back(curNode->getDerivative(i));
             bytecode.push_back(newErr);
@@ -57,13 +57,13 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
 #pragma ide diagnostic ignored "OCDFAInspection"
                 auto inputNode = dynamic_cast<InputNode*>(inNode);
                 if (!inputNode->isFrozen()) {
-                    bytecode.push_back(static_cast<unsigned long>(OpCode::SCALE));
-                    bytecode.push_back(reinterpret_cast<unsigned long>(-1*learningRate));
+                    bytecode.push_back(static_cast<vm_word>(OpCode::SCALE));
+                    bytecode.push_back(reinterpret_cast<vm_word>(-1*learningRate));
                     bytecode.push_back(newErr);
-                    unsigned long delta = session->getFreeMemCell();
+                    vm_word delta = session->getFreeMemCell();
                     bytecode.push_back(delta);
 
-                    bytecode.push_back(static_cast<unsigned long>(OpCode::ADD));
+                    bytecode.push_back(static_cast<vm_word>(OpCode::ADD));
                     bytecode.push_back(inputNode->getMappedMemCell());
                     bytecode.push_back(delta);
                     bytecode.push_back(inputNode->getMappedMemCell());
