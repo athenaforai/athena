@@ -22,8 +22,7 @@ namespace athena::core {
 
         unsigned long maxMemSize;
 
-        std::tuple<std::vector<int>, unsigned long> getByteCode(Node* logits);
-        unsigned long getFreeMemCell();
+        std::tuple<std::vector<unsigned long>, unsigned long> getByteCode(Node* logits);
 
         athena::backend::ExecutorService *executorService{};
 
@@ -34,6 +33,10 @@ namespace athena::core {
         void prepare(Node * logits);
 
         Tensor* run();
+
+        unsigned long getResultCell();
+
+        unsigned long getFreeMemCell(); // todo replace with memory manager
     };
 }
 

@@ -85,6 +85,10 @@ target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/matmul.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/ops.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.h
         )
 
 set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)

@@ -20,6 +20,14 @@ namespace athena::core {
         OpKernel* operation;
         std::string name;
         std::string getRandomNodeName();
+
+        bool calculated;
+        std::vector<vm_word> derivatives;
+        unsigned long resultCell;
+
+        unsigned long usageCount;
+
+        bool derivativeMark;
     public:
         explicit Node(OpKernel*);
 
@@ -41,6 +49,20 @@ namespace athena::core {
         std::vector<Node*>& getIncomingNodes();
 
         std::string getName();
+
+        bool isDerivativeMarked();
+        void setDerivativeMarked();
+
+        void addDerivative(unsigned long d);
+        unsigned long getDerivative(int i);
+
+        void setCalculated(unsigned long resCell);
+        bool isCalculated();
+        unsigned long getResult();
+
+        void updateUsageCount();
+        bool isGarbage();
+
     };
 }
 

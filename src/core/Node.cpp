@@ -4,7 +4,8 @@
 
 #include "Node.h"
 
-athena::core::Node::Node(OpKernel* operation) {
+athena::core::Node::Node(OpKernel* operation) : operation(nullptr), derivativeMark(false),
+                                                calculated(false), resultCell(0), usageCount(0) {
     this->operation = operation;
     name = getRandomNodeName();
 }
@@ -34,4 +35,41 @@ std::vector<athena::core::Node *> &athena::core::Node::getIncomingNodes() {
 
 std::string athena::core::Node::getName() {
     return name;
+}
+
+bool athena::core::Node::isDerivativeMarked() {
+    return derivativeMark;
+}
+
+void athena::core::Node::setDerivativeMarked() {
+    derivativeMark = true;
+}
+
+void athena::core::Node::addDerivative(unsigned long d) {
+    derivatives.push_back(d);
+}
+
+unsigned long athena::core::Node::getDerivative(int i) {
+    return derivatives[i];
+}
+
+void athena::core::Node::setCalculated(unsigned long resCell) {
+    resultCell = resCell;
+    calculated = true;
+}
+
+bool athena::core::Node::isCalculated() {
+    return calculated;
+}
+
+unsigned long athena::core::Node::getResult() {
+    return resultCell;
+}
+
+void athena::core::Node::updateUsageCount() {
+    usageCount++;
+}
+
+bool athena::core::Node::isGarbage() {
+    return usageCount == outcomingNodes.size();
 }

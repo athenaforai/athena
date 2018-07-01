@@ -16,10 +16,10 @@ int *athena::core::kernels::AddOpKernel::getOutputShape(int *shape, int dim) {
     return newShape;
 }
 
-std::vector<int> athena::core::kernels::AddOpKernel::getOpBytecode(std::vector<int> args, unsigned long resultCell) {
-    std::vector<int> bytecode;
+std::vector<unsigned long> athena::core::kernels::AddOpKernel::getOpBytecode(std::vector<unsigned long> args, unsigned long resultCell) {
+    std::vector<unsigned long> bytecode;
 
-    bytecode.push_back(static_cast<int>(opCode));
+    bytecode.push_back(static_cast<unsigned long>(opCode));
 
     for (int arg : args) {
         bytecode.push_back(arg);
@@ -28,4 +28,17 @@ std::vector<int> athena::core::kernels::AddOpKernel::getOpBytecode(std::vector<i
     bytecode.push_back(static_cast<int>(resultCell));
 
     return bytecode;
+}
+
+std::vector<unsigned long>
+athena::core::kernels::AddOpKernel::getDerivativeBytecode(int d, std::vector<unsigned long> args,
+                                                          unsigned long resultCell) {
+    std::vector<unsigned long> bytecode;
+    bytecode.push_back(static_cast<int>(OpCode::MKSCALAR));
+
+    bytecode.push_back(resultCell);
+    bytecode.push_back(1);
+
+    return bytecode;
+
 }

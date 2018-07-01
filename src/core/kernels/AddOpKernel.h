@@ -10,7 +10,10 @@ namespace athena::core::kernels {
         int getOperandsCount() override;
         int* getOutputShape(int* shape, int dim) override;
 
-        std::vector<int> getOpBytecode(std::vector<int> args, unsigned long resultCell) override;
+        std::vector<unsigned long> getOpBytecode(std::vector<unsigned long> args, unsigned long resultCell) override;
+
+        std::vector<unsigned long> getDerivativeBytecode(int d, std::vector<unsigned long> args,
+                                                       unsigned long resultCell) override;
     };
 }
 
