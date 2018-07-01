@@ -59,7 +59,10 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
                 auto inputNode = dynamic_cast<InputNode*>(inNode);
                 if (!inputNode->isFrozen()) {
                     bytecode.push_back(static_cast<vm_word>(OpCode::SCALE));
-                    bytecode.push_back(reinterpret_cast<vm_word>(-1*learningRate));
+                    vm_word *tmp;
+                    float alpha = -1*learningRate;
+                    tmp = reinterpret_cast<vm_word*>(&alpha);
+                    bytecode.push_back(*tmp);
                     bytecode.push_back(newErr);
                     vm_word delta = session->getFreeMemCell();
                     bytecode.push_back(delta);

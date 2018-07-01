@@ -11,7 +11,7 @@ using namespace athena::backend::generic;
 
 TEST(add_op_test, add_1d)
 {
-    unsigned int i[] = {3};
+    size_t i[] = {3};
     TensorShape shape(i, 1);
     float af[] = {1, 2, 3};
     Tensor a(shape, DataType::FLOAT, reinterpret_cast<u_char *>(af));
