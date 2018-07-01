@@ -15,19 +15,23 @@
 namespace athena::backend::generic {
     class GenericExecutor : public athena::backend::AbstractExecutor {
     private:
-        athena::core::Tensor **memory;
-        int *intRegisters{};
-        std::stack<int> intStack;
+        athena::core::Tensor** memory;
+        int* intRegisters {};
+        std::stack< int > intStack;
 
-        std::vector<vm_word> &bytecode;
+        std::vector< vm_word > &bytecode;
     public:
-        explicit GenericExecutor(std::vector<vm_word> &bytecode, unsigned long maxMem) : bytecode(bytecode) {
-            memory = new athena::core::Tensor*[maxMem];
+        explicit GenericExecutor (
+                std::vector< vm_word > &bytecode, unsigned long maxMem
+        ) : bytecode ( bytecode ) {
+            memory = new athena::core::Tensor* [maxMem];
         };
-        void execute() override;
-        void setMemoryCell(unsigned long id, athena::core::Tensor* tensor) override;
 
-        athena::core::Tensor *getMemoryCell(unsigned long id) override;
+        void execute () override;
+
+        void setMemoryCell ( unsigned long id, athena::core::Tensor* tensor ) override;
+
+        athena::core::Tensor* getMemoryCell ( unsigned long id ) override;
     };
 }
 

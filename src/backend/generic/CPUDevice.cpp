@@ -5,8 +5,8 @@
 #include "CPUDevice.h"
 #include <thread>
 
-athena::backend::generic::CPUDevice::CPUDevice() : AbstractDevice() {
-    maxThreads = std::thread::hardware_concurrency();
+athena::backend::generic::CPUDevice::CPUDevice () : AbstractDevice () {
+    maxThreads = std::thread::hardware_concurrency ();
     activeThreads = 0;
-    memoryManager = new GenericMemoryManager();
+    memoryManager = new GenericMemoryManager ();
 }

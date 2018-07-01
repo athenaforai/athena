@@ -14,23 +14,27 @@
 namespace athena::core::optimizers {
     class AbstractOptimizer {
     protected:
-        std::vector<InputNode*> headNodes;
-        std::vector<int> bytecode;
+        std::vector< InputNode* > headNodes;
+        std::vector< int > bytecode;
 
         unsigned long lastResultCell;
         Session* session;
 
         AbstractLossFunction* loss;
     public:
-        explicit AbstractOptimizer(AbstractLossFunction* loss) : loss(loss),
-                                                                 lastResultCell(0),
-                                                                 session(nullptr){};
-        ~AbstractOptimizer() = default;
+        explicit AbstractOptimizer ( AbstractLossFunction* loss ) : loss ( loss ),
+                                                                    lastResultCell ( 0 ),
+                                                                    session (
+                                                                            nullptr
+                                                                    ) {};
 
-        void init(Session* session);
+        ~AbstractOptimizer () = default;
 
-        virtual void prepare() = 0;
-        virtual void minimize() = 0;
+        void init ( Session* session );
+
+        virtual void prepare () = 0;
+
+        virtual void minimize () = 0;
     };
 }
 

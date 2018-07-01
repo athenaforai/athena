@@ -9,9 +9,10 @@
 namespace athena::backend::generic {
     class GenericMemoryManager {
     public:
-        void* allocMemory(unsigned long threadId, unsigned long size);
+        void* allocMemory ( unsigned long threadId, unsigned long size );
 
-        void freeMemory(unsigned long threadId, unsigned long start, unsigned long end);
+        void
+        freeMemory ( unsigned long threadId, unsigned long start, unsigned long end );
     };
 }
 

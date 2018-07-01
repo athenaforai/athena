@@ -9,7 +9,9 @@
 #include <vector>
 
 namespace athena::backend {
-    unsigned int parse(std::vector<vm_word> &bytecode, unsigned int next_word,
-                       OpCode &new_word, vm_word* args, unsigned int &argc);
+    unsigned int parse (
+            std::vector< vm_word > &bytecode, unsigned int next_word,
+            OpCode &new_word, vm_word* args, unsigned int &argc
+    );
 }
 #endif //ATHENA_OPCODE_PARSER_H

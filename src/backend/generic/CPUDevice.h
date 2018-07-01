@@ -15,7 +15,7 @@ namespace athena::backend::generic {
         unsigned long activeThreads;
         GenericMemoryManager* memoryManager;
     public:
-        CPUDevice();
+        CPUDevice ();
 
     };
 }

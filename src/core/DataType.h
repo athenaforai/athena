@@ -13,7 +13,7 @@ namespace athena::core {
         INT = 2
     };
 
-    unsigned int typesize(DataType type);
+    unsigned int typesize ( DataType type );
 }
 
 #endif //ATHENA_DATATYPE_H

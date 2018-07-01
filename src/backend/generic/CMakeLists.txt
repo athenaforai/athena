@@ -1,57 +1,57 @@
-function(getOpenBLAS)
+function(getopenblas)
     include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
     find_program(MAKE_EXE NAMES gmake nmake make)
-    ExternalProject_Add(OpenBLAS
+    externalproject_add(OpenBLAS
 
-            GIT_REPOSITORY "https://github.com/xianyi/OpenBLAS.git"
-            GIT_TAG "master"
+                        GIT_REPOSITORY "https://github.com/xianyi/OpenBLAS.git"
+                        GIT_TAG "master"
 
-            UPDATE_COMMAND ""
-            PATCH_COMMAND ""
+                        UPDATE_COMMAND ""
+                        PATCH_COMMAND ""
 
-            PREFIX ${PROJECT_SOURCE_DIR}/libs
-            SOURCE_DIR "openblas"
-            INSTALL_DIR "openblas"
+                        PREFIX ${PROJECT_SOURCE_DIR}/libs
+                        SOURCE_DIR "openblas"
+                        INSTALL_DIR "openblas"
 
-            CONFIGURE_COMMAND ""
+                        CONFIGURE_COMMAND ""
 
-            BUILD_IN_SOURCE TRUE
-            BUILD_COMMAND "make"
+                        BUILD_IN_SOURCE TRUE
+                        BUILD_COMMAND "make"
 
-            INSTALL_COMMAND ${MAKE_EXE} PREFIX=${PROJECT_SOURCE_DIR}/libs/openblas install
+                        INSTALL_COMMAND ${MAKE_EXE} PREFIX=${PROJECT_SOURCE_DIR}/libs/openblas install
 
-            )
-    ExternalProject_Get_property(OpenBLAS SOURCE_DIR)
+                        )
+    externalproject_get_property(OpenBLAS SOURCE_DIR)
     add_dependencies(athena OpenBLAS)
     target_include_directories(athena PUBLIC ${PROJECT_SOURCE_DIR}/libs/openblas/include)
     target_compile_definitions(athena PUBLIC -DFORCE_OPENBLAS)
     set(BLAS_LIBRARIES ${PROJECT_SOURCE_DIR}/libs/openblas/lib/libopenblas.a PARENT_SCOPE)
-endfunction(getOpenBLAS)
+endfunction(getopenblas)
 
 
 function(getblis)
     include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
     find_program(MAKE_EXE NAMES gmake nmake make)
-    ExternalProject_Add(blis
+    externalproject_add(blis
 
-            GIT_REPOSITORY "https://github.com/flame/blis.git"
-            GIT_TAG "master"
+                        GIT_REPOSITORY "https://github.com/flame/blis.git"
+                        GIT_TAG "master"
 
-            UPDATE_COMMAND ""
-            PATCH_COMMAND ""
+                        UPDATE_COMMAND ""
+                        PATCH_COMMAND ""
 
-            PREFIX ${PROJECT_SOURCE_DIR}/libs
-            SOURCE_DIR "blis"
-            INSTALL_DIR "blis"
+                        PREFIX ${PROJECT_SOURCE_DIR}/libs
+                        SOURCE_DIR "blis"
+                        INSTALL_DIR "blis"
 
-            CONFIGURE_COMMAND ./configure --prefix=${PROJECT_SOURCE_DIR}/libs/blis/include/blis/ --enable-cblas auto
+                        CONFIGURE_COMMAND ./configure --prefix=${PROJECT_SOURCE_DIR}/libs/blis/include/blis/ --enable-cblas auto
 
-            BUILD_IN_SOURCE TRUE
-            BUILD_COMMAND "make"
+                        BUILD_IN_SOURCE TRUE
+                        BUILD_COMMAND "make"
 
-            INSTALL_COMMAND ${MAKE_EXE} install
-            )
-    ExternalProject_Get_property(blis SOURCE_DIR)
+                        INSTALL_COMMAND ${MAKE_EXE} install
+                        )
+    externalproject_get_property(blis SOURCE_DIR)
     add_dependencies(athena blis)
     target_include_directories(athena PUBLIC ${PROJECT_SOURCE_DIR}/libs/blis/include/blis/include/blis)
     target_compile_definitions(athena PUBLIC -DFORCE_BLIS)
@@ -67,29 +67,29 @@ if (FORCE_BLIS)
     message(STATUS "BLIS will be downloaded and compiled")
     getblis()
 
-elseif(FORCE_OPENBLAS)
+elseif (FORCE_OPENBLAS)
     message(STATUS "OpenBLAS will be downloaded and compiled")
-    getOpenBLAS()
-else()
+    getopenblas()
+else ()
     if (APPLE)
         set(BLA_VENDOR Apple)
         target_compile_definitions(athena PUBLIC -DAPPLE_ACCELERATE)
         message(STATUS "Apple Accelerate Framework will be used")
-    endif()
+    endif ()
     find_package(BLAS)
-endif()
+endif ()
 
 target_sources(athena PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/matmul.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/ops.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/sigmoid.cpp
-        )
+               ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/matmul.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/ops.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/sigmoid.cpp
+               )
 
 set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)

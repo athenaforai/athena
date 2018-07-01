@@ -12,12 +12,15 @@ namespace athena::core::optimizers {
     class GradientDescent : public AbstractOptimizer {
     protected:
         float learningRate;
-        std::tuple<std::vector<unsigned long>, unsigned long> getByteCode(
-                AbstractLossFunction* node);
-    public:
-        GradientDescent(AbstractLossFunction* loss, float learningRate);
 
-        void prepare() override;
+        std::tuple< std::vector< unsigned long >, unsigned long > getByteCode (
+                AbstractLossFunction* node
+        );
+
+    public:
+        GradientDescent ( AbstractLossFunction* loss, float learningRate );
+
+        void prepare () override;
 
     };
 }

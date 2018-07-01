@@ -4,12 +4,12 @@
 
 #include "AbstractDevice.h"
 
-unsigned long athena::backend::AbstractDevice::getMaxThreadMemSize() {
+unsigned long athena::backend::AbstractDevice::getMaxThreadMemSize () {
     return maxThreadMemorySize;
 }
 
-void athena::backend::AbstractDevice::setMaxThreadMemSize(unsigned long size) {
-    if (size == 0) {
+void athena::backend::AbstractDevice::setMaxThreadMemSize ( unsigned long size ) {
+    if ( size == 0 ) {
         maxThreadMemorySize = memorySize / maxThreads;
     }
 }

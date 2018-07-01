@@ -4,6 +4,7 @@
 
 #include "AbstractLossFunction.h"
 
-athena::core::optimizers::AbstractLossFunction::AbstractLossFunction(
-        athena::core::OpKernel* opKernel) : Node(opKernel){
+athena::core::optimizers::AbstractLossFunction::AbstractLossFunction (
+        athena::core::OpKernel* opKernel
+) : Node ( opKernel ) {
 }

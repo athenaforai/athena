@@ -12,8 +12,9 @@ namespace athena::backend {
         unsigned long maxThreads;
         unsigned long memorySize;
     public:
-        unsigned long getMaxThreadMemSize();
-        void setMaxThreadMemSize(unsigned long size = 0);
+        unsigned long getMaxThreadMemSize ();
+
+        void setMaxThreadMemSize ( unsigned long size = 0 );
     };
 }
 

@@ -6,14 +6,19 @@
 namespace athena::core::kernels {
     class AddOpKernel : public OpKernel {
     public:
-        AddOpKernel() : OpKernel(OpCode::ADD, "add") {};
-        int getOperandsCount() override;
-        int* getOutputShape(int* shape, int dim) override;
+        AddOpKernel () : OpKernel ( OpCode::ADD, "add" ) {};
 
-        std::vector<vm_word> getOpBytecode(std::vector<vm_word> args, vm_word resultCell) override;
+        int getOperandsCount () override;
 
-        std::vector<vm_word> getDerivativeBytecode(int d, std::vector<vm_word> args,
-                                                       vm_word resultCell) override;
+        int* getOutputShape ( int* shape, int dim ) override;
+
+        std::vector< vm_word >
+        getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) override;
+
+        std::vector< vm_word > getDerivativeBytecode (
+                int d, std::vector< vm_word > args,
+                vm_word resultCell
+        ) override;
     };
 }
 

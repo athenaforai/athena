@@ -4,13 +4,17 @@
 
 #include "GenericMemoryManager.h"
 
-void* athena::backend::generic::GenericMemoryManager::allocMemory(unsigned long threadId,
-                                                                  unsigned long size) {
+void* athena::backend::generic::GenericMemoryManager::allocMemory (
+        unsigned long threadId,
+        unsigned long size
+) {
     return nullptr;
 }
 
-void athena::backend::generic::GenericMemoryManager::freeMemory(unsigned long threadId,
-                                                                unsigned long start,
-                                                                unsigned long end) {
+void athena::backend::generic::GenericMemoryManager::freeMemory (
+        unsigned long threadId,
+        unsigned long start,
+        unsigned long end
+) {
 
 }

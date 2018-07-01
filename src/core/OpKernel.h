@@ -21,13 +21,14 @@ namespace athena::core {
         OpCode opCode;
         std::string name;
     public:
-        explicit OpKernel(OpCode opCode, std::string name) : opCode(opCode), name(std::move(name)) {};
+        explicit OpKernel ( OpCode opCode, std::string name ) :
+                opCode ( opCode ), name ( std::move ( name )) {};
 
         /**
          * There can be unary, binary and other operations
          * @return Number of operands accepted
          */
-        virtual int getOperandsCount() = 0;
+        virtual int getOperandsCount () = 0;
 
         /**
          * It is important for some operations to have
@@ -36,9 +37,10 @@ namespace athena::core {
          * @param dim Dimensionality
          * @return New shape
          */
-        virtual int *getOutputShape(int *shape, int dim) = 0;
+        virtual int* getOutputShape ( int* shape, int dim ) = 0;
 
-        virtual std::vector<unsigned long> getOpBytecode(std::vector<unsigned long> args, unsigned long resultCell) = 0;
+        virtual std::vector< unsigned long >
+        getOpBytecode ( std::vector< unsigned long > args, unsigned long resultCell ) = 0;
 
         /**
          * Generates bytecode to calculate partial derivative
@@ -47,8 +49,10 @@ namespace athena::core {
          * @param resultCell Number of memory cell where results are saved
          * @return
          */
-        virtual std::vector<unsigned long> getDerivativeBytecode(int d, std::vector<unsigned long> args,
-                                                       unsigned long resultCell) = 0;
+        virtual std::vector< unsigned long > getDerivativeBytecode (
+                int d, std::vector< unsigned long > args,
+                unsigned long resultCell
+        ) = 0;
     };
 }
 

@@ -11,7 +11,7 @@
 namespace athena::core::optimizers {
     class AbstractLossFunction : public Node {
     public:
-        AbstractLossFunction(OpKernel*);
+        AbstractLossFunction ( OpKernel* );
 
     };
 }
