@@ -21,7 +21,7 @@ std::vector<unsigned long> athena::core::kernels::AddOpKernel::getOpBytecode(std
 
     bytecode.push_back(static_cast<unsigned long>(opCode));
 
-    for (int arg : args) {
+    for (unsigned long & arg : args) {
         bytecode.push_back(arg);
     }
 

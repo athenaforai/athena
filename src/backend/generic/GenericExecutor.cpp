@@ -31,6 +31,14 @@ void athena::backend::generic::GenericExecutor::execute() {
                 Tensor *b = memory[args[3]];
                 memory[args[4]] = matmul(aTransp, a, bTransp, b);
             }
+            case OpCode::SIGMOID: {
+                Tensor *x = memory[args[0]];
+                memory[args[1]] = sigmoid(x);
+            }
+            case OpCode::SIGMOID_DERIV: {
+                Tensor *x = memory[args[0]];
+                memory[args[1]] = sigmoid_deriv(x);
+            }
             default:
                 throw std::runtime_error("Unknown instruction");
         }

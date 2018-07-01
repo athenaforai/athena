@@ -31,6 +31,12 @@ namespace athena::backend {
                 args[4] = bytecode[++next_word];
                 break;
             }
+            case static_cast<vm_word>(OpCode::SIGMOID): {
+                new_word = OpCode::SIGMOID;
+                argc = 2;
+                args[0] = bytecode[++next_word];
+                args[1] = bytecode[++next_word];
+            }
             default: break;
         }
 

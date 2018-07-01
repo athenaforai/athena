@@ -15,6 +15,8 @@ enum class OpCode : vm_word {
     ADD = 0x04,
     MATMUL = 0x05,
     MKSCALAR = 0x06,
-    SCALE = 0x07
+    SCALE = 0x07,
+    SIGMOID = 0x08,
+    SIGMOID_DERIV = 0x09
 };
 #endif //ATHENA_OPCODES_H

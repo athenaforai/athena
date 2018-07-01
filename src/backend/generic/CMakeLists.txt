@@ -89,6 +89,7 @@ target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/CPUDevice.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/sigmoid.cpp
         )
 
 set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)
