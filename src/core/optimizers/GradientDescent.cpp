@@ -3,6 +3,7 @@
 //
 
 #include <queue>
+#include <tuple>
 #include "GradientDescent.h"
 
 athena::core::optimizers::GradientDescent::GradientDescent(AbstractLossFunction* loss, float learningRate)

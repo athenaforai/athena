@@ -11,15 +11,15 @@
 namespace athena::core {
     class TensorShape {
     private:
-        std::vector<unsigned int> shape;
+        std::vector<size_t> shape;
     public:
-        explicit TensorShape(std::vector<unsigned int> shape) : shape(std::move(shape)) {};
-        TensorShape(unsigned int* shape, unsigned int length);
+        explicit TensorShape(std::vector<size_t> shape) : shape(std::move(shape)) {};
+        TensorShape(size_t* shape, size_t length);
 
-        unsigned int dimensions() const;
-        unsigned int dim(unsigned int n) const;
-        unsigned int total_size();
-        const std::vector<unsigned int>& getShape() const;
+        size_t dimensions() const;
+        size_t dim(size_t n) const;
+        size_t total_size() const;
+        const std::vector<size_t>& getShape() const;
 
         bool operator==(const TensorShape &) const;
         bool operator!=(const TensorShape &rhs) const;

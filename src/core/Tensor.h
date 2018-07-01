@@ -28,29 +28,38 @@ namespace athena::core {
                                                                              dataType(dataType),
                                                                              data(data) {};
 
-        unsigned char *get(const unsigned int *idx) const;
+        unsigned char *get(const size_t *idx) const;
 
-        unsigned char *get(const unsigned int *idx, unsigned int length) const;
+        unsigned char *get(const size_t *idx, size_t length) const;
 
-        Tensor getSubtensor(unsigned int *idx, unsigned int depth) const;
+        Tensor getSubtensor(const size_t *idx, size_t depth) const;
 
-        Tensor getSubtensor(unsigned int id) const;
+        Tensor getSubtensor(size_t id) const;
 
-        void set(const unsigned int *idx, void *item);
+        void set(const size_t *idx, void *item);
 
-        void set(const unsigned int *idx, float item);
+        void set(const size_t *idx, float item);
 
-        void set(const unsigned int *idx, double item);
+        void set(const size_t *idx, double item);
 
-        void set(const unsigned int *idx, int item);
+        void set(const size_t *idx, int item);
 
         const TensorShape& getShape() const;
 
         unsigned char* raw() const;
 
         DataType getType() const;
+
+        size_t getSizeType() const;
+
+        Tensor& operator*=(void *item);
+
+        Tensor& operator*=(float item);
+
+        Tensor& operator*=(double item);
+
+        Tensor& operator*=(int item);
     };
 }
-
 
 #endif

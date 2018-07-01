@@ -10,10 +10,10 @@
 
 using namespace athena::core;
 
-TEST(vm_test, vm_test_simple_Test) {
+TEST(vm_test, vm_test_simple_Test){
     Session sess;
 
-    unsigned int shapeArr[] = {3};
+    size_t shapeArr[] = {3};
     TensorShape shape(shapeArr, 1);
 
     float af[] = {1, 2, 3};
