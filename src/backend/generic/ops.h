@@ -10,5 +10,7 @@
 
 namespace athena::backend::generic {
     athena::core::Tensor *add(athena::core::Tensor *a, athena::core::Tensor *b);
+
+    athena::core::Tensor *matmul(bool aTransp, athena::core::Tensor *a, bool bTransp, athena::core::Tensor *b);
 }
 #endif //ATHENA_OPS_H

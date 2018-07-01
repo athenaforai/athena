@@ -47,7 +47,9 @@ athena::core::optimizers::GradientDescent::getByteCode(AbstractLossFunction* nod
             vm_word newErr = session->getFreeMemCell();
 
             bytecode.push_back(static_cast<vm_word>(OpCode::MATMUL));
+            bytecode.push_back(0);
             bytecode.push_back(err);
+            bytecode.push_back(0);
             bytecode.push_back(curNode->getDerivative(i));
             bytecode.push_back(newErr);
 

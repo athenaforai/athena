@@ -6,6 +6,8 @@ target_sources(athena PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/ExecutorFactory.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/AbstractDevice.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/AbstractDevice.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.cpp
         )
 
 

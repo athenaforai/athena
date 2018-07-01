@@ -10,6 +10,7 @@
 #include <core/Tensor.h>
 #include <utility>
 #include <vector>
+#include <core/opcodes.h>
 
 namespace athena::backend::generic {
     class GenericExecutor : public athena::backend::AbstractExecutor {
@@ -18,9 +19,9 @@ namespace athena::backend::generic {
         int *intRegisters{};
         std::stack<int> intStack;
 
-        std::vector<int> &bytecode;
+        std::vector<vm_word> &bytecode;
     public:
-        explicit GenericExecutor(std::vector<int> &bytecode, unsigned long maxMem) : bytecode(bytecode) {
+        explicit GenericExecutor(std::vector<vm_word> &bytecode, unsigned long maxMem) : bytecode(bytecode) {
             memory = new athena::core::Tensor*[maxMem];
         };
         void execute() override;
