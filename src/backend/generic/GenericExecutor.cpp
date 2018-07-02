@@ -10,7 +10,7 @@
 
 using namespace athena::core;
 
-void athena::backend::generic::GenericExecutor::execute () {
+void athena::backend::generic::GenericExecutor::execute (){
     unsigned int ip = 0;
     OpCode op;
     auto args = new vm_word[10];
@@ -84,12 +84,12 @@ void athena::backend::generic::GenericExecutor::execute () {
 
 void athena::backend::generic::GenericExecutor::setMemoryCell (
         unsigned long id, athena::core::Tensor* tensor
-) {
+){
 
     memory[ id ] = tensor;
 }
 
 athena::core::Tensor*
-athena::backend::generic::GenericExecutor::getMemoryCell ( unsigned long id ) {
+athena::backend::generic::GenericExecutor::getMemoryCell ( unsigned long id ){
     return memory[ id ];
 }

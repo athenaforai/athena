@@ -7,7 +7,7 @@
 #include "Session.h"
 #include <tuple>
 
-void athena::core::Session::prepare ( athena::core::Node* logits ) {
+void athena::core::Session::prepare ( athena::core::Node* logits ){
 
     if ( logits != nullptr ) {
         auto[bytecode, resultCell] = getByteCode ( logits );
@@ -25,7 +25,7 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
 }
 
 std::tuple< std::vector< vm_word >, vm_word >
-athena::core::Session::getByteCode ( Node* logits ) {
+athena::core::Session::getByteCode ( Node* logits ){
 
     std::vector< vm_word > curBC;
     vm_word resultCell = 0;
@@ -94,7 +94,7 @@ athena::core::Session::getByteCode ( Node* logits ) {
     return std::make_tuple ( curBC, resultCell );
 }
 
-unsigned long athena::core::Session::getFreeMemCell () {
+unsigned long athena::core::Session::getFreeMemCell (){
     unsigned long res;
     if ( !free_mem.empty ()) {
         res = free_mem.top ();
@@ -112,7 +112,7 @@ unsigned long athena::core::Session::getFreeMemCell () {
     return res;
 }
 
-athena::core::Tensor* athena::core::Session::run () {
+athena::core::Tensor* athena::core::Session::run (){
     // todo implement a better solution
     for (
         InputNode* node : headNodes
@@ -123,6 +123,6 @@ athena::core::Tensor* athena::core::Session::run () {
     return executorService->execute ();
 }
 
-unsigned long athena::core::Session::getResultCell () {
+unsigned long athena::core::Session::getResultCell (){
     return resultCell;
 }

@@ -14,7 +14,7 @@ namespace athena::core {
     class Session {
     private:
         std::vector< InputNode* > headNodes;
-        std::vector< int > bytecode;
+        std::vector< vm_word > bytecode;
         unsigned long resultCell;
 
         std::vector< bool > memory_map;
@@ -28,7 +28,7 @@ namespace athena::core {
         athena::backend::ExecutorService* executorService {};
 
     public:
-        Session () : resultCell ( 0 ), maxMemSize ( 0 ) {};
+        Session () : resultCell ( 0 ), maxMemSize ( 0 ){};
 
         ~Session () = default;
 

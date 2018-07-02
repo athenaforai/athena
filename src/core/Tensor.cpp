@@ -5,11 +5,11 @@
 
 namespace athena::core {
 
-    unsigned char* Tensor::get ( const size_t* idx ) const {
+    unsigned char* Tensor::get ( const size_t* idx ) const{
         return this->get ( idx, shape->dimensions ());
     }
 
-    unsigned char* Tensor::get ( const size_t* idx, size_t length ) const {
+    unsigned char* Tensor::get ( const size_t* idx, size_t length ) const{
         size_t helperDim = shape->total_size (), innerIdx = 0;
 
         for (
@@ -21,7 +21,7 @@ namespace athena::core {
         return this->data + innerIdx;
     }
 
-    Tensor Tensor::getSubtensor ( const size_t* idx, size_t length ) const {
+    Tensor Tensor::getSubtensor ( const size_t* idx, size_t length ) const{
         TensorShape* tensorShape = new TensorShape (
                 std::vector< size_t > (
                         shape->getShape ().begin () + length, shape->getShape ().end ()));
@@ -29,12 +29,12 @@ namespace athena::core {
         return tensor;
     }
 
-    Tensor Tensor::getSubtensor ( size_t id ) const {
+    Tensor Tensor::getSubtensor ( size_t id ) const{
         Tensor tmp = this->getSubtensor ( &id, 1 );
         return tmp;
     }
 
-    void Tensor::set ( const size_t* idx, void* item ) {
+    void Tensor::set ( const size_t* idx, void* item ){
         size_t helperDim = shape->total_size (), innerIdx = 0;
 
         for (
@@ -46,7 +46,7 @@ namespace athena::core {
         memcpy ( data + innerIdx, item, typesize ( dataType ));
     }
 
-    void Tensor::set ( const size_t* idx, float item ) {
+    void Tensor::set ( const size_t* idx, float item ){
         if ( dataType != DataType::FLOAT ) {
             throw std::runtime_error ( "Wrong type for tensor item" );
         }
@@ -62,7 +62,7 @@ namespace athena::core {
         memcpy ( data + innerIdx, &item, sizeof ( float ));
     }
 
-    void Tensor::set ( const size_t* idx, double item ) {
+    void Tensor::set ( const size_t* idx, double item ){
         if ( dataType != DataType::DOUBLE ) {
             throw std::runtime_error ( "Wrong type for tensor item" );
         }
@@ -78,7 +78,7 @@ namespace athena::core {
         memcpy ( data + innerIdx, &item, sizeof ( double ));
     }
 
-    void Tensor::set ( const size_t* idx, int item ) {
+    void Tensor::set ( const size_t* idx, int item ){
         if ( dataType != DataType::INT ) {
             throw std::runtime_error ( "Wrong type for tensor item" );
         }
@@ -94,19 +94,19 @@ namespace athena::core {
         memcpy ( data + innerIdx, &item, sizeof ( int ));
     }
 
-    const TensorShape &Tensor::getShape () const {
+    const TensorShape &Tensor::getShape () const{
         return *shape;
     }
 
-    unsigned char* Tensor::raw () const {
+    unsigned char* Tensor::raw () const{
         return data;
     }
 
-    DataType Tensor::getType () const {
+    DataType Tensor::getType () const{
         return dataType;
     }
 
-    size_t Tensor::getSizeType () const {
+    size_t Tensor::getSizeType () const{
         if ( this->dataType == DataType::DOUBLE ) {
             return sizeof ( double );
         } else if ( this->dataType == DataType::FLOAT ) {
@@ -118,7 +118,7 @@ namespace athena::core {
         }
     }
 
-    Tensor &Tensor::operator*= ( void* item ) {
+    Tensor &Tensor::operator*= ( void* item ){
         if ( this->getType () == DataType::INT ) {
             return this->operator*= ( *(( int* ) item ));
         } else if ( this->getType () == DataType::FLOAT ) {
@@ -130,7 +130,7 @@ namespace athena::core {
         }
     }
 
-    Tensor &Tensor::operator*= ( float item ) {
+    Tensor &Tensor::operator*= ( float item ){
         if ( this->getType () != DataType::FLOAT ) {
             throw std::runtime_error ( "Type error with multiply tensor and float" );
         }
@@ -147,7 +147,7 @@ namespace athena::core {
         return *this;
     }
 
-    Tensor &Tensor::operator*= ( double item ) {
+    Tensor &Tensor::operator*= ( double item ){
         if ( this->getType () != DataType::DOUBLE ) {
             throw std::runtime_error ( "Type error with multiply tensor and double" );
         }
@@ -164,7 +164,7 @@ namespace athena::core {
         return *this;
     }
 
-    Tensor &Tensor::operator*= ( int item ) {
+    Tensor &Tensor::operator*= ( int item ){
         if ( this->getType () != DataType::INT ) {
             throw std::runtime_error ( "Type error with multiply tensor and int" );
         }

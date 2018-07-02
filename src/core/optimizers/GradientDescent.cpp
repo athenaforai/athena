@@ -9,10 +9,10 @@
 athena::core::optimizers::GradientDescent::GradientDescent (
         AbstractLossFunction* loss, float learningRate
 )
-        : AbstractOptimizer ( loss ), learningRate ( learningRate ) {}
+        : AbstractOptimizer ( loss ), learningRate ( learningRate ){}
 
 
-void athena::core::optimizers::GradientDescent::prepare () {
+void athena::core::optimizers::GradientDescent::prepare (){
 
     if ( loss != nullptr ) {
         auto[bytecode, resultCell] = getByteCode ( loss );
@@ -25,7 +25,7 @@ void athena::core::optimizers::GradientDescent::prepare () {
 }
 
 std::tuple< std::vector< unsigned long >, unsigned long >
-athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* node ) {
+athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* node ){
 
     std::vector< vm_word > bytecode;
 

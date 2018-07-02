@@ -24,7 +24,7 @@ namespace athena::core {
                                                                      input ( input ),
                                                                      _isFrozen (
                                                                              isFrozen
-                                                                     ) {};
+                                                                     ){};
 
         /**
          * Check if it is an input node
@@ -48,7 +48,7 @@ namespace athena::core {
          * InputNodes can't be placed after other nodes in Athena's execution graph.
          * This method does nothing
          */
-        void after ( Node* ) override {};
+        void after ( Node* ) override{};
 
         /**
          * Get data associated with this InputNode

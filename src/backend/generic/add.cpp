@@ -7,7 +7,7 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* addf ( athena::core::Tensor* a, athena::core::Tensor* b ) {
+    athena::core::Tensor* addf ( athena::core::Tensor* a, athena::core::Tensor* b ){
         // todo find optimizations
         auto af = reinterpret_cast<float*>(a->raw ());
         auto bf = reinterpret_cast<float*>(b->raw ());
@@ -24,7 +24,7 @@ namespace athena::backend::generic {
                 reinterpret_cast<unsigned char*>(cf));
     }
 
-    athena::core::Tensor* addd ( athena::core::Tensor* a, athena::core::Tensor* b ) {
+    athena::core::Tensor* addd ( athena::core::Tensor* a, athena::core::Tensor* b ){
         auto af = reinterpret_cast<double*>(a->raw ());
         auto bf = reinterpret_cast<double*>(b->raw ());
         auto cf = new double[b->getShape ().dim ( 0 )];
@@ -40,7 +40,7 @@ namespace athena::backend::generic {
                 reinterpret_cast<unsigned char*>(cf));
     }
 
-    athena::core::Tensor* addi ( athena::core::Tensor* a, athena::core::Tensor* b ) {
+    athena::core::Tensor* addi ( athena::core::Tensor* a, athena::core::Tensor* b ){
         auto af = reinterpret_cast<int*>(a->raw ());
         auto bf = reinterpret_cast<int*>(b->raw ());
         auto cf = new int[b->getShape ().dim ( 0 )];
@@ -56,7 +56,7 @@ namespace athena::backend::generic {
                 reinterpret_cast<unsigned char*>(cf));
     }
 
-    athena::core::Tensor* add ( athena::core::Tensor* a, athena::core::Tensor* b ) {
+    athena::core::Tensor* add ( athena::core::Tensor* a, athena::core::Tensor* b ){
 
         if ( a->getShape () == b->getShape ()) {
             switch ( a->getType ()) {

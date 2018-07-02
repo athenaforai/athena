@@ -1,3 +1,4 @@
 set(GENERIC_SRC_TEST
-        ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
-        PARENT_SCOPE)
+    ${CMAKE_CURRENT_SOURCE_DIR}/add.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/matmul.cpp
+    PARENT_SCOPE)

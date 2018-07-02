@@ -5,7 +5,7 @@
 #include "DataType.h"
 
 namespace athena::core {
-    unsigned int typesize ( DataType type ) {
+    unsigned int typesize ( DataType type ){
         switch ( type ) {
             case DataType::FLOAT:
                 return sizeof ( float );

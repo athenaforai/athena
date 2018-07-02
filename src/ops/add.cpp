@@ -8,7 +8,7 @@
 
 namespace athena::ops {
 
-    athena::core::Node* add ( athena::core::Node* a, athena::core::Node* b ) {
+    athena::core::Node* add ( athena::core::Node* a, athena::core::Node* b ){
         auto opker = new athena::core::kernels::AddOpKernel ();
         auto node = new athena::core::Node ( opker );
 

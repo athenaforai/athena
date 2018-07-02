@@ -14,7 +14,7 @@ namespace athena::core {
         std::vector< size_t > shape;
     public:
         explicit TensorShape ( std::vector< size_t > shape ) :
-                shape ( std::move ( shape )) {};
+                shape ( std::move ( shape )){};
 
         TensorShape ( size_t* shape, size_t length );
 

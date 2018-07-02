@@ -26,12 +26,12 @@ namespace athena::core {
                 data (
                         new unsigned char[this->shape->total_size () *
                                           typesize ( dataType )]
-                ) {};
+                ){};
 
         Tensor ( TensorShape &shape, DataType dataType, unsigned char* data ) :
                 shape ( new TensorShape ( shape )),
                 dataType ( dataType ),
-                data ( data ) {};
+                data ( data ){};
 
         unsigned char* get ( const size_t* idx ) const;
 

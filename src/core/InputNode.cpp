@@ -7,26 +7,26 @@
 //athena::core::InputNode::InputNode(athena::core::OpKernel *op) : Node(op) {
 //}
 
-bool athena::core::InputNode::isInputNode () {
+bool athena::core::InputNode::isInputNode (){
     return true;
 }
 
-void athena::core::InputNode::setMappedMemCell ( unsigned long cell ) {
+void athena::core::InputNode::setMappedMemCell ( unsigned long cell ){
     mappedMemCell = cell;
 }
 
-unsigned long athena::core::InputNode::getMappedMemCell () {
+unsigned long athena::core::InputNode::getMappedMemCell (){
     return mappedMemCell;
 }
 
-athena::core::Tensor* athena::core::InputNode::getData () {
+athena::core::Tensor* athena::core::InputNode::getData (){
     return this->input;
 }
 
-bool athena::core::InputNode::isFrozen () {
+bool athena::core::InputNode::isFrozen (){
     return _isFrozen;
 }
 
-void athena::core::InputNode::setFrozen ( bool frozen ) {
+void athena::core::InputNode::setFrozen ( bool frozen ){
     _isFrozen = frozen;
 }

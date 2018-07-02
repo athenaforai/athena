@@ -51,10 +51,6 @@ namespace athena::core {
 
         std::string getName ();
 
-        bool isDerivativeMarked ();
-
-        void setDerivativeMarked ();
-
         void addDerivative ( unsigned long d );
 
         unsigned long getDerivative ( int i );

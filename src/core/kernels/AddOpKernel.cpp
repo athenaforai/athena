@@ -6,11 +6,11 @@
 #include <vector>
 #include "AddOpKernel.h"
 
-int athena::core::kernels::AddOpKernel::getOperandsCount () {
+int athena::core::kernels::AddOpKernel::getOperandsCount (){
     return 2;
 }
 
-int* athena::core::kernels::AddOpKernel::getOutputShape ( int* shape, int dim ) {
+int* athena::core::kernels::AddOpKernel::getOutputShape ( int* shape, int dim ){
     auto newShape = new int[dim];
     std::copy ( shape, shape + dim, newShape );
     return newShape;
@@ -18,7 +18,7 @@ int* athena::core::kernels::AddOpKernel::getOutputShape ( int* shape, int dim ) 
 
 std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
         std::vector< unsigned long > args, unsigned long resultCell
-) {
+){
     std::vector< unsigned long > bytecode;
 
     bytecode.push_back ( static_cast<unsigned long>(opCode));
@@ -38,7 +38,7 @@ std::vector< unsigned long >
 athena::core::kernels::AddOpKernel::getDerivativeBytecode (
         int d, std::vector< unsigned long > args,
         unsigned long resultCell
-) {
+){
     std::vector< unsigned long > bytecode;
     bytecode.push_back ( static_cast<int>(OpCode::MKSCALAR));
 

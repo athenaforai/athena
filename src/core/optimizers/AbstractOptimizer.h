@@ -26,7 +26,7 @@ namespace athena::core::optimizers {
                                                                     lastResultCell ( 0 ),
                                                                     session (
                                                                             nullptr
-                                                                    ) {};
+                                                                    ){};
 
         ~AbstractOptimizer () = default;
 

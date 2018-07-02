@@ -14,7 +14,7 @@ namespace athena::core::optimizers {
 
     public:
         explicit SGDOptimizer ( AbstractLossFunction* logits ) :
-                AbstractOptimizer ( logits ) {};
+                AbstractOptimizer ( logits ){};
 
     };
 

@@ -8,7 +8,7 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* sigmoidd ( athena::core::Tensor* x ) {
+    athena::core::Tensor* sigmoidd ( athena::core::Tensor* x ){
         auto data = reinterpret_cast<double*>(x->raw ());
         auto newData = new double[x->getShape ().total_size ()];
 
@@ -27,7 +27,7 @@ namespace athena::backend::generic {
 
     }
 
-    athena::core::Tensor* sigmoidf ( athena::core::Tensor* x ) {
+    athena::core::Tensor* sigmoidf ( athena::core::Tensor* x ){
         auto data = reinterpret_cast<float*>(x->raw ());
         auto newData = new float[x->getShape ().total_size ()];
 
@@ -45,10 +45,10 @@ namespace athena::backend::generic {
         return y;
     }
 
-    athena::core::Tensor* sigmoid ( athena::core::Tensor* x ) {
-        if ( x->getType () == athena::core::DataType::DataType::FLOAT ) {
+    athena::core::Tensor* sigmoid ( athena::core::Tensor* x ){
+        if ( x->getType () == athena::core::DataType::FLOAT ) {
             return sigmoidf ( x );
-        } else if ( x->getType () == athena::core::DataType::DataType::DOUBLE ) {
+        } else if ( x->getType () == athena::core::DataType::DOUBLE ) {
             return sigmoidd ( x );
         }
 
@@ -56,7 +56,7 @@ namespace athena::backend::generic {
     }
 
 
-    athena::core::Tensor* sigmoid_derivd ( athena::core::Tensor* x ) {
+    athena::core::Tensor* sigmoid_derivd ( athena::core::Tensor* x ){
         auto data = reinterpret_cast<double*>(x->raw ());
         auto newData = new double[x->getShape ().total_size ()];
 
@@ -76,7 +76,7 @@ namespace athena::backend::generic {
 
     }
 
-    athena::core::Tensor* sigmoid_derivf ( athena::core::Tensor* x ) {
+    athena::core::Tensor* sigmoid_derivf ( athena::core::Tensor* x ){
         auto data = reinterpret_cast<float*>(x->raw ());
         auto newData = new float[x->getShape ().total_size ()];
 
@@ -96,10 +96,10 @@ namespace athena::backend::generic {
     }
 
 
-    athena::core::Tensor* sigmoid_deriv ( athena::core::Tensor* x ) {
-        if ( x->getType () == athena::core::DataType::DataType::FLOAT ) {
+    athena::core::Tensor* sigmoid_deriv ( athena::core::Tensor* x ){
+        if ( x->getType () == athena::core::DataType::FLOAT ) {
             return sigmoid_derivf ( x );
-        } else if ( x->getType () == athena::core::DataType::DataType::DOUBLE ) {
+        } else if ( x->getType () == athena::core::DataType::DOUBLE ) {
             return sigmoid_derivd ( x );
         }
 
