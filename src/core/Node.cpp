@@ -5,9 +5,8 @@
 #include "Node.h"
 
 athena::core::Node::Node ( OpKernel* operation ) :
-        operation( nullptr ), derivativeMark( false ),
+        operation( operation ), derivativeMark( false ),
         calculated( false ), resultCell( 0 ), usageCount( 0 ) {
-    this->operation = operation;
     name = getRandomNodeName();
 }
 

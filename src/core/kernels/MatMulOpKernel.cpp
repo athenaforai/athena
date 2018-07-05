@@ -8,13 +8,17 @@ int athena::core::kernels::MatMulOpKernel::getOperandsCount () {
     return 2;
 }
 
-int* athena::core::kernels::MatMulOpKernel::getOutputShape ( int* shape, int dim ) {
-    return nullptr; // todo a better interface to calculate shapes
+athena::core::TensorShape
+athena::core::kernels::MatMulOpKernel::getOutputShape (
+        athena::core::TensorShape* shapes,
+        unsigned long size) {
+    return TensorShape( nullptr, 0); // todo
 }
 
 std::vector< vm_word >
-athena::core::kernels::MatMulOpKernel::getOpBytecode ( std::vector< vm_word > args,
-                                                       vm_word resultCell ) {
+athena::core::kernels::MatMulOpKernel::getOpBytecode (
+        std::vector< vm_word > args,
+        vm_word resultCell ) {
 
     std::vector< vm_word > bytecode;
 

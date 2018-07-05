@@ -6,10 +6,12 @@
 #define ATHENA_OPKERNEL_H
 
 #include <string>
-#include "opcodes.h"
 #include <string>
 #include <utility>
 #include <vector>
+
+#include "opcodes.h"
+#include <core/TensorShape.h>
 
 namespace athena::core {
     /**
@@ -37,10 +39,16 @@ namespace athena::core {
          * @param dim Dimensionality
          * @return New shape
          */
-        virtual int* getOutputShape ( int* shape, int dim ) = 0;
+        virtual athena::core::TensorShape getOutputShape (
+                athena::core::TensorShape* shapes,
+                unsigned long size)
+        = 0;
 
         virtual std::vector< unsigned long >
-        getOpBytecode ( std::vector< unsigned long > args, unsigned long resultCell ) = 0;
+        getOpBytecode (
+                std::vector< unsigned long > args,
+                unsigned long resultCell
+        ) = 0;
 
         /**
          * Generates bytecode to calculate partial derivative

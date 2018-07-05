@@ -11,14 +11,11 @@ int athena::core::kernels::SigmoidOpKernel::getOperandsCount () {
     return 1;
 }
 
-int* athena::core::kernels::SigmoidOpKernel::getOutputShape ( int* shape, int dim ) {
-    auto* newShape = new int[dim];
-    for (
-            int i = 0; i < dim; i++
-            ) {
-        newShape[ i ] = shape[ i ];
-    }
-    return newShape;
+athena::core::TensorShape
+athena::core::kernels::SigmoidOpKernel::getOutputShape (
+        athena::core::TensorShape* shapes,
+        unsigned long size) {
+    return shapes[0];
 }
 
 std::vector< vm_word >
