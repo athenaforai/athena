@@ -18,6 +18,7 @@ enum class OpCode : vm_word {
     SCALE = 0x07,
     SIGMOID = 0x08,
     SIGMOID_DERIV = 0x09,
-    TRANSPOSE = 0x0A
+    TRANSPOSE = 0x0A,
+    COPY = 0x0B
 };
 #endif //ATHENA_OPCODES_H

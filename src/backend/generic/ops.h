@@ -20,5 +20,7 @@ namespace athena::backend::generic {
     athena::core::Tensor* sigmoid_deriv ( athena::core::Tensor* x );
 
     athena::core::Tensor* transpose ( athena::core::Tensor* a );
+
+    athena::core::Tensor* copy ( athena::core::Tensor* x );
 }
 #endif //ATHENA_OPS_H

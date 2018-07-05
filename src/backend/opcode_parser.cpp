@@ -45,6 +45,12 @@ namespace athena::backend {
                 args[ 0 ] = bytecode[ ++next_word ];
                 args[ 1 ] = bytecode[ ++next_word ];
             }
+            case static_cast<vm_word>(OpCode::COPY): {
+                new_word = OpCode::COPY;
+                argc = 2;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+            }
             default:
                 break;
         }
