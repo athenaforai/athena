@@ -28,7 +28,7 @@ namespace athena::core {
         athena::backend::ExecutorService* executorService {};
 
     public:
-        Session () : resultCell ( 0 ), maxMemSize ( 0 ){};
+        Session () : resultCell( 0 ), maxMemSize( 0 ) {};
 
         ~Session () = default;
 

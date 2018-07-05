@@ -7,104 +7,104 @@
 #include "Session.h"
 #include <tuple>
 
-void athena::core::Session::prepare ( athena::core::Node* logits ){
+void athena::core::Session::prepare ( athena::core::Node* logits ) {
 
     if ( logits != nullptr ) {
-        auto[bytecode, resultCell] = getByteCode ( logits );
-        this->bytecode.clear ();
-        this->bytecode.insert (
-                std::end ( this->bytecode ), std::begin ( bytecode ),
-                std::end ( bytecode ));
+        auto[bytecode, resultCell] = getByteCode( logits );
+        this->bytecode.clear();
+        this->bytecode.insert(
+                std::end( this->bytecode ), std::begin( bytecode ),
+                std::end( bytecode ));
         this->resultCell = resultCell;
     }
 
-    executorService = new athena::backend::ExecutorService (
+    executorService = new athena::backend::ExecutorService(
             bytecode, maxMemSize,
             resultCell
     );
 }
 
 std::tuple< std::vector< vm_word >, vm_word >
-athena::core::Session::getByteCode ( Node* logits ){
+athena::core::Session::getByteCode ( Node* logits ) {
 
     std::vector< vm_word > curBC;
     vm_word resultCell = 0;
 
-    if ( logits->isInputNode ()) {
+    if ( logits->isInputNode()) {
         auto inpNode = dynamic_cast<InputNode*>(logits);
-        resultCell = getFreeMemCell ();
-        inpNode->setMappedMemCell ( resultCell );
-        headNodes.push_back ( inpNode );
+        resultCell = getFreeMemCell();
+        inpNode->setMappedMemCell( resultCell );
+        headNodes.push_back( inpNode );
     } else {
-        if ( logits->getOp ()->getOperandsCount () !=
-             logits->getIncomingNodes ().size ()) {
-            throw std::runtime_error (
-                    "Wrong count of arguments at " + logits->getName () + ". Expected " +
-                    std::to_string ( logits->getOp ()->getOperandsCount ()) + ", got " +
-                    std::to_string ( logits->getIncomingNodes ().size ()));
+        if ( logits->getOp()->getOperandsCount() !=
+             logits->getIncomingNodes().size()) {
+            throw std::runtime_error(
+                    "Wrong count of arguments at " + logits->getName() + ". Expected " +
+                    std::to_string( logits->getOp()->getOperandsCount()) + ", got " +
+                    std::to_string( logits->getIncomingNodes().size()));
         } else {
 
             // todo check shape compatibility
             std::vector< vm_word > resCells;
             for (
-                Node* pred : logits->getIncomingNodes ()) {
-                if ( pred->isCalculated ()) {
-                    resCells.push_back ( pred->getResult ());
-                    pred->updateUsageCount ();
-                    if ( pred->isGarbage ()) {
-                        free_mem.push ( pred->getResult ());
+                Node* pred : logits->getIncomingNodes()) {
+                if ( pred->isCalculated()) {
+                    resCells.push_back( pred->getResult());
+                    pred->updateUsageCount();
+                    if ( pred->isGarbage()) {
+                        free_mem.push( pred->getResult());
                     }
                 } else {
-                    auto[predBC, predResCell] = getByteCode ( pred );
-                    curBC.insert (
-                            std::end ( curBC ), std::begin ( predBC ),
-                            std::end ( predBC ));
-                    resCells.push_back ( predResCell );
+                    auto[predBC, predResCell] = getByteCode( pred );
+                    curBC.insert(
+                            std::end( curBC ), std::begin( predBC ),
+                            std::end( predBC ));
+                    resCells.push_back( predResCell );
                 }
             }
 
-            resultCell = getFreeMemCell ();
-            std::vector< vm_word > op_bytecode = logits->getOp ()->getOpBytecode (
+            resultCell = getFreeMemCell();
+            std::vector< vm_word > op_bytecode = logits->getOp()->getOpBytecode(
                     resCells, resultCell
             );
-            curBC.insert (
-                    std::end ( curBC ), std::begin ( op_bytecode ),
-                    std::end ( op_bytecode ));
+            curBC.insert(
+                    std::end( curBC ), std::begin( op_bytecode ),
+                    std::end( op_bytecode ));
 
             for (
-                    int i = 0; i < logits->getIncomingNodes ().size (); i++
+                    int i = 0; i < logits->getIncomingNodes().size(); i++
                     ) {
-                vm_word derivCell = getFreeMemCell ();
+                vm_word derivCell = getFreeMemCell();
                 std::vector< vm_word > deriv_bytecode =
-                        logits->getOp ()->getDerivativeBytecode (
+                        logits->getOp()->getDerivativeBytecode(
                                 i, resCells, derivCell
                         );
-                logits->addDerivative ( derivCell );
-                curBC.insert (
-                        std::end ( curBC ),
-                        std::begin ( deriv_bytecode ),
-                        std::end ( deriv_bytecode ));
+                logits->addDerivative( derivCell );
+                curBC.insert(
+                        std::end( curBC ),
+                        std::begin( deriv_bytecode ),
+                        std::end( deriv_bytecode ));
             }
 
-            logits->setCalculated ( resultCell );
+            logits->setCalculated( resultCell );
 
         }
     }
 
-    return std::make_tuple ( curBC, resultCell );
+    return std::make_tuple( curBC, resultCell );
 }
 
-unsigned long athena::core::Session::getFreeMemCell (){
+unsigned long athena::core::Session::getFreeMemCell () {
     unsigned long res;
-    if ( !free_mem.empty ()) {
-        res = free_mem.top ();
-        free_mem.pop ();
+    if ( !free_mem.empty()) {
+        res = free_mem.top();
+        free_mem.pop();
         memory_map[ res ] = true;
     } else {
-        res = static_cast<int>(memory_map.size ());
-        memory_map.push_back ( true );
-        if ( memory_map.size () > maxMemSize ) {
-            maxMemSize = static_cast<int>(memory_map.size ());
+        res = static_cast<int>(memory_map.size());
+        memory_map.push_back( true );
+        if ( memory_map.size() > maxMemSize ) {
+            maxMemSize = static_cast<int>(memory_map.size());
         }
     }
 
@@ -112,17 +112,17 @@ unsigned long athena::core::Session::getFreeMemCell (){
     return res;
 }
 
-athena::core::Tensor* athena::core::Session::run (){
+athena::core::Tensor* athena::core::Session::run () {
     // todo implement a better solution
     for (
         InputNode* node : headNodes
             ) {
-        executorService->setMemoryCell ( node->getMappedMemCell (), node->getData ());
+        executorService->setMemoryCell( node->getMappedMemCell(), node->getData());
     }
 
-    return executorService->execute ();
+    return executorService->execute();
 }
 
-unsigned long athena::core::Session::getResultCell (){
+unsigned long athena::core::Session::getResultCell () {
     return resultCell;
 }

@@ -10,18 +10,18 @@
 
 using namespace athena::core;
 
-void athena::backend::generic::GenericExecutor::execute (){
+void athena::backend::generic::GenericExecutor::execute () {
     unsigned int ip = 0;
     OpCode op;
     auto args = new vm_word[10];
     unsigned int argc = 0;
 
-    while ( parse ( bytecode, ip, op, args, argc )) {
+    while ( parse( bytecode, ip, op, args, argc )) {
         switch ( op ) {
             case OpCode::ADD: {
                 Tensor* a = memory[ args[ 0 ]];
                 Tensor* b = memory[ args[ 1 ]];
-                memory[ args[ 2 ]] = add ( a, b );
+                memory[ args[ 2 ]] = add( a, b );
                 break;
             }
             case OpCode::MATMUL: {
@@ -29,18 +29,18 @@ void athena::backend::generic::GenericExecutor::execute (){
                 Tensor* a = memory[ args[ 1 ]];
                 auto bTransp = static_cast<bool>(memory[ args[ 2 ]]);
                 Tensor* b = memory[ args[ 3 ]];
-                memory[ args[ 4 ]] = matmul ( aTransp, a, bTransp, b );
+                memory[ args[ 4 ]] = matmul( aTransp, a, bTransp, b );
             }
             case OpCode::SIGMOID: {
                 Tensor* x = memory[ args[ 0 ]];
-                memory[ args[ 1 ]] = sigmoid ( x );
+                memory[ args[ 1 ]] = sigmoid( x );
             }
             case OpCode::SIGMOID_DERIV: {
                 Tensor* x = memory[ args[ 0 ]];
-                memory[ args[ 1 ]] = sigmoid_deriv ( x );
+                memory[ args[ 1 ]] = sigmoid_deriv( x );
             }
             default:
-                throw std::runtime_error ( "Unknown instruction" );
+                throw std::runtime_error( "Unknown instruction" );
         }
     }
 
@@ -84,12 +84,12 @@ void athena::backend::generic::GenericExecutor::execute (){
 
 void athena::backend::generic::GenericExecutor::setMemoryCell (
         unsigned long id, athena::core::Tensor* tensor
-){
+) {
 
     memory[ id ] = tensor;
 }
 
 athena::core::Tensor*
-athena::backend::generic::GenericExecutor::getMemoryCell ( unsigned long id ){
+athena::backend::generic::GenericExecutor::getMemoryCell ( unsigned long id ) {
     return memory[ id ];
 }

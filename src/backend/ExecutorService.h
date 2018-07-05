@@ -24,8 +24,8 @@ namespace athena::backend {
                 std::vector< vm_word > &bytecode, unsigned long maxMem,
                 unsigned long resultCell
         ) :
-                bytecode ( bytecode ), maxMem ( maxMem ), resultCell ( resultCell ){
-            executor = new athena::backend::generic::GenericExecutor (
+                bytecode( bytecode ), maxMem( maxMem ), resultCell( resultCell ) {
+            executor = new athena::backend::generic::GenericExecutor(
                     this->bytecode, maxMem
             );
         };

@@ -22,16 +22,16 @@ namespace athena::core {
 
     public:
         Tensor ( TensorShape &shape, DataType dataType ) :
-                shape ( new TensorShape ( shape )), dataType ( dataType ),
-                data (
-                        new unsigned char[this->shape->total_size () *
-                                          typesize ( dataType )]
-                ){};
+                shape( new TensorShape( shape )), dataType( dataType ),
+                data(
+                        new unsigned char[this->shape->total_size() *
+                                          typesize( dataType )]
+                ) {};
 
         Tensor ( TensorShape &shape, DataType dataType, unsigned char* data ) :
-                shape ( new TensorShape ( shape )),
-                dataType ( dataType ),
-                data ( data ){};
+                shape( new TensorShape( shape )),
+                dataType( dataType ),
+                data( data ) {};
 
         unsigned char* get ( const size_t* idx ) const;
 

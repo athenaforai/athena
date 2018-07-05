@@ -22,7 +22,7 @@ namespace athena::core {
         std::string name;
     public:
         explicit OpKernel ( OpCode opCode, std::string name ) :
-                opCode ( opCode ), name ( std::move ( name )){};
+                opCode( opCode ), name( std::move( name )) {};
 
         /**
          * There can be unary, binary and other operations

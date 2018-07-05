@@ -6,5 +6,5 @@
 
 athena::core::optimizers::AbstractLossFunction::AbstractLossFunction (
         athena::core::OpKernel* opKernel
-) : Node ( opKernel ){
+) : Node( opKernel ) {
 }

@@ -20,11 +20,11 @@ namespace athena::core {
     public:
 //        explicit InputNode(OpKernel *);
 
-        explicit InputNode ( Tensor* input, bool isFrozen = true ) : Node ( nullptr ),
-                                                                     input ( input ),
-                                                                     _isFrozen (
+        explicit InputNode ( Tensor* input, bool isFrozen = true ) : Node( nullptr ),
+                                                                     input( input ),
+                                                                     _isFrozen(
                                                                              isFrozen
-                                                                     ){};
+                                                                     ) {};
 
         /**
          * Check if it is an input node
@@ -48,7 +48,7 @@ namespace athena::core {
          * InputNodes can't be placed after other nodes in Athena's execution graph.
          * This method does nothing
          */
-        void after ( Node* ) override{};
+        void after ( Node* ) override {};
 
         /**
          * Get data associated with this InputNode

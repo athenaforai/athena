@@ -9,80 +9,80 @@
 athena::core::optimizers::GradientDescent::GradientDescent (
         AbstractLossFunction* loss, float learningRate
 )
-        : AbstractOptimizer ( loss ), learningRate ( learningRate ){}
+        : AbstractOptimizer( loss ), learningRate( learningRate ) {}
 
 
-void athena::core::optimizers::GradientDescent::prepare (){
+void athena::core::optimizers::GradientDescent::prepare () {
 
     if ( loss != nullptr ) {
-        auto[bytecode, resultCell] = getByteCode ( loss );
-        this->bytecode.clear ();
-        this->bytecode.insert (
-                std::end ( this->bytecode ), std::begin ( bytecode ),
-                std::end ( bytecode ));
+        auto[bytecode, resultCell] = getByteCode( loss );
+        this->bytecode.clear();
+        this->bytecode.insert(
+                std::end( this->bytecode ), std::begin( bytecode ),
+                std::end( bytecode ));
     }
 
 }
 
 std::tuple< std::vector< unsigned long >, unsigned long >
-athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* node ){
+athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* node ) {
 
     std::vector< vm_word > bytecode;
 
-    vm_word errorCell = this->session->getFreeMemCell ();
-    std::vector< vm_word > lossArgs ( 1 );
-    lossArgs.push_back ( lastResultCell );
-    node->getOp ()->getOpBytecode ( lossArgs, errorCell );
+    vm_word errorCell = this->session->getFreeMemCell();
+    std::vector< vm_word > lossArgs( 1 );
+    lossArgs.push_back( lastResultCell );
+    node->getOp()->getOpBytecode( lossArgs, errorCell );
 
     std::queue< Node* > nodesQueue;
-    nodesQueue.push ( node->getIncomingNodes ()[ 0 ] );
+    nodesQueue.push( node->getIncomingNodes()[ 0 ] );
     std::queue< vm_word > errorCells;
-    errorCells.push ( errorCell );
+    errorCells.push( errorCell );
 
-    while ( !nodesQueue.empty ()) {
-        Node* curNode = nodesQueue.front ();
-        nodesQueue.pop ();
+    while ( !nodesQueue.empty()) {
+        Node* curNode = nodesQueue.front();
+        nodesQueue.pop();
 
         for (
-                int i = 0; i < curNode->getIncomingNodes ().size (); i++
+                int i = 0; i < curNode->getIncomingNodes().size(); i++
                 ) {
-            Node* inNode = curNode->getIncomingNodes ()[ i ];
-            vm_word err = errorCells.front ();
-            errorCells.pop ();
+            Node* inNode = curNode->getIncomingNodes()[ i ];
+            vm_word err = errorCells.front();
+            errorCells.pop();
 
-            vm_word newErr = session->getFreeMemCell ();
+            vm_word newErr = session->getFreeMemCell();
 
-            bytecode.push_back ( static_cast<vm_word>(OpCode::MATMUL));
-            bytecode.push_back ( 0 );
-            bytecode.push_back ( err );
-            bytecode.push_back ( 0 );
-            bytecode.push_back ( curNode->getDerivative ( i ));
-            bytecode.push_back ( newErr );
+            bytecode.push_back( static_cast<vm_word>(OpCode::MATMUL));
+            bytecode.push_back( 0 );
+            bytecode.push_back( err );
+            bytecode.push_back( 0 );
+            bytecode.push_back( curNode->getDerivative( i ));
+            bytecode.push_back( newErr );
 
-            errorCells.push ( newErr );
+            errorCells.push( newErr );
 
-            if ( inNode->isInputNode ()) {
+            if ( inNode->isInputNode()) {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCDFAInspection"
                 auto inputNode = dynamic_cast<InputNode*>(inNode);
-                if ( !inputNode->isFrozen ()) {
-                    bytecode.push_back ( static_cast<vm_word>(OpCode::SCALE));
+                if ( !inputNode->isFrozen()) {
+                    bytecode.push_back( static_cast<vm_word>(OpCode::SCALE));
                     vm_word* tmp;
                     float alpha = -1 * learningRate;
                     tmp = reinterpret_cast<vm_word*>(&alpha);
-                    bytecode.push_back ( *tmp );
-                    bytecode.push_back ( newErr );
-                    vm_word delta = session->getFreeMemCell ();
-                    bytecode.push_back ( delta );
+                    bytecode.push_back( *tmp );
+                    bytecode.push_back( newErr );
+                    vm_word delta = session->getFreeMemCell();
+                    bytecode.push_back( delta );
 
-                    bytecode.push_back ( static_cast<vm_word>(OpCode::ADD));
-                    bytecode.push_back ( inputNode->getMappedMemCell ());
-                    bytecode.push_back ( delta );
-                    bytecode.push_back ( inputNode->getMappedMemCell ());
+                    bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
+                    bytecode.push_back( inputNode->getMappedMemCell());
+                    bytecode.push_back( delta );
+                    bytecode.push_back( inputNode->getMappedMemCell());
                 }
 #pragma clang diagnostic pop
             } else {
-                nodesQueue.push ( inNode );
+                nodesQueue.push( inNode );
             }
         }
 
@@ -97,5 +97,5 @@ athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* n
          */
     }
 
-    return std::make_tuple ( bytecode, static_cast<unsigned long>(0));
+    return std::make_tuple( bytecode, static_cast<unsigned long>(0));
 }

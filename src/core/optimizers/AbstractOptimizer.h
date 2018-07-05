@@ -22,11 +22,11 @@ namespace athena::core::optimizers {
 
         AbstractLossFunction* loss;
     public:
-        explicit AbstractOptimizer ( AbstractLossFunction* loss ) : loss ( loss ),
-                                                                    lastResultCell ( 0 ),
-                                                                    session (
+        explicit AbstractOptimizer ( AbstractLossFunction* loss ) : loss( loss ),
+                                                                    lastResultCell( 0 ),
+                                                                    session(
                                                                             nullptr
-                                                                    ){};
+                                                                    ) {};
 
         ~AbstractOptimizer () = default;
 

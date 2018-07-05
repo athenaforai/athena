@@ -23,7 +23,7 @@ namespace athena::backend::generic {
     public:
         explicit GenericExecutor (
                 std::vector< vm_word > &bytecode, unsigned long maxMem
-        ) : bytecode ( bytecode ){
+        ) : bytecode( bytecode ) {
             memory = new athena::core::Tensor* [maxMem];
         };
 

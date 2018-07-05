@@ -5,9 +5,9 @@
 #include "AbstractOptimizer.h"
 
 void
-athena::core::optimizers::AbstractOptimizer::init ( athena::core::Session* session ){
+athena::core::optimizers::AbstractOptimizer::init ( athena::core::Session* session ) {
     if ( session != nullptr ) {
-        lastResultCell = session->getResultCell ();
+        lastResultCell = session->getResultCell();
         this->session = session;
     }
 }
