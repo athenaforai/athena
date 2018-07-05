@@ -90,6 +90,7 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/GenericMemoryManager.h
                ${CMAKE_CURRENT_SOURCE_DIR}/sigmoid.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/transpose.cpp
                )
 
 set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)

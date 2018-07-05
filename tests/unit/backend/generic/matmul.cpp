@@ -6,18 +6,6 @@
 #include <core/Tensor.h>
 #include <backend/generic/ops.h>
 
-#ifdef APPLE_ACCELERATE
-
-#include <Accelerate/Accelerate.h>
-
-#else
-#include "cblas.h"
-#endif
-
-#define NO_TRANS CBLAS_TRANSPOSE::CblasNoTrans
-#define TRANS CBLAS_TRANSPOSE::CblasTrans
-#define C_ORDER CBLAS_ORDER::CblasRowMajor
-
 using namespace athena::core;
 using namespace athena::backend::generic;
 
