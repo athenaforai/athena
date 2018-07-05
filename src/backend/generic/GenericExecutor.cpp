@@ -16,7 +16,7 @@ void athena::backend::generic::GenericExecutor::execute () {
     auto args = new vm_word[10];
     unsigned int argc = 0;
 
-    while ( parse( bytecode, ip, op, args, argc )) {
+    while ( parse( bytecode, ip, op, args, argc ) < bytecode.size()) {
         switch ( op ) {
             case OpCode::ADD: {
                 Tensor* a = memory[ args[ 0 ]];
