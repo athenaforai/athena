@@ -22,5 +22,9 @@ namespace athena::backend::generic {
     athena::core::Tensor* transpose ( athena::core::Tensor* a );
 
     athena::core::Tensor* copy ( athena::core::Tensor* x );
+
+    athena::core::Tensor* scale (
+            athena::core::Tensor* c, athena::core::Tensor* src
+            );
 }
 #endif //ATHENA_OPS_H

@@ -18,7 +18,7 @@ namespace athena::backend::generic {
             auto newData = new unsigned char[total];
             auto data = x->raw();
 
-#pragma opm parallel for
+#pragma omp parallel for
             for ( unsigned long i = 0; i < total; i++ ) {
                 newData[ i ] = data[ i ];
             }

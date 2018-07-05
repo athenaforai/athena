@@ -21,14 +21,14 @@ namespace athena::core {
         DataType dataType;
 
     public:
-        Tensor ( TensorShape &shape, DataType dataType ) :
+        Tensor (const TensorShape &shape, DataType dataType ) :
                 shape( new TensorShape( shape )), dataType( dataType ),
                 data(
                         new unsigned char[this->shape->total_size() *
                                           typesize( dataType )]
                 ) {};
 
-        Tensor ( TensorShape &shape, DataType dataType, unsigned char* data ) :
+        Tensor (const TensorShape &shape, DataType dataType, unsigned char* data ) :
                 shape( new TensorShape( shape )),
                 dataType( dataType ),
                 data( data ) {};
