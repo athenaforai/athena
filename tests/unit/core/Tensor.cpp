@@ -5,7 +5,7 @@
 using namespace athena::core;
 
 TEST(tensor_test, tensor_test_set_get_int){
-    size_t ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
+    unsigned long ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     int a = 5;
     TensorShape shape(ar, 3);
     Tensor tensor(shape, DataType::INT);
@@ -14,7 +14,7 @@ TEST(tensor_test, tensor_test_set_get_int){
 }
 
 TEST(tensor_test, tensor_test_set_get_float){
-    size_t ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
+    unsigned long ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     float a = 5;
     TensorShape shape(ar, 3);
     Tensor tensor(shape, DataType::FLOAT);
@@ -23,7 +23,7 @@ TEST(tensor_test, tensor_test_set_get_float){
 }
 
 TEST(tensor_test, tensor_test_set_get_double){
-    size_t ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
+    unsigned long ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     double a = 5;
     TensorShape shape(ar, 3);
     Tensor tensor(shape, DataType::DOUBLE);
@@ -32,7 +32,7 @@ TEST(tensor_test, tensor_test_set_get_double){
 }
 
 TEST(tensor_test, tensor_test_set_get_void_pointer){
-    size_t ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
+    unsigned long ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2};
     double a = 5;
     TensorShape shape({3, 3, 3});
     Tensor tensor(shape, DataType::DOUBLE);
@@ -41,7 +41,7 @@ TEST(tensor_test, tensor_test_set_get_void_pointer){
 }
 
 TEST(tensor_test, tensor_test_shape_constructor_Test) {
-    size_t i[] = {3};
+    unsigned long i[] = {3};
     TensorShape shape(i, 1);
     Tensor a(shape, DataType::FLOAT);
 
@@ -50,7 +50,7 @@ TEST(tensor_test, tensor_test_shape_constructor_Test) {
 }
 
 TEST(tensor_test, tensor_test_data_load_Test) {
-    size_t i[] = {3};
+    unsigned long i[] = {3};
     TensorShape shape(i, 1);
     float af[] = {1, 2, 3};
     Tensor a(shape, DataType::FLOAT, reinterpret_cast<u_char *>(af));
@@ -64,19 +64,19 @@ TEST(tensor_test, tensor_test_data_load_Test) {
 
 TEST(tensor_test, tensor_test_get_subtensor)
 {
-    size_t ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2}, ind[3], indSub[2], indexSubtensor = 1;
+    unsigned long ar[] = {3, 3, 3}, ar2[] = {2, 1, 2}, ar3[] = {2, 1, 2}, ind[3], indSub[2], indexSubtensor = 1;
     int testArr[3][3][3], val = 0;
     TensorShape shape(ar, 3);
     Tensor tensor(shape, DataType::INT);
 
     std::cout << "Shape : " << std::endl;
-    for (size_t i : tensor.getShape().getShape())
+    for (unsigned long i : tensor.getShape().getShape())
         std::cout << i << " ";
     std::cout << std::endl;
 
-    for(size_t i = 0; i < 3; i++)
-        for(size_t j = 0; j < 3; j++)
-            for(size_t k = 0; k < 3; k++) {
+    for(unsigned long i = 0; i < 3; i++)
+        for(unsigned long j = 0; j < 3; j++)
+            for(unsigned long k = 0; k < 3; k++) {
                 ind[0] = i;
                 ind[1] = j;
                 ind[2] = k;
@@ -89,14 +89,14 @@ TEST(tensor_test, tensor_test_get_subtensor)
     Tensor subtensor = tensor.getSubtensor(indexSubtensor);
 
     std::cout << "Shape : " << subtensor.getShape().dimensions() << std::endl;
-    for (size_t i : subtensor.getShape().getShape())
+    for (unsigned long i : subtensor.getShape().getShape())
         std::cout << i << " ";
     std::cout << std::endl;
 
 
 
-        for(size_t j = 0; j < 3; j++)
-            for(size_t k = 0; k < 3; k++) {
+        for(unsigned long j = 0; j < 3; j++)
+            for(unsigned long k = 0; k < 3; k++) {
                 ind[0] = indexSubtensor;
                 ind[1] = j;
                 ind[2] = k;

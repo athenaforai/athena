@@ -11,22 +11,22 @@
 namespace athena::core {
     class TensorShape {
     private:
-        std::vector< size_t > shape;
+        std::vector< unsigned long > shape;
     public:
-        explicit TensorShape ( std::vector< size_t > shape ) :
+        explicit TensorShape ( std::vector< unsigned long > shape ) :
                 shape( std::move( shape )) {};
 
         TensorShape() = default;
 
-        TensorShape ( size_t* shape, size_t length );
+        TensorShape ( unsigned long* shape, unsigned long length );
 
-        size_t dimensions () const;
+        unsigned long dimensions () const;
 
-        size_t dim ( size_t n ) const;
+        unsigned long dim ( unsigned long n ) const;
 
-        size_t total_size () const;
+        unsigned long total_size () const;
 
-        const std::vector< size_t > &getShape () const;
+        const std::vector< unsigned long > &getShape () const;
 
         bool operator== ( const TensorShape & ) const;
 

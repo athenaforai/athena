@@ -5,15 +5,15 @@
 
 namespace athena::core {
 
-    unsigned char* Tensor::get ( const size_t* idx ) const {
+    unsigned char* Tensor::get ( const unsigned long* idx ) const {
         return this->get( idx, shape->dimensions());
     }
 
-    unsigned char* Tensor::get ( const size_t* idx, size_t length ) const {
-        size_t helperDim = shape->total_size(), innerIdx = 0;
+    unsigned char* Tensor::get ( const unsigned long* idx, unsigned long length ) const {
+        unsigned long helperDim = shape->total_size(), innerIdx = 0;
 
         for (
-                size_t i = 0; i < length; i++
+                unsigned long i = 0; i < length; i++
                 ) {
             helperDim /= shape->dim( i );
             innerIdx += idx[ i ] * typesize( dataType ) * helperDim;
@@ -21,24 +21,24 @@ namespace athena::core {
         return this->data + innerIdx;
     }
 
-    Tensor Tensor::getSubtensor ( const size_t* idx, size_t length ) const {
+    Tensor Tensor::getSubtensor ( const unsigned long* idx, unsigned long length ) const {
         TensorShape* tensorShape = new TensorShape(
-                std::vector< size_t >(
+                std::vector< unsigned long >(
                         shape->getShape().begin() + length, shape->getShape().end()));
         Tensor tensor( *tensorShape, dataType, get( idx, length ));
         return tensor;
     }
 
-    Tensor Tensor::getSubtensor ( size_t id ) const {
+    Tensor Tensor::getSubtensor ( unsigned long id ) const {
         Tensor tmp = this->getSubtensor( &id, 1 );
         return tmp;
     }
 
-    void Tensor::set ( const size_t* idx, void* item ) {
-        size_t helperDim = shape->total_size(), innerIdx = 0;
+    void Tensor::set ( const unsigned long* idx, void* item ) {
+        unsigned long helperDim = shape->total_size(), innerIdx = 0;
 
         for (
-                size_t i = 0; i < shape->dimensions(); i++
+                unsigned long i = 0; i < shape->dimensions(); i++
                 ) {
             helperDim /= shape->dim( i );
             innerIdx += idx[ i ] * typesize( dataType ) * helperDim;
@@ -46,15 +46,15 @@ namespace athena::core {
         memcpy( data + innerIdx, item, typesize( dataType ));
     }
 
-    void Tensor::set ( const size_t* idx, float item ) {
+    void Tensor::set ( const unsigned long* idx, float item ) {
         if ( dataType != DataType::FLOAT ) {
             throw std::runtime_error( "Wrong type for tensor item" );
         }
 
-        size_t helperDim = shape->total_size(), innerIdx = 0;
+        unsigned long helperDim = shape->total_size(), innerIdx = 0;
 
         for (
-                size_t i = 0; i < shape->dimensions(); i++
+                unsigned long i = 0; i < shape->dimensions(); i++
                 ) {
             helperDim /= shape->dim( i );
             innerIdx += idx[ i ] * typesize( dataType ) * helperDim;
@@ -62,15 +62,15 @@ namespace athena::core {
         memcpy( data + innerIdx, &item, sizeof( float ));
     }
 
-    void Tensor::set ( const size_t* idx, double item ) {
+    void Tensor::set ( const unsigned long* idx, double item ) {
         if ( dataType != DataType::DOUBLE ) {
             throw std::runtime_error( "Wrong type for tensor item" );
         }
 
-        size_t helperDim = shape->total_size(), innerIdx = 0;
+        unsigned long helperDim = shape->total_size(), innerIdx = 0;
 
         for (
-                size_t i = 0; i < shape->dimensions(); i++
+                unsigned long i = 0; i < shape->dimensions(); i++
                 ) {
             helperDim /= shape->dim( i );
             innerIdx += idx[ i ] * typesize( dataType ) * helperDim;
@@ -78,15 +78,15 @@ namespace athena::core {
         memcpy( data + innerIdx, &item, sizeof( double ));
     }
 
-    void Tensor::set ( const size_t* idx, int item ) {
+    void Tensor::set ( const unsigned long* idx, int item ) {
         if ( dataType != DataType::INT ) {
             throw std::runtime_error( "Wrong type for tensor item" );
         }
 
-        size_t helperDim = shape->total_size(), innerIdx = 0;
+        unsigned long helperDim = shape->total_size(), innerIdx = 0;
 
         for (
-                size_t i = 0; i < shape->dimensions(); i++
+                unsigned long i = 0; i < shape->dimensions(); i++
                 ) {
             helperDim /= shape->dim( i );
             innerIdx += idx[ i ] * typesize( dataType ) * helperDim;
@@ -106,7 +106,7 @@ namespace athena::core {
         return dataType;
     }
 
-    size_t Tensor::getSizeType () const {
+    unsigned long Tensor::getSizeType () const {
         if ( this->dataType == DataType::DOUBLE ) {
             return sizeof( double );
         } else if ( this->dataType == DataType::FLOAT ) {

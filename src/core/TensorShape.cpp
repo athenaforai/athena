@@ -5,29 +5,29 @@
 #include <iostream>
 #include "TensorShape.h"
 
-size_t athena::core::TensorShape::total_size () const {
-    size_t ts = 1;
+unsigned long athena::core::TensorShape::total_size () const {
+    unsigned long ts = 1;
     for (
-        size_t i : shape
+        unsigned long i : shape
             ) {
         ts *= i;
     }
     return ts;
 }
 
-athena::core::TensorShape::TensorShape ( size_t* shape, size_t length ) {
+athena::core::TensorShape::TensorShape ( unsigned long* shape, unsigned long length ) {
     this->shape.insert( std::end( this->shape ), shape, shape + length );
 }
 
-size_t athena::core::TensorShape::dimensions () const {
-    return static_cast<size_t>(shape.size());
+unsigned long athena::core::TensorShape::dimensions () const {
+    return shape.size();
 }
 
-size_t athena::core::TensorShape::dim ( size_t n ) const {
+unsigned long athena::core::TensorShape::dim ( unsigned long n ) const {
     return n < shape.size() ? shape[ n ] : 0;
 }
 
-const std::vector< size_t > &athena::core::TensorShape::getShape () const {
+const std::vector< unsigned long > &athena::core::TensorShape::getShape () const {
     return shape;
 }
 
@@ -37,7 +37,7 @@ athena::core::TensorShape::operator== ( const athena::core::TensorShape &rhs ) c
         return false;
     } else {
         for (
-                size_t i = 0; i < dimensions(); i++
+                unsigned long i = 0; i < dimensions(); i++
                 ) {
             if ( dim( i ) != rhs.dim( i )) {
                 return false;
