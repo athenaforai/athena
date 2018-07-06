@@ -92,6 +92,9 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/sigmoid.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/transpose.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/copy.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/scale.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/mse.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/mkscalar.cpp
                )
 
 set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)

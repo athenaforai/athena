@@ -26,5 +26,11 @@ namespace athena::backend::generic {
     athena::core::Tensor* scale (
             athena::core::Tensor* c, athena::core::Tensor* src
             );
+
+    athena::core::Tensor* mse ( athena::core::Tensor* x, athena::core::Tensor* y );
+
+    athena::core::Tensor* mse_deriv ( athena::core::Tensor* x, athena::core::Tensor* y );
+
+    athena::core::Tensor* mkscalar ( unsigned long s );
 }
 #endif //ATHENA_OPS_H

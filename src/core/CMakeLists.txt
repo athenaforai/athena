@@ -14,13 +14,8 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/Session.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/Session.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/AddOpKernel.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/MatMulOpKernel.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/SigmoidOpKernel.cpp
-               ${CMAKE_CURRENT_SOURCE_DIR}/kernels/SigmoidOpKernel.h
                )
 
+add_subdirectory(kernels)
 add_subdirectory(optimizers)
 add_subdirectory(loss)

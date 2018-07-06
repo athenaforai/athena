@@ -39,6 +39,25 @@ void athena::backend::generic::GenericExecutor::execute () {
                 Tensor* x = memory[ args[ 0 ]];
                 memory[ args[ 1 ]] = sigmoid_deriv( x );
             }
+            case OpCode::SCALE: {
+                Tensor* x = memory[ args[ 0 ]];
+                Tensor* y = memory[ args[ 1 ]];
+                memory[ args[ 2 ]] = scale( x, y );
+            }
+            case OpCode::MSE: {
+                Tensor* x = memory[ args[ 0 ]];
+                Tensor* y = memory[ args[ 1 ]];
+                memory[ args[ 2 ]] = mse( x, y );
+            }
+            case OpCode::MSE_DERIV: {
+                Tensor* x = memory[ args[ 0 ]];
+                Tensor* y = memory[ args[ 1 ]];
+                memory[ args[ 2 ]] = mse( x, y );
+            }
+            case OpCode::MKSCALAR: {
+                unsigned long x = args[ 0 ];
+                memory[ args[ 1 ]] = mkscalar( x );
+            }
             default:
                 throw std::runtime_error( "Unknown instruction" );
         }

@@ -44,10 +44,10 @@ namespace athena::core {
                 unsigned long size)
         = 0;
 
-        virtual std::vector< unsigned long >
+        virtual std::vector< vm_word >
         getOpBytecode (
-                std::vector< unsigned long > args,
-                unsigned long resultCell
+                std::vector< vm_word > args,
+                vm_word resultCell
         ) = 0;
 
         /**
@@ -57,9 +57,9 @@ namespace athena::core {
          * @param resultCell Number of memory cell where results are saved
          * @return
          */
-        virtual std::vector< unsigned long > getDerivativeBytecode (
-                int d, std::vector< unsigned long > args,
-                unsigned long resultCell
+        virtual std::vector< vm_word > getDerivativeBytecode (
+                int d, std::vector< vm_word > args,
+                vm_word resultCell
         ) = 0;
     };
 }

@@ -51,6 +51,26 @@ namespace athena::backend {
                 args[ 0 ] = bytecode[ ++next_word ];
                 args[ 1 ] = bytecode[ ++next_word ];
             }
+            case static_cast<vm_word>(OpCode::MKSCALAR): {
+                new_word = OpCode::MKSCALAR;
+                argc = 2;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+            }
+            case static_cast<vm_word>(OpCode::MSE): {
+                new_word = OpCode::MSE;
+                argc = 3;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+                args[ 2 ] = bytecode[ ++next_word ];
+            }
+            case static_cast<vm_word>(OpCode::MSE_DERIV): {
+                new_word = OpCode::MSE_DERIV;
+                argc = 3;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+                args[ 2 ] = bytecode[ ++next_word ];
+            }
             default:
                 break;
         }
