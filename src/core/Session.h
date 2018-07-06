@@ -39,6 +39,8 @@ namespace athena::core {
         unsigned long getResultCell ();
 
         unsigned long getFreeMemCell (); // todo replace with memory manager
+
+        athena::backend::ExecutorService* getExecutorService();
     };
 }
 

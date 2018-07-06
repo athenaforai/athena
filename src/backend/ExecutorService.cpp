@@ -14,3 +14,7 @@ athena::core::Tensor* athena::backend::ExecutorService::execute () {
     executor->execute();
     return executor->getMemoryCell( resultCell );
 }
+
+void athena::backend::ExecutorService::setBytecode ( std::vector< vm_word > &bytecode ) {
+    this->bytecode = bytecode;
+}

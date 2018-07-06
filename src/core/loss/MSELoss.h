@@ -5,9 +5,10 @@
 #ifndef ATHENA_MSELOSS_H
 #define ATHENA_MSELOSS_H
 
+#include <core/InputNode.h>
 #include "AbstractLossFunction.h"
 
-namespace athena::core::optimizers {
+namespace athena::core::loss {
 
     class MSEOpKernel : public OpKernel {
     public:
@@ -33,7 +34,7 @@ namespace athena::core::optimizers {
 
     class MSELoss : public AbstractLossFunction {
     public:
-        MSELoss ();
+        explicit MSELoss ();
 
     };
 

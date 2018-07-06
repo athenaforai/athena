@@ -14,13 +14,16 @@ namespace athena::core::optimizers {
         float learningRate;
 
         std::tuple< std::vector< unsigned long >, unsigned long > getByteCode (
-                AbstractLossFunction* node
+                athena::core::loss::AbstractLossFunction* node
         );
 
     public:
-        GradientDescent ( AbstractLossFunction* loss, float learningRate );
+        GradientDescent ( athena::core::loss::AbstractLossFunction* loss,
+                          float learningRate );
 
         void prepare () override;
+
+        void minimize() override ;
 
     };
 }

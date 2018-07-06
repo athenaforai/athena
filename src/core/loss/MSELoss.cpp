@@ -4,24 +4,24 @@
 
 #include "MSELoss.h"
 
-athena::core::optimizers::MSELoss::MSELoss () :
+athena::core::loss::MSELoss::MSELoss () :
         AbstractLossFunction( new MSEOpKernel()) {};
 
-athena::core::optimizers::MSEOpKernel::MSEOpKernel () :
+athena::core::loss::MSEOpKernel::MSEOpKernel () :
         OpKernel( OpCode::ADD, "mseloss" ) {}
 
-int athena::core::optimizers::MSEOpKernel::getOperandsCount () {
+int athena::core::loss::MSEOpKernel::getOperandsCount () {
     return 1;
 }
 
 athena::core::TensorShape
-athena::core::optimizers::MSEOpKernel::getOutputShape ( athena::core::TensorShape* shapes,
+athena::core::loss::MSEOpKernel::getOutputShape ( athena::core::TensorShape* shapes,
                                                         unsigned long ) {
     return shapes[ 0 ];
 }
 
 std::vector< vm_word >
-athena::core::optimizers::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
+athena::core::loss::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
                                                        unsigned long resultCell ) {
 
     std::vector< vm_word > bytecode;
@@ -34,7 +34,7 @@ athena::core::optimizers::MSEOpKernel::getOpBytecode ( std::vector< vm_word > ar
 }
 
 std::vector< unsigned long >
-athena::core::optimizers::MSEOpKernel::getDerivativeBytecode ( int d,
+athena::core::loss::MSEOpKernel::getDerivativeBytecode ( int d,
                                                                std::vector< unsigned long > args,
                                                                unsigned long resultCell ) {
     // todo depending on d the result needs to be scaled by -1

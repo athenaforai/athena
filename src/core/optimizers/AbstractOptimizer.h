@@ -15,14 +15,14 @@ namespace athena::core::optimizers {
     class AbstractOptimizer {
     protected:
         std::vector< InputNode* > headNodes;
-        std::vector< int > bytecode;
+        std::vector< vm_word > bytecode;
 
         unsigned long lastResultCell;
         Session* session;
 
-        AbstractLossFunction* loss;
+        athena::core::loss::AbstractLossFunction* loss;
     public:
-        explicit AbstractOptimizer ( AbstractLossFunction* loss ) : loss( loss ),
+        explicit AbstractOptimizer ( athena::core::loss::AbstractLossFunction* loss ) : loss( loss ),
                                                                     lastResultCell( 0 ),
                                                                     session(
                                                                             nullptr

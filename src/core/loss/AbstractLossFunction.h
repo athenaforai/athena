@@ -8,7 +8,7 @@
 
 #include <core/Node.h>
 
-namespace athena::core::optimizers {
+namespace athena::core::loss {
     class AbstractLossFunction : public Node {
     public:
         AbstractLossFunction ( OpKernel* );

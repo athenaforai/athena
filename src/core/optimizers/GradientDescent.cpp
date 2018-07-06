@@ -7,7 +7,7 @@
 #include "GradientDescent.h"
 
 athena::core::optimizers::GradientDescent::GradientDescent (
-        AbstractLossFunction* loss, float learningRate
+        athena::core::loss::AbstractLossFunction* loss, float learningRate
 )
         : AbstractOptimizer( loss ), learningRate( learningRate ) {}
 
@@ -25,7 +25,8 @@ void athena::core::optimizers::GradientDescent::prepare () {
 }
 
 std::tuple< std::vector< unsigned long >, unsigned long >
-athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* node ) {
+athena::core::optimizers::GradientDescent::getByteCode (
+        athena::core::loss::AbstractLossFunction* node ) {
 
     std::vector< vm_word > bytecode;
 
@@ -98,4 +99,18 @@ athena::core::optimizers::GradientDescent::getByteCode ( AbstractLossFunction* n
     }
 
     return std::make_tuple( bytecode, static_cast<unsigned long>(0));
+}
+
+void athena::core::optimizers::GradientDescent::minimize () {
+
+    auto label = dynamic_cast<InputNode*>(loss->getIncomingNodes()[1]);
+
+    session->getExecutorService()->setMemoryCell( label->getMappedMemCell(),
+                                                  label->getData() );
+
+    session->getExecutorService()->setBytecode( bytecode );
+
+    session->getExecutorService()->execute();
+
+
 }

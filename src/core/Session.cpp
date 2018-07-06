@@ -120,9 +120,15 @@ athena::core::Tensor* athena::core::Session::run () {
         executorService->setMemoryCell( node->getMappedMemCell(), node->getData());
     }
 
+    executorService->setBytecode( bytecode );
+
     return executorService->execute();
 }
 
 unsigned long athena::core::Session::getResultCell () {
     return resultCell;
+}
+
+athena::backend::ExecutorService* athena::core::Session::getExecutorService () {
+    return executorService;
 }

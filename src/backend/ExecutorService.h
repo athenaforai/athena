@@ -33,6 +33,8 @@ namespace athena::backend {
         void setMemoryCell ( unsigned long id, athena::core::Tensor* tensor );
 
         athena::core::Tensor* execute ();
+
+        void setBytecode(std::vector< vm_word > &bytecode);
     };
 }
 
