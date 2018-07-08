@@ -40,8 +40,11 @@ athena::core::kernels::AddOpKernel::getDerivativeBytecode (
     std::vector< unsigned long > bytecode;
     bytecode.push_back( static_cast<int>(OpCode::MKSCALAR));
 
+    float unit = 1;
+    auto u = reinterpret_cast<vm_word*>(&unit);
+
+    bytecode.push_back( *u );
     bytecode.push_back( resultCell );
-    bytecode.push_back( 1 );
 
     return bytecode;
 
