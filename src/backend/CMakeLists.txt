@@ -8,6 +8,8 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/AbstractDevice.h
                ${CMAKE_CURRENT_SOURCE_DIR}/VirtualMemory.h
                ${CMAKE_CURRENT_SOURCE_DIR}/VirtualMemory.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/AbstractMemoryManager.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/AbstractMemoryManager.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.cpp
                )

@@ -6,13 +6,38 @@
 #define ATHENA_GENERICMEMORYMANAGER_H
 
 
-namespace athena::backend::generic {
-    class GenericMemoryManager {
-    public:
-        void* allocMemory ( unsigned long threadId, unsigned long size );
+#include <backend/AbstractMemoryManager.h>
+#include <thread>
 
-        void
-        freeMemory ( unsigned long threadId, unsigned long start, unsigned long end );
+namespace athena::backend::generic {
+
+    struct SwapRecord {
+        vm_word address;
+        size_t length;
+        std::string filename;
+    };
+
+    struct MemoryChunk {
+        vm_word virtualAddress;
+        void * begin;
+        size_t length;
+
+    };
+
+    class GenericMemoryManager : public AbstractMemoryManager {
+    protected:
+        std::list<SwapRecord*> swapRecords;
+        std::list<MemoryChunk*> memoryChunks;
+        void* memory;
+
+        std::list<std::thread> memLanes;
+
+        size_t allocatedMemory;
+
+    public:
+
+        void init();
+
     };
 }
 
