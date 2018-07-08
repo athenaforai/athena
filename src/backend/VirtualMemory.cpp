@@ -101,6 +101,6 @@ void athena::backend::VirtualMemory::free ( vm_word virtualAddress ) {
 }
 
 void athena::backend::VirtualMemory::free ( athena::core::Tensor* tensor ) {
-//    free()
+    free( tensor->getStartAddress());
 }
 
