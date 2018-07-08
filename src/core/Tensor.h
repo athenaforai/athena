@@ -11,6 +11,7 @@
 #include <iostream>
 #include "TensorShape.h"
 #include "DataType.h"
+#include "opcodes.h"
 
 namespace athena::core {
 
@@ -30,53 +31,64 @@ namespace athena::core {
     class Tensor {
     private:
         TensorShape* shape;
-        unsigned char* data;
+//        unsigned char* data;
         DataType dataType;
 
-    public:
-        Tensor (const TensorShape &shape, DataType dataType ) :
-                shape( new TensorShape( shape )), dataType( dataType ),
-                data(
-                        new unsigned char[this->shape->total_size() *
-                                          typesize( dataType )]
-                ) {};
+        vm_word startAddress;
 
-        Tensor (const TensorShape &shape, DataType dataType, unsigned char* data ) :
+    public:
+//        Tensor (const TensorShape &shape, DataType dataType ) :
+//                shape( new TensorShape( shape )), dataType( dataType ),
+//                data(
+//                        new unsigned char[this->shape->total_size() *
+//                                          typesize( dataType )]
+//                ),
+//                startAddress = {};
+
+        Tensor ( const TensorShape &shape, DataType dataType ) :
                 shape( new TensorShape( shape )),
                 dataType( dataType ),
-                data( data ) {};
+                startAddress( 0 ) {};
 
-        unsigned char* get ( const unsigned long* idx ) const;
-
-        unsigned char* get ( const unsigned long* idx, unsigned long length ) const;
-
-        Tensor getSubtensor ( const unsigned long* idx, unsigned long depth ) const;
-
-        Tensor getSubtensor ( unsigned long id ) const;
-
-        void set ( const unsigned long* idx, void* item );
-
-        void set ( const unsigned long* idx, float item );
-
-        void set ( const unsigned long* idx, double item );
-
-        void set ( const unsigned long* idx, int item );
-
+//        unsigned char* get ( const unsigned long* idx ) const;
+//
+//        unsigned char* get ( const unsigned long* idx, unsigned long length ) const;
+//
+//        Tensor getSubtensor ( const unsigned long* idx, unsigned long depth ) const;
+//
+//        Tensor getSubtensor ( unsigned long id ) const;
+//
+//        void set ( const unsigned long* idx, void* item );
+//
+//        void set ( const unsigned long* idx, float item );
+//
+//        void set ( const unsigned long* idx, double item );
+//
+//        void set ( const unsigned long* idx, int item );
+//
         const TensorShape &getShape () const;
 
-        unsigned char* raw () const;
-
+//
+//        unsigned char* raw () const;
+//
         DataType getType () const;
 
-        unsigned long getSizeType () const;
+        vm_word getStartAddress();
 
-        Tensor &operator*= ( void* item );
+        void setStartAddress ( vm_word address );
 
-        Tensor &operator*= ( float item );
+        Tensor &operator[](unsigned int idx);
 
-        Tensor &operator*= ( double item );
-
-        Tensor &operator*= ( int item );
+//
+//        unsigned long getSizeType () const;
+//
+//        Tensor &operator*= ( void* item );
+//
+//        Tensor &operator*= ( float item );
+//
+//        Tensor &operator*= ( double item );
+//
+//        Tensor &operator*= ( int item );
     };
 }
 
