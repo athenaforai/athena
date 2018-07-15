@@ -41,13 +41,13 @@ namespace athena::backend {
          */
         virtual void* getPhysicalAddress ( vm_word virtualAddress ) = 0;
 
-        void loadAndLock ( athena::core::Tensor* tensor );
+        void load ( athena::core::Tensor* tensor );
 
-        void loadAndLock ( vm_word address );
+        void load ( vm_word address );
 
-        virtual void loadAndLock ( vm_word address, unsigned long length ) = 0;
+        virtual void load ( vm_word address, unsigned long length ) = 0;
 
-        virtual void unlock ( vm_word address ) = 0;
+//        virtual void unlock ( vm_word address ) = 0;
 
         virtual void deleteFromMem ( vm_word address ) = 0;
 
