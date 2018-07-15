@@ -45,10 +45,24 @@ namespace athena::backend {
 
         void load ( vm_word address );
 
+        /**
+         * Move data to the fastest memory type available (e.g. from hard drive to
+         * RAM) and lock it (prevent from being offloaded)
+         * @param address Virtual address
+         * @param length Size of Tensor in bytes
+         */
         virtual void load ( vm_word address, unsigned long length ) = 0;
 
-//        virtual void unlock ( vm_word address ) = 0;
+        /**
+         * Lets data be offloaded to a slower memory type (e.g. from RAM to HDD)
+         * @param address Virtual address
+         */
+        virtual void unlock ( vm_word address ) = 0;
 
+        /**
+         * Mark corresponding memory chunk as free
+         * @param address Virtual address
+         */
         virtual void deleteFromMem ( vm_word address ) = 0;
 
     };

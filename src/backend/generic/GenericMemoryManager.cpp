@@ -28,7 +28,9 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
 
             // select the first suitable memory chunk
             // todo better strategy to choose memory chunks
-            while ( cur != nullptr && ( cur->length <= item->length || !cur->isFree )) {
+            while ( cur != nullptr &&
+                    ( cur->length <= item->length
+                      || ( !cur->isFree || !cur->isLocked ))) {
                 cur = cur->next;
             }
 
@@ -60,6 +62,8 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
 
             cur->isFree = false;
             cur->virtualAddress = item->address;
+
+            memoryChunksLock.unlock();
 
             if ( !item->alloc ) {
                 for ( SwapRecord* record : swapRecords ) {
@@ -122,6 +126,68 @@ void athena::backend::generic::GenericMemoryManager::deinit () {
 
 athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
     deinit();
+}
+
+void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) {
+    memoryChunksLock.lock();
+
+    auto cur = memoryChunksHead;
+
+    while ( cur != nullptr && cur->virtualAddress == address ) {
+        cur = cur->next;
+    }
+
+    if ( cur == nullptr ) {
+        throw std::runtime_error( "Address not found" );
+    }
+
+
+    cur->isLocked = false;
+    SwapRecord* record = nullptr;
+
+    for ( SwapRecord* r : swapRecords ) {
+        if ( r->address == address ) {
+            record = r;
+            break;
+        }
+    }
+
+    if ( record == nullptr ) {
+        record = new SwapRecord;
+        record->address = address;
+        record->length = cur->length;
+        record->filename = "0.swap"; // todo unique names
+
+        swapRecords.push_back( record );
+    }
+
+    std::ofstream ofs( record->filename );
+    ofs.write( reinterpret_cast<char*>(cur->begin), cur->length );
+    ofs.close();
+
+    memoryChunksLock.unlock();
+}
+
+void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word address ) {
+
+    memoryChunksLock.lock();
+
+    auto cur = memoryChunksHead;
+
+    while ( cur != nullptr && cur->virtualAddress == address ) {
+        cur = cur->next;
+    }
+
+    if ( cur == nullptr ) {
+        return;
+    }
+
+    // todo remove swap records, merge memory chunks
+
+    cur->isFree = true;
+
+    memoryChunksLock.unlock();
+
 }
 
 athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;

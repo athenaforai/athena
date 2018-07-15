@@ -14,21 +14,35 @@
 
 namespace athena::backend::generic {
 
+    /**
+     * Describes single swap record - a file, that stores Tensor data
+     */
     struct SwapRecord {
         vm_word address;
         size_t length;
         std::string filename;
     };
 
+    /**
+     * Describes single memory chunk that is allocated in RAM.
+     * Free status means there is no data in this chunk
+     * Locked status means this chunk is being used now and can't be unload to
+     * persistent memory.
+     */
     struct MemoryChunk {
         vm_word virtualAddress;
         void* begin;
         size_t length;
         bool isFree;
+        bool isLocked;
         MemoryChunk* next;
         MemoryChunk* prev;
     };
 
+    /**
+     * Describes which Tensors should be loaded to RAM
+     * Alloc flag means we should not search for data in Swap
+     */
     struct QueueItem {
         vm_word address;
         size_t length;
@@ -38,6 +52,13 @@ namespace athena::backend::generic {
         bool notified = false;
     };
 
+    /**
+     * This class implements AbstractMemoryManager interface for
+     * GenericExecutor. It pre-allocates RAM and uses persistent memory for
+     * swap. There are couple memory lanes - threads, that manage RAM.
+     * They monitor loadQueue for new queries and move data from hard drive
+     * to RAM if needed.
+     */
     class GenericMemoryManager : public AbstractMemoryManager {
     protected:
         std::list< SwapRecord* > swapRecords;
@@ -54,6 +75,11 @@ namespace athena::backend::generic {
 
         std::vector< bool > laneFinished;
 
+        /**
+         * This is a thread function for memory lane-threads. It loads data to
+         * RAM and notifies corresponding threads
+         * @param laneId
+         */
         void processQueue ( int laneId );
 
     public:
@@ -62,13 +88,29 @@ namespace athena::backend::generic {
 
         ~GenericMemoryManager ();
 
+        /**
+         * Initialize memory manager. That's where actual memory allocation
+         * happens. All configurations should be done before this method is called.
+         */
         void init ();
 
+        /**
+         * Free RAM and stop all threads-memory lanes
+         */
         void deinit ();
 
+        /**
+         * Convert virtual address to physical one
+         * @param virtualAddress Virtual address, unsigned long from 0 to 2^64-1
+         * @return Pointer to physical memory
+         */
         void* getPhysicalAddress ( vm_word virtualAddress ) override;
 
         void load ( vm_word address, unsigned long length ) override;
+
+        void unlock ( vm_word address ) override;
+
+        void deleteFromMem ( vm_word address ) override;
 
     };
 }
