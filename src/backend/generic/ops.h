@@ -33,19 +33,31 @@ namespace athena::backend::generic {
                          athena::core::Tensor* x,
                          athena::core::Tensor* res );
 
-    athena::core::Tensor* transpose ( GenericMemoryManager* memoryManager,
-                                      athena::core::Tensor* a );
+    void transpose ( GenericMemoryManager* memoryManager,
+                     athena::core::Tensor* a,
+                     athena::core::Tensor* res );
 
-    athena::core::Tensor* copy ( athena::core::Tensor* x );
+    void copy ( GenericMemoryManager* memoryManager,
+                athena::core::Tensor* x,
+                athena::core::Tensor* res );
 
-    athena::core::Tensor* scale (
-            athena::core::Tensor* c, athena::core::Tensor* src
-    );
+    void scale ( GenericMemoryManager* memoryManager,
+                 athena::core::Tensor* c,
+                 athena::core::Tensor* src,
+                 athena::core::Tensor* res );
 
-    athena::core::Tensor* mse ( athena::core::Tensor* x, athena::core::Tensor* y );
+    void mse ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* x,
+               athena::core::Tensor* y,
+               athena::core::Tensor* res );
 
-    athena::core::Tensor* mse_deriv ( athena::core::Tensor* x, athena::core::Tensor* y );
+    void mse_deriv ( GenericMemoryManager* memoryManager,
+                     athena::core::Tensor* x,
+                     athena::core::Tensor* y,
+                     athena::core::Tensor* res );
 
-    athena::core::Tensor* mkscalar ( unsigned long s );
+    void mkscalar ( GenericMemoryManager* memoryManager,
+                    unsigned long s,
+                    athena::core::Tensor* res );
 }
 #endif //ATHENA_OPS_H

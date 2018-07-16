@@ -1,49 +1,89 @@
 #include <core/Tensor.h>
 #include <core/DataType.h>
+#include "ops.h"
 
-namespace athena::backend::generic
-{
-    athena::core::Tensor* scale (
-            athena::core::Tensor* c,
-            athena::core::Tensor* src ) {
-        if(c == nullptr || src == nullptr)
-            return nullptr;
-        unsigned long idx = 0;
-        unsigned long size = src->getShape().totalSize();
-        auto cNum = *(double*)(c->get(&idx));
+namespace athena::backend::generic {
 
-        if(src->getType() == athena::core::DataType::DOUBLE)
-        {
-            auto p_src = (double*)src->raw();
-            auto p_dest = new double[size];
+
+    inline void scalef ( GenericMemoryManager* memoryManager,
+                         athena::core::Tensor* c,
+                         athena::core::Tensor* src,
+                         athena::core::Tensor* res ) {
+
+        float fc = *reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress( c->getStartAddress()));
+
+        auto fsrc = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress( src->getStartAddress()));
+
+        auto fres = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress( res->getStartAddress()));
+
 #pragma omp parallel for
-            for( unsigned long i = 0; i < size; i++)
-                p_dest[i] = cNum * p_src[i];
-            return new athena::core::Tensor(src->getShape(),
-                                            src->getType(),
-                                            (unsigned char*)p_dest);
-        }else if(src->getType() == athena::core::DataType::FLOAT)
-        {
-            auto p_src = (float*)src->raw();
-            auto p_dest = new float[size];
+        for ( unsigned long i = 0; i < src->getShape().totalSize(); i++ ) {
+            fres[ i ] = fc * fsrc[ i ];
+        }
+
+    }
+
+    inline void scaled ( GenericMemoryManager* memoryManager,
+                         athena::core::Tensor* c,
+                         athena::core::Tensor* src,
+                         athena::core::Tensor* res ) {
+
+        double dc = *reinterpret_cast<double*>(
+                memoryManager->getPhysicalAddress( c->getStartAddress()));
+
+        auto dsrc = reinterpret_cast<double*>(
+                memoryManager->getPhysicalAddress( src->getStartAddress()));
+
+        auto dres = reinterpret_cast<double*>(
+                memoryManager->getPhysicalAddress( res->getStartAddress()));
+
 #pragma omp parallel for
-            for( unsigned long i = 0; i < size; i++)
-                p_dest[i] = static_cast<float>(cNum * p_src[i]);
-            return new athena::core::Tensor(src->getShape(),
-                                            src->getType(),
-                                            (unsigned char*)p_dest);
-        }else if(src->getType() == athena::core::DataType::INT)
-        {
-            auto p_src = (int*)src->raw();
-            auto p_dest = new int[size];
+        for ( unsigned long i = 0; i < src->getShape().totalSize(); i++ ) {
+            dres[ i ] = dc * dsrc[ i ];
+        }
+
+    }
+
+    inline void scalei ( GenericMemoryManager* memoryManager,
+                         athena::core::Tensor* c,
+                         athena::core::Tensor* src,
+                         athena::core::Tensor* res ) {
+
+        int ic = *reinterpret_cast<int*>(
+                memoryManager->getPhysicalAddress( c->getStartAddress()));
+
+        auto isrc = reinterpret_cast<int*>(
+                memoryManager->getPhysicalAddress( src->getStartAddress()));
+
+        auto ires = reinterpret_cast<int*>(
+                memoryManager->getPhysicalAddress( res->getStartAddress()));
+
 #pragma omp parallel for
-            for( unsigned long i = 0; i < size; i++)
-                p_dest[i] = static_cast<int>(cNum * p_src[i]);
-            return new athena::core::Tensor(src->getShape(),
-                                            src->getType(),
-                                            (unsigned char*)p_dest);
-        }else
-            return nullptr;
+        for ( unsigned long i = 0; i < src->getShape().totalSize(); i++ ) {
+            ires[ i ] = ic * isrc[ i ];
+        }
+
+    }
+
+
+    void scale ( GenericMemoryManager* memoryManager,
+                 athena::core::Tensor* c,
+                 athena::core::Tensor* src,
+                 athena::core::Tensor* res ) {
+        if ( c == nullptr || src == nullptr ) {
+            return;
+        }
+
+        if ( src->getType() == athena::core::DataType::DOUBLE ) {
+            scaled( memoryManager, c, src, res );
+        } else if ( src->getType() == athena::core::DataType::FLOAT ) {
+            scalef( memoryManager, c, src, res );
+        } else if ( src->getType() == athena::core::DataType::INT ) {
+            scalei( memoryManager, c, src, res );
+        }
 
     }
 };

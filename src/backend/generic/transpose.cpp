@@ -8,24 +8,25 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* transposef ( athena::core::Tensor* a ) {
-        auto data = reinterpret_cast<float*>(a->raw());
-        auto transposedData = new float[a->getShape().totalSize()];
+    void transposef ( GenericMemoryManager* memoryManager,
+                     athena::core::Tensor* a,
+                     athena::core::Tensor* res ) {
+        auto data = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(a->getStartAddress()));
+        auto transposedData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(res->getStartAddress()));
 
         size_t m = a->getShape().dim( 1 );
 
 #pragma omp parallel for
         for ( int n = 0; n < a->getShape().totalSize(); n++ ) {
-            int i = static_cast<int>(n / a->getShape().dim( 0 ));
-            int j = static_cast<int>(n % a->getShape().dim( 0 ));
+            auto i = static_cast<int>(n / a->getShape().dim( 0 ));
+            auto j = static_cast<int>(n % a->getShape().dim( 0 ));
 
             transposedData[ n ] = data[ m * j + i ];
         }
 
         athena::core::TensorShape shape( { m, a->getShape().dim( 0 ) } );
-        return new athena::core::Tensor( shape, athena::core::DataType::FLOAT,
-                                         reinterpret_cast<unsigned char*>
-                                         (transposedData));
     }
 
 
@@ -33,15 +34,16 @@ namespace athena::backend::generic {
      * see https://stackoverflow.com/questions/16737298/what-is-the-fastest-way-to-transpose-a-matrix-in-c
      * for better solution
      */
-    athena::core::Tensor* transpose ( athena::core::Tensor* a ) {
+    void transpose ( GenericMemoryManager* memoryManager,
+                     athena::core::Tensor* a,
+                     athena::core::Tensor* res ) {
 
+        // todo improve speed, types
         if ( a != nullptr ) {
             if ( a->getType() == athena::core::DataType::FLOAT ) {
-                return transposef( a );
+                transposef( memoryManager, a, res );
             }
         }
-
-        return nullptr;
     }
 
 }

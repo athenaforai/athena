@@ -9,49 +9,63 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* msef ( athena::core::Tensor* x, athena::core::Tensor* y ) {
+    void msef ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* x,
+               athena::core::Tensor* y,
+               athena::core::Tensor* res ) {
 
-        auto xData = reinterpret_cast<float*>(x->raw());
-        auto yData = reinterpret_cast<float*>(y->raw());
-
-        auto resData = new float[x->getShape().totalSize()];
+        auto xData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(x->getStartAddress()));
+        auto yData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(y->getStartAddress()));
+        auto resData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(res->getStartAddress()));
 
 #pragma omp parallel for
         for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             resData[ i ] = pow( xData[ i ] - yData[ i ], 2.0f );
         }
 
-        return new athena::core::Tensor( x->getShape(), athena::core::DataType::FLOAT,
-                                         reinterpret_cast<unsigned char*>(resData));
-
     }
 
-    athena::core::Tensor* mse ( athena::core::Tensor* x, athena::core::Tensor* y ) {
+    void mse ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* x,
+               athena::core::Tensor* y,
+               athena::core::Tensor* res ) {
 
         // todo types
-        return msef(x, y);
+        return msef(memoryManager, x, y, res);
 
     }
 
 
-    athena::core::Tensor* mse_derivf ( athena::core::Tensor* x,
-                                       athena::core::Tensor* y ) {
-        auto xData = reinterpret_cast<float*>(x->raw());
-        auto yData = reinterpret_cast<float*>(y->raw());
+    void mse_derivf ( GenericMemoryManager* memoryManager,
+                athena::core::Tensor* x,
+                athena::core::Tensor* y,
+                athena::core::Tensor* res ) {
 
-        auto resData = new float[x->getShape().totalSize()];
+        auto xData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(x->getStartAddress()));
+        auto yData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(y->getStartAddress()));
+        auto resData = reinterpret_cast<float*>(
+                memoryManager->getPhysicalAddress(res->getStartAddress()));
 
 #pragma omp parallel for
         for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             resData[ i ] = 2 * (xData[ i ] - yData[ i ] );
         }
 
-        return new athena::core::Tensor( x->getShape(), athena::core::DataType::FLOAT,
-                                         reinterpret_cast<unsigned char*>(resData));
     }
 
-    athena::core::Tensor* mse_deriv ( athena::core::Tensor* x, athena::core::Tensor* y ) {
-        return mse_derivf( x, y );
+    void mse_deriv ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* x,
+               athena::core::Tensor* y,
+               athena::core::Tensor* res ) {
+
+        // todo types
+        return msef(memoryManager, x, y, res);
+
     }
 
 }

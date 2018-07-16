@@ -53,37 +53,94 @@ void athena::backend::generic::GenericExecutor::execute () {
                 gmm->unlock( args[ 1 ] );
                 gmm->unlock( args[ 3 ] );
                 gmm->unlock( args[ 4 ] );
+                break;
             }
             case OpCode::SIGMOID: {
                 gmm->load( args[ 0 ] );
                 gmm->load( args[ 1 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
-                memory[ args[ 1 ]] = sigmoid( x );
+                Tensor* res = gmm->getTensor( args[ 1 ]);
+                sigmoid( gmm, x, res );
                 gmm->unlock( args[ 0 ] );
                 gmm->unlock( args[ 1 ] );
+                break;
             }
             case OpCode::SIGMOID_DERIV: {
-                Tensor* x = memory[ args[ 0 ]];
-                memory[ args[ 1 ]] = sigmoid_deriv( x );
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* res = gmm->getTensor( args[ 1 ]);
+                sigmoid_deriv( gmm, x, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                break;
             }
             case OpCode::SCALE: {
-                Tensor* x = memory[ args[ 0 ]];
-                Tensor* y = memory[ args[ 1 ]];
-                memory[ args[ 2 ]] = scale( x, y );
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                gmm->load( args[ 2 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* y = gmm->getTensor( args[ 1 ]);
+                Tensor* res = gmm->getTensor( args[ 2 ]);
+                scale( gmm, x, y, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
+                break;
             }
             case OpCode::MSE: {
-                Tensor* x = memory[ args[ 0 ]];
-                Tensor* y = memory[ args[ 1 ]];
-                memory[ args[ 2 ]] = mse( x, y );
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                gmm->load( args[ 2 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* y = gmm->getTensor( args[ 1 ]);
+                Tensor* res = gmm->getTensor( args[ 2 ]);
+                mse( gmm, x, y, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
+                break;
             }
             case OpCode::MSE_DERIV: {
-                Tensor* x = memory[ args[ 0 ]];
-                Tensor* y = memory[ args[ 1 ]];
-                memory[ args[ 2 ]] = mse( x, y );
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                gmm->load( args[ 2 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* y = gmm->getTensor( args[ 1 ]);
+                Tensor* res = gmm->getTensor( args[ 2 ]);
+                mse_deriv( gmm, x, y, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
+                break;
             }
             case OpCode::MKSCALAR: {
+                gmm->load( args[ 1 ] );
                 unsigned long x = args[ 0 ];
-                memory[ args[ 1 ]] = mkscalar( x );
+                Tensor* res = gmm->getTensor( args[ 1 ]);
+                mkscalar( gmm, x, res );
+                gmm->unlock( args[ 1 ] );
+                break;
+            }
+            case OpCode::TRANSPOSE: {
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* res = gmm->getTensor( args[ 1 ]);
+                transpose( gmm, x, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                break;
+            }
+            case OpCode::COPY: {
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
+                Tensor* res = gmm->getTensor( args[ 1 ]);
+                copy( gmm, x, res );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                break;
             }
             default:
                 throw std::runtime_error( "Unknown instruction" );

@@ -9,12 +9,11 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* mkscalar ( unsigned long s ) {
-        auto f = new float[1];
+    void mkscalar ( GenericMemoryManager* memoryManager,
+                    unsigned long s,
+                    athena::core::Tensor* res ) {
+//        auto f = new float[1];
+        auto f = memoryManager->getPhysicalAddress( res->getStartAddress());
         memcpy( f, reinterpret_cast<float*>(s), sizeof( float ));
-
-        return new athena::core::Tensor( athena::core::TensorShape( { 1 } ),
-                                         athena::core::DataType::FLOAT,
-                                         reinterpret_cast<unsigned char*>(f));
     }
 }
