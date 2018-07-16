@@ -11,27 +11,33 @@
 #include <utility>
 #include <vector>
 #include <core/opcodes.h>
+#include "CPUDevice.h"
 
 namespace athena::backend::generic {
     class GenericExecutor : public athena::backend::AbstractExecutor {
     private:
-        athena::core::Tensor** memory;
-        int* intRegisters {};
-        std::stack< int > intStack;
+//        athena::core::Tensor** memory;
+//        int* intRegisters {};
+//        std::stack< int > intStack;
 
         std::vector< vm_word > &bytecode;
+
+        CPUDevice* device;
     public:
         explicit GenericExecutor (
-                std::vector< vm_word > &bytecode, unsigned long maxMem
-        ) : bytecode( bytecode ) {
-            memory = new athena::core::Tensor* [maxMem];
+                std::vector< vm_word > &bytecode, unsigned long maxMem,
+                CPUDevice* cpuDevice
+        ) : bytecode( bytecode ), device( cpuDevice ) {
+
         };
 
-        void execute () override;
+//        void execute () override;
+//
+//        AbstractMemoryManager* getMemoryManager() override ;
 
-        void setMemoryCell ( unsigned long id, athena::core::Tensor* tensor ) override;
+        void execute () override ;
 
-        athena::core::Tensor* getMemoryCell ( unsigned long id ) override;
+        AbstractMemoryManager* getMemoryManager () override ;
     };
 }
 

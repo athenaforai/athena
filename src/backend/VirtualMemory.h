@@ -45,13 +45,14 @@ namespace athena::backend {
 
     public:
 
-        VirtualMemory();
+        VirtualMemory ();
 
         /**
          * Allocates virtual memory for given Tensor
          * @param tensor Tensor object
+         * @return Virtual Address of 0 element of Tensor
          */
-        void allocate ( athena::core::Tensor* tensor );
+        vm_word allocate ( athena::core::Tensor* tensor );
 
         /**
          * Marks memory as free

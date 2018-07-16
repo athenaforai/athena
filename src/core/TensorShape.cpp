@@ -5,7 +5,7 @@
 #include <iostream>
 #include "TensorShape.h"
 
-unsigned long athena::core::TensorShape::total_size () const {
+unsigned long athena::core::TensorShape::totalSize () const {
     unsigned long ts = 1;
     for (
         unsigned long i : shape
@@ -50,4 +50,17 @@ athena::core::TensorShape::operator== ( const athena::core::TensorShape &rhs ) c
 bool
 athena::core::TensorShape::operator!= ( const athena::core::TensorShape &rhs ) const {
     return !( *this == rhs );
+}
+
+athena::core::TensorShape::TensorShape ( const athena::core::TensorShape & src) {
+    this->shape = src.shape;
+
+}
+
+athena::core::TensorShape &
+athena::core::TensorShape::operator= ( const athena::core::TensorShape &src ) {
+    if ( this != &src ) {
+        this->shape = src.shape;
+    }
+    return *this;
 }

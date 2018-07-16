@@ -12,8 +12,8 @@ namespace athena::backend::generic {
         if ( x != nullptr ) {
             unsigned long total =
                     static_cast<unsigned int>(athena::core::typesize( x->getType()) *
-                                              x->getShape()
-                                               .total_size());
+                            x->getShape()
+                             .totalSize());
 
             auto newData = new unsigned char[total];
             auto data = x->raw();

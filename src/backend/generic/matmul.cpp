@@ -23,13 +23,20 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* matmulf (
-            bool aTransp, athena::core::Tensor* a, bool bTransp, athena::core::Tensor* b
-    ) {
-        auto af = reinterpret_cast<float*>(a->raw());
-        auto bf = reinterpret_cast<float*>(b->raw());
+    void matmulf (
+            GenericMemoryManager* memoryManager,
+            bool aTransp,
+            athena::core::Tensor* a,
+            bool bTransp,
+            athena::core::Tensor* b,
+            athena::core::Tensor* res ) {
 
-        auto cf = new float[a->getShape().dim( 0 ) * b->getShape().dim( 1 )];
+        auto af = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                a->getStartAddress()));
+        auto bf = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                b->getStartAddress()));
+        auto cf = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
         cblas_sgemm(
                 C_ORDER, // Specifies row-major (C) or column-major (Fortran) data ordering
@@ -53,19 +60,22 @@ namespace athena::backend::generic {
                 static_cast<const int>(a->getShape().dim(
                         0 ))); // The size of the first dimention of matrix C; if you are passing a matrix C[m][n], the value should be m
 
-        return new athena::core::Tensor(
-                const_cast<core::TensorShape &>(b->getShape()),
-                athena::core::DataType::FLOAT,
-                reinterpret_cast<unsigned char*>(cf));
     }
 
-    athena::core::Tensor* matmuld (
-            bool aTransp, athena::core::Tensor* a, bool bTransp, athena::core::Tensor* b
+    void matmuld (
+            GenericMemoryManager* memoryManager,
+            bool aTransp,
+            athena::core::Tensor* a,
+            bool bTransp,
+            athena::core::Tensor* b,
+            athena::core::Tensor* res
     ) {
-        auto af = reinterpret_cast<double*>(a->raw());
-        auto bf = reinterpret_cast<double*>(b->raw());
-
-        auto cf = new double[a->getShape().dim( 0 ) * b->getShape().dim( 1 )];
+        auto af = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                a->getStartAddress()));
+        auto bf = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                b->getStartAddress()));
+        auto cf = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
         cblas_dgemm(
                 C_ORDER, // Specifies row-major (C) or column-major (Fortran) data ordering
@@ -94,15 +104,15 @@ namespace athena::backend::generic {
                 static_cast<const int>(a->getShape().dim(
                         0
                 ))); // The size of the first dimention of matrix C; if you are passing a matrix C[m][n], the value should be m
-
-        return new athena::core::Tensor(
-                const_cast<core::TensorShape &>(b->getShape()),
-                athena::core::DataType::FLOAT,
-                reinterpret_cast<unsigned char*>(cf));
     }
 
-    athena::core::Tensor* matmul (
-            bool aTransp, athena::core::Tensor* a, bool bTransp, athena::core::Tensor* b
+    void matmul (
+            GenericMemoryManager* memoryManager,
+            bool aTransp,
+            athena::core::Tensor* a,
+            bool bTransp,
+            athena::core::Tensor* b,
+            athena::core::Tensor* res
     ) {
         // todo shape checks
         if ( a->getShape().dimensions() != 2 || b->getShape().dimensions() != 2 ) {
@@ -111,12 +121,10 @@ namespace athena::backend::generic {
         }
 
         if ( a->getType() == athena::core::DataType::FLOAT ) {
-            return matmulf( aTransp, a, bTransp, b );
+            matmulf( memoryManager, aTransp, a, bTransp, b, res );
         } else if ( a->getType() == athena::core::DataType::DOUBLE ) {
-            return matmuld( aTransp, a, bTransp, b );
+            matmuld( memoryManager, aTransp, a, bTransp, b, res );
         }
-
-        return nullptr;
     }
 }
 

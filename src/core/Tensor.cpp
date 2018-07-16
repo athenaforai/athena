@@ -10,7 +10,7 @@ namespace athena::core {
 //    }
 //
 //    unsigned char* Tensor::get ( const unsigned long* idx, unsigned long length ) const {
-//        unsigned long helperDim = shape->total_size(), innerIdx = 0;
+//        unsigned long helperDim = shape->totalSize(), innerIdx = 0;
 //
 //        for (
 //                unsigned long i = 0; i < length; i++
@@ -35,7 +35,7 @@ namespace athena::core {
 //    }
 
 //    void Tensor::set ( const unsigned long* idx, void* item ) {
-//        unsigned long helperDim = shape->total_size(), innerIdx = 0;
+//        unsigned long helperDim = shape->totalSize(), innerIdx = 0;
 //
 //        for (
 //                unsigned long i = 0; i < shape->dimensions(); i++
@@ -51,7 +51,7 @@ namespace athena::core {
 //            throw std::runtime_error( "Wrong type for tensor item" );
 //        }
 //
-//        unsigned long helperDim = shape->total_size(), innerIdx = 0;
+//        unsigned long helperDim = shape->totalSize(), innerIdx = 0;
 //
 //        for (
 //                unsigned long i = 0; i < shape->dimensions(); i++
@@ -67,7 +67,7 @@ namespace athena::core {
 //            throw std::runtime_error( "Wrong type for tensor item" );
 //        }
 //
-//        unsigned long helperDim = shape->total_size(), innerIdx = 0;
+//        unsigned long helperDim = shape->totalSize(), innerIdx = 0;
 //
 //        for (
 //                unsigned long i = 0; i < shape->dimensions(); i++
@@ -83,7 +83,7 @@ namespace athena::core {
 //            throw std::runtime_error( "Wrong type for tensor item" );
 //        }
 //
-//        unsigned long helperDim = shape->total_size(), innerIdx = 0;
+//        unsigned long helperDim = shape->totalSize(), innerIdx = 0;
 //
 //        for (
 //                unsigned long i = 0; i < shape->dimensions(); i++
@@ -119,7 +119,7 @@ namespace athena::core {
 
         Tensor* res = new Tensor( TensorShape( dims ), dataType );
         res->startAddress =
-                startAddress + idx * res->shape->total_size() * typesize( dataType );
+                startAddress + idx * res->shape->totalSize() * typesize( dataType );
 
         return *res;
     }
@@ -159,7 +159,7 @@ namespace athena::core {
 //
 //        auto* el = ( float* ) this->data;
 //        for (
-//                size_t i = 0, size = this->getShape().total_size();
+//                size_t i = 0, size = this->getShape().totalSize();
 //                i < size;
 //                i++
 //                ) { //Can be vectorized
@@ -176,7 +176,7 @@ namespace athena::core {
 //
 //        auto* el = ( double* ) this->data;
 //        for (
-//                size_t i = 0, size = this->getShape().total_size();
+//                size_t i = 0, size = this->getShape().totalSize();
 //                i < size;
 //                i++
 //                ) { //Can be vectorized
@@ -193,7 +193,7 @@ namespace athena::core {
 //
 //        auto* el = ( int* ) this->data;
 //        for (
-//                size_t i = 0, size = this->getShape().total_size();
+//                size_t i = 0, size = this->getShape().totalSize();
 //                i < size;
 //                i++
 //                ) { //Can be vectorized

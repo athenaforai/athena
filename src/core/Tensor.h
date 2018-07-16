@@ -40,7 +40,7 @@ namespace athena::core {
 //        Tensor (const TensorShape &shape, DataType dataType ) :
 //                shape( new TensorShape( shape )), dataType( dataType ),
 //                data(
-//                        new unsigned char[this->shape->total_size() *
+//                        new unsigned char[this->shape->totalSize() *
 //                                          typesize( dataType )]
 //                ),
 //                startAddress = {};

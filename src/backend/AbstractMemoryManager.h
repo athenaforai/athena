@@ -65,6 +65,8 @@ namespace athena::backend {
          */
         virtual void deleteFromMem ( vm_word address ) = 0;
 
+        athena::core::Tensor* getTensor ( vm_word address );
+
     };
 }
 

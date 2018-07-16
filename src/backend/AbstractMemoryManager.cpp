@@ -14,7 +14,7 @@ void athena::backend::AbstractMemoryManager::addTensor ( athena::core::Tensor* t
 
 void
 athena::backend::AbstractMemoryManager::load ( athena::core::Tensor* tensor ) {
-    load( tensor->getStartAddress(), tensor->getShape().total_size() *
+    load( tensor->getStartAddress(), tensor->getShape().totalSize() *
                                      athena::core::typesize( tensor->getType()));
 }
 
@@ -27,4 +27,16 @@ void athena::backend::AbstractMemoryManager::load ( vm_word address ) {
         }
     }
 
+}
+
+athena::core::Tensor*
+athena::backend::AbstractMemoryManager::getTensor ( vm_word address ) {
+
+    for (athena::core::Tensor* t : tensors){
+        if ( t->getStartAddress() == address ) {
+            return t;
+        }
+    }
+
+    return nullptr;
 }

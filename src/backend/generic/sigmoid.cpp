@@ -8,102 +8,82 @@
 
 namespace athena::backend::generic {
 
-    athena::core::Tensor* sigmoidd ( athena::core::Tensor* x ) {
-        auto data = reinterpret_cast<double*>(x->raw());
-        auto newData = new double[x->getShape().total_size()];
+    void sigmoidd ( GenericMemoryManager* memoryManager,
+                    athena::core::Tensor* x,
+                    athena::core::Tensor* res ) {
+        auto data = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                x->getStartAddress()));
+        auto newData = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
-        for (
-                int i = 0; i < x->getShape().total_size(); i++
-                ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             newData[ i ] = 1.0 / ( 1 + exp( -data[ i ] ));
         }
-
-        auto y = new athena::core::Tensor(
-                const_cast<athena::core::TensorShape &>(x->getShape()),
-                x->getType(),
-                reinterpret_cast<unsigned char*>(newData));
-
-        return y;
-
     }
 
-    athena::core::Tensor* sigmoidf ( athena::core::Tensor* x ) {
-        auto data = reinterpret_cast<float*>(x->raw());
-        auto newData = new float[x->getShape().total_size()];
+    void sigmoidf ( GenericMemoryManager* memoryManager,
+                    athena::core::Tensor* x,
+                    athena::core::Tensor* res ) {
+        auto data = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                x->getStartAddress()));
+        auto newData = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
-        for (
-                int i = 0; i < x->getShape().total_size(); i++
-                ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             newData[ i ] = 1.0f / ( 1 + exp( -data[ i ] ));
         }
 
-        auto y = new athena::core::Tensor(
-                const_cast<athena::core::TensorShape &>(x->getShape()),
-                x->getType(),
-                reinterpret_cast<unsigned char*>(newData));
-
-        return y;
     }
 
-    athena::core::Tensor* sigmoid ( athena::core::Tensor* x ) {
+    void sigmoid ( GenericMemoryManager* memoryManager,
+                   athena::core::Tensor* x,
+                   athena::core::Tensor* res ) {
         if ( x->getType() == athena::core::DataType::FLOAT ) {
-            return sigmoidf( x );
+            sigmoidf( memoryManager, x, res );
         } else if ( x->getType() == athena::core::DataType::DOUBLE ) {
-            return sigmoidd( x );
+            sigmoidd( memoryManager, x, res );
         }
-
-        return nullptr;
     }
 
 
-    athena::core::Tensor* sigmoid_derivd ( athena::core::Tensor* x ) {
-        auto data = reinterpret_cast<double*>(x->raw());
-        auto newData = new double[x->getShape().total_size()];
+    void sigmoid_derivd ( GenericMemoryManager* memoryManager,
+                                           athena::core::Tensor* x,
+                                           athena::core::Tensor* res ) {
+        auto data = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                x->getStartAddress()));
+        auto newData = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
-        for (
-                int i = 0; i < x->getShape().total_size(); i++
-                ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             double s = 1.0f / ( 1 + exp( -data[ i ] ));
             newData[ i ] = s * ( 1 - s );
         }
 
-        auto y = new athena::core::Tensor(
-                const_cast<athena::core::TensorShape &>(x->getShape()),
-                x->getType(),
-                reinterpret_cast<unsigned char*>(newData));
-
-        return y;
-
     }
 
-    athena::core::Tensor* sigmoid_derivf ( athena::core::Tensor* x ) {
-        auto data = reinterpret_cast<float*>(x->raw());
-        auto newData = new float[x->getShape().total_size()];
+    void sigmoid_derivf ( GenericMemoryManager* memoryManager,
+                                           athena::core::Tensor* x,
+                                           athena::core::Tensor* res ) {
+        auto data = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                x->getStartAddress()));
+        auto newData = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
+                res->getStartAddress()));
 
-        for (
-                int i = 0; i < x->getShape().total_size(); i++
-                ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             float s = 1.0f / ( 1 + exp( -data[ i ] ));
             newData[ i ] = s * ( 1 - s );
         }
-
-        auto y = new athena::core::Tensor(
-                const_cast<athena::core::TensorShape &>(x->getShape()),
-                x->getType(),
-                reinterpret_cast<unsigned char*>(newData));
-
-        return y;
     }
 
 
-    athena::core::Tensor* sigmoid_deriv ( athena::core::Tensor* x ) {
+    void sigmoid_deriv ( GenericMemoryManager* memoryManager,
+                                          athena::core::Tensor* x,
+                                          athena::core::Tensor* res ) {
         if ( x->getType() == athena::core::DataType::FLOAT ) {
-            return sigmoid_derivf( x );
+            sigmoid_derivf( memoryManager, x, res );
         } else if ( x->getType() == athena::core::DataType::DOUBLE ) {
-            return sigmoid_derivd( x );
+            sigmoid_derivd( memoryManager, x, res );
         }
-
-        return nullptr;
     }
 }
 

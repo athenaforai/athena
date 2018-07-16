@@ -190,4 +190,8 @@ void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word add
 
 }
 
+void athena::backend::generic::GenericMemoryManager::setMemSize ( size_t memSize ) {
+    allocatedMemory = memSize;
+}
+
 athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;

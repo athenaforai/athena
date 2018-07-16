@@ -5,6 +5,8 @@
 #ifndef ATHENA_ABSTRACTDEVICE_H
 #define ATHENA_ABSTRACTDEVICE_H
 
+#include "AbstractMemoryManager.h"
+
 namespace athena::backend {
     class AbstractDevice {
     protected:
@@ -15,6 +17,8 @@ namespace athena::backend {
         unsigned long getMaxThreadMemSize ();
 
         void setMaxThreadMemSize ( unsigned long size = 0 );
+
+        virtual AbstractMemoryManager* getMemoryManager() = 0;
     };
 }
 

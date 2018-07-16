@@ -7,25 +7,40 @@
 
 #include <core/Tensor.h>
 #include <core/DataType.h>
+#include "GenericMemoryManager.h"
 
 namespace athena::backend::generic {
-    athena::core::Tensor* add ( athena::core::Tensor* a, athena::core::Tensor* b );
-
-    athena::core::Tensor* matmul (
-            bool aTransp, athena::core::Tensor* a, bool bTransp, athena::core::Tensor* b
+    void add ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* a,
+               athena::core::Tensor* b,
+               athena::core::Tensor* res
     );
 
-    athena::core::Tensor* sigmoid ( athena::core::Tensor* x );
+    void matmul (
+            GenericMemoryManager* memoryManager,
+            bool aTransp,
+            athena::core::Tensor* a,
+            bool bTransp,
+            athena::core::Tensor* b,
+            athena::core::Tensor* res
+    );
 
-    athena::core::Tensor* sigmoid_deriv ( athena::core::Tensor* x );
+    void sigmoid ( GenericMemoryManager* memoryManager,
+                   athena::core::Tensor* x,
+                   athena::core::Tensor* res );
 
-    athena::core::Tensor* transpose ( athena::core::Tensor* a );
+    void sigmoid_deriv ( GenericMemoryManager* memoryManager,
+                         athena::core::Tensor* x,
+                         athena::core::Tensor* res );
+
+    athena::core::Tensor* transpose ( GenericMemoryManager* memoryManager,
+                                      athena::core::Tensor* a );
 
     athena::core::Tensor* copy ( athena::core::Tensor* x );
 
     athena::core::Tensor* scale (
             athena::core::Tensor* c, athena::core::Tensor* src
-            );
+    );
 
     athena::core::Tensor* mse ( athena::core::Tensor* x, athena::core::Tensor* y );
 

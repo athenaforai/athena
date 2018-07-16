@@ -9,7 +9,7 @@ namespace athena::backend::generic
         if(c == nullptr || src == nullptr)
             return nullptr;
         unsigned long idx = 0;
-        unsigned long size = src->getShape().total_size();
+        unsigned long size = src->getShape().totalSize();
         auto cNum = *(double*)(c->get(&idx));
 
         if(src->getType() == athena::core::DataType::DOUBLE)

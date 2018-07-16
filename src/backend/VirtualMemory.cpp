@@ -16,10 +16,10 @@ athena::backend::VirtualMemory::VirtualMemory () {
     curMemoryUsage = 0;
 }
 
-void athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor ) {
+vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor ) {
     VMemoryBlock* cur = head;
 
-    unsigned long memNeeded = tensor->getShape().total_size() *
+    unsigned long memNeeded = tensor->getShape().totalSize() *
                               athena::core::typesize( tensor->getType());
 
     bool allocated = false;
@@ -54,6 +54,7 @@ void athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor ) {
             cur->nextBlock = nullptr;
             cur->prevBlock = nullptr;
             delete cur;
+            cur = newUsedBlock;
         } else {
             cur = cur->nextBlock;
         }
@@ -64,7 +65,7 @@ void athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor ) {
     }
 
 
-
+    return cur->startAddress;
 }
 
 void athena::backend::VirtualMemory::free ( vm_word virtualAddress ) {

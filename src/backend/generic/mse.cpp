@@ -14,10 +14,10 @@ namespace athena::backend::generic {
         auto xData = reinterpret_cast<float*>(x->raw());
         auto yData = reinterpret_cast<float*>(y->raw());
 
-        auto resData = new float[x->getShape().total_size()];
+        auto resData = new float[x->getShape().totalSize()];
 
 #pragma omp parallel for
-        for ( int i = 0; i < x->getShape().total_size(); i++ ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             resData[ i ] = pow( xData[ i ] - yData[ i ], 2.0f );
         }
 
@@ -39,10 +39,10 @@ namespace athena::backend::generic {
         auto xData = reinterpret_cast<float*>(x->raw());
         auto yData = reinterpret_cast<float*>(y->raw());
 
-        auto resData = new float[x->getShape().total_size()];
+        auto resData = new float[x->getShape().totalSize()];
 
 #pragma omp parallel for
-        for ( int i = 0; i < x->getShape().total_size(); i++ ) {
+        for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             resData[ i ] = 2 * (xData[ i ] - yData[ i ] );
         }
 

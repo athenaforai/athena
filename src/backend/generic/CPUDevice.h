@@ -10,12 +10,19 @@
 #include "GenericMemoryManager.h"
 
 namespace athena::backend::generic {
+
+    /**
+     * This class represents a CPU
+     * It encapsulates Memory Manager
+     */
     class CPUDevice : public AbstractDevice {
     private:
         unsigned long activeThreads;
         GenericMemoryManager* memoryManager;
     public:
         CPUDevice ();
+
+        AbstractMemoryManager* getMemoryManager() override ;
 
     };
 }

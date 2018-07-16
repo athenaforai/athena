@@ -10,12 +10,12 @@ namespace athena::backend::generic {
 
     athena::core::Tensor* transposef ( athena::core::Tensor* a ) {
         auto data = reinterpret_cast<float*>(a->raw());
-        auto transposedData = new float[a->getShape().total_size()];
+        auto transposedData = new float[a->getShape().totalSize()];
 
         size_t m = a->getShape().dim( 1 );
 
 #pragma omp parallel for
-        for ( int n = 0; n < a->getShape().total_size(); n++ ) {
+        for ( int n = 0; n < a->getShape().totalSize(); n++ ) {
             int i = static_cast<int>(n / a->getShape().dim( 0 ));
             int j = static_cast<int>(n % a->getShape().dim( 0 ));
 

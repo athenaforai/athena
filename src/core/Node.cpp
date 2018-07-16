@@ -41,7 +41,7 @@ void athena::core::Node::addDerivative ( unsigned long d ) {
     derivatives.push_back( d );
 }
 
-unsigned long athena::core::Node::getDerivative ( int i ) {
+vm_word athena::core::Node::getDerivative ( int i ) {
     return derivatives[ i ];
 }
 
@@ -54,7 +54,7 @@ bool athena::core::Node::isCalculated () {
     return calculated;
 }
 
-unsigned long athena::core::Node::getResult () {
+vm_word athena::core::Node::getResult () {
     return resultCell;
 }
 

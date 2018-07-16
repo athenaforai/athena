@@ -9,6 +9,7 @@
 #include "InputNode.h"
 #include <stack>
 #include <backend/ExecutorService.h>
+#include <backend/VirtualMemory.h>
 
 namespace athena::core {
     /**
@@ -29,10 +30,12 @@ namespace athena::core {
         /**
          * Contains address of final result
          */
-        unsigned long resultCell;
+        vm_word resultCell;
 
-        std::vector< bool > memory_map;
-        std::stack< unsigned long > free_mem;
+        TensorShape resultShape;
+
+//        std::vector< bool > memory_map;
+//        std::stack< unsigned long > free_mem;
 
         unsigned long maxMemSize;
 
@@ -41,13 +44,16 @@ namespace athena::core {
          * @param logits sub-graph
          * @return bytecode
          */
-        std::tuple< std::vector< unsigned long >, unsigned long >
+        std::tuple< std::vector< vm_word >, TensorShape, vm_word >
         getByteCode ( Node* logits );
 
-        athena::backend::ExecutorService* executorService {};
+        athena::backend::AbstractExecutor* executor {};
+
+        athena::backend::VirtualMemory* virtualMemory;
 
     public:
-        Session () : resultCell( 0 ), maxMemSize( 0 ) {};
+        Session () : resultCell( 0 ), maxMemSize( 0 ),
+                     virtualMemory( new athena::backend::VirtualMemory ) {};
 
         ~Session () = default;
 
@@ -65,9 +71,11 @@ namespace athena::core {
 
         unsigned long getResultCell ();
 
-        unsigned long getFreeMemCell (); // todo replace with memory manager
+//        unsigned long getFreeMemCell (); // todo replace with memory manager
 
-        athena::backend::ExecutorService* getExecutorService();
+//        athena::backend::ExecutorService* getExecutorService();
+
+        void setExecutor ( athena::backend::AbstractExecutor* exec );
     };
 }
 

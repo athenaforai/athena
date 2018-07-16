@@ -108,9 +108,13 @@ namespace athena::backend::generic {
 
         void load ( vm_word address, unsigned long length ) override;
 
+        using AbstractMemoryManager::load;
+
         void unlock ( vm_word address ) override;
 
         void deleteFromMem ( vm_word address ) override;
+
+        void setMemSize( size_t memSize );
 
     };
 }

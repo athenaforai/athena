@@ -39,10 +39,18 @@ namespace athena::core {
          * @param dim Dimensionality
          * @return New shape
          */
-        virtual athena::core::TensorShape getOutputShape (
-                athena::core::TensorShape* shapes,
-                unsigned long size)
-        = 0;
+        virtual athena::core::TensorShape &getOutputShape (
+                std::vector< athena::core::TensorShape & > shapes ) = 0;
+
+        /**
+         * It is important for some operations to have
+         * certain size of their operands
+         * @param shape Original operand shape
+         * @param dim Dimensionality
+         * @return New shape
+         */
+        virtual athena::core::TensorShape &getDerivativeShape (
+                int d, std::vector< athena::core::TensorShape & > shapes ) = 0;
 
         virtual std::vector< vm_word >
         getOpBytecode (

@@ -16,24 +16,51 @@ void athena::backend::generic::GenericExecutor::execute () {
     auto args = new vm_word[10];
     unsigned int argc = 0;
 
+    auto gmm = dynamic_cast<GenericMemoryManager*>(device->getMemoryManager());
+
     while ( parse( bytecode, ip, op, args, argc ) < bytecode.size()) {
         switch ( op ) {
             case OpCode::ADD: {
-                Tensor* a = memory[ args[ 0 ]];
-                Tensor* b = memory[ args[ 1 ]];
-                memory[ args[ 2 ]] = add( a, b );
+//                Tensor* a = memory[ args[ 0 ]];
+//                Tensor* b = memory[ args[ 1 ]];
+                /*memory[ args[ 2 ]] =*/
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                gmm->load( args[ 2 ] );
+                add( gmm,
+                     gmm->getTensor( args[ 0 ] ),
+                     gmm->getTensor( args[ 1 ] ),
+                     gmm->getTensor( args[ 2 ] ));
+
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
                 break;
             }
             case OpCode::MATMUL: {
-                auto aTransp = static_cast<bool>(memory[ args[ 0 ]]);
-                Tensor* a = memory[ args[ 1 ]];
-                auto bTransp = static_cast<bool>(memory[ args[ 2 ]]);
-                Tensor* b = memory[ args[ 3 ]];
-                memory[ args[ 4 ]] = matmul( aTransp, a, bTransp, b );
+
+                gmm->load( args[ 1 ] );
+                gmm->load( args[ 3 ] );
+                gmm->load( args[ 4 ] );
+
+                auto aTransp = static_cast<bool>(args[ 0 ]);
+                Tensor* a = gmm->getTensor( args[ 1 ] );
+                auto bTransp = static_cast<bool>( args[ 2 ]);
+                Tensor* b = gmm->getTensor( args[ 3 ] );
+                Tensor* res = gmm->getTensor( args[ 4 ] );
+                matmul( gmm, aTransp, a, bTransp, b, res );
+
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 3 ] );
+                gmm->unlock( args[ 4 ] );
             }
             case OpCode::SIGMOID: {
-                Tensor* x = memory[ args[ 0 ]];
+                gmm->load( args[ 0 ] );
+                gmm->load( args[ 1 ] );
+                Tensor* x = gmm->getTensor( args[ 0 ]);
                 memory[ args[ 1 ]] = sigmoid( x );
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
             }
             case OpCode::SIGMOID_DERIV: {
                 Tensor* x = memory[ args[ 0 ]];
@@ -101,14 +128,7 @@ void athena::backend::generic::GenericExecutor::execute () {
 
 }
 
-void athena::backend::generic::GenericExecutor::setMemoryCell (
-        unsigned long id, athena::core::Tensor* tensor
-) {
-
-    memory[ id ] = tensor;
-}
-
-athena::core::Tensor*
-athena::backend::generic::GenericExecutor::getMemoryCell ( unsigned long id ) {
-    return memory[ id ];
+athena::backend::AbstractMemoryManager*
+athena::backend::generic::GenericExecutor::getMemoryManager () {
+    return device->getMemoryManager();
 }
