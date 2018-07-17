@@ -11,13 +11,6 @@ int athena::core::kernels::SigmoidOpKernel::getOperandsCount () {
     return 1;
 }
 
-athena::core::TensorShape
-athena::core::kernels::SigmoidOpKernel::getOutputShape (
-        athena::core::TensorShape* shapes,
-        unsigned long size) {
-    return shapes[0];
-}
-
 std::vector< vm_word >
 athena::core::kernels::SigmoidOpKernel::getOpBytecode (
         std::vector< vm_word > args,
@@ -45,4 +38,15 @@ athena::core::kernels::SigmoidOpKernel::getDerivativeBytecode (
     bytecode.push_back( resultCell );
 
     return bytecode;
+}
+
+athena::core::TensorShape &
+athena::core::kernels::SigmoidOpKernel::getDerivativeShape ( int d,
+                                                             const std::vector< athena::core::TensorShape & > &shapes ) {
+    return shapes[ 0 ];
+}
+
+athena::core::TensorShape &athena::core::kernels::SigmoidOpKernel::getOutputShape (
+        const std::vector< athena::core::TensorShape & > &shapes ) {
+    return shapes[ 0 ];
 }

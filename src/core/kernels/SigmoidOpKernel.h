@@ -16,9 +16,12 @@ namespace athena::core::kernels {
 
         int getOperandsCount () override;
 
-        athena::core::TensorShape getOutputShape (
-                athena::core::TensorShape* shapes,
-                unsigned long size) override;
+        athena::core::TensorShape &getOutputShape (
+                const std::vector< athena::core::TensorShape & > &shapes ) override;
+
+        athena::core::TensorShape &
+        getDerivativeShape ( int d,
+                             const std::vector< athena::core::TensorShape & > &shapes ) override;
 
         std::vector< vm_word >
         getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) override;

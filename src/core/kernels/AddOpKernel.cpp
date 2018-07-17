@@ -10,12 +10,6 @@ int athena::core::kernels::AddOpKernel::getOperandsCount () {
     return 2;
 }
 
-athena::core::TensorShape
-athena::core::kernels::AddOpKernel::getOutputShape (
-        athena::core::TensorShape* shapes,
-        unsigned long size){
-    return shapes[0];
-}
 
 std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
         std::vector< unsigned long > args,
@@ -24,10 +18,10 @@ std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
 
     bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
 
-    bytecode.push_back(args[0]);
-    bytecode.push_back(args[1]);
+    bytecode.push_back( args[ 0 ] );
+    bytecode.push_back( args[ 1 ] );
 
-    bytecode.push_back(resultCell);
+    bytecode.push_back( resultCell );
 
     return bytecode;
 }
@@ -47,5 +41,19 @@ athena::core::kernels::AddOpKernel::getDerivativeBytecode (
     bytecode.push_back( resultCell );
 
     return bytecode;
+
+}
+
+athena::core::TensorShape &athena::core::kernels::AddOpKernel::getOutputShape (
+        const std::vector< athena::core::TensorShape & > &shapes ) {
+    return shapes[ 0 ];
+}
+
+athena::core::TensorShape &athena::core::kernels::AddOpKernel::getDerivativeShape (
+        int d,
+        const std::vector< athena::core::TensorShape & > &shapes
+) {
+
+    return shapes[d];
 
 }

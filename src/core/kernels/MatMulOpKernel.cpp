@@ -8,13 +8,6 @@ int athena::core::kernels::MatMulOpKernel::getOperandsCount () {
     return 2;
 }
 
-athena::core::TensorShape
-athena::core::kernels::MatMulOpKernel::getOutputShape (
-        athena::core::TensorShape* shapes,
-        unsigned long size) {
-    return TensorShape( nullptr, 0); // todo
-}
-
 std::vector< vm_word >
 athena::core::kernels::MatMulOpKernel::getOpBytecode (
         std::vector< vm_word > args,
@@ -49,6 +42,23 @@ athena::core::kernels::MatMulOpKernel::getDerivativeBytecode ( int d,
     bytecode.push_back( resultCell );
 
     return std::vector< vm_word >();
+}
+
+athena::core::TensorShape &athena::core::kernels::MatMulOpKernel::getOutputShape (
+        const std::vector< athena::core::TensorShape & > &shapes ) {
+    TensorShape shape({shapes[0].dim(0), shapes[1].dim(1)});
+    return shape;
+}
+
+athena::core::TensorShape &
+athena::core::kernels::MatMulOpKernel::getDerivativeShape ( int d,
+                                                            const std::vector< athena::core::TensorShape & > &shapes ) {
+    if ( d == 0 ) {
+        return shapes[ 0 ];
+    } else {
+        TensorShape s( { shapes[ 1 ].dim( 1 ), shapes[ 1 ].dim( 0 ) } );
+        return s;
+    }
 }
 
 

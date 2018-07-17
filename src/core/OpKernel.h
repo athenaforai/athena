@@ -40,7 +40,7 @@ namespace athena::core {
          * @return New shape
          */
         virtual athena::core::TensorShape &getOutputShape (
-                std::vector< athena::core::TensorShape & > shapes ) = 0;
+                const std::vector< athena::core::TensorShape & > &shapes ) = 0;
 
         /**
          * It is important for some operations to have
@@ -50,13 +50,11 @@ namespace athena::core {
          * @return New shape
          */
         virtual athena::core::TensorShape &getDerivativeShape (
-                int d, std::vector< athena::core::TensorShape & > shapes ) = 0;
+                int d,
+                const std::vector< athena::core::TensorShape & > &shapes ) = 0;
 
         virtual std::vector< vm_word >
-        getOpBytecode (
-                std::vector< vm_word > args,
-                vm_word resultCell
-        ) = 0;
+        getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) = 0;
 
         /**
          * Generates bytecode to calculate partial derivative

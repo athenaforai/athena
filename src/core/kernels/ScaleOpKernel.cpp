@@ -4,13 +4,6 @@ int athena::core::kernels::ScaleOpKernel::getOperandsCount () {
     return 2;
 }
 
-athena::core::TensorShape
-athena::core::kernels::ScaleOpKernel::getOutputShape (
-        athena::core::TensorShape* shapes,
-        unsigned long size ) {
-    return shapes[1];
-}
-
 std::vector< vm_word >
 athena::core::kernels::ScaleOpKernel::getOpBytecode (
         std::vector< vm_word > args,
@@ -36,4 +29,15 @@ athena::core::kernels::ScaleOpKernel::getDerivativeBytecode ( int d,
     bytecode.push_back( resultCell );
 
     return std::vector< vm_word >();
+}
+
+athena::core::TensorShape &athena::core::kernels::ScaleOpKernel::getOutputShape (
+        const std::vector< athena::core::TensorShape & > &shapes ) {
+    return shapes[1];
+}
+
+athena::core::TensorShape &
+athena::core::kernels::ScaleOpKernel::getDerivativeShape ( int d,
+                                                           const std::vector< athena::core::TensorShape & > &shapes ) {
+    return shapes[ d ];
 }
