@@ -1,0 +1,64 @@
+\hypertarget{classathena_1_1backend_1_1_virtual_memory}{}\section{athena\+:\+:backend\+:\+:Virtual\+Memory Class Reference}
+\label{classathena_1_1backend_1_1_virtual_memory}\index{athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}}
+
+
+{\ttfamily \#include $<$Virtual\+Memory.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+vm\+\_\+word \mbox{\hyperlink{classathena_1_1backend_1_1_virtual_memory_a22be58a8e0cb574a7d46d4095cb64ac5}{allocate}} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1_virtual_memory_a73815358c436f8f6dd73d49d4d5d189d}{free}} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1_virtual_memory_ab24e17b8e8b2f8278b56b84dfdda42a3}{free}} (vm\+\_\+word virtual\+Address)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Virtual memory is an abstraction of storage resources that are actually available on a given machine. Each thread has its own address space. In Athena\textquotesingle{}s VM address space is linear. This means that valid addresses are 0 to 2$^\wedge$64 -\/ 1. Address 0 is reserved for N\+U\+LL value. When Tensor is initialized, it is given with a continuous block of virtual addresses. When one actually needs to access Tensor\textquotesingle{}s data, Memory Manager allocates physical memory and converts virtual addresses to physical ones. This helps Athena to run in low-\/memory conditions. This class is heavily used in Session class to generate bytecode. ~\newline
+ To discover more about Virtual Memory see article on \href{https://en.wikipedia.org/wiki/Virtual_memory}{\tt Wikipedia} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1backend_1_1_virtual_memory_a22be58a8e0cb574a7d46d4095cb64ac5}\label{classathena_1_1backend_1_1_virtual_memory_a22be58a8e0cb574a7d46d4095cb64ac5}} 
+\index{athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}!allocate@{allocate}}
+\index{allocate@{allocate}!athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}}
+\subsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily vm\+\_\+word athena\+::backend\+::\+Virtual\+Memory\+::allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})}
+
+Allocates virtual memory for given Tensor 
+\begin{DoxyParams}{Parameters}
+{\em tensor} & Tensor object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Virtual Address of 0 element of Tensor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classathena_1_1backend_1_1_virtual_memory_a73815358c436f8f6dd73d49d4d5d189d}\label{classathena_1_1backend_1_1_virtual_memory_a73815358c436f8f6dd73d49d4d5d189d}} 
+\index{athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}!free@{free}}
+\index{free@{free}!athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}}
+\subsubsection{\texorpdfstring{free()}{free()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Virtual\+Memory\+::free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})}
+
+Marks memory as free 
+\begin{DoxyParams}{Parameters}
+{\em tensor} & Corresponding tensor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1_virtual_memory_ab24e17b8e8b2f8278b56b84dfdda42a3}\label{classathena_1_1backend_1_1_virtual_memory_ab24e17b8e8b2f8278b56b84dfdda42a3}} 
+\index{athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}!free@{free}}
+\index{free@{free}!athena\+::backend\+::\+Virtual\+Memory@{athena\+::backend\+::\+Virtual\+Memory}}
+\subsubsection{\texorpdfstring{free()}{free()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Virtual\+Memory\+::free (\begin{DoxyParamCaption}\item[{vm\+\_\+word}]{virtual\+Address }\end{DoxyParamCaption})}
+
+Marks memory as free 
+\begin{DoxyParams}{Parameters}
+{\em virtual\+Address} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+backend/Virtual\+Memory.\+h\item 
+backend/Virtual\+Memory.\+cpp\end{DoxyCompactItemize}
