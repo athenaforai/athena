@@ -41,12 +41,13 @@ athena::core::kernels::SigmoidOpKernel::getDerivativeBytecode (
 }
 
 athena::core::TensorShape &
-athena::core::kernels::SigmoidOpKernel::getDerivativeShape ( int d,
-                                                             const std::vector< athena::core::TensorShape & > &shapes ) {
+athena::core::kernels::SigmoidOpKernel::getDerivativeShape (
+        int d,
+        std::vector< athena::core::TensorShape > &shapes ) {
     return shapes[ 0 ];
 }
 
 athena::core::TensorShape &athena::core::kernels::SigmoidOpKernel::getOutputShape (
-        const std::vector< athena::core::TensorShape & > &shapes ) {
+        std::vector< athena::core::TensorShape > &shapes ) {
     return shapes[ 0 ];
 }

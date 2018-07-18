@@ -10,15 +10,17 @@
 
 namespace athena::backend {
     class AbstractExecutor {
+    protected:
+        std::vector< vm_word > bytecode;
     public:
+
+        AbstractExecutor() = default;
+
         virtual void execute () = 0;
 
-        virtual AbstractMemoryManager* getMemoryManager() = 0;
+        virtual AbstractMemoryManager* getMemoryManager () = 0;
 
-//        virtual void setMemoryCell ( unsigned long id, athena::core::Tensor* tensor )
-//        = 0;
-
-//        virtual athena::core::Tensor* getMemoryCell ( unsigned long id ) = 0;
+        void setBytecode (std::vector< vm_word >& bytecode);
     };
 }
 

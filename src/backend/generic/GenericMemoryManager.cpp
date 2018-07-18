@@ -12,7 +12,15 @@ void athena::backend::generic::GenericMemoryManager::init () {
     laneFinished.push_back( false );
     std::thread thr( &GenericMemoryManager::processQueue, this, 0 );
 
-    memLanes.push_back( thr );
+    memLanes.push_back( std::move( thr ));
+
+    memoryChunksHead = new MemoryChunk;
+    memoryChunksHead->isFree = true;
+    memoryChunksHead->isLocked = false;
+    memoryChunksHead->begin = memory;
+    memoryChunksHead->length = allocatedMemory;
+    memoryChunksHead->next = nullptr;
+    memoryChunksHead->prev = nullptr;
 }
 
 void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId ) {
@@ -30,7 +38,7 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
             // todo better strategy to choose memory chunks
             while ( cur != nullptr &&
                     ( cur->length <= item->length
-                      || ( !cur->isFree || !cur->isLocked ))) {
+                      && ( !cur->isFree || !cur->isLocked ))) {
                 cur = cur->next;
             }
 
@@ -43,11 +51,15 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
                 newChunk->length = item->length;
                 newChunk->virtualAddress = item->address;
                 newChunk->prev = cur->prev;
-                cur->prev->next = newChunk;
+
+                if (cur->prev != nullptr) {
+                    cur->prev->next = newChunk;
+                }
 
                 auto freeChunk = new MemoryChunk;
                 freeChunk->virtualAddress = 0;
-                freeChunk->begin = newChunk->begin + newChunk->length;
+                freeChunk->begin = reinterpret_cast<char*>(newChunk->begin) +
+                                   newChunk->length;
                 freeChunk->isFree = true;
                 freeChunk->length = cur->length - newChunk->length;
                 freeChunk->prev = newChunk;
@@ -58,6 +70,13 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
                 }
 
                 cur = newChunk;
+                if ( cur == memoryChunksHead ) {
+                    memoryChunksHead = newChunk;
+                }
+
+                cur->prev = nullptr;
+                cur->next = nullptr;
+                delete cur;
             }
 
             cur->isFree = false;
@@ -109,16 +128,22 @@ void athena::backend::generic::GenericMemoryManager::load ( vm_word address,
 
     loadQueue.push( item );
 
+    std::mutex m;
+    std::unique_lock< std::mutex > lock( m );
+
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     while ( !item->notified ) {
-        item->loadHandle.wait( item->m );
+
+//        item->m = std::move(m);
+
+        item->loadHandle.wait( lock );
     }
 
 }
 
 void athena::backend::generic::GenericMemoryManager::deinit () {
-    for ( std::thread t : memLanes ) {
-        t.join();
+    for ( int i = 0; i < memLanes.size(); i++ ) {
+        memLanes[ i ].join();
     }
 
     delete memory;

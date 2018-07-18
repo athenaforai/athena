@@ -2,7 +2,7 @@
 // Created by Александр Баташев on 25.05.2018.
 //
 
-#include <stack>
+//#include <stack>
 #include <stdexcept>
 #include "Session.h"
 #include <tuple>
@@ -23,9 +23,10 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
 //            bytecode, maxMemSize,
 //            resultCell
 //    );
+
 }
 
-std::tuple< std::vector< vm_word >, athena::core::TensorShape , vm_word >
+std::tuple< std::vector< vm_word >, athena::core::TensorShape, vm_word >
 athena::core::Session::getByteCode ( Node* logits ) {
 
     std::vector< vm_word > curBC;
@@ -49,7 +50,7 @@ athena::core::Session::getByteCode ( Node* logits ) {
 
             // todo check shape compatibility
             std::vector< vm_word > resCells;
-            std::vector< TensorShape & > predShapes;
+            std::vector< TensorShape > predShapes;
             for (
                 Node* pred : logits->getIncomingNodes()) {
                 if ( pred->isCalculated()) {
@@ -57,6 +58,8 @@ athena::core::Session::getByteCode ( Node* logits ) {
                     pred->updateUsageCount();
                     if ( pred->isGarbage()) {
                         virtualMemory->free( pred->getResult());
+                        curBC.push_back( static_cast<vm_word>( OpCode::DEL ));
+                        curBC.push_back( pred->getResult());
                     }
                 } else {
                     auto[predBC, predShape, predResCell] = getByteCode( pred );
@@ -71,6 +74,14 @@ athena::core::Session::getByteCode ( Node* logits ) {
             resultShape = logits->getOp()->getOutputShape( predShapes );
             auto resultTensor = new Tensor( resultShape, DataType::FLOAT ); // todo TYPE
             resultCell = virtualMemory->allocate( resultTensor );
+
+            curBC.push_back( static_cast<vm_word>( OpCode::ALLOC ));
+            curBC.push_back( resultShape.dimensions());
+            for ( unsigned int d = 0; d < resultShape.dimensions(); d++ ) {
+                curBC.push_back( resultShape.dim( d ));
+            }
+            curBC.push_back( resultCell );
+
             std::vector< vm_word > op_bytecode = logits->getOp()->getOpBytecode(
                     resCells, resultCell
             );
@@ -83,6 +94,14 @@ athena::core::Session::getByteCode ( Node* logits ) {
                 auto derivShape = logits->getOp()->getDerivativeShape( i, predShapes );
                 auto derivTensor = new Tensor( derivShape, DataType::FLOAT ); // todo type
                 vm_word derivCell = virtualMemory->allocate( derivTensor );
+
+                curBC.push_back( static_cast<vm_word>( OpCode::ALLOC ));
+                curBC.push_back( derivShape.dimensions());
+                for ( unsigned int d = 0; d < derivShape.dimensions(); d++ ) {
+                    curBC.push_back( derivShape.dim( d ));
+                }
+                curBC.push_back( derivCell );
+
                 std::vector< vm_word > deriv_bytecode =
                         logits->getOp()->getDerivativeBytecode(
                                 i, resCells, derivCell
@@ -113,6 +132,7 @@ athena::core::Tensor* athena::core::Session::run () {
 //    executorService->setBytecode( bytecode );
 //
 //    return executorService->execute();
+    executor->setBytecode( bytecode );
     executor->execute();
 //    executor->getMemoryManager()->
     return nullptr;

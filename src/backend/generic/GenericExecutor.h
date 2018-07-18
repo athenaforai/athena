@@ -20,16 +20,13 @@ namespace athena::backend::generic {
 //        int* intRegisters {};
 //        std::stack< int > intStack;
 
-        std::vector< vm_word > &bytecode;
+//        std::vector< vm_word > &bytecode;
 
         CPUDevice* device;
     public:
         explicit GenericExecutor (
-                std::vector< vm_word > &bytecode, unsigned long maxMem,
                 CPUDevice* cpuDevice
-        ) : bytecode( bytecode ), device( cpuDevice ) {
-
-        };
+        ) : AbstractExecutor(), device( cpuDevice ) {};
 
 //        void execute () override;
 //

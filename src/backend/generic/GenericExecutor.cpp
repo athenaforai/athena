@@ -142,6 +142,15 @@ void athena::backend::generic::GenericExecutor::execute () {
                 gmm->unlock( args[ 1 ] );
                 break;
             }
+            case OpCode::DEL: {
+                gmm->deleteFromMem( args[ 0 ] );
+                break;
+            }
+            case OpCode::ALLOC: {
+                TensorShape shape( args, argc - 1 );
+                auto t = new Tensor( shape, DataType::FLOAT ); // todo data type
+                gmm->addTensor( t );
+            }
             default:
                 throw std::runtime_error( "Unknown instruction" );
         }

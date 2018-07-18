@@ -20,8 +20,8 @@ athena::core::kernels::ScaleOpKernel::getOpBytecode (
 
 std::vector< vm_word >
 athena::core::kernels::ScaleOpKernel::getDerivativeBytecode ( int d,
-                                                               std::vector< vm_word > args,
-                                                               vm_word resultCell ) {
+                                                              std::vector< vm_word > args,
+                                                              vm_word resultCell ) {
     std::vector< vm_word > bytecode;
 
     //?? CodeOp and Args todo
@@ -32,12 +32,13 @@ athena::core::kernels::ScaleOpKernel::getDerivativeBytecode ( int d,
 }
 
 athena::core::TensorShape &athena::core::kernels::ScaleOpKernel::getOutputShape (
-        const std::vector< athena::core::TensorShape & > &shapes ) {
-    return shapes[1];
+        std::vector< athena::core::TensorShape > &shapes ) {
+    return shapes[ 1 ];
 }
 
 athena::core::TensorShape &
-athena::core::kernels::ScaleOpKernel::getDerivativeShape ( int d,
-                                                           const std::vector< athena::core::TensorShape & > &shapes ) {
+athena::core::kernels::ScaleOpKernel::getDerivativeShape (
+        int d,
+        std::vector< athena::core::TensorShape > &shapes ) {
     return shapes[ d ];
 }

@@ -30,23 +30,16 @@ namespace athena::core {
      */
     class Tensor {
     private:
-        TensorShape* shape;
+        const TensorShape& shape;
 //        unsigned char* data;
         DataType dataType;
 
         vm_word startAddress;
 
     public:
-//        Tensor (const TensorShape &shape, DataType dataType ) :
-//                shape( new TensorShape( shape )), dataType( dataType ),
-//                data(
-//                        new unsigned char[this->shape->totalSize() *
-//                                          typesize( dataType )]
-//                ),
-//                startAddress = {};
 
         Tensor ( const TensorShape &shape, DataType dataType ) :
-                shape( new TensorShape( shape )),
+                shape(  shape ),
                 dataType( dataType ),
                 startAddress( 0 ) {};
 

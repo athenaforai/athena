@@ -11,6 +11,7 @@ athena::backend::VirtualMemory::VirtualMemory () {
     head->startAddress = 1;
     head->endAddress = LONG_MAX;
     head->nextBlock = nullptr;
+    head->prevBlock = nullptr;
 
     maxMemoryUsage = 0;
     curMemoryUsage = 0;
@@ -32,6 +33,10 @@ vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor 
             newUsedBlock->endAddress = newUsedBlock->startAddress + memNeeded;
             newUsedBlock->prevBlock = cur->prevBlock;
 
+            if ( cur->prevBlock != nullptr ) {
+                cur->prevBlock->nextBlock = newUsedBlock;
+            }
+
             if ( cur->endAddress - cur->startAddress > memNeeded ) {
                 auto freeBlock = new VMemoryBlock;
                 freeBlock->isUsed = false;
@@ -41,8 +46,15 @@ vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor 
                 freeBlock->prevBlock = newUsedBlock;
 
                 newUsedBlock->nextBlock = freeBlock;
+
+                if ( cur->nextBlock != nullptr ) {
+                    cur->nextBlock->prevBlock = freeBlock;
+                }
             } else {
                 newUsedBlock->nextBlock = cur->nextBlock;
+                if ( cur->nextBlock != nullptr ) {
+                    cur->nextBlock->prevBlock = newUsedBlock;
+                }
             }
 
             allocated = true;
@@ -53,6 +65,9 @@ vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor 
 
             cur->nextBlock = nullptr;
             cur->prevBlock = nullptr;
+            if ( cur == head ) {
+                head = newUsedBlock;
+            }
             delete cur;
             cur = newUsedBlock;
         } else {
@@ -64,6 +79,7 @@ vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor 
         throw std::runtime_error( "OutOfMemory error" );
     }
 
+    tensor->setStartAddress( cur->startAddress );
 
     return cur->startAddress;
 }

@@ -21,6 +21,7 @@ enum class OpCode : vm_word {
     TRANSPOSE = 0x0A,
     COPY = 0x0B,
     MSE = 0x0C,
-    MSE_DERIV = 0x0D
+    MSE_DERIV = 0x0D,
+    ALLOC = 0x0E
 };
 #endif //ATHENA_OPCODES_H

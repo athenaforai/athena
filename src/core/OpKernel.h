@@ -6,7 +6,6 @@
 #define ATHENA_OPKERNEL_H
 
 #include <string>
-#include <string>
 #include <utility>
 #include <vector>
 
@@ -40,7 +39,7 @@ namespace athena::core {
          * @return New shape
          */
         virtual athena::core::TensorShape &getOutputShape (
-                const std::vector< athena::core::TensorShape & > &shapes ) = 0;
+                std::vector< athena::core::TensorShape > &shapes ) = 0;
 
         /**
          * It is important for some operations to have
@@ -51,7 +50,7 @@ namespace athena::core {
          */
         virtual athena::core::TensorShape &getDerivativeShape (
                 int d,
-                const std::vector< athena::core::TensorShape & > &shapes ) = 0;
+                std::vector< athena::core::TensorShape > &shapes ) = 0;
 
         virtual std::vector< vm_word >
         getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) = 0;

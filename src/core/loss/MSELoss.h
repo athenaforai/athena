@@ -16,9 +16,12 @@ namespace athena::core::loss {
 
         int getOperandsCount () override ;
 
-        athena::core::TensorShape getOutputShape (
-                athena::core::TensorShape* shapes,
-                unsigned long) override ;
+        athena::core::TensorShape &getOutputShape (
+                std::vector< athena::core::TensorShape > &shapes ) override;
+
+        athena::core::TensorShape &getDerivativeShape (
+                int,
+                std::vector< athena::core::TensorShape > &shapes ) override ;
 
         std::vector< unsigned long >
         getOpBytecode (

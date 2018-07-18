@@ -45,13 +45,13 @@ athena::core::kernels::AddOpKernel::getDerivativeBytecode (
 }
 
 athena::core::TensorShape &athena::core::kernels::AddOpKernel::getOutputShape (
-        const std::vector< athena::core::TensorShape & > &shapes ) {
+        std::vector< athena::core::TensorShape > &shapes ) {
     return shapes[ 0 ];
 }
 
 athena::core::TensorShape &athena::core::kernels::AddOpKernel::getDerivativeShape (
         int d,
-        const std::vector< athena::core::TensorShape & > &shapes
+        std::vector< athena::core::TensorShape > &shapes
 ) {
 
     return shapes[d];

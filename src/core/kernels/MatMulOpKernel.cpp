@@ -45,14 +45,15 @@ athena::core::kernels::MatMulOpKernel::getDerivativeBytecode ( int d,
 }
 
 athena::core::TensorShape &athena::core::kernels::MatMulOpKernel::getOutputShape (
-        const std::vector< athena::core::TensorShape & > &shapes ) {
-    TensorShape shape({shapes[0].dim(0), shapes[1].dim(1)});
+        std::vector< athena::core::TensorShape > &shapes ) {
+    TensorShape shape( { shapes[ 0 ].dim( 0 ), shapes[ 1 ].dim( 1 ) } );
     return shape;
 }
 
 athena::core::TensorShape &
-athena::core::kernels::MatMulOpKernel::getDerivativeShape ( int d,
-                                                            const std::vector< athena::core::TensorShape & > &shapes ) {
+athena::core::kernels::MatMulOpKernel::getDerivativeShape (
+        int d,
+        std::vector< athena::core::TensorShape > &shapes ) {
     if ( d == 0 ) {
         return shapes[ 0 ];
     } else {

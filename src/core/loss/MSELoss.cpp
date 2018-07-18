@@ -14,12 +14,6 @@ int athena::core::loss::MSEOpKernel::getOperandsCount () {
     return 1;
 }
 
-athena::core::TensorShape
-athena::core::loss::MSEOpKernel::getOutputShape ( athena::core::TensorShape* shapes,
-                                                        unsigned long ) {
-    return shapes[ 0 ];
-}
-
 std::vector< vm_word >
 athena::core::loss::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
                                                        unsigned long resultCell ) {
@@ -45,4 +39,14 @@ athena::core::loss::MSEOpKernel::getDerivativeBytecode ( int d,
     bytecode.push_back( resultCell );
 
     return std::vector< vm_word >();
+}
+
+athena::core::TensorShape &athena::core::loss::MSEOpKernel::getOutputShape (
+        std::vector< athena::core::TensorShape > &shapes ) {
+    return shapes[ 0 ];
+}
+
+athena::core::TensorShape &athena::core::loss::MSEOpKernel::getDerivativeShape ( int,
+                                                                                 std::vector< athena::core::TensorShape > &shapes ) {
+    return shapes[ 0 ];
 }

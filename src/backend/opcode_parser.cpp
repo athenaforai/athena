@@ -71,6 +71,19 @@ namespace athena::backend {
                 args[ 1 ] = bytecode[ ++next_word ];
                 args[ 2 ] = bytecode[ ++next_word ];
             }
+            case static_cast<vm_word>(OpCode::ALLOC): {
+                new_word = OpCode::ALLOC;
+                argc = static_cast<unsigned int>(bytecode[ ++next_word ] + 1);
+
+                for ( int i = 0; i < argc; i++ ) {
+                    args[ i ] = bytecode[ ++next_word ];
+                }
+            }
+            case static_cast<vm_word>(OpCode::DEL): {
+                argc = 1;
+                new_word = OpCode::DEL;
+                args[ 0 ] = bytecode[ ++next_word ];
+            }
             default:
                 break;
         }

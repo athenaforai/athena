@@ -48,7 +48,7 @@ namespace athena::backend::generic {
         size_t length;
         bool alloc = false;
         std::condition_variable loadHandle;
-        std::unique_lock< std::mutex > m;
+        std::mutex m;
         bool notified = false;
     };
 
@@ -65,9 +65,9 @@ namespace athena::backend::generic {
         MemoryChunk* memoryChunksHead;
         void* memory;
 
-        std::unique_lock< std::mutex > memoryChunksLock;
+        std::mutex memoryChunksLock;
 
-        std::list< std::thread > memLanes;
+        std::vector< std::thread > memLanes;
 
         size_t allocatedMemory;
 
