@@ -10,6 +10,10 @@
 
 namespace athena::core::kernels {
 
+    /**
+     * Apply sigmoid function to every element of Tensor.
+     * See https://en.wikipedia.org/wiki/Sigmoid_function for more info
+     */
     class SigmoidOpKernel : public OpKernel {
     public:
         SigmoidOpKernel ();

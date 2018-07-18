@@ -4,6 +4,10 @@
 #include <core/OpKernel.h>
 
 namespace athena::core::kernels {
+
+    /**
+     * Performs sum of 2 given Tensors
+     */
     class AddOpKernel : public OpKernel {
     public:
         AddOpKernel () : OpKernel( OpCode::ADD, "add" ) {};

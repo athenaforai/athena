@@ -86,6 +86,20 @@ $(function() {
 : <a class="el" href="classathena_1_1backend_1_1_abstract_memory_manager.html#a8ffd6cf21559978f394e2e11815506b5">athena::backend::AbstractMemoryManager</a>
 , <a class="el" href="classathena_1_1backend_1_1generic_1_1_generic_memory_manager.html#a2767b6c1f5887a2928b665e0c1b454c7">athena::backend::generic::GenericMemoryManager</a>
 </li>
+<li>dim()
+: <a class="el" href="classathena_1_1core_1_1_tensor_shape.html#ac0433f4e7a42e5307bb9fb976befdd47">athena::core::TensorShape</a>
+</li>
+<li>dimensions()
+: <a class="el" href="classathena_1_1core_1_1_tensor_shape.html#a73f686650f41bd7fa065aa16dfc4529f">athena::core::TensorShape</a>
+</li>
+</ul>
+
+
+<h3><a id="index_e"></a>- e -</h3><ul>
+<li>execute()
+: <a class="el" href="classathena_1_1backend_1_1_abstract_executor.html#a5f179146ae76002b678a4862553f87ce">athena::backend::AbstractExecutor</a>
+, <a class="el" href="classathena_1_1backend_1_1generic_1_1_generic_executor.html#a38b56c284050d31198b28fcb6595bc73">athena::backend::generic::GenericExecutor</a>
+</li>
 </ul>
 
 
@@ -109,14 +123,19 @@ $(function() {
 , <a class="el" href="classathena_1_1core_1_1_op_kernel.html#ad500db1afc5a7c10acff8ecb8f1bee4d">athena::core::OpKernel</a>
 </li>
 <li>getDerivativeShape()
-: <a class="el" href="classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a873ce3dc366c72f651331d91dd48be0a">athena::core::kernels::AddOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#aaf7aa2db812b58dedda8ed43d3ea994f">athena::core::kernels::MatMulOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#a7f9519bf17e1d70b56aa70cc49981470">athena::core::kernels::ScaleOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#af2ba51d6085f6d5326c1ab1281717ea8">athena::core::kernels::SigmoidOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1_op_kernel.html#aa2367d955810d4e0f3f27b85ae6fe85a">athena::core::OpKernel</a>
+: <a class="el" href="classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a240d13047b8fd7676bf1f9d2bc94298f">athena::core::kernels::AddOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#abdb57e6ce0d67ce6263e0716fed25243">athena::core::kernels::MatMulOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad7c63973c62e28c0ad3d854ce16debf1">athena::core::kernels::ScaleOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a0ea18b43eb9355d7a855202898ff09fc">athena::core::kernels::SigmoidOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a68a0220e3a3591638c7725b5cb659609">athena::core::loss::MSEOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1_op_kernel.html#ad95af6dd184ce7ee9182ec7ca54b6c4d">athena::core::OpKernel</a>
 </li>
 <li>getMappedMemCell()
 : <a class="el" href="classathena_1_1core_1_1_input_node.html#acebc0cbf077eaae99f5c11cfba608533">athena::core::InputNode</a>
+</li>
+<li>getMemoryManager()
+: <a class="el" href="classathena_1_1backend_1_1_abstract_executor.html#a6d61486e2a06500c9c0aa1e03a475e4a">athena::backend::AbstractExecutor</a>
+, <a class="el" href="classathena_1_1backend_1_1generic_1_1_generic_executor.html#a0560a1dfc0c70ebef0b5be26bb82b9c5">athena::backend::generic::GenericExecutor</a>
 </li>
 <li>getOperandsCount()
 : <a class="el" href="classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a296a0c69a7b906037324cce2b64827e1">athena::core::kernels::AddOpKernel</a>
@@ -127,11 +146,12 @@ $(function() {
 , <a class="el" href="classathena_1_1core_1_1_op_kernel.html#add97d4c132d80ecd9915acfedf7c9119">athena::core::OpKernel</a>
 </li>
 <li>getOutputShape()
-: <a class="el" href="classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#aaf21b2b72c6e601964e53eb6de7fccfd">athena::core::kernels::AddOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a6bfb45669c7ebb74c32f8846a940c57a">athena::core::kernels::MatMulOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#afdd5df13d53df932af26968714a2beed">athena::core::kernels::ScaleOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a67e52f29a93f345ebf48801d835cef62">athena::core::kernels::SigmoidOpKernel</a>
-, <a class="el" href="classathena_1_1core_1_1_op_kernel.html#a926afa57c90b4a999419cbbdc0496c65">athena::core::OpKernel</a>
+: <a class="el" href="classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a687d68d7374e9546f01cefcbfb382d04">athena::core::kernels::AddOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a3a397257c208f55ba5fba4018112a605">athena::core::kernels::MatMulOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad1791a60026e90c95f248202e1404a26">athena::core::kernels::ScaleOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#abd929f41de55a4898a0fce70025c1499">athena::core::kernels::SigmoidOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a23aacffbbc73b177535511702f3c441d">athena::core::loss::MSEOpKernel</a>
+, <a class="el" href="classathena_1_1core_1_1_op_kernel.html#a762e541463ffd089b47a8e6755c30fe1">athena::core::OpKernel</a>
 </li>
 <li>getPhysicalAddress()
 : <a class="el" href="classathena_1_1backend_1_1_abstract_memory_manager.html#ad441d7a2281f5f2b2627272d136f72b8">athena::backend::AbstractMemoryManager</a>
@@ -162,6 +182,16 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_o"></a>- o -</h3><ul>
+<li>operator!=()
+: <a class="el" href="classathena_1_1core_1_1_tensor_shape.html#acdb5b20f9922cb4d7ee29a868fd05b1b">athena::core::TensorShape</a>
+</li>
+<li>operator==()
+: <a class="el" href="classathena_1_1core_1_1_tensor_shape.html#aa42737e3e51e76507bb60791889d4d9b">athena::core::TensorShape</a>
+</li>
+</ul>
+
+
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>prepare()
 : <a class="el" href="classathena_1_1core_1_1_session.html#a28b51416420aca2c39d9cf7ee81fe41d">athena::core::Session</a>
@@ -183,11 +213,21 @@ $(function() {
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>setBytecode()
+: <a class="el" href="classathena_1_1backend_1_1_abstract_executor.html#afa06d9875ee6c53986873f29db380893">athena::backend::AbstractExecutor</a>
+</li>
 <li>setFrozen()
 : <a class="el" href="classathena_1_1core_1_1_input_node.html#a45311e1bbff5dd28df3c3877aaa10109">athena::core::InputNode</a>
 </li>
 <li>setMappedMemCell()
 : <a class="el" href="classathena_1_1core_1_1_input_node.html#a8c17ce96d989454e6316c1c049c2c98d">athena::core::InputNode</a>
+</li>
+</ul>
+
+
+<h3><a id="index_t"></a>- t -</h3><ul>
+<li>totalSize()
+: <a class="el" href="classathena_1_1core_1_1_tensor_shape.html#a81219fb0b0e3e6852cb02fbbcf059882">athena::core::TensorShape</a>
 </li>
 </ul>
 

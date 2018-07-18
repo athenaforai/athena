@@ -4,6 +4,10 @@
 #include <core/OpKernel.h>
 
 namespace athena::core::kernels {
+
+    /**
+     * Multiply Tensor by scalar
+     */
     class ScaleOpKernel : public athena::core::OpKernel {
     public:
         ScaleOpKernel () : OpKernel( OpCode::SCALE, "scale" ) {}

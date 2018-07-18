@@ -18,9 +18,9 @@ Inheritance diagram for athena\+:\+:core\+:\+:Op\+Kernel\+:\begin{figure}[H]
 \item 
 virtual int \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_add97d4c132d80ecd9915acfedf7c9119}{get\+Operands\+Count}} ()=0
 \item 
-virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_a926afa57c90b4a999419cbbdc0496c65}{get\+Output\+Shape}} (const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&shapes)=0
+virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_a762e541463ffd089b47a8e6755c30fe1}{get\+Output\+Shape}} (std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&shapes)=0
 \item 
-virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_aa2367d955810d4e0f3f27b85ae6fe85a}{get\+Derivative\+Shape}} (int d, const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&shapes)=0
+virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_ad95af6dd184ce7ee9182ec7ca54b6c4d}{get\+Derivative\+Shape}} (int d, std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&shapes)=0
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_a181a03e0a038151fda074a8c950f3003}\label{classathena_1_1core_1_1_op_kernel_a181a03e0a038151fda074a8c950f3003}} 
 virtual std\+::vector$<$ vm\+\_\+word $>$ {\bfseries get\+Op\+Bytecode} (std\+::vector$<$ vm\+\_\+word $>$ args, vm\+\_\+word result\+Cell)=0
@@ -62,13 +62,13 @@ Generates bytecode to calculate partial derivative
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_a38166ae2204692353efa2f6270714a80}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_a2d1fc6b2900abc3ebd0466c8de3e68e2}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a42d08b8004e8033e01988eb2392215c8}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_ad35869239968db73049161acbad05aab}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
+Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a42d08b8004e8033e01988eb2392215c8}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_a38166ae2204692353efa2f6270714a80}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_a2d1fc6b2900abc3ebd0466c8de3e68e2}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_ad35869239968db73049161acbad05aab}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
 
-\mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_aa2367d955810d4e0f3f27b85ae6fe85a}\label{classathena_1_1core_1_1_op_kernel_aa2367d955810d4e0f3f27b85ae6fe85a}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_ad95af6dd184ce7ee9182ec7ca54b6c4d}\label{classathena_1_1core_1_1_op_kernel_ad95af6dd184ce7ee9182ec7ca54b6c4d}} 
 \index{athena\+::core\+::\+Op\+Kernel@{athena\+::core\+::\+Op\+Kernel}!get\+Derivative\+Shape@{get\+Derivative\+Shape}}
 \index{get\+Derivative\+Shape@{get\+Derivative\+Shape}!athena\+::core\+::\+Op\+Kernel@{athena\+::core\+::\+Op\+Kernel}}
 \subsubsection{\texorpdfstring{get\+Derivative\+Shape()}{getDerivativeShape()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}}\& athena\+::core\+::\+Op\+Kernel\+::get\+Derivative\+Shape (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}}\& athena\+::core\+::\+Op\+Kernel\+::get\+Derivative\+Shape (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 It is important for some operations to have certain size of their operands 
 \begin{DoxyParams}{Parameters}
@@ -82,7 +82,7 @@ New shape
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_af2ba51d6085f6d5326c1ab1281717ea8}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_aaf7aa2db812b58dedda8ed43d3ea994f}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a873ce3dc366c72f651331d91dd48be0a}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_a7f9519bf17e1d70b56aa70cc49981470}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
+Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_abdb57e6ce0d67ce6263e0716fed25243}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_a0ea18b43eb9355d7a855202898ff09fc}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_a68a0220e3a3591638c7725b5cb659609}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_ad7c63973c62e28c0ad3d854ce16debf1}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_add97d4c132d80ecd9915acfedf7c9119}\label{classathena_1_1core_1_1_op_kernel_add97d4c132d80ecd9915acfedf7c9119}} 
 \index{athena\+::core\+::\+Op\+Kernel@{athena\+::core\+::\+Op\+Kernel}!get\+Operands\+Count@{get\+Operands\+Count}}
@@ -95,13 +95,13 @@ Number of operands accepted
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_acb639510462e759a92747cec8c32358b}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_ab851ee62ea95c3aab8aab2d28cfa9d04}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a75f9e43d1fcecaf9260af31c68cd69db}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_a4f9e4fee100ed7f09840fa4b2d55f2bf}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
+Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a75f9e43d1fcecaf9260af31c68cd69db}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_acb639510462e759a92747cec8c32358b}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_ab851ee62ea95c3aab8aab2d28cfa9d04}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_a4f9e4fee100ed7f09840fa4b2d55f2bf}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
 
-\mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_a926afa57c90b4a999419cbbdc0496c65}\label{classathena_1_1core_1_1_op_kernel_a926afa57c90b4a999419cbbdc0496c65}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1_op_kernel_a762e541463ffd089b47a8e6755c30fe1}\label{classathena_1_1core_1_1_op_kernel_a762e541463ffd089b47a8e6755c30fe1}} 
 \index{athena\+::core\+::\+Op\+Kernel@{athena\+::core\+::\+Op\+Kernel}!get\+Output\+Shape@{get\+Output\+Shape}}
 \index{get\+Output\+Shape@{get\+Output\+Shape}!athena\+::core\+::\+Op\+Kernel@{athena\+::core\+::\+Op\+Kernel}}
 \subsubsection{\texorpdfstring{get\+Output\+Shape()}{getOutputShape()}}
-{\footnotesize\ttfamily virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}}\& athena\+::core\+::\+Op\+Kernel\+::get\+Output\+Shape (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}}\& athena\+::core\+::\+Op\+Kernel\+::get\+Output\+Shape (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
 It is important for some operations to have certain size of their operands 
 \begin{DoxyParams}{Parameters}
@@ -115,7 +115,7 @@ New shape
 \end{DoxyReturn}
 
 
-Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_a67e52f29a93f345ebf48801d835cef62}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a6bfb45669c7ebb74c32f8846a940c57a}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_aaf21b2b72c6e601964e53eb6de7fccfd}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_afdd5df13d53df932af26968714a2beed}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
+Implemented in \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel_a3a397257c208f55ba5fba4018112a605}{athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel_abd929f41de55a4898a0fce70025c1499}{athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel_a23aacffbbc73b177535511702f3c441d}{athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}}, \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}, and \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_scale_op_kernel_ad1791a60026e90c95f248202e1404a26}{athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}}.
 
 
 

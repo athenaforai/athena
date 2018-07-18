@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.13)  17 JUL 2018 10:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.13)  18 JUL 2018 16:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -892,8 +892,8 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 35.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 35.
+(Font)              scaled to size 7.19995pt on input line 45.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 45.
  (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -901,12 +901,14 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 67.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 67.
- [2] [3])
+ [2] [3]
+[4])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
+ [5] [6
 
-[4]
+]
 Package hyperref Info: Option `pageanchor' set `true' on input line 138.
 
 Chapter 1.
@@ -927,7 +929,6 @@ LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 ) [1
 
-
 ] [2
 
 ]
@@ -939,7 +940,7 @@ Chapter 3.
 (./classathena_1_1backend_1_1_abstract_device.tex
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 6.29996pt on input line 1.
-<classathena_1_1backend_1_1_abstract_device.pdf, id=692, 501.875pt x 173.05653p
+<classathena_1_1backend_1_1_abstract_device.pdf, id=809, 501.875pt x 173.05653p
 t>
 File: classathena_1_1backend_1_1_abstract_device.pdf Graphic file (type pdf)
 <use classathena_1_1backend_1_1_abstract_device.pdf>
@@ -961,17 +962,32 @@ LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 12.
 )
 (./classathena_1_1backend_1_1_abstract_executor.tex
-<classathena_1_1backend_1_1_abstract_executor.pdf, id=694, 501.875pt x 153.2425
+<classathena_1_1backend_1_1_abstract_executor.pdf, id=811, 501.875pt x 153.2425
 1pt>
 File: classathena_1_1backend_1_1_abstract_executor.pdf Graphic file (type pdf)
 <use classathena_1_1backend_1_1_abstract_executor.pdf>
 Package pdftex.def Info: classathena_1_1backend_1_1_abstract_executor.pdf  used
- on input line 6.
+ on input line 10.
 (pdftex.def)             Requested size: 186.36473pt x 56.9055pt.
- [5 <./classathena_1_1backend_1_1_abstract_device.pdf> <./classathena_1_1backen
-d_1_1_abstract_executor.pdf>]) (./classathena_1_1core_1_1loss_1_1_abstract_loss
-_function.tex
-<classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf, id=721, 501.875pt 
+ [5 <./classathena_1_1backend_1_1_abstract_device.pdf>]
+LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
+(Font)              scaled to size 8.99994pt on input line 37.
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
+\T1/pcr/m/n/8 virtual []$\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 athena[]::backend[]
+::[]Abstract[]Executor[]::get[]Memory[]Manager ( ) [pure
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 61.
+[6 <./classathena_1_1backend_1_1_abstract_executor.pdf>])
+(./classathena_1_1core_1_1loss_1_1_abstract_loss_function.tex
+<classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf, id=859, 501.875pt 
 x 244.81462pt>
 File: classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf Graphic file (
 type pdf)
@@ -980,8 +996,9 @@ Package pdftex.def Info: classathena_1_1core_1_1loss_1_1_abstract_loss_function
 .pdf  used on input line 6.
 (pdftex.def)             Requested size: 174.98497pt x 85.35826pt.
 )
-(./classathena_1_1backend_1_1_abstract_memory_manager.tex
-<classathena_1_1backend_1_1_abstract_memory_manager.pdf, id=723, 501.875pt x 12
+(./classathena_1_1backend_1_1_abstract_memory_manager.tex [7 <./classathena_1_1
+core_1_1loss_1_1_abstract_loss_function.pdf>]
+<classathena_1_1backend_1_1_abstract_memory_manager.pdf, id=879, 501.875pt x 12
 9.93544pt>
 File: classathena_1_1backend_1_1_abstract_memory_manager.pdf Graphic file (type
  pdf)
@@ -989,13 +1006,7 @@ File: classathena_1_1backend_1_1_abstract_memory_manager.pdf Graphic file (type
 Package pdftex.def Info: classathena_1_1backend_1_1_abstract_memory_manager.pdf
   used on input line 10.
 (pdftex.def)             Requested size: 219.7995pt x 56.9055pt.
- [6 <./classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf> <./classathe
-na_1_1backend_1_1_abstract_memory_manager.pdf>]
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 52.
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 53.
- [7]
+ [8 <./classathena_1_1backend_1_1_abstract_memory_manager.pdf>]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 79.
 
@@ -1003,8 +1014,8 @@ Underfull \hbox (badness 10000) detected at line 86
 [][][]
  []
 
-[8]) (./classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.tex
-<classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf, id=796, 501.875p
+[9]) (./classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.tex
+<classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf, id=930, 501.875p
 t x 77.8107pt>
 File: classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf Graphic file
  (type pdf)
@@ -1012,39 +1023,44 @@ File: classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf Graphic file
 Package pdftex.def Info: classathena_1_1core_1_1optimizers_1_1_abstract_optimiz
 er.pdf  used on input line 6.
 (pdftex.def)             Requested size: 367.0396pt x 56.9055pt.
-)
+ [10 <./classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf>])
 (./classathena_1_1core_1_1kernels_1_1_add_op_kernel.tex
-<classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf, id=802, 501.875pt x 182.
+<classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf, id=955, 501.875pt x 182.
 50183pt>
 File: classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf Graphic file (type p
 df)
 <use classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf  
-used on input line 6.
+used on input line 10.
 (pdftex.def)             Requested size: 156.48328pt x 56.9055pt.
- [9 <./classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf>]
-Underfull \hbox (badness 10000) detected at line 42
+
+Underfull \hbox (badness 3568) in paragraph at lines 20--22
+[][] \T1/phv/m/n/10 & [] (int d, std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
+ []
+
+[11 <./classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf>]
+Underfull \hbox (badness 10000) detected at line 49
 [][][]
  []
 
-[10 <./classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf>]
-Underfull \hbox (badness 10000) detected at line 62
+
+Underfull \hbox (badness 10000) detected at line 69
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 75
+Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
-[11]
-Underfull \hbox (badness 10000) detected at line 95
+[12]
+Underfull \hbox (badness 10000) detected at line 102
 [][][]
  []
 
 ) (./classathena_1_1backend_1_1generic_1_1_c_p_u_device.tex
-<classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf, id=871, 501.875pt x 17
-3.05653pt>
+<classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf, id=1005, 501.875pt x 1
+73.05653pt>
 File: classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf Graphic file (type
  pdf)
 <use classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf>
@@ -1053,50 +1069,57 @@ Package pdftex.def Info: classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf
 (pdftex.def)             Requested size: 165.02959pt x 56.9055pt.
 )
 (./classathena_1_1backend_1_1generic_1_1_generic_executor.tex
-<classathena_1_1backend_1_1generic_1_1_generic_executor.pdf, id=873, 501.875pt 
-x 153.24251pt>
+<classathena_1_1backend_1_1generic_1_1_generic_executor.pdf, id=1007, 501.875pt
+ x 153.24251pt>
 File: classathena_1_1backend_1_1generic_1_1_generic_executor.pdf Graphic file (
 type pdf)
 <use classathena_1_1backend_1_1generic_1_1_generic_executor.pdf>
 Package pdftex.def Info: classathena_1_1backend_1_1generic_1_1_generic_executor
-.pdf  used on input line 6.
+.pdf  used on input line 10.
 (pdftex.def)             Requested size: 186.36473pt x 56.9055pt.
- [12 <./classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf> <./classathena_
-1_1backend_1_1generic_1_1_generic_executor.pdf>])
-(./classathena_1_1backend_1_1generic_1_1_generic_memory_manager.tex
-<classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf, id=896, 501.
-875pt x 129.93544pt>
+ [13 <./classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
+[] $\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 athena[]::backend[]::generic[]::[]Generi
+c[]Executor[]::get[]Memory[]
+ []
+
+[14 <./classathena_1_1backend_1_1generic_1_1_generic_executor.pdf>]
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+) (./classathena_1_1backend_1_1generic_1_1_generic_memory_manager.tex
+<classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf, id=1051, 501
+.875pt x 129.93544pt>
 File: classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf Graphic 
 file (type pdf)
 <use classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf>
 Package pdftex.def Info: classathena_1_1backend_1_1generic_1_1_generic_memory_m
 anager.pdf  used on input line 10.
 (pdftex.def)             Requested size: 219.7995pt x 56.9055pt.
- [13 <./classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf>]
+ [15 <./classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf>] [16]
+
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
 
-[14]
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 7.19995pt on input line 125.
-
 
 LaTeX Font Warning: Font shape `T1/pcr/bc/n' undefined
 (Font)              using `T1/pcr/m/n' instead on input line 125.
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
 Overfull \hbox (1.47571pt too wide) in paragraph at lines 162--162
 []\T1/phv/m/sl/10 lane[] 
  []
 
-
-Overfull \vbox (0.12976pt too high) has occurred while \output is active []
-
-
-[15]) (./classathena_1_1core_1_1optimizers_1_1_gradient_descent.tex
-<classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf, id=962, 501.875pt 
-x 155.6214pt>
+) (./classathena_1_1core_1_1optimizers_1_1_gradient_descent.tex
+<classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf, id=1113, 501.875pt
+ x 155.6214pt>
 File: classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf Graphic file (
 type pdf)
 <use classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf>
@@ -1111,19 +1134,20 @@ v/m/n/10 , un-signed long $\OML/cmm/m/it/10 >$ \T1/phv/b/n/10 get[]Byte[]Code \
 T1/phv/m/n/10 ([]
  []
 
-) (./classathena_1_1core_1_1_input_node.tex
-<classathena_1_1core_1_1_input_node.pdf, id=965, 501.875pt x 262.4204pt>
+[18 <./classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf>])
+(./classathena_1_1core_1_1_input_node.tex
+<classathena_1_1core_1_1_input_node.pdf, id=1132, 501.875pt x 262.4204pt>
 File: classathena_1_1core_1_1_input_node.pdf Graphic file (type pdf)
 <use classathena_1_1core_1_1_input_node.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1_input_node.pdf  used on input 
 line 10.
 (pdftex.def)             Requested size: 108.82764pt x 56.9055pt.
- [16 <./classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf>]
+ [19 <./classathena_1_1core_1_1_input_node.pdf>]
 Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
 
-[17 <./classathena_1_1core_1_1_input_node.pdf>]
+
 Underfull \hbox (badness 10000) detected at line 65
 [][][]
  []
@@ -1138,16 +1162,64 @@ Underfull \hbox (badness 10000) detected at line 83
 [][][]
  []
 
-[18]) (./classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.tex
-<classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf, id=1032, 501.875pt x
+[20]) (./classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.tex
+<classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf, id=1182, 501.875pt x
  167.9876pt>
 File: classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf Graphic file (ty
 pe pdf)
 <use classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.p
-df  used on input line 6.
+df  used on input line 10.
 (pdftex.def)             Requested size: 170.00728pt x 56.9055pt.
- [19 <./classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf>]
+ [21]
+Underfull \hbox (badness 3568) in paragraph at lines 20--22
+[][] \T1/phv/m/n/10 & [] (int d, std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
+ []
+
+[22 <./classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf>]
+Underfull \hbox (badness 10000) detected at line 49
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 69
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 82
+[][][]
+ []
+
+[23]
+Underfull \hbox (badness 10000) detected at line 102
+[][][]
+ []
+
+) (./structathena_1_1backend_1_1generic_1_1_memory_chunk.tex)
+(./classathena_1_1core_1_1loss_1_1_m_s_e_loss.tex
+<classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf, id=1235, 501.875pt x 244.81462
+pt>
+File: classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf Graphic file (type pdf)
+<use classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf>
+Package pdftex.def Info: classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf  used o
+n input line 6.
+(pdftex.def)             Requested size: 174.98497pt x 85.35826pt.
+ [24 <./classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf>])
+(./classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.tex
+<classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf, id=1255, 501.875pt x 195.
+8517pt>
+File: classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf Graphic file (type pd
+f)
+<use classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf>
+Package pdftex.def Info: classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf  u
+sed on input line 6.
+(pdftex.def)             Requested size: 145.82336pt x 56.9055pt.
+
+Overfull \vbox (29.34726pt too high) has occurred while \output is active []
+
+
+[25 <./classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 42
 [][][]
  []
@@ -1162,61 +1234,40 @@ Underfull \hbox (badness 10000) detected at line 75
 [][][]
  []
 
-[20]
+[26]
 Underfull \hbox (badness 10000) detected at line 95
 [][][]
  []
 
-) (./structathena_1_1backend_1_1generic_1_1_memory_chunk.tex)
-(./classathena_1_1core_1_1loss_1_1_m_s_e_loss.tex
-<classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf, id=1078, 501.875pt x 244.81462
-pt>
-File: classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf Graphic file (type pdf)
-<use classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf>
-Package pdftex.def Info: classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf  used o
-n input line 6.
-(pdftex.def)             Requested size: 174.98497pt x 85.35826pt.
- [21])
-(./classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.tex
-<classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf, id=1092, 501.875pt x 195.
-8517pt>
-File: classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf Graphic file (type pd
-f)
-<use classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf>
-Package pdftex.def Info: classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf  u
-sed on input line 6.
-(pdftex.def)             Requested size: 145.82336pt x 56.9055pt.
- [22 <./classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf> <./classathena_1_1core_
-1_1loss_1_1_m_s_e_op_kernel.pdf>]
-Underfull \hbox (badness 10000) detected at line 41
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 54
-[][][]
- []
-
 ) (./classathena_1_1core_1_1_node.tex
-<classathena_1_1core_1_1_node.pdf, id=1121, 501.875pt x 122.4073pt>
+<classathena_1_1core_1_1_node.pdf, id=1297, 501.875pt x 122.4073pt>
 File: classathena_1_1core_1_1_node.pdf Graphic file (type pdf)
 <use classathena_1_1core_1_1_node.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1_node.pdf  used on input line 1
 0.
 (pdftex.def)             Requested size: 349.96996pt x 85.35826pt.
- [23] [24 <./classathena_1_1core_1_1_node.pdf>]
+ [27 <./classathena_1_1core_1_1_node.pdf>]
 Underfull \hbox (badness 10000) detected at line 116
 [][][]
  []
 
-) (./classathena_1_1core_1_1_op_kernel.tex
-<classathena_1_1core_1_1_op_kernel.pdf, id=1175, 501.875pt x 33.3245pt>
+) (./classathena_1_1core_1_1_op_kernel.tex [28]
+<classathena_1_1core_1_1_op_kernel.pdf, id=1350, 501.875pt x 33.3245pt>
 File: classathena_1_1core_1_1_op_kernel.pdf Graphic file (type pdf)
 <use classathena_1_1core_1_1_op_kernel.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1_op_kernel.pdf  used on input l
 ine 10.
 (pdftex.def)             Requested size: 398.27652pt x 26.44565pt.
- [25 <./classathena_1_1core_1_1_op_kernel.pdf>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--23
+[]\T1/phv/m/n/10 virtual [] & [] (std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
+ []
+
+
+Overfull \vbox (19.86131pt too high) has occurred while \output is active []
+
+
+[29 <./classathena_1_1core_1_1_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 60
 [][][]
  []
@@ -1226,13 +1277,13 @@ Overfull \hbox (68.52184pt too wide) in paragraph at lines 65--66
 []\T1/phv/m/n/10 Implemented in [], [], [],
  []
 
-[26]
+
 Underfull \hbox (badness 10000) detected at line 80
 [][][]
  []
 
 
-Overfull \hbox (78.07964pt too wide) in paragraph at lines 85--86
+Overfull \hbox (68.52184pt too wide) in paragraph at lines 85--86
 []\T1/phv/m/n/10 Implemented in [], [], [],
  []
 
@@ -1246,53 +1297,58 @@ Overfull \hbox (68.52184pt too wide) in paragraph at lines 98--99
 []\T1/phv/m/n/10 Implemented in [], [], [],
  []
 
-[27]
+[30]
 Underfull \hbox (badness 10000) detected at line 113
 [][][]
  []
 
 
-Overfull \hbox (78.07964pt too wide) in paragraph at lines 118--119
+Overfull \hbox (68.52184pt too wide) in paragraph at lines 118--119
 []\T1/phv/m/n/10 Implemented in [], [], [],
  []
 
 ) (./structathena_1_1backend_1_1generic_1_1_queue_item.tex)
 (./classathena_1_1core_1_1kernels_1_1_scale_op_kernel.tex
-<classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf, id=1241, 501.875pt x 1
+<classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf, id=1413, 501.875pt x 1
 75.32501pt>
 File: classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf Graphic file (type
  pdf)
 <use classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf
-  used on input line 6.
+  used on input line 10.
 (pdftex.def)             Requested size: 162.893pt x 56.9055pt.
- [28 <./classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf>]
-Underfull \hbox (badness 10000) detected at line 42
+
+Underfull \hbox (badness 3568) in paragraph at lines 20--22
+[][] \T1/phv/m/n/10 & [] (int d, std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
+ []
+
+[31 <./classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf>]
+Underfull \hbox (badness 10000) detected at line 49
 [][][]
  []
 
-[29]
-Underfull \hbox (badness 10000) detected at line 62
+[32]
+Underfull \hbox (badness 10000) detected at line 69
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 75
+Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 95
+Underfull \hbox (badness 10000) detected at line 102
 [][][]
  []
 
-) (./classathena_1_1core_1_1_session.tex [30]
+) (./classathena_1_1core_1_1_session.tex [33]
 Underfull \hbox (badness 10000) detected at line 43
 [][][]
  []
 
 ) (./classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.tex
-<classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf, id=1299, 501.875pt 
+<classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf, id=1472, 501.875pt 
 x 155.6214pt>
 File: classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf Graphic file (t
 ype pdf)
@@ -1300,94 +1356,123 @@ ype pdf)
 Package pdftex.def Info: classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.
 pdf  used on input line 6.
 (pdftex.def)             Requested size: 183.51596pt x 56.9055pt.
- [31])
+ [34])
 (./classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.tex
-<classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf, id=1312, 501.875pt x
+<classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf, id=1485, 501.875pt x
  166.60242pt>
 File: classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf Graphic file (ty
 pe pdf)
 <use classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf>
 Package pdftex.def Info: classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.p
-df  used on input line 6.
+df  used on input line 10.
 (pdftex.def)             Requested size: 171.41635pt x 56.9055pt.
- [32 <./classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf> <./classathe
-na_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf>]
-Underfull \hbox (badness 10000) detected at line 42
+
+Underfull \hbox (badness 3568) in paragraph at lines 20--22
+[][] \T1/phv/m/n/10 & [] (int d, std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
+ []
+
+[35 <./classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf> <./classathen
+a_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf>]
+Underfull \hbox (badness 10000) detected at line 49
+[][][]
+ []
+
+[36]
+Underfull \hbox (badness 10000) detected at line 69
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 62
+Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
 
+Underfull \hbox (badness 10000) detected at line 102
+[][][]
+ []
+
+) (./structathena_1_1backend_1_1generic_1_1_swap_record.tex [37])
+(./classathena_1_1core_1_1_tensor.tex)
+(./classathena_1_1core_1_1_tensor_shape.tex [38]
+Underfull \hbox (badness 10000) detected at line 52
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 61
+[][][]
+ []
+
+[39] [40]
 Underfull \hbox (badness 10000) detected at line 75
 [][][]
  []
 
-[33]
-Underfull \hbox (badness 10000) detected at line 95
+
+Underfull \hbox (badness 10000) detected at line 84
 [][][]
  []
 
-) (./structathena_1_1backend_1_1generic_1_1_swap_record.tex)
-(./classathena_1_1core_1_1_tensor.tex [34])
-(./classathena_1_1core_1_1_tensor_shape.tex)
-(./classathena_1_1backend_1_1_virtual_memory.tex [35]
+
+Underfull \hbox (badness 10000) detected at line 93
+[][][]
+ []
+
+) (./classathena_1_1backend_1_1_virtual_memory.tex [41]
 Underfull \hbox (badness 10000) detected at line 34
 [][][]
  []
 
-[36]) (./structathena_1_1backend_1_1_v_memory_block.tex) [37] [38
+[42]) (./structathena_1_1backend_1_1_v_memory_block.tex) [43] [44
 
 ]
 (./refman.ind
-Underfull \hbox (badness 10000) in paragraph at lines 105--107
+Underfull \hbox (badness 10000) in paragraph at lines 117--119
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--112
-[]| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
- []
-
-[39
+[45
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
+Underfull \hbox (badness 10000) in paragraph at lines 122--124
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--193
+Underfull \hbox (badness 10000) in paragraph at lines 208--210
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--201
+Underfull \hbox (badness 10000) in paragraph at lines 221--223
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--224
+Underfull \hbox (badness 10000) in paragraph at lines 236--238
 []| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
-[40])
+
+Underfull \hbox (badness 10000) in paragraph at lines 266--268
+[]| \T1/phv/m/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
+ []
+
+[46])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
  (./refman.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 183.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 183.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 0A6C658DF77D4A37920A004FB5468783;25233.
+(rerunfilecheck)             Checksum: 1916C09D2761E8CE905F0A6C797AD179;29690.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1395,13 +1480,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
  ) 
 Here is how much of TeX's memory you used:
- 15596 strings out of 492649
- 252462 string characters out of 6129622
- 335305 words of memory out of 5000000
- 18751 multiletter control sequences out of 15000+600000
+ 15664 strings out of 492649
+ 253990 string characters out of 6129622
+ 337851 words of memory out of 5000000
+ 18781 multiletter control sequences out of 15000+600000
  62604 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,16n,92p,1287b,630s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,16n,92p,1287b,632s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texl
@@ -1415,10 +1500,10 @@ nts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/typ
 e1/urw/helvetic/uhvb8ac.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw
 /helvetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/helvet
 ic/uhvro8a.pfb>
-Output written on refman.pdf (46 pages, 272832 bytes).
+Output written on refman.pdf (54 pages, 290273 bytes).
 PDF statistics:
- 1709 PDF objects out of 1728 (max. 8388607)
- 1595 compressed objects within 16 object streams
- 439 named destinations out of 1000 (max. 500000)
- 952 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1943 PDF objects out of 2073 (max. 8388607)
+ 1816 compressed objects within 19 object streams
+ 477 named destinations out of 1000 (max. 500000)
+ 1128 words of extra memory for PDF output out of 10000 (max. 10000000)
 

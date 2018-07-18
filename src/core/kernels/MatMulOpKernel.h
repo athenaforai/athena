@@ -8,6 +8,15 @@
 #include <core/OpKernel.h>
 
 namespace athena::core::kernels {
+
+    /**
+     * Performs matrix multiplication of given Tensors.
+     * Matrix is a 2-D Tensor. The main restriction for this operation is
+     * that the number of columns for the first column must be equal to the number
+     * of rows for the second matrix. The reason to introduce this operation apart
+     * from Tensor product is that it is widely adopted by different acceleration
+     * mechanism (BLAS, cuBLAS, Accelerate Framework, etc)
+     */
     class MatMulOpKernel : public athena::core::OpKernel {
     public:
         MatMulOpKernel () : OpKernel( OpCode::MATMUL, "matmul" ) {};

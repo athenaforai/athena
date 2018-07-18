@@ -8,7 +8,6 @@
 #include "Node.h"
 #include "InputNode.h"
 #include <stack>
-#include <backend/ExecutorService.h>
 #include <backend/VirtualMemory.h>
 
 namespace athena::core {

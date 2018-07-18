@@ -30,7 +30,7 @@ namespace athena::core {
      */
     class Tensor {
     private:
-        const TensorShape& shape;
+        const TensorShape &shape;
 //        unsigned char* data;
         DataType dataType;
 
@@ -39,49 +39,19 @@ namespace athena::core {
     public:
 
         Tensor ( const TensorShape &shape, DataType dataType ) :
-                shape(  shape ),
+                shape( shape ),
                 dataType( dataType ),
                 startAddress( 0 ) {};
 
-//        unsigned char* get ( const unsigned long* idx ) const;
-//
-//        unsigned char* get ( const unsigned long* idx, unsigned long length ) const;
-//
-//        Tensor getSubtensor ( const unsigned long* idx, unsigned long depth ) const;
-//
-//        Tensor getSubtensor ( unsigned long id ) const;
-//
-//        void set ( const unsigned long* idx, void* item );
-//
-//        void set ( const unsigned long* idx, float item );
-//
-//        void set ( const unsigned long* idx, double item );
-//
-//        void set ( const unsigned long* idx, int item );
-//
         const TensorShape &getShape () const;
 
-//
-//        unsigned char* raw () const;
-//
         DataType getType () const;
 
-        vm_word getStartAddress();
+        vm_word getStartAddress ();
 
         void setStartAddress ( vm_word address );
 
-        Tensor &operator[](unsigned int idx);
-
-//
-//        unsigned long getSizeType () const;
-//
-//        Tensor &operator*= ( void* item );
-//
-//        Tensor &operator*= ( float item );
-//
-//        Tensor &operator*= ( double item );
-//
-//        Tensor &operator*= ( int item );
+        Tensor &operator[] ( unsigned int idx );
     };
 }
 

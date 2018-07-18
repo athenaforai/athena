@@ -1,5 +1,9 @@
 \hypertarget{classathena_1_1backend_1_1_abstract_executor}{}\section{athena\+:\+:backend\+:\+:Abstract\+Executor Class Reference}
 \label{classathena_1_1backend_1_1_abstract_executor}\index{athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}}
+
+
+{\ttfamily \#include $<$Abstract\+Executor.\+h$>$}
+
 Inheritance diagram for athena\+:\+:backend\+:\+:Abstract\+Executor\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,14 +13,61 @@ Inheritance diagram for athena\+:\+:backend\+:\+:Abstract\+Executor\+:\begin{fig
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_a5f179146ae76002b678a4862553f87ce}\label{classathena_1_1backend_1_1_abstract_executor_a5f179146ae76002b678a4862553f87ce}} 
-virtual void {\bfseries execute} ()=0
+virtual void \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_executor_a5f179146ae76002b678a4862553f87ce}{execute}} ()=0
 \item 
-\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_a6d61486e2a06500c9c0aa1e03a475e4a}\label{classathena_1_1backend_1_1_abstract_executor_a6d61486e2a06500c9c0aa1e03a475e4a}} 
-virtual \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{Abstract\+Memory\+Manager}} $\ast$ {\bfseries get\+Memory\+Manager} ()=0
+virtual \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{Abstract\+Memory\+Manager}} $\ast$ \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_executor_a6d61486e2a06500c9c0aa1e03a475e4a}{get\+Memory\+Manager}} ()=0
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_executor_afa06d9875ee6c53986873f29db380893}{set\+Bytecode}} (std\+::vector$<$ vm\+\_\+word $>$ \&bytecode)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_a948d95ced27de4fb3445ef341a4b9035}\label{classathena_1_1backend_1_1_abstract_executor_a948d95ced27de4fb3445ef341a4b9035}} 
+std\+::vector$<$ vm\+\_\+word $>$ {\bfseries bytecode}
 \end{DoxyCompactItemize}
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\subsection{Detailed Description}
+An Executor is a Virtual Machine that runs Athena \href{https://athenaframework.ml/athena/bytecode/basics.html}{\tt bytecode}. \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_executor}{Abstract\+Executor}} is the base class for all executors. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_a5f179146ae76002b678a4862553f87ce}\label{classathena_1_1backend_1_1_abstract_executor_a5f179146ae76002b678a4862553f87ce}} 
+\index{athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}!execute@{execute}}
+\index{execute@{execute}!athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}}
+\subsubsection{\texorpdfstring{execute()}{execute()}}
+{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Executor\+::execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Executes current bytecode. After execution threads state must be reset. However, memory state (Memory manager and its data) must persist. 
+
+Implemented in \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_executor_a38b56c284050d31198b28fcb6595bc73}{athena\+::backend\+::generic\+::\+Generic\+Executor}}.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_a6d61486e2a06500c9c0aa1e03a475e4a}\label{classathena_1_1backend_1_1_abstract_executor_a6d61486e2a06500c9c0aa1e03a475e4a}} 
+\index{athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}!get\+Memory\+Manager@{get\+Memory\+Manager}}
+\index{get\+Memory\+Manager@{get\+Memory\+Manager}!athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}}
+\subsubsection{\texorpdfstring{get\+Memory\+Manager()}{getMemoryManager()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{Abstract\+Memory\+Manager}}$\ast$ athena\+::backend\+::\+Abstract\+Executor\+::get\+Memory\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\begin{DoxyReturn}{Returns}
+Memory Manager for current device 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_executor_a0560a1dfc0c70ebef0b5be26bb82b9c5}{athena\+::backend\+::generic\+::\+Generic\+Executor}}.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_executor_afa06d9875ee6c53986873f29db380893}\label{classathena_1_1backend_1_1_abstract_executor_afa06d9875ee6c53986873f29db380893}} 
+\index{athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}!set\+Bytecode@{set\+Bytecode}}
+\index{set\+Bytecode@{set\+Bytecode}!athena\+::backend\+::\+Abstract\+Executor@{athena\+::backend\+::\+Abstract\+Executor}}
+\subsubsection{\texorpdfstring{set\+Bytecode()}{setBytecode()}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Executor\+::set\+Bytecode (\begin{DoxyParamCaption}\item[{std\+::vector$<$ vm\+\_\+word $>$ \&}]{bytecode }\end{DoxyParamCaption})}
+
+Sets new bytecode 
+\begin{DoxyParams}{Parameters}
+{\em bytecode} & Bytecode \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-backend/Abstract\+Executor.\+h\end{DoxyCompactItemize}
+backend/Abstract\+Executor.\+h\item 
+backend/Abstract\+Executor.\+cpp\end{DoxyCompactItemize}

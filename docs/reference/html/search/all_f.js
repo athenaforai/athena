@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['unlock',['unlock',['../classathena_1_1backend_1_1_abstract_memory_manager.html#aec859ee3bf6011d8710b2ec4bfc2373e',1,'athena::backend::AbstractMemoryManager::unlock()'],['../classathena_1_1backend_1_1generic_1_1_generic_memory_manager.html#a58a2b56a07a96c3cabb7b8fd079b3eae',1,'athena::backend::generic::GenericMemoryManager::unlock()']]]
+  ['tensor',['Tensor',['../classathena_1_1core_1_1_tensor.html',1,'athena::core']]],
+  ['tensorshape',['TensorShape',['../classathena_1_1core_1_1_tensor_shape.html',1,'athena::core']]],
+  ['totalsize',['totalSize',['../classathena_1_1core_1_1_tensor_shape.html#a81219fb0b0e3e6852cb02fbbcf059882',1,'athena::core::TensorShape']]]
 ];

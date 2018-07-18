@@ -73,6 +73,8 @@ $(function() {
 <div class="title">athena::core::kernels::MatMulOpKernel Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_mat_mul_op_kernel_8h_source.html">MatMulOpKernel.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for athena::core::kernels::MatMulOpKernel:</div>
 <div class="dyncontent">
@@ -87,10 +89,10 @@ Inheritance diagram for athena::core::kernels::MatMulOpKernel:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a75f9e43d1fcecaf9260af31c68cd69db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a75f9e43d1fcecaf9260af31c68cd69db">getOperandsCount</a> () override</td></tr>
 <tr class="separator:a75f9e43d1fcecaf9260af31c68cd69db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bfb45669c7ebb74c32f8846a940c57a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a6bfb45669c7ebb74c32f8846a940c57a">getOutputShape</a> (const std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp; &gt; &amp;shapes) override</td></tr>
-<tr class="separator:a6bfb45669c7ebb74c32f8846a940c57a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf7aa2db812b58dedda8ed43d3ea994f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#aaf7aa2db812b58dedda8ed43d3ea994f">getDerivativeShape</a> (int d, const std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp; &gt; &amp;shapes) override</td></tr>
-<tr class="separator:aaf7aa2db812b58dedda8ed43d3ea994f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a397257c208f55ba5fba4018112a605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a3a397257c208f55ba5fba4018112a605">getOutputShape</a> (std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &gt; &amp;shapes) override</td></tr>
+<tr class="separator:a3a397257c208f55ba5fba4018112a605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdb57e6ce0d67ce6263e0716fed25243"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#abdb57e6ce0d67ce6263e0716fed25243">getDerivativeShape</a> (int d, std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &gt; &amp;shapes) override</td></tr>
+<tr class="separator:abdb57e6ce0d67ce6263e0716fed25243"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6dc778bb5313e5c567410fd5f217351"><td class="memItemLeft" align="right" valign="top"><a id="ac6dc778bb5313e5c567410fd5f217351"></a>
 std::vector&lt; vm_word &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getOpBytecode</b> (std::vector&lt; vm_word &gt; args, vm_word resultCell) override</td></tr>
 <tr class="separator:ac6dc778bb5313e5c567410fd5f217351"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,7 +113,9 @@ OpCode&#160;</td><td class="memItemRight" valign="bottom"><b>opCode</b></td></tr
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a5970ac8cb25cd956112a471d647789be inherit pro_attribs_classathena_1_1core_1_1_op_kernel"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Performs matrix multiplication of given Tensors. Matrix is a 2-D <a class="el" href="classathena_1_1core_1_1_tensor.html">Tensor</a>. The main restriction for this operation is that the number of columns for the first column must be equal to the number of rows for the second matrix. The reason to introduce this operation apart from <a class="el" href="classathena_1_1core_1_1_tensor.html">Tensor</a> product is that it is widely adopted by different acceleration mechanism (BLAS, cuBLAS, Accelerate Framework, etc) </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a42d08b8004e8033e01988eb2392215c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a42d08b8004e8033e01988eb2392215c8">&#9670;&nbsp;</a></span>getDerivativeBytecode()</h2>
 
@@ -165,8 +169,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 
 </div>
 </div>
-<a id="aaf7aa2db812b58dedda8ed43d3ea994f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf7aa2db812b58dedda8ed43d3ea994f">&#9670;&nbsp;</a></span>getDerivativeShape()</h2>
+<a id="abdb57e6ce0d67ce6263e0716fed25243"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdb57e6ce0d67ce6263e0716fed25243">&#9670;&nbsp;</a></span>getDerivativeShape()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +187,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>shapes</em>&#160;</td>
         </tr>
         <tr>
@@ -207,7 +211,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>New shape </dd></dl>
 
-<p>Implements <a class="el" href="classathena_1_1core_1_1_op_kernel.html#aa2367d955810d4e0f3f27b85ae6fe85a">athena::core::OpKernel</a>.</p>
+<p>Implements <a class="el" href="classathena_1_1core_1_1_op_kernel.html#ad95af6dd184ce7ee9182ec7ca54b6c4d">athena::core::OpKernel</a>.</p>
 
 </div>
 </div>
@@ -239,8 +243,8 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 
 </div>
 </div>
-<a id="a6bfb45669c7ebb74c32f8846a940c57a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bfb45669c7ebb74c32f8846a940c57a">&#9670;&nbsp;</a></span>getOutputShape()</h2>
+<a id="a3a397257c208f55ba5fba4018112a605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a397257c208f55ba5fba4018112a605">&#9670;&nbsp;</a></span>getOutputShape()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +255,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
         <tr>
           <td class="memname"><a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp; athena::core::kernels::MatMulOpKernel::getOutputShape </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>shapes</em></td><td>)</td>
           <td></td>
         </tr>
@@ -271,7 +275,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>New shape </dd></dl>
 
-<p>Implements <a class="el" href="classathena_1_1core_1_1_op_kernel.html#a926afa57c90b4a999419cbbdc0496c65">athena::core::OpKernel</a>.</p>
+<p>Implements <a class="el" href="classathena_1_1core_1_1_op_kernel.html#a762e541463ffd089b47a8e6755c30fe1">athena::core::OpKernel</a>.</p>
 
 </div>
 </div>

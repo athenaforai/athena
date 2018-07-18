@@ -1,5 +1,9 @@
 \hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel}{}\section{athena\+:\+:core\+:\+:kernels\+:\+:Add\+Op\+Kernel Class Reference}
 \label{classathena_1_1core_1_1kernels_1_1_add_op_kernel}\index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}
+
+
+{\ttfamily \#include $<$Add\+Op\+Kernel.\+h$>$}
+
 Inheritance diagram for athena\+:\+:core\+:\+:kernels\+:\+:Add\+Op\+Kernel\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,9 +15,9 @@ Inheritance diagram for athena\+:\+:core\+:\+:kernels\+:\+:Add\+Op\+Kernel\+:\be
 \item 
 int \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}{get\+Operands\+Count}} () override
 \item 
-\mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_aaf21b2b72c6e601964e53eb6de7fccfd}{get\+Output\+Shape}} (const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&shapes) override
+\mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}{get\+Output\+Shape}} (std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&shapes) override
 \item 
-\mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a873ce3dc366c72f651331d91dd48be0a}{get\+Derivative\+Shape}} (int d, const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&shapes) override
+\mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}{get\+Derivative\+Shape}} (int d, std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&shapes) override
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a6aa2ce3c6d4c2b2eeaf99a83189e1f70}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a6aa2ce3c6d4c2b2eeaf99a83189e1f70}} 
 std\+::vector$<$ vm\+\_\+word $>$ {\bfseries get\+Op\+Bytecode} (std\+::vector$<$ vm\+\_\+word $>$ args, vm\+\_\+word result\+Cell) override
@@ -22,6 +26,9 @@ std\+::vector$<$ vm\+\_\+word $>$ \mbox{\hyperlink{classathena_1_1core_1_1kernel
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
+
+\subsection{Detailed Description}
+Performs sum of 2 given Tensors 
 
 \subsection{Member Function Documentation}
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}} 
@@ -46,11 +53,11 @@ Generates bytecode to calculate partial derivative
 
 Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_ad500db1afc5a7c10acff8ecb8f1bee4d}{athena\+::core\+::\+Op\+Kernel}}.
 
-\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a873ce3dc366c72f651331d91dd48be0a}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a873ce3dc366c72f651331d91dd48be0a}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Derivative\+Shape@{get\+Derivative\+Shape}}
 \index{get\+Derivative\+Shape@{get\+Derivative\+Shape}!athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}
 \subsubsection{\texorpdfstring{get\+Derivative\+Shape()}{getDerivativeShape()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Derivative\+Shape (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Derivative\+Shape (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 It is important for some operations to have certain size of their operands 
 \begin{DoxyParams}{Parameters}
@@ -64,7 +71,7 @@ New shape
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_aa2367d955810d4e0f3f27b85ae6fe85a}{athena\+::core\+::\+Op\+Kernel}}.
+Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_ad95af6dd184ce7ee9182ec7ca54b6c4d}{athena\+::core\+::\+Op\+Kernel}}.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Operands\+Count@{get\+Operands\+Count}}
@@ -79,11 +86,11 @@ Number of operands accepted
 
 Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_add97d4c132d80ecd9915acfedf7c9119}{athena\+::core\+::\+Op\+Kernel}}.
 
-\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_aaf21b2b72c6e601964e53eb6de7fccfd}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_aaf21b2b72c6e601964e53eb6de7fccfd}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Output\+Shape@{get\+Output\+Shape}}
 \index{get\+Output\+Shape@{get\+Output\+Shape}!athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}
 \subsubsection{\texorpdfstring{get\+Output\+Shape()}{getOutputShape()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Output\+Shape (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Output\+Shape (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&}]{shapes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 It is important for some operations to have certain size of their operands 
 \begin{DoxyParams}{Parameters}
@@ -97,7 +104,7 @@ New shape
 \end{DoxyReturn}
 
 
-Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_a926afa57c90b4a999419cbbdc0496c65}{athena\+::core\+::\+Op\+Kernel}}.
+Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_a762e541463ffd089b47a8e6755c30fe1}{athena\+::core\+::\+Op\+Kernel}}.
 
 
 

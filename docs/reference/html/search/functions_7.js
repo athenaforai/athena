@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['resettable',['resetTable',['../classathena_1_1backend_1_1_abstract_memory_manager.html#a358f614d4358f5dce28f17dba6917b1f',1,'athena::backend::AbstractMemoryManager']]],
-  ['run',['run',['../classathena_1_1core_1_1_session.html#ab08af50ae0bbd2ed5171e1f45a7680ff',1,'athena::core::Session']]]
+  ['operator_21_3d',['operator!=',['../classathena_1_1core_1_1_tensor_shape.html#acdb5b20f9922cb4d7ee29a868fd05b1b',1,'athena::core::TensorShape']]],
+  ['operator_3d_3d',['operator==',['../classathena_1_1core_1_1_tensor_shape.html#aa42737e3e51e76507bb60791889d4d9b',1,'athena::core::TensorShape']]]
 ];

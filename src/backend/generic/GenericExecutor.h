@@ -14,6 +14,29 @@
 #include "CPUDevice.h"
 
 namespace athena::backend::generic {
+
+    /**
+     * <p>
+     * GenericExecutor is the state of the art implementation of AbstractExecutor.
+     * While we try to make it work fast, the main goal of this implementation
+     * is to be mathematically correct and provide an example for more specific
+     * implementation.
+     * </p>
+     * <p>
+     * GenericExecutor executes
+     * <a href="https://athenaframework.ml/athena/bytecode/basics.html">bytecode</a>
+     * with standard CPU device. The actual implementations of bytecode commands
+     * use BLAS to speed up calculations. There are several accelerators available:
+     * <ul>
+     * <li> <a href="https://developer.apple.com/documentation/accelerate">Apple
+     * Accelerate Framework</a> </li>
+     * <li> <a href="https://github.com/xianyi/OpenBLAS.git">OpenBLAS</a> </li>
+     * <li> <a href="https://github.com/flame/blis.git">BLIS</a> </li>
+     * </ul>
+     * You can configure them during compile time. Other accelerators may be added
+     * later.
+     * </p>
+     */
     class GenericExecutor : public athena::backend::AbstractExecutor {
     private:
 //        athena::core::Tensor** memory;
