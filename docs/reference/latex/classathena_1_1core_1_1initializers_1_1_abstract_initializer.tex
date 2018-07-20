@@ -1,0 +1,45 @@
+\hypertarget{classathena_1_1core_1_1initializers_1_1_abstract_initializer}{}\section{athena\+:\+:core\+:\+:initializers\+:\+:Abstract\+Initializer Class Reference}
+\label{classathena_1_1core_1_1initializers_1_1_abstract_initializer}\index{athena\+::core\+::initializers\+::\+Abstract\+Initializer@{athena\+::core\+::initializers\+::\+Abstract\+Initializer}}
+
+
+{\ttfamily \#include $<$Abstract\+Initializer.\+h$>$}
+
+Inheritance diagram for athena\+:\+:core\+:\+:initializers\+:\+:Abstract\+Initializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classathena_1_1core_1_1initializers_1_1_abstract_initializer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_abstract_initializer_a9c0f0c57add306c9da8ffe8797532f62}{initialize}} (\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$manager, \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$tensor)=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Initializers help developers load data into corresponding memory type. Every \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} is assigned with an Initializer -- a subclass of \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_abstract_initializer}{Abstract\+Initializer}}. Data will be loaded into memory according to initializer\textquotesingle{}s parameters. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_abstract_initializer_a9c0f0c57add306c9da8ffe8797532f62}\label{classathena_1_1core_1_1initializers_1_1_abstract_initializer_a9c0f0c57add306c9da8ffe8797532f62}} 
+\index{athena\+::core\+::initializers\+::\+Abstract\+Initializer@{athena\+::core\+::initializers\+::\+Abstract\+Initializer}!initialize@{initialize}}
+\index{initialize@{initialize}!athena\+::core\+::initializers\+::\+Abstract\+Initializer@{athena\+::core\+::initializers\+::\+Abstract\+Initializer}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily virtual void athena\+::core\+::initializers\+::\+Abstract\+Initializer\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+Loads data into memory. This method {\bfseries must not} be called by developers. It is automatically called during initialization process. 
+\begin{DoxyParams}{Parameters}
+{\em manager} & Memory manager for the current device \\
+\hline
+{\em tensor} & A pointer to a \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} object, that current initializer is assigned to \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_data_initializer_a984213526b2741e423f230098c71520a}{athena\+::core\+::initializers\+::\+Data\+Initializer}}, and \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_void_initializer_adcb637175e8cad5841cb21e53e0e138f}{athena\+::core\+::initializers\+::\+Void\+Initializer}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/initializers/Abstract\+Initializer.\+h\end{DoxyCompactItemize}
