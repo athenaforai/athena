@@ -4,6 +4,7 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
+#include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
     memory = malloc( allocatedMemory );
