@@ -142,11 +142,11 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
 }
 
 void athena::backend::generic::GenericMemoryManager::deinit () {
-    for ( int i = 0; i < memLanes.size(); i++ ) {
-        memLanes[ i ].join();
+    for ( auto &memLane : memLanes ) {
+        memLane.join();
     }
 
-    delete memory;
+    delete reinterpret_cast<u_char*>(memory);
 }
 
 athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {

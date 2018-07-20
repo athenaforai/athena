@@ -5,6 +5,8 @@
 #ifndef ATHENA_INPUTNODE_H
 #define ATHENA_INPUTNODE_H
 
+#include <core/initializers/AbstractInitializer.h>
+#include <core/initializers/VoidInitializer.h>
 #include "Node.h"
 
 namespace athena::core {
@@ -17,14 +19,15 @@ namespace athena::core {
         unsigned long mappedMemCell {};
         Tensor* input;
         bool _isFrozen;
+        athena::core::initializers::AbstractInitializer* initializer;
     public:
 //        explicit InputNode(OpKernel *);
 
-        explicit InputNode ( Tensor* input, bool isFrozen = true ) : Node( nullptr ),
-                                                                     input( input ),
-                                                                     _isFrozen(
-                                                                             isFrozen
-                                                                     ) {};
+        explicit InputNode ( Tensor* input, bool isFrozen = true ) :
+                Node( nullptr ),
+                input( input ),
+                _isFrozen( isFrozen ),
+                initializer( new athena::core::initializers::VoidInitializer()) {};
 
         /**
          * Check if it is an input node
@@ -71,6 +74,11 @@ namespace athena::core {
          * @param frozen True - freeze node, False - unfreeze node (make it variable)
          */
         void setFrozen ( bool frozen );
+
+        void
+        setInitializer ( athena::core::initializers::AbstractInitializer* initializer );
+
+        athena::core::initializers::AbstractInitializer* getInitializer ();
     };
 }
 

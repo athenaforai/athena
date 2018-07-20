@@ -35,13 +35,4 @@ namespace athena::core {
         startAddress = address;
     }
 
-    void Tensor::setInitializer (
-            athena::core::initializers::AbstractInitializer* initializer ) {
-        this->initializer = initializer;
-    }
-
-    athena::core::initializers::AbstractInitializer* Tensor::getInitializer () {
-        return initializer;
-    }
-
 }

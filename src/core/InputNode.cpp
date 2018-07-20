@@ -30,3 +30,13 @@ bool athena::core::InputNode::isFrozen () {
 void athena::core::InputNode::setFrozen ( bool frozen ) {
     _isFrozen = frozen;
 }
+
+void athena::core::InputNode::setInitializer (
+        athena::core::initializers::AbstractInitializer* initializer ) {
+    this->initializer = initializer;
+}
+
+athena::core::initializers::AbstractInitializer*
+athena::core::InputNode::getInitializer () {
+    return initializer;
+}

@@ -124,7 +124,7 @@ athena::core::Session::getByteCode ( Node* logits ) {
 athena::core::Tensor* athena::core::Session::run () {
     // todo implement a better solution
     for ( InputNode* node : headNodes ) {
-        node->getData()->getInitializer()->initialize(
+        node->getInitializer()->initialize(
                 executor->getMemoryManager(),
                 node->getData());
     }
