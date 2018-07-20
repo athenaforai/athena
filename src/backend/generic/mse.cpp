@@ -34,7 +34,7 @@ namespace athena::backend::generic {
                athena::core::Tensor* res ) {
 
         // todo types
-        return msef(memoryManager, x, y, res);
+        msef(memoryManager, x, y, res);
 
     }
 
@@ -64,7 +64,7 @@ namespace athena::backend::generic {
                athena::core::Tensor* res ) {
 
         // todo types
-        return msef(memoryManager, x, y, res);
+        mse_derivf(memoryManager, x, y, res);
 
     }
 

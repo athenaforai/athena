@@ -124,6 +124,8 @@ namespace athena::backend::generic {
         void setData ( vm_word tensorAddress, vm_word offset, vm_word length,
                        void* data ) override;
 
+        void getData ( vm_word tensorAddress, vm_word offset, vm_word length,
+                       void* data ) override;
     };
 }
 

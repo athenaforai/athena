@@ -26,7 +26,7 @@ void athena::backend::generic::GenericExecutor::execute () {
                 /*memory[ args[ 2 ]] =*/
                 gmm->loadAndLock( args[ 0 ] );
                 gmm->loadAndLock( args[ 1 ] );
-                gmm->loadAndLock( args[ 2 ] );
+                gmm->allocateAndLock( args[ 2 ] );
                 add( gmm,
                      gmm->getTensor( args[ 0 ] ),
                      gmm->getTensor( args[ 1 ] ),
@@ -41,7 +41,7 @@ void athena::backend::generic::GenericExecutor::execute () {
 
                 gmm->loadAndLock( args[ 1 ] );
                 gmm->loadAndLock( args[ 3 ] );
-                gmm->loadAndLock( args[ 4 ] );
+                gmm->allocateAndLock( args[ 4 ] );
 
                 auto aTransp = static_cast<bool>(args[ 0 ]);
                 Tensor* a = gmm->getTensor( args[ 1 ] );
@@ -57,7 +57,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             }
             case OpCode::SIGMOID: {
                 gmm->loadAndLock( args[ 0 ] );
-                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 1 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* res = gmm->getTensor( args[ 1 ]);
                 sigmoid( gmm, x, res );
@@ -67,7 +67,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             }
             case OpCode::SIGMOID_DERIV: {
                 gmm->loadAndLock( args[ 0 ] );
-                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 1 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* res = gmm->getTensor( args[ 1 ]);
                 sigmoid_deriv( gmm, x, res );
@@ -78,7 +78,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             case OpCode::SCALE: {
                 gmm->loadAndLock( args[ 0 ] );
                 gmm->loadAndLock( args[ 1 ] );
-                gmm->loadAndLock( args[ 2 ] );
+                gmm->allocateAndLock( args[ 2 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* y = gmm->getTensor( args[ 1 ]);
                 Tensor* res = gmm->getTensor( args[ 2 ]);
@@ -91,7 +91,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             case OpCode::MSE: {
                 gmm->loadAndLock( args[ 0 ] );
                 gmm->loadAndLock( args[ 1 ] );
-                gmm->loadAndLock( args[ 2 ] );
+                gmm->allocateAndLock( args[ 2 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* y = gmm->getTensor( args[ 1 ]);
                 Tensor* res = gmm->getTensor( args[ 2 ]);
@@ -104,7 +104,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             case OpCode::MSE_DERIV: {
                 gmm->loadAndLock( args[ 0 ] );
                 gmm->loadAndLock( args[ 1 ] );
-                gmm->loadAndLock( args[ 2 ] );
+                gmm->allocateAndLock( args[ 2 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* y = gmm->getTensor( args[ 1 ]);
                 Tensor* res = gmm->getTensor( args[ 2 ]);
@@ -115,7 +115,7 @@ void athena::backend::generic::GenericExecutor::execute () {
                 break;
             }
             case OpCode::MKSCALAR: {
-                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 1 ] );
                 unsigned long x = args[ 0 ];
                 Tensor* res = gmm->getTensor( args[ 1 ]);
                 mkscalar( gmm, x, res );
@@ -124,7 +124,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             }
             case OpCode::TRANSPOSE: {
                 gmm->loadAndLock( args[ 0 ] );
-                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 1 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* res = gmm->getTensor( args[ 1 ]);
                 transpose( gmm, x, res );
@@ -134,7 +134,7 @@ void athena::backend::generic::GenericExecutor::execute () {
             }
             case OpCode::COPY: {
                 gmm->loadAndLock( args[ 0 ] );
-                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 1 ] );
                 Tensor* x = gmm->getTensor( args[ 0 ]);
                 Tensor* res = gmm->getTensor( args[ 1 ]);
                 copy( gmm, x, res );
@@ -147,9 +147,11 @@ void athena::backend::generic::GenericExecutor::execute () {
                 break;
             }
             case OpCode::ALLOC: {
-                TensorShape shape( args, argc - 1 );
-                auto t = new Tensor( shape, DataType::FLOAT ); // todo data type
+                auto shape = new TensorShape( args, argc - 1 );
+                auto t = new Tensor( *shape, DataType::FLOAT ); // todo data type
+                t->setStartAddress( args[ argc - 1 ] );
                 gmm->addTensor( t );
+                break;
             }
             default:
                 throw std::runtime_error( "Unknown instruction" );

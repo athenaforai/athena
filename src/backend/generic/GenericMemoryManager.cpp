@@ -69,7 +69,6 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
                     cur->next->prev = freeChunk;
                 }
 
-                cur = newChunk;
                 if ( cur == memoryChunksHead ) {
                     memoryChunksHead = newChunk;
                 }
@@ -77,6 +76,8 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
                 cur->prev = nullptr;
                 cur->next = nullptr;
                 delete cur;
+
+                cur = newChunk;
             }
 
             cur->isFree = false;
@@ -142,6 +143,10 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
 }
 
 void athena::backend::generic::GenericMemoryManager::deinit () {
+    for ( auto &&i : laneFinished ) {
+        i = true;
+    }
+
     for ( auto &memLane : memLanes ) {
         memLane.join();
     }
@@ -166,8 +171,8 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
         throw std::runtime_error( "Address not found" );
     }
 
+    memoryChunksLock.unlock();
 
-    cur->isLocked = false;
     SwapRecord* record = nullptr;
 
     for ( SwapRecord* r : swapRecords ) {
@@ -181,7 +186,7 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
         record = new SwapRecord;
         record->address = address;
         record->length = cur->length;
-        record->filename = "0.swap"; // todo unique names
+        record->filename = std::to_string(address) + ".swap"; // todo unique names
 
         swapRecords.push_back( record );
     }
@@ -190,6 +195,8 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
     ofs.write( reinterpret_cast<char*>(cur->begin), cur->length );
     ofs.close();
 
+    memoryChunksLock.lock();
+    cur->isLocked = false;
     memoryChunksLock.unlock();
 }
 
@@ -249,6 +256,18 @@ void athena::backend::generic::GenericMemoryManager::setData ( vm_word tensorAdd
     auto bData = reinterpret_cast<u_char*>(data);
 
     memcpy( addr + offset, bData, length );
+
+}
+
+void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAddress,
+                                                               vm_word offset,
+                                                               vm_word length,
+                                                               void* data ) {
+
+    auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
+    auto bData = reinterpret_cast<u_char*>(data);
+
+    memcpy( bData, addr + offset, length );
 
 }
 

@@ -7,9 +7,7 @@
 
 unsigned long athena::core::TensorShape::totalSize () const {
     unsigned long ts = 1;
-    for (
-        unsigned long i : shape
-            ) {
+    for ( unsigned long i : shape ) {
         ts *= i;
     }
     return ts;

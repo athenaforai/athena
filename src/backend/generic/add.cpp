@@ -20,9 +20,7 @@ namespace athena::backend::generic {
         auto cf = reinterpret_cast<float*>(memoryManager->getPhysicalAddress(
                 res->getStartAddress()));
 
-        for (
-                int i = 0; i < b->getShape().dim( 0 ); i++
-                ) {
+        for ( int i = 0; i < b->getShape().dim( 0 ); i++ ) {
             cf[ i ] = af[ i ] + bf[ i ];
         }
     }
@@ -38,9 +36,7 @@ namespace athena::backend::generic {
         auto cf = reinterpret_cast<double*>(memoryManager->getPhysicalAddress(
                 res->getStartAddress()));
 
-        for (
-                int i = 0; i < b->getShape().dim( 0 ); i++
-                ) {
+        for ( int i = 0; i < b->getShape().dim( 0 ); i++ ) {
             cf[ i ] = af[ i ] + bf[ i ];
         }
     }
@@ -56,9 +52,7 @@ namespace athena::backend::generic {
         auto cf = reinterpret_cast<int*>(memoryManager->getPhysicalAddress(
                 res->getStartAddress()));
 
-        for (
-                int i = 0; i < b->getShape().dim( 0 ); i++
-                ) {
+        for ( int i = 0; i < b->getShape().dim( 0 ); i++ ) {
             cf[ i ] = af[ i ] + bf[ i ];
         }
     }
@@ -73,10 +67,13 @@ namespace athena::backend::generic {
             switch ( a->getType()) {
                 case athena::core::DataType::FLOAT:
                     addf( memoryManager, a, b, res );
+                    break;
                 case athena::core::DataType::DOUBLE:
                     addd( memoryManager, a, b, res );
+                    break;
                 case athena::core::DataType::INT:
                     addi( memoryManager, a, b, res );
+                    break;
             }
         }
     }

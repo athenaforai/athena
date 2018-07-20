@@ -28,7 +28,7 @@ namespace athena::core {
 
         unsigned long usageCount;
 
-        bool derivativeMark;
+        bool persistResult;
     public:
         explicit Node ( OpKernel* );
 
@@ -64,6 +64,8 @@ namespace athena::core {
         void updateUsageCount ();
 
         bool isGarbage ();
+
+        void setPersistResult();
 
     };
 }

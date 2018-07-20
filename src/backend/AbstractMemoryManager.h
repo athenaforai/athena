@@ -113,6 +113,9 @@ namespace athena::backend {
          */
         virtual void setData ( vm_word tensorAddress, vm_word offset, vm_word length,
                                void* data ) = 0;
+
+        virtual void getData ( vm_word tensorAddress, vm_word offset, vm_word length,
+                               void *data ) = 0;
     };
 }
 

@@ -14,6 +14,6 @@ namespace athena::backend::generic {
                     athena::core::Tensor* res ) {
 //        auto f = new float[1];
         auto f = memoryManager->getPhysicalAddress( res->getStartAddress());
-        memcpy( f, reinterpret_cast<float*>(s), sizeof( float ));
+        memcpy( f, reinterpret_cast<float*>(&s), sizeof( float ));
     }
 }

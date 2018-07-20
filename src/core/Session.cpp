@@ -10,6 +10,7 @@
 void athena::core::Session::prepare ( athena::core::Node* logits ) {
 
     if ( logits != nullptr ) {
+        logits->setPersistResult();
         auto[bytecode, shape, resultCell] = getByteCode( logits );
         this->bytecode.clear();
         this->bytecode.insert(
@@ -122,20 +123,16 @@ athena::core::Session::getByteCode ( Node* logits ) {
 }
 
 athena::core::Tensor* athena::core::Session::run () {
-    // todo implement a better solution
+
     for ( InputNode* node : headNodes ) {
         node->getInitializer()->initialize(
                 executor->getMemoryManager(),
                 node->getData());
     }
 
-//    executorService->setBytecode( bytecode );
-//
-//    return executorService->execute();
     executor->setBytecode( bytecode );
     executor->execute();
-//    executor->getMemoryManager()->
-    return nullptr;
+    return executor->getMemoryManager()->getTensor( resultCell );
 }
 
 unsigned long athena::core::Session::getResultCell () {

@@ -5,7 +5,7 @@
 #include "Node.h"
 
 athena::core::Node::Node ( OpKernel* operation ) :
-        operation( operation ), derivativeMark( false ),
+        operation( operation ), persistResult( false ),
         calculated( false ), resultCell( 0 ), usageCount( 0 ) {
     name = getRandomNodeName();
 }
@@ -63,5 +63,9 @@ void athena::core::Node::updateUsageCount () {
 }
 
 bool athena::core::Node::isGarbage () {
-    return usageCount == outcomingNodes.size();
+    return usageCount == outcomingNodes.size() && !persistResult;
+}
+
+void athena::core::Node::setPersistResult () {
+    persistResult = true;
 }

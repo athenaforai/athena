@@ -11,10 +11,12 @@
 #include <core/optimizers/GradientDescent.h>
 #include <backend/generic/CPUDevice.h>
 #include <backend/generic/GenericExecutor.h>
+#include <core/initializers/DataInitializer.h>
 
 using namespace athena::core;
 using namespace athena::core::loss;
 using namespace athena::core::optimizers;
+using namespace athena::core::initializers;
 
 using namespace athena::backend::generic;
 
@@ -34,8 +36,18 @@ TEST( vm_test, vm_test_simple_Test ) {
     auto a = new Tensor( shape, DataType::FLOAT );
     auto b = new Tensor( shape, DataType::FLOAT );
 
+    float fa[] = {1, 2, 3};
+    float fb[] = {2, 3, 4};
+
     auto ain = new InputNode( a );
+    auto aInitializer = new DataInitializer();
+    aInitializer->setData( reinterpret_cast<void*>(fa), sizeof( float ) * 3 );
+    ain->setInitializer( aInitializer );
+
     auto bin = new InputNode( b );
+    auto bInitializer = new DataInitializer();
+    bInitializer->setData( reinterpret_cast<void*>(fb), sizeof( float ) * 3 );
+    bin->setInitializer( bInitializer );
 
     auto logits = athena::ops::add( ain, bin );
 
@@ -45,7 +57,25 @@ TEST( vm_test, vm_test_simple_Test ) {
     device.getMemoryManager()->addTensor( a );
     device.getMemoryManager()->addTensor( b );
 
-    sess.run();
+    auto resTensor = sess.run();
+
+    auto resf = new float[3];
+
+    device.getMemoryManager()->loadAndLock( resTensor );
+    device.getMemoryManager()->getData(
+            resTensor->getStartAddress(),
+            0,
+            12,
+            reinterpret_cast<void*>(resf)
+            );
+
+    dynamic_cast<GenericMemoryManager*>(device.getMemoryManager())->deinit();
+
+    float corr[] = {3, 5, 7};
+
+    for ( int j = 0; j < 3; j++ ) {
+        EXPECT_FLOAT_EQ( corr[ j ], resf[ j ] );
+    }
 
 //    size_t shapeArr[] = { 3 };
 //    TensorShape shape( shapeArr, 1 );
