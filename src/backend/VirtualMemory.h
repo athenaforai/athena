@@ -7,6 +7,7 @@
 
 #include <core/Tensor.h>
 #include <core/opcodes.h>
+#include <climits>
 
 namespace athena::backend {
 
