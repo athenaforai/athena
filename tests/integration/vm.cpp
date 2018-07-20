@@ -10,6 +10,7 @@
 #include <core/loss/MSELoss.h>
 #include <core/optimizers/GradientDescent.h>
 #include <backend/generic/CPUDevice.h>
+#include <backend/generic/GenericExecutor.h>
 
 using namespace athena::core;
 using namespace athena::core::loss;

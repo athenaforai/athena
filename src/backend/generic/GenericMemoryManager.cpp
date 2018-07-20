@@ -52,7 +52,7 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
                 newChunk->virtualAddress = item->address;
                 newChunk->prev = cur->prev;
 
-                if (cur->prev != nullptr) {
+                if ( cur->prev != nullptr ) {
                     cur->prev->next = newChunk;
                 }
 
@@ -119,8 +119,8 @@ void* athena::backend::generic::GenericMemoryManager::getPhysicalAddress (
     return nullptr;
 }
 
-void athena::backend::generic::GenericMemoryManager::load ( vm_word address,
-                                                            unsigned long length ) {
+void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word address,
+                                                                   unsigned long length ) {
 
     auto item = new QueueItem();
     item->address = address;
@@ -217,6 +217,39 @@ void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word add
 
 void athena::backend::generic::GenericMemoryManager::setMemSize ( size_t memSize ) {
     allocatedMemory = memSize;
+}
+
+void athena::backend::generic::GenericMemoryManager::allocateAndLock (
+        vm_word address,
+        unsigned long length ) {
+
+    auto item = new QueueItem();
+    item->address = address;
+    item->length = length;
+    item->alloc = true;
+
+    loadQueue.push( item );
+
+    std::mutex m;
+    std::unique_lock< std::mutex > lock( m );
+
+    // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
+    while ( !item->notified ) {
+        item->loadHandle.wait( lock );
+    }
+
+}
+
+void athena::backend::generic::GenericMemoryManager::setData ( vm_word tensorAddress,
+                                                               vm_word offset,
+                                                               vm_word length,
+                                                               void* data ) {
+
+    auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
+    auto bData = reinterpret_cast<u_char*>(data);
+
+    memcpy( addr + offset, bData, length );
+
 }
 
 athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;

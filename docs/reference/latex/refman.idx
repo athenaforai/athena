@@ -47,8 +47,8 @@
 \indexentry{init@{init}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}|hyperpage}{17}
 \indexentry{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load@{load}|hyperpage}{17}
 \indexentry{load@{load}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}|hyperpage}{17}
-\indexentry{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load@{load}|hyperpage}{17}
-\indexentry{load@{load}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}|hyperpage}{17}
+\indexentry{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load@{loadAndLock}|hyperpage}{17}
+\indexentry{loadAndLock@{loadAndLock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}|hyperpage}{17}
 \indexentry{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!process\+Queue@{process\+Queue}|hyperpage}{18}
 \indexentry{process\+Queue@{process\+Queue}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}|hyperpage}{18}
 \indexentry{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!unlock@{unlock}|hyperpage}{18}

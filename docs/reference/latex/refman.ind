@@ -18,7 +18,7 @@
     \subitem {add\+Tensor}, \hyperpage{8}
     \subitem {delete\+From\+Mem}, \hyperpage{9}
     \subitem {get\+Physical\+Address}, \hyperpage{9}
-    \subitem {load}, \hyperpage{9}
+    \subitem {loadAndLock}, \hyperpage{9}
     \subitem {reset\+Table}, \hyperpage{10}
     \subitem {unlock}, \hyperpage{10}
   \item {athena\+::backend\+::\+V\+Memory\+Block}, \hyperpage{43}
@@ -37,7 +37,7 @@
     \subitem {delete\+From\+Mem}, \hyperpage{16}
     \subitem {get\+Physical\+Address}, \hyperpage{16}
     \subitem {init}, \hyperpage{17}
-    \subitem {load}, \hyperpage{17}
+    \subitem {loadAndLock}, \hyperpage{17}
     \subitem {process\+Queue}, \hyperpage{18}
     \subitem {unlock}, \hyperpage{18}
   \item {athena\+::backend\+::generic\+::\+Memory\+Chunk}, 
@@ -215,7 +215,7 @@
 
   \indexspace
 
-  \item {load}
+  \item {loadAndLock}
     \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
 		\hyperpage{9}
     \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 

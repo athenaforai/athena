@@ -23,6 +23,10 @@ namespace athena::backend {
         std::list< athena::core::Tensor* > tensors;
 
     public:
+
+        virtual void init () = 0;
+        virtual void deinit () = 0;
+
         /**
          * Clears table of Tensors
          */
@@ -41,9 +45,19 @@ namespace athena::backend {
          */
         virtual void* getPhysicalAddress ( vm_word virtualAddress ) = 0;
 
-        void load ( athena::core::Tensor* tensor );
+        /**
+         * Move data to the fastest memory type available (e.g. from hard drive to
+         * RAM) and lock it (prevent from being offloaded)
+         * @param tensor Tensor containing data
+         */
+        void loadAndLock ( athena::core::Tensor* tensor );
 
-        void load ( vm_word address );
+        /**
+         * Move data to the fastest memory type available (e.g. from hard drive to
+         * RAM) and lock it (prevent from being offloaded)
+         * @param address Virtual address of Tensor containing data
+         */
+        void loadAndLock ( vm_word address );
 
         /**
          * Move data to the fastest memory type available (e.g. from hard drive to
@@ -51,7 +65,7 @@ namespace athena::backend {
          * @param address Virtual address
          * @param length Size of Tensor in bytes
          */
-        virtual void load ( vm_word address, unsigned long length ) = 0;
+        virtual void loadAndLock ( vm_word address, unsigned long length ) = 0;
 
         /**
          * Lets data be offloaded to a slower memory type (e.g. from RAM to HDD)
@@ -67,6 +81,38 @@ namespace athena::backend {
 
         athena::core::Tensor* getTensor ( vm_word address );
 
+        /**
+         * Allocate space in the fastest memory available without loading any data
+         * and lock it (prevent from being offloaded)
+         * @param tensor Tensor memory is being allocated for
+         */
+        void allocateAndLock( athena::core::Tensor* tensor );
+
+        /**
+         * Allocate space in the fastest memory available without loading any data
+         * and lock it (prevent from being offloaded)
+         * @param address Virtual address of Tensor memory is being allocated for
+         */
+        void allocateAndLock ( vm_word address );
+
+        /**
+         * Allocate space in the fastest memory available without loading any data
+         * and lock it (prevent from being offloaded)
+         * @param address Virtual address of Tensor memory is being allocated for
+         * @param length Length in bytes for the piece of memory that is being allocated
+         */
+        virtual void allocateAndLock( vm_word address, unsigned long length ) = 0;
+
+        /**
+         * Sets memory with the data
+         * @param tensorAddress Virtual address of Tensor beginning (see
+         * Tensor::getStartAddress)
+         * @param offset Offset in bytes from the beginning
+         * @param length Length of piece of data in bytes
+         * @param data Pointer to data
+         */
+        virtual void setData ( vm_word tensorAddress, vm_word offset, vm_word length,
+                               void* data ) = 0;
     };
 }
 

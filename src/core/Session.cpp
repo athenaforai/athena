@@ -123,12 +123,12 @@ athena::core::Session::getByteCode ( Node* logits ) {
 
 athena::core::Tensor* athena::core::Session::run () {
     // todo implement a better solution
-//    for (
-//        InputNode* node : headNodes
-//            ) {
-//        executorService->setMemoryCell( node->getMappedMemCell(), node->getData());
-//    }
-//
+    for ( InputNode* node : headNodes ) {
+        node->getData()->getInitializer()->initialize(
+                executor->getMemoryManager(),
+                node->getData());
+    }
+
 //    executorService->setBytecode( bytecode );
 //
 //    return executorService->execute();

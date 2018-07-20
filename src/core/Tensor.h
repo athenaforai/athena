@@ -1,17 +1,18 @@
 //
 // Created by Александр Баташев on 25.05.2018.
 //
-
+#pragma once
 #ifndef ATHENA_TENSOR_H
 #define ATHENA_TENSOR_H
 
 
-#include <cstddef>
-#include <utility>
-#include <iostream>
+//#include <core/initializers/AbstractInitializer.h>
+#include <core/initializers/VoidInitializer.h>
 #include "TensorShape.h"
 #include "DataType.h"
 #include "opcodes.h"
+
+
 
 namespace athena::core {
 
@@ -36,12 +37,15 @@ namespace athena::core {
 
         vm_word startAddress;
 
+        athena::core::initializers::AbstractInitializer* initializer;
+
     public:
 
         Tensor ( const TensorShape &shape, DataType dataType ) :
                 shape( shape ),
                 dataType( dataType ),
-                startAddress( 0 ) {};
+                startAddress( 0 ),
+                initializer(new athena::core::initializers::VoidInitializer()) {};
 
         const TensorShape &getShape () const;
 
@@ -52,6 +56,11 @@ namespace athena::core {
         void setStartAddress ( vm_word address );
 
         Tensor &operator[] ( unsigned int idx );
+
+        void
+        setInitializer ( athena::core::initializers::AbstractInitializer* initializer );
+
+        athena::core::initializers::AbstractInitializer* getInitializer ();
     };
 }
 

@@ -13,16 +13,16 @@ void athena::backend::AbstractMemoryManager::addTensor ( athena::core::Tensor* t
 }
 
 void
-athena::backend::AbstractMemoryManager::load ( athena::core::Tensor* tensor ) {
-    load( tensor->getStartAddress(), tensor->getShape().totalSize() *
-                                     athena::core::typesize( tensor->getType()));
+athena::backend::AbstractMemoryManager::loadAndLock ( athena::core::Tensor* tensor ) {
+    loadAndLock( tensor->getStartAddress(), tensor->getShape().totalSize() *
+                                            athena::core::typesize( tensor->getType()));
 }
 
-void athena::backend::AbstractMemoryManager::load ( vm_word address ) {
+void athena::backend::AbstractMemoryManager::loadAndLock ( vm_word address ) {
 
     for ( athena::core::Tensor* t : tensors ) {
         if ( t->getStartAddress() == address ) {
-            load( t );
+            loadAndLock( t );
             break;
         }
     }
@@ -32,11 +32,27 @@ void athena::backend::AbstractMemoryManager::load ( vm_word address ) {
 athena::core::Tensor*
 athena::backend::AbstractMemoryManager::getTensor ( vm_word address ) {
 
-    for (athena::core::Tensor* t : tensors){
+    for ( athena::core::Tensor* t : tensors ) {
         if ( t->getStartAddress() == address ) {
             return t;
         }
     }
 
     return nullptr;
+}
+
+void
+athena::backend::AbstractMemoryManager::allocateAndLock ( athena::core::Tensor* tensor ) {
+    allocateAndLock( tensor->getStartAddress(),
+                     athena::core::typesize( tensor->getType()) *
+                     tensor->getShape().totalSize());
+}
+
+void athena::backend::AbstractMemoryManager::allocateAndLock ( vm_word address ) {
+    for ( athena::core::Tensor* t : tensors ) {
+        if ( t->getStartAddress() == address ) {
+            allocateAndLock( t );
+            break;
+        }
+    }
 }

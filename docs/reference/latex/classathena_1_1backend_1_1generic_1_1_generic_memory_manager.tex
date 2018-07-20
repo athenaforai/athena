@@ -13,13 +13,15 @@ Inheritance diagram for athena\+:\+:backend\+:\+:generic\+:\+:Generic\+Memory\+M
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a129008275aca0577c3ef6d0acd387b02}{init}} ()
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a0e39c872b8b41d5239884322988d314d}{init}} () override
 \item 
-void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a541e8f0d1c46d4f8df6358e3d9cd320b}{deinit}} ()
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab90a8874618b851d5309cef66e79d08a}{deinit}} () override
 \item 
 void $\ast$ \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a7f3dacb56bd95b837910441d0aef1dd8}{get\+Physical\+Address}} (vm\+\_\+word virtual\+Address) override
 \item 
-void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a43a30e3c9e0cc2d15defb44dfa3919c0}{load}} (vm\+\_\+word address, unsigned long length) override
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa7fce5a6cbd9c4f5ad1868735e4546a8}{load\+And\+Lock}} (vm\+\_\+word address, unsigned long length) override
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_abe837ac5e3bb60c9bc24836788cae679}{allocate\+And\+Lock}} (vm\+\_\+word address, unsigned long length) override
 \item 
 void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a58a2b56a07a96c3cabb7b8fd079b3eae}{unlock}} (vm\+\_\+word address) override
 \item 
@@ -28,13 +30,19 @@ void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manag
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad1d29d948806569cce97e9f23ef99ad7}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad1d29d948806569cce97e9f23ef99ad7}} 
 void {\bfseries set\+Mem\+Size} (size\+\_\+t mem\+Size)
 \item 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a05cbbf4adf5928c3fc062184f3e8f518}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a05cbbf4adf5928c3fc062184f3e8f518}} 
-void {\bfseries load} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa4e2e533d897cf6d042d8a086633bd9d}{set\+Data}} (vm\+\_\+word tensor\+Address, vm\+\_\+word offset, vm\+\_\+word length, void $\ast$data) override
 \item 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a93e2b7f35d2c8c59b76d9a1d2cea281c}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a93e2b7f35d2c8c59b76d9a1d2cea281c}} 
-void {\bfseries load} (vm\+\_\+word address)
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}{load\+And\+Lock}} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
 \item 
-virtual void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_af5d4fd46d1bd780edc638aea6b729ff3}{load}} (vm\+\_\+word address, unsigned long length)=0
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}{load\+And\+Lock}} (vm\+\_\+word address)
+\item 
+virtual void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}{load\+And\+Lock}} (vm\+\_\+word address, unsigned long length)=0
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}{allocate\+And\+Lock}} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
+\item 
+void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}{allocate\+And\+Lock}} (vm\+\_\+word address)
+\item 
+virtual void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}{allocate\+And\+Lock}} (vm\+\_\+word address, unsigned long length)=0
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -74,13 +82,69 @@ std\+::vector$<$ bool $>$ {\bfseries lane\+Finished}
 This class implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{Abstract\+Memory\+Manager}} interface for \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_executor}{Generic\+Executor}}. It pre-\/allocates R\+AM and uses persistent memory for swap. There are couple memory lanes -\/ threads, that manage R\+AM. They monitor load\+Queue for new queries and move data from hard drive to R\+AM if needed. 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a541e8f0d1c46d4f8df6358e3d9cd320b}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a541e8f0d1c46d4f8df6358e3d9cd320b}} 
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_abe837ac5e3bb60c9bc24836788cae679}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_abe837ac5e3bb60c9bc24836788cae679}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
+\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::allocate\+And\+Lock (\begin{DoxyParamCaption}\item[{vm\+\_\+word}]{address,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address of Tensor memory is being allocated for \\
+\hline
+{\em length} & Length in bytes for the piece of memory that is being allocated \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
+\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
+
+Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address of Tensor memory is being allocated for \\
+\hline
+{\em length} & Length in bytes for the piece of memory that is being allocated \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
+\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
+
+Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em tensor} & Tensor memory is being allocated for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
+\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
+
+Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address of Tensor memory is being allocated for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab90a8874618b851d5309cef66e79d08a}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab90a8874618b851d5309cef66e79d08a}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!deinit@{deinit}}
 \index{deinit@{deinit}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
 \subsubsection{\texorpdfstring{deinit()}{deinit()}}
-{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::deinit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::deinit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Free R\+AM and stop all threads-\/memory lanes \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}} 
+Free R\+AM and stop all threads-\/memory lanes 
+
+Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!delete\+From\+Mem@{delete\+From\+Mem}}
 \index{delete\+From\+Mem@{delete\+From\+Mem}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
 \subsubsection{\texorpdfstring{delete\+From\+Mem()}{deleteFromMem()}}
@@ -113,17 +177,21 @@ Pointer to physical memory
 
 Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_ad441d7a2281f5f2b2627272d136f72b8}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a129008275aca0577c3ef6d0acd387b02}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a129008275aca0577c3ef6d0acd387b02}} 
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a0e39c872b8b41d5239884322988d314d}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a0e39c872b8b41d5239884322988d314d}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!init@{init}}
 \index{init@{init}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
 \subsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
-Initialize memory manager. That\textquotesingle{}s where actual memory allocation happens. All configurations should be done before this method is called. \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a43a30e3c9e0cc2d15defb44dfa3919c0}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a43a30e3c9e0cc2d15defb44dfa3919c0}} 
-\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load@{load}}
-\index{load@{load}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::load (\begin{DoxyParamCaption}\item[{vm\+\_\+word}]{address,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+Initialize memory manager. That\textquotesingle{}s where actual memory allocation happens. All configurations should be done before this method is called. 
+
+Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa7fce5a6cbd9c4f5ad1868735e4546a8}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa7fce5a6cbd9c4f5ad1868735e4546a8}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
+\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::load\+And\+Lock (\begin{DoxyParamCaption}\item[{vm\+\_\+word}]{address,  }\item[{unsigned long}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
 \begin{DoxyParams}{Parameters}
@@ -134,13 +202,35 @@ Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM)
 \end{DoxyParams}
 
 
-Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_af5d4fd46d1bd780edc638aea6b729ff3}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
+Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a9fe52e4020802d6f526fba06adce8407}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_af5d4fd46d1bd780edc638aea6b729ff3}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_af5d4fd46d1bd780edc638aea6b729ff3}} 
-\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load@{load}}
-\index{load@{load}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{load()}{load()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
+\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
+
+Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address of Tensor containing data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
+\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
+
+Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em tensor} & Tensor containing data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
+\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
 
 Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
 \begin{DoxyParams}{Parameters}
@@ -160,6 +250,27 @@ This is a thread function for memory lane-\/threads. It loads data to R\+AM and 
 {\em lane\+Id} & \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa4e2e533d897cf6d042d8a086633bd9d}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa4e2e533d897cf6d042d8a086633bd9d}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!set\+Data@{set\+Data}}
+\index{set\+Data@{set\+Data}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{set\+Data()}{setData()}}
+{\footnotesize\ttfamily void athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager\+::set\+Data (\begin{DoxyParamCaption}\item[{vm\+\_\+word}]{tensor\+Address,  }\item[{vm\+\_\+word}]{offset,  }\item[{vm\+\_\+word}]{length,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Sets memory with the data 
+\begin{DoxyParams}{Parameters}
+{\em tensor\+Address} & Virtual address of Tensor beginning (see Tensor\+::get\+Start\+Address) \\
+\hline
+{\em offset} & Offset in bytes from the beginning \\
+\hline
+{\em length} & Length of piece of data in bytes \\
+\hline
+{\em data} & Pointer to data \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a18562c6f336ff0f7ff800f877696c851}{athena\+::backend\+::\+Abstract\+Memory\+Manager}}.
+
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a58a2b56a07a96c3cabb7b8fd079b3eae}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a58a2b56a07a96c3cabb7b8fd079b3eae}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!unlock@{unlock}}
 \index{unlock@{unlock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}

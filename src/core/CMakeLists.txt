@@ -19,3 +19,4 @@ target_sources(athena PUBLIC
 add_subdirectory(kernels)
 add_subdirectory(optimizers)
 add_subdirectory(loss)
+add_subdirectory(initializers)

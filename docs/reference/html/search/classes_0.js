@@ -2,6 +2,7 @@ var searchData=
 [
   ['abstractdevice',['AbstractDevice',['../classathena_1_1backend_1_1_abstract_device.html',1,'athena::backend']]],
   ['abstractexecutor',['AbstractExecutor',['../classathena_1_1backend_1_1_abstract_executor.html',1,'athena::backend']]],
+  ['abstractinitializer',['AbstractInitializer',['../classathena_1_1core_1_1initializers_1_1_abstract_initializer.html',1,'athena::core::initializers']]],
   ['abstractlossfunction',['AbstractLossFunction',['../classathena_1_1core_1_1loss_1_1_abstract_loss_function.html',1,'athena::core::loss']]],
   ['abstractmemorymanager',['AbstractMemoryManager',['../classathena_1_1backend_1_1_abstract_memory_manager.html',1,'athena::backend']]],
   ['abstractoptimizer',['AbstractOptimizer',['../classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.html',1,'athena::core::optimizers']]],

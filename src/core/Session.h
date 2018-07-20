@@ -1,7 +1,7 @@
 //
 // Created by Александр Баташев on 25.05.2018.
 //
-
+#pragma once
 #ifndef ATHENA_SESSION_H
 #define ATHENA_SESSION_H
 
@@ -9,6 +9,7 @@
 #include "InputNode.h"
 #include <stack>
 #include <backend/VirtualMemory.h>
+#include <backend/AbstractExecutor.h>
 
 namespace athena::core {
     /**

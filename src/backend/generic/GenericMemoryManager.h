@@ -11,6 +11,7 @@
 #include <queue>
 #include <condition_variable>
 #include <thread>
+#include <string>
 
 namespace athena::backend::generic {
 
@@ -92,12 +93,12 @@ namespace athena::backend::generic {
          * Initialize memory manager. That's where actual memory allocation
          * happens. All configurations should be done before this method is called.
          */
-        void init ();
+        void init () override;
 
         /**
          * Free RAM and stop all threads-memory lanes
          */
-        void deinit ();
+        void deinit () override;
 
         /**
          * Convert virtual address to physical one
@@ -106,15 +107,22 @@ namespace athena::backend::generic {
          */
         void* getPhysicalAddress ( vm_word virtualAddress ) override;
 
-        void load ( vm_word address, unsigned long length ) override;
+        void loadAndLock ( vm_word address, unsigned long length ) override;
 
-        using AbstractMemoryManager::load;
+        using AbstractMemoryManager::loadAndLock;
+
+        void allocateAndLock ( vm_word address, unsigned long length ) override;
+
+        using AbstractMemoryManager::allocateAndLock;
 
         void unlock ( vm_word address ) override;
 
         void deleteFromMem ( vm_word address ) override;
 
         void setMemSize( size_t memSize );
+
+        void setData ( vm_word tensorAddress, vm_word offset, vm_word length,
+                       void* data ) override;
 
     };
 }
