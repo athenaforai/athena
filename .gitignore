@@ -10,7 +10,6 @@ CTestTestfile.cmake
 cmake-build-debug/
 build/
 .DS_Store
-libs/gtest
 libs/*
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
