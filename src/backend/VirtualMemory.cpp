@@ -81,6 +81,8 @@ vm_word athena::backend::VirtualMemory::allocate ( athena::core::Tensor* tensor 
 
     tensor->setStartAddress( cur->startAddress );
 
+    tensors.push_back( tensor );
+
     return cur->startAddress;
 }
 
@@ -115,9 +117,25 @@ void athena::backend::VirtualMemory::free ( vm_word virtualAddress ) {
             cur = cur->nextBlock;
         }
     }
+
+    for ( unsigned long i = 0; i < tensors.size(); i++ ) {
+        if ( tensors[ i ]->getStartAddress() == virtualAddress ) {
+            tensors.erase( tensors.begin() + i );
+            break;
+        }
+    }
 }
 
 void athena::backend::VirtualMemory::free ( athena::core::Tensor* tensor ) {
     free( tensor->getStartAddress());
+}
+
+athena::core::Tensor* athena::backend::VirtualMemory::getTensor ( vm_word address ) {
+    for ( auto &tensor : tensors ) {
+        if ( tensor->getStartAddress() == address ) {
+            return tensor;
+        }
+    }
+    return nullptr;
 }
 

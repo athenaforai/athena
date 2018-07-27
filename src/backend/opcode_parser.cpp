@@ -92,6 +92,20 @@ namespace athena::backend {
                 args[ 0 ] = bytecode[ ++next_word ];
                 break;
             }
+            case static_cast<vm_word>(OpCode::MUL): {
+                argc = 3;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+                args[ 2 ] = bytecode[ ++next_word ];
+                break;
+            }
+            case static_cast<vm_word>(OpCode::HADAMARD): {
+                argc = 3;
+                args[ 0 ] = bytecode[ ++next_word ];
+                args[ 1 ] = bytecode[ ++next_word ];
+                args[ 2 ] = bytecode[ ++next_word ];
+                break;
+            }
             default:
                 break;
         }

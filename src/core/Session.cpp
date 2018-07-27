@@ -17,7 +17,7 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
                 std::end( this->bytecode ), std::begin( bytecode ),
                 std::end( bytecode ));
         this->resultCell = resultCell;
-        this->resultShape = resultShape;
+        this->resultShape = shape;
     }
 
 //    executorService = new athena::backend::ExecutorService(
@@ -141,6 +141,14 @@ unsigned long athena::core::Session::getResultCell () {
 
 void athena::core::Session::setExecutor ( athena::backend::AbstractExecutor* exec ) {
     this->executor = exec;
+}
+
+athena::backend::VirtualMemory* athena::core::Session::getMemory () {
+    return virtualMemory;
+}
+
+athena::backend::AbstractExecutor* athena::core::Session::getExecutor () {
+    return executor;
 }
 
 //athena::backend::ExecutorService* athena::core::Session::getExecutorService () {

@@ -76,6 +76,10 @@ namespace athena::core {
 //        athena::backend::ExecutorService* getExecutorService();
 
         void setExecutor ( athena::backend::AbstractExecutor* exec );
+
+        athena::backend::AbstractExecutor* getExecutor();
+
+        athena::backend::VirtualMemory* getMemory ();
     };
 }
 

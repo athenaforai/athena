@@ -153,6 +153,34 @@ void athena::backend::generic::GenericExecutor::execute () {
                 gmm->addTensor( t );
                 break;
             }
+            case OpCode::MUL: {
+                gmm->loadAndLock( args[ 0 ] );
+                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 2 ] );
+                mul( gmm,
+                     gmm->getTensor( args[ 0 ] ),
+                     gmm->getTensor( args[ 1 ] ),
+                     gmm->getTensor( args[ 2 ] ));
+
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
+                break;
+            }
+            case OpCode::HADAMARD: {
+                gmm->loadAndLock( args[ 0 ] );
+                gmm->loadAndLock( args[ 1 ] );
+                gmm->allocateAndLock( args[ 2 ] );
+                hadamard( gmm,
+                     gmm->getTensor( args[ 0 ] ),
+                     gmm->getTensor( args[ 1 ] ),
+                     gmm->getTensor( args[ 2 ] ));
+
+                gmm->unlock( args[ 0 ] );
+                gmm->unlock( args[ 1 ] );
+                gmm->unlock( args[ 2 ] );
+                break;
+            }
             default:
                 throw std::runtime_error( "Unknown instruction" );
         }

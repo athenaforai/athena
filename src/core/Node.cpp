@@ -41,7 +41,7 @@ void athena::core::Node::addDerivative ( unsigned long d ) {
     derivatives.push_back( d );
 }
 
-vm_word athena::core::Node::getDerivative ( int i ) {
+vm_word athena::core::Node::getDerivative ( unsigned long i ) {
     return derivatives[ i ];
 }
 

@@ -59,5 +59,17 @@ namespace athena::backend::generic {
     void mkscalar ( GenericMemoryManager* memoryManager,
                     unsigned long s,
                     athena::core::Tensor* res );
+
+    void mul ( GenericMemoryManager* memoryManager,
+               athena::core::Tensor* a,
+               athena::core::Tensor* b,
+               athena::core::Tensor* res
+    );
+
+    void hadamard ( GenericMemoryManager* memoryManager,
+                    athena::core::Tensor* x,
+                    athena::core::Tensor* y,
+                    athena::core::Tensor* res
+    );
 }
 #endif //ATHENA_OPS_H

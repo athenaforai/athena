@@ -27,82 +27,163 @@ void athena::core::optimizers::GradientDescent::prepare () {
 std::tuple< std::vector< unsigned long >, unsigned long >
 athena::core::optimizers::GradientDescent::getByteCode (
         athena::core::loss::AbstractLossFunction* node ) {
-//
-//    std::vector< vm_word > bytecode;
-//
-//    vm_word errorCell = this->session->getFreeMemCell();
-//    std::vector< vm_word > lossArgs( 1 );
-//    lossArgs.push_back( lastResultCell );
-//    node->getOp()->getOpBytecode( lossArgs, errorCell );
-//
-//    std::queue< Node* > nodesQueue;
-//    nodesQueue.push( node->getIncomingNodes()[ 0 ] );
-//    std::queue< vm_word > errorCells;
-//    errorCells.push( errorCell );
-//
-//    while ( !nodesQueue.empty()) {
-//        Node* curNode = nodesQueue.front();
-//        nodesQueue.pop();
-//
-//        for ( int i = 0; i < curNode->getIncomingNodes().size(); i++ ) {
-//            Node* inNode = curNode->getIncomingNodes()[ i ];
-//            vm_word err = errorCells.front();
-//            errorCells.pop();
-//
-//            vm_word newErr = session->getFreeMemCell();
-//
-//            bytecode.push_back( static_cast<vm_word>(OpCode::MATMUL));
-//            bytecode.push_back( static_cast<vm_word>(0));
-//            bytecode.push_back( err );
-//            bytecode.push_back( static_cast<vm_word>(0));
-//            bytecode.push_back( curNode->getDerivative( i ));
-//            bytecode.push_back( newErr );
-//
-//            errorCells.push( newErr );
-//
-//            if ( inNode->isInputNode()) {
-//#pragma clang diagnostic push
-//#pragma ide diagnostic ignored "OCDFAInspection"
-//                auto inputNode = dynamic_cast<InputNode*>(inNode);
-//                if ( !inputNode->isFrozen()) {
-//
-//                    vm_word scalar = session->getFreeMemCell();
-//                    vm_word* tmp;
-//                    float alpha = -1 * learningRate;
-//                    tmp = reinterpret_cast<vm_word*>(&alpha);
-//                    bytecode.push_back(static_cast<vm_word>(OpCode::MKSCALAR));
-//                    bytecode.push_back( *tmp );
-//                    bytecode.push_back( scalar );
-//
-//                    bytecode.push_back( static_cast<vm_word>(OpCode::SCALE));
-//                    bytecode.push_back( scalar );
-//                    bytecode.push_back( newErr );
-//                    vm_word delta = session->getFreeMemCell();
-//                    bytecode.push_back( delta );
-//
-//                    bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
-//                    bytecode.push_back( inputNode->getMappedMemCell());
-//                    bytecode.push_back( delta );
-//                    bytecode.push_back( inputNode->getMappedMemCell());
-//                }
-//#pragma clang diagnostic pop
-//            } else {
-//                nodesQueue.push( inNode );
-//            }
-//        }
-//
-//        /*
-//         * todo:
-//         * for every incoming node
-//         * 1) Pop error from errorCells
-//         * 2) Multiply error cell by corresponding derivative of curNode
-//         * 3) Push result back to queue
-//         * 4) If current incoming node is InputNode and it is not frozen, update values
-//         * 5) Else push current incoming node to queue
-//         */
-//    }
 
-//    return std::make_tuple( bytecode, static_cast<unsigned long>(0));
+    /*
+     * todo:
+     * for every incoming node
+     * 1) Pop error from errorCells
+     * 2) Multiply error cell by corresponding derivative of curNode
+     * 3) Push result back to queue
+     * 4) If current incoming node is InputNode and it is not frozen, update values
+     * 5) Else push current incoming node to queue
+     */
+
+    std::vector< vm_word > bytecode;
+
+    /*
+     * The whole algorithm:
+     * 1. Calculate actual error E
+     * 2. Let's Q - queue of nodes, EQ - queue of errors
+     * 2.1 node -> Q
+     * 2.2 E -> EQ
+     * 3. For each node N in Q
+     * 3.1 E = EQ.top()
+     * 3.2 If this is variable node, adjust weights: N = N - alpha * E
+     * 3.3 If this is regular node, for each incoming node I:
+     * 3.3.1 If I is constant, skip
+     * 3.3.2 Ei = Di (*) E, where Ei is the new error value, Di - derivative of N
+     * with respect to I, (*) - Hadamard (elementwise) product.
+     * 3.3.3 Ei -> EQ
+     * 3.3.4 I -> Q
+     */
+
+    // 1.
+    auto lastRes = session->getMemory()->getTensor( session->getResultCell());
+
+    // todo at the moment loss is always scalar
+    auto lossShape = TensorShape( { 1 } );
+
+    auto lossTensor = new Tensor( lossShape, lastRes->getType());
+
+    std::vector<vm_word> lossArgs (2);
+
+    session->getMemory()->allocate( lossTensor );
+    auto label = dynamic_cast<InputNode*>(node->getIncomingNodes()[ 2 ]);
+    session->getMemory()->allocate( label->getData());
+
+    lossArgs.push_back( lastRes->getStartAddress());
+    lossArgs.push_back( label->getData()->getStartAddress());
+
+    auto lossBytecode =
+            node->getOp()->getOpBytecode( lossArgs, lossTensor->getStartAddress());
+
+    bytecode.insert( std::end( bytecode ), std::begin( lossBytecode ),
+                     std::end( lossBytecode ));
+
+    // todo calculate derivative
+
+    // 2.
+
+    std::queue<Node*> nodesQueue;
+    std::queue<Tensor*> errorsQueue;
+
+    nodesQueue.push( node );
+    errorsQueue.push( lossTensor );
+
+    // create tensor for alpha value
+    TensorShape alphaShape( { 1 } );
+    // todo type
+    auto alphaTensor = new Tensor( alphaShape, DataType::FLOAT );
+
+    session->getMemory()->allocate( alphaTensor );
+
+    bytecode.push_back( static_cast<vm_word>(OpCode::ALLOC));
+    bytecode.push_back( 1 );
+    bytecode.push_back( 1 );
+    bytecode.push_back( alphaTensor->getStartAddress());
+
+    bytecode.push_back( static_cast<vm_word>(OpCode::MKSCALAR));
+    float mlr = -learningRate;
+    vm_word a = *reinterpret_cast<vm_word*>(&mlr);
+    bytecode.push_back( a );
+    bytecode.push_back( alphaTensor->getStartAddress());
+
+
+    // 3.
+
+    while ( !nodesQueue.empty()) {
+        Node* n = nodesQueue.front();
+        nodesQueue.pop();
+
+        auto error = errorsQueue.front();
+        errorsQueue.pop();
+
+        if ( n->isInputNode()) {
+            auto inN = dynamic_cast<InputNode*>(n);
+            auto scaledErrorTensor = new Tensor( error->getShape(), error->getType());
+            session->getMemory()->allocate( scaledErrorTensor );
+
+            bytecode.push_back( static_cast<vm_word>(OpCode::ALLOC));
+            bytecode.push_back( scaledErrorTensor->getShape().dimensions());
+            for ( unsigned long i = 0; i < scaledErrorTensor->getShape().dimensions();
+                  i++ ) {
+                bytecode.push_back( scaledErrorTensor->getShape().dim( i ));
+            }
+            bytecode.push_back( scaledErrorTensor->getStartAddress());
+
+            bytecode.push_back( static_cast<vm_word>(OpCode::SCALE));
+            bytecode.push_back( alphaTensor->getStartAddress());
+            bytecode.push_back( error->getStartAddress());
+            bytecode.push_back( scaledErrorTensor->getStartAddress());
+
+            bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
+            bytecode.push_back( inN->getData()->getStartAddress());
+            bytecode.push_back( scaledErrorTensor->getStartAddress());
+            bytecode.push_back( inN->getData()->getStartAddress());
+        } else {
+
+            for ( unsigned long i = 0; i < n->getIncomingNodes().size(); i++ ) {
+
+                Node* incomingNode = n->getIncomingNodes()[ i ];
+
+                if ( incomingNode->isInputNode()) {
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCDFAInspection"
+                    auto inN = dynamic_cast<InputNode*>(incomingNode);
+#pragma clang diagnostic pop
+                    if ( inN->isFrozen()) {
+                        continue; // skip constants
+                    }
+                }
+
+                vm_word inDerivTensorAddress = node->getDerivative( i );
+
+                auto newErrTensor = new Tensor( error->getShape(), error->getType());
+                session->getMemory()->allocate( newErrTensor );
+
+                if ( error->getShape().dimensions() == 1 &&
+                     error->getShape().dim( 0 ) == 1 ) {
+                    bytecode.push_back( static_cast<vm_word>(OpCode::SCALE));
+                } else {
+                    bytecode.push_back( static_cast<vm_word>(OpCode::HADAMARD));
+                }
+
+                bytecode.push_back( error->getStartAddress());
+                bytecode.push_back( inDerivTensorAddress );
+                bytecode.push_back( newErrTensor->getStartAddress());
+
+                bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
+                bytecode.push_back( error->getStartAddress());
+
+                errorsQueue.push( newErrTensor );
+                nodesQueue.push( incomingNode );
+
+            }
+
+        }
+    }
+
+    return std::make_tuple( bytecode, static_cast<unsigned long>(0));
 }
 
 void athena::core::optimizers::GradientDescent::minimize () {

@@ -32,6 +32,9 @@ void {\bfseries set\+Mem\+Size} (size\+\_\+t mem\+Size)
 \item 
 void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa4e2e533d897cf6d042d8a086633bd9d}{set\+Data}} (vm\+\_\+word tensor\+Address, vm\+\_\+word offset, vm\+\_\+word length, void $\ast$data) override
 \item 
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad248007976c57e7635ea51d25c7e9f13}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad248007976c57e7635ea51d25c7e9f13}} 
+void {\bfseries get\+Data} (vm\+\_\+word tensor\+Address, vm\+\_\+word offset, vm\+\_\+word length, void $\ast$data) override
+\item 
 void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}{load\+And\+Lock}} (\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} $\ast$tensor)
 \item 
 void \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}{load\+And\+Lock}} (vm\+\_\+word address)
@@ -105,12 +108,27 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 222 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 230 of file Generic\+Memory\+Manager.\+cpp.
+
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
+\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
+
+Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address of Tensor memory is being allocated for \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
 \index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
 
 Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
@@ -123,7 +141,7 @@ Allocate space in the fastest memory available without loading any data and lock
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
 \index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
 
 Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
@@ -134,21 +152,6 @@ Allocate space in the fastest memory available without loading any data and lock
 
 
 Definition at line 45 of file Abstract\+Memory\+Manager.\+cpp.
-
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab5305b3d1ab91960bf179ce0be166120}} 
-\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
-\index{allocate\+And\+Lock@{allocate\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{allocate\+And\+Lock()}{allocateAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::allocate\+And\+Lock}
-
-Allocate space in the fastest memory available without loading any data and lock it (prevent from being offloaded) 
-\begin{DoxyParams}{Parameters}
-{\em address} & Virtual address of Tensor memory is being allocated for \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 51 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab90a8874618b851d5309cef66e79d08a}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_ab90a8874618b851d5309cef66e79d08a}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!deinit@{deinit}}
@@ -162,7 +165,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{
 
 
 
-Definition at line 144 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 146 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2767b6c1f5887a2928b665e0c1b454c7}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!delete\+From\+Mem@{delete\+From\+Mem}}
@@ -181,7 +184,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 196 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 204 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a7f3dacb56bd95b837910441d0aef1dd8}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a7f3dacb56bd95b837910441d0aef1dd8}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!get\+Physical\+Address@{get\+Physical\+Address}}
@@ -203,7 +206,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 108 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 110 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a0e39c872b8b41d5239884322988d314d}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a0e39c872b8b41d5239884322988d314d}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!init@{init}}
@@ -217,7 +220,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{
 
 
 
-Definition at line 8 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 9 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa7fce5a6cbd9c4f5ad1868735e4546a8}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_aa7fce5a6cbd9c4f5ad1868735e4546a8}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
@@ -238,7 +241,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 122 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 124 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
@@ -255,10 +258,23 @@ Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM)
 
 Definition at line 21 of file Abstract\+Memory\+Manager.\+cpp.
 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}} 
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
 \index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
 \subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
+
+Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
+\begin{DoxyParams}{Parameters}
+{\em address} & Virtual address \\
+\hline
+{\em length} & Size of Tensor in bytes \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a2bbfba2a5104aab3068d46214a6ae7df}} 
+\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
+\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
+\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
 
 Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
@@ -270,19 +286,6 @@ Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM)
 
 Definition at line 16 of file Abstract\+Memory\+Manager.\+cpp.
 
-\mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a9fe52e4020802d6f526fba06adce8407}} 
-\index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
-\index{load\+And\+Lock@{load\+And\+Lock}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
-\subsubsection{\texorpdfstring{load\+And\+Lock()}{loadAndLock()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily virtual void athena\+::backend\+::\+Abstract\+Memory\+Manager\+::load\+And\+Lock}
-
-Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM) and lock it (prevent from being offloaded) 
-\begin{DoxyParams}{Parameters}
-{\em address} & Virtual address \\
-\hline
-{\em length} & Size of Tensor in bytes \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a978be661a46caaa8f6ef40a2c45a014e}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a978be661a46caaa8f6ef40a2c45a014e}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!process\+Queue@{process\+Queue}}
 \index{process\+Queue@{process\+Queue}!athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}}
@@ -296,7 +299,7 @@ This is a thread function for memory lane-\/threads. It loads data to R\+AM and 
 \end{DoxyParams}
 
 
-Definition at line 26 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 27 of file Generic\+Memory\+Manager.\+cpp.
 
 
 
@@ -325,7 +328,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 243 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 251 of file Generic\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a58a2b56a07a96c3cabb7b8fd079b3eae}\label{classathena_1_1backend_1_1generic_1_1_generic_memory_manager_a58a2b56a07a96c3cabb7b8fd079b3eae}} 
 \index{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager@{athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}!unlock@{unlock}}
@@ -344,7 +347,7 @@ Implements \mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager_a
 
 
 
-Definition at line 156 of file Generic\+Memory\+Manager.\+cpp.
+Definition at line 162 of file Generic\+Memory\+Manager.\+cpp.
 
 
 

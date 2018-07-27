@@ -12,8 +12,7 @@ Inheritance diagram for athena\+:\+:core\+:\+:optimizers\+:\+:Gradient\+Descent\
 \mbox{\Hypertarget{classathena_1_1core_1_1optimizers_1_1_gradient_descent_a1f81ba3b4a6291f37a33f7eb903ecdfe}\label{classathena_1_1core_1_1optimizers_1_1_gradient_descent_a1f81ba3b4a6291f37a33f7eb903ecdfe}} 
 {\bfseries Gradient\+Descent} (\mbox{\hyperlink{classathena_1_1core_1_1loss_1_1_abstract_loss_function}{athena\+::core\+::loss\+::\+Abstract\+Loss\+Function}} $\ast$loss, float learning\+Rate)
 \item 
-\mbox{\Hypertarget{classathena_1_1core_1_1optimizers_1_1_gradient_descent_ab9ecd3b02a82c86bfaaa3d93789d2d5a}\label{classathena_1_1core_1_1optimizers_1_1_gradient_descent_ab9ecd3b02a82c86bfaaa3d93789d2d5a}} 
-void {\bfseries prepare} () override
+void \mbox{\hyperlink{classathena_1_1core_1_1optimizers_1_1_gradient_descent_ab9ecd3b02a82c86bfaaa3d93789d2d5a}{prepare}} () override
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1optimizers_1_1_gradient_descent_a1403aaa8543b4f50e783ae19b26e2ea4}\label{classathena_1_1core_1_1optimizers_1_1_gradient_descent_a1403aaa8543b4f50e783ae19b26e2ea4}} 
 void {\bfseries minimize} () override
@@ -36,6 +35,45 @@ float {\bfseries learning\+Rate}
 
 
 Definition at line 12 of file Gradient\+Descent.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1core_1_1optimizers_1_1_gradient_descent_ab9ecd3b02a82c86bfaaa3d93789d2d5a}\label{classathena_1_1core_1_1optimizers_1_1_gradient_descent_ab9ecd3b02a82c86bfaaa3d93789d2d5a}} 
+\index{athena\+::core\+::optimizers\+::\+Gradient\+Descent@{athena\+::core\+::optimizers\+::\+Gradient\+Descent}!prepare@{prepare}}
+\index{prepare@{prepare}!athena\+::core\+::optimizers\+::\+Gradient\+Descent@{athena\+::core\+::optimizers\+::\+Gradient\+Descent}}
+\subsubsection{\texorpdfstring{prepare()}{prepare()}}
+{\footnotesize\ttfamily void athena\+::core\+::optimizers\+::\+Gradient\+Descent\+::prepare (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Generate bytecode for backpropagation 
+
+The whole algorithm\+: 
+\begin{DoxyEnumerate}
+\item Calculate actual error E  
+\item Let\textquotesingle{}s Q -\/ queue of nodes, EQ -\/ queue of errors 
+\begin{DoxyEnumerate}
+\item $ node \rightarrow Q $  
+\item $ E \rightarrow EQ $  
+\end{DoxyEnumerate}
+\item For each node N in Q 
+\begin{DoxyEnumerate}
+\item $ EQ \rightarrow E $  
+\item If this is variable node, adjust weights\+: $ N = N - \alpha * E $  
+\item If this is regular node, for each incoming node I\+: 
+\begin{DoxyEnumerate}
+\item If I is constant, skip  
+\item $ E_i = D_i \odot E $, where $ E_i $ is the new error value, $ D_i $ -\/ derivative of N with respect to I, $ \odot $ -\/ Hadamard (elementwise) product.  
+\item $ E_i \rightarrow EQ $  
+\item $ I \rightarrow Q $  
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
+
+Implements \mbox{\hyperlink{classathena_1_1core_1_1optimizers_1_1_abstract_optimizer}{athena\+::core\+::optimizers\+::\+Abstract\+Optimizer}}.
+
+
+
+Definition at line 15 of file Gradient\+Descent.\+cpp.
 
 
 

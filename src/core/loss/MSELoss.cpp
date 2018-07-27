@@ -43,7 +43,8 @@ athena::core::loss::MSEOpKernel::getDerivativeBytecode ( int d,
 
 athena::core::TensorShape &athena::core::loss::MSEOpKernel::getOutputShape (
         std::vector< athena::core::TensorShape > &shapes ) {
-    return shapes[ 0 ];
+    TensorShape s( { 1 } );
+    return s;
 }
 
 athena::core::TensorShape &athena::core::loss::MSEOpKernel::getDerivativeShape ( int,

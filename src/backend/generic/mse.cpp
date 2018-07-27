@@ -23,7 +23,7 @@ namespace athena::backend::generic {
 
 #pragma omp parallel for
         for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
-            resData[ i ] = pow( xData[ i ] - yData[ i ], 2.0f );
+            resData[ 0 ] += pow( xData[ i ] - yData[ i ], 2.0f );
         }
 
     }

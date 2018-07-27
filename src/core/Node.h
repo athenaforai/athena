@@ -53,7 +53,7 @@ namespace athena::core {
 
         void addDerivative ( unsigned long d );
 
-        unsigned long getDerivative ( int i );
+        unsigned long getDerivative ( unsigned long i );
 
         void setCalculated ( unsigned long resCell );
 

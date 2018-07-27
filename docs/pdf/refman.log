@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.13)  20 JUL 2018 15:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.13)  27 JUL 2018 11:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -942,11 +942,11 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 [1
 
 
-] [2] [3] [4])
+] [2] [3] [4] [5])
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
- [5] [6]
+ [6]
 Package hyperref Info: Option `pageanchor' set `true' on input line 138.
 
 Chapter 1.
@@ -975,7 +975,7 @@ Chapter 3.
 (./dc/dc2/classathena_1_1backend_1_1_abstract_device.tex
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bc/n' will be
 (Font)              scaled to size 7.0pt on input line 1.
-<dc/dc2/classathena_1_1backend_1_1_abstract_device.pdf, id=976, 501.875pt x 173
+<dc/dc2/classathena_1_1backend_1_1_abstract_device.pdf, id=986, 501.875pt x 173
 .05653pt>
 File: dc/dc2/classathena_1_1backend_1_1_abstract_device.pdf Graphic file (type 
 pdf)
@@ -1000,7 +1000,7 @@ LaTeX Font Info:    Font shape `T1/Roboto-LF/b/n' will be
 (Font)              scaled to size 7.0pt on input line 13.
 )
 (./d5/d1e/classathena_1_1backend_1_1_abstract_executor.tex
-<d5/d1e/classathena_1_1backend_1_1_abstract_executor.pdf, id=978, 501.875pt x 1
+<d5/d1e/classathena_1_1backend_1_1_abstract_executor.pdf, id=988, 501.875pt x 1
 53.24251pt>
 File: d5/d1e/classathena_1_1backend_1_1_abstract_executor.pdf Graphic file (typ
 e pdf)
@@ -1029,7 +1029,7 @@ LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
 [4 <./d5/d1e/classathena_1_1backend_1_1_abstract_executor.pdf>])
 (./d3/dd2/classathena_1_1core_1_1initializers_1_1_abstract_initializer.tex
 <d3/dd2/classathena_1_1core_1_1initializers_1_1_abstract_initializer.pdf, id=10
-26, 501.875pt x 78.7241pt>
+36, 501.875pt x 78.7241pt>
 File: d3/dd2/classathena_1_1core_1_1initializers_1_1_abstract_initializer.pdf G
 raphic file (type pdf)
 <use d3/dd2/classathena_1_1core_1_1initializers_1_1_abstract_initializer.pdf>
@@ -1039,7 +1039,7 @@ t_initializer.pdf  used on input line 10.
 
 [5 <./d3/dd2/classathena_1_1core_1_1initializers_1_1_abstract_initializer.pdf>]
 ) (./d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.tex
-<d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf, id=1057, 50
+<d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf, id=1067, 50
 1.875pt x 244.81462pt>
 File: d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf Graphic
  file (type pdf)
@@ -1049,7 +1049,7 @@ unction.pdf  used on input line 6.
 (pdftex.def)             Requested size: 174.98497pt x 85.35826pt.
  [6 <./d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.pdf>])
 (./d2/df1/classathena_1_1backend_1_1_abstract_memory_manager.tex
-<d2/df1/classathena_1_1backend_1_1_abstract_memory_manager.pdf, id=1075, 501.87
+<d2/df1/classathena_1_1backend_1_1_abstract_memory_manager.pdf, id=1085, 501.87
 5pt x 129.93544pt>
 File: d2/df1/classathena_1_1backend_1_1_abstract_memory_manager.pdf Graphic fil
 e (type pdf)
@@ -1059,18 +1059,26 @@ ger.pdf  used on input line 10.
 (pdftex.def)             Requested size: 219.7995pt x 56.9055pt.
  [7 <./d2/df1/classathena_1_1backend_1_1_abstract_memory_manager.pdf>]
 LaTeX Font Info:    Font shape `T1/Roboto-LF/bc/n' will be
-(Font)              scaled to size 8.0pt on input line 83.
- [8]
+(Font)              scaled to size 8.0pt on input line 86.
+ [8] [9]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 150.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 153.
 
-Underfull \hbox (badness 10000) detected at line 157
+Overfull \vbox (7.31964pt too high) has occurred while \output is active []
+
+
+[10]
+Underfull \hbox (badness 10000) detected at line 160
 [][][]
  []
 
-[9] [10] [11])
+
+Overfull \vbox (18.97253pt too high) has occurred while \output is active []
+
+
+[11] [12])
 (./d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.tex
-<d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf, id=1167, 
+<d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf, id=1183, 
 501.875pt x 77.8107pt>
 File: d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf Graph
 ic file (type pdf)
@@ -1080,7 +1088,7 @@ optimizer.pdf  used on input line 6.
 (pdftex.def)             Requested size: 367.0396pt x 56.9055pt.
 )
 (./dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.tex
-<dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf, id=1173, 501.875p
+<dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf, id=1189, 501.875p
 t x 182.50183pt>
 File: dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf Graphic file 
 (type pdf)
@@ -1094,13 +1102,13 @@ Underfull \hbox (badness 3449) in paragraph at lines 20--22
 $
  []
 
-[12 <./d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf> <./
+[13 <./d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.pdf> <./
 dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 53
 [][][]
  []
 
-[13]
+[14]
 Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
@@ -1110,13 +1118,13 @@ Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
-[14]
+[15]
 Underfull \hbox (badness 10000) detected at line 118
 [][][]
  []
 
 ) (./db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.tex
-<db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf, id=1240, 501.87
+<db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf, id=1255, 501.87
 5pt x 173.05653pt>
 File: db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf Graphic fil
 e (type pdf)
@@ -1126,7 +1134,7 @@ ice.pdf  used on input line 10.
 (pdftex.def)             Requested size: 165.02959pt x 56.9055pt.
 )
 (./d6/d27/classathena_1_1core_1_1initializers_1_1_data_initializer.tex
-<d6/d27/classathena_1_1core_1_1initializers_1_1_data_initializer.pdf, id=1242, 
+<d6/d27/classathena_1_1core_1_1initializers_1_1_data_initializer.pdf, id=1257, 
 501.875pt x 157.44823pt>
 File: d6/d27/classathena_1_1core_1_1initializers_1_1_data_initializer.pdf Graph
 ic file (type pdf)
@@ -1134,10 +1142,10 @@ ic file (type pdf)
 Package pdftex.def Info: d6/d27/classathena_1_1core_1_1initializers_1_1_data_in
 itializer.pdf  used on input line 6.
 (pdftex.def)             Requested size: 181.38704pt x 56.9055pt.
- [15 <./db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf> <./d6/d2
+ [16 <./db/d7b/classathena_1_1backend_1_1generic_1_1_c_p_u_device.pdf> <./d6/d2
 7/classathena_1_1core_1_1initializers_1_1_data_initializer.pdf>])
 (./d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.tex
-<d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf, id=1275, 50
+<d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf, id=1290, 50
 1.875pt x 153.24251pt>
 File: d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf Graphic
  file (type pdf)
@@ -1145,7 +1153,7 @@ File: d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf Graphic
 Package pdftex.def Info: d8/d09/classathena_1_1backend_1_1generic_1_1_generic_e
 xecutor.pdf  used on input line 10.
 (pdftex.def)             Requested size: 186.36473pt x 56.9055pt.
- [16 <./d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf>]
+ [17 <./d8/d09/classathena_1_1backend_1_1generic_1_1_generic_executor.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 59--60
 [] $\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 athena[]::backend[]::generic[]::[]Generi
 c[]Executor[]::get[]Memory[]Manager
@@ -1157,32 +1165,28 @@ Underfull \hbox (badness 10000) detected at line 61
  []
 
 ) (./d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.tex
-[17]
+[18]
 <d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf, id=13
-13, 501.875pt x 129.93544pt>
+29, 501.875pt x 129.93544pt>
 File: d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf G
 raphic file (type pdf)
 <use d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf>
 Package pdftex.def Info: d6/d21/classathena_1_1backend_1_1generic_1_1_generic_m
 emory_manager.pdf  used on input line 10.
 (pdftex.def)             Requested size: 219.7995pt x 56.9055pt.
- [18 <./d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf
->] [19] [20] [21]
-Underfull \hbox (badness 10000) detected at line 197
+ [19 <./d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.pdf
+>] [20] [21] [22]
+Underfull \hbox (badness 10000) detected at line 200
 [][][]
  []
 
-[22]
-Overfull \vbox (22.68112pt too high) has occurred while \output is active []
-
-
-[23]
-Overfull \hbox (0.77751pt too wide) in paragraph at lines 296--296
+[23] [24]
+Overfull \hbox (0.77751pt too wide) in paragraph at lines 299--299
 []\T1/Roboto-LF/m/it/10 lane[] 
  []
 
-[24]) (./dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.tex
-<dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf, id=1415, 50
+[25]) (./dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.tex
+<dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf, id=1431, 50
 1.875pt x 155.6214pt>
 File: dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf Graphic
  file (type pdf)
@@ -1191,32 +1195,33 @@ Package pdftex.def Info: dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_
 descent.pdf  used on input line 6.
 (pdftex.def)             Requested size: 183.51596pt x 56.9055pt.
 
-Overfull \hbox (40.4085pt too wide) in paragraph at lines 24--26
+Overfull \hbox (40.4085pt too wide) in paragraph at lines 23--25
 [][] \T1/Roboto-LF/bc/n/10 std[]::tuple$\OML/cmm/m/it/10 <$ \T1/Roboto-LF/bc/n/
 10 std[]::vector$\OML/cmm/m/it/10 <$ \T1/Roboto-LF/bc/n/10 un-signed long $\OML
 /cmm/m/it/10 >$\T1/Roboto-LF/bc/n/10 , un-signed long $\OML/cmm/m/it/10 >$ \T1/
 Roboto-LF/b/n/10 get[]Byte[]Code \T1/Roboto-LF/bc/n/10 ([]
  []
 
-) (./dd/ddd/classathena_1_1core_1_1_input_node.tex
-<dd/ddd/classathena_1_1core_1_1_input_node.pdf, id=1418, 501.875pt x 262.4204pt
+[26 <./dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf>])
+(./dd/ddd/classathena_1_1core_1_1_input_node.tex
+<dd/ddd/classathena_1_1core_1_1_input_node.pdf, id=1455, 501.875pt x 262.4204pt
 >
 File: dd/ddd/classathena_1_1core_1_1_input_node.pdf Graphic file (type pdf)
 <use dd/ddd/classathena_1_1core_1_1_input_node.pdf>
 Package pdftex.def Info: dd/ddd/classathena_1_1core_1_1_input_node.pdf  used on
  input line 10.
 (pdftex.def)             Requested size: 108.82764pt x 56.9055pt.
- [25 <./dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.pdf>]
+ [27 <./dd/ddd/classathena_1_1core_1_1_input_node.pdf>]
 Underfull \hbox (badness 10000) detected at line 70
 [][][]
  []
 
-[26 <./dd/ddd/classathena_1_1core_1_1_input_node.pdf>]
+
 Underfull \hbox (badness 10000) detected at line 83
 [][][]
  []
 
-
+[28]
 Underfull \hbox (badness 10000) detected at line 96
 [][][]
  []
@@ -1226,8 +1231,8 @@ Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
 
-[27]) (./db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.tex
-<db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf, id=1489, 501.
+[29]) (./db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.tex
+<db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf, id=1524, 501.
 875pt x 167.9876pt>
 File: db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf Graphic f
 ile (type pdf)
@@ -1241,12 +1246,12 @@ Underfull \hbox (badness 3449) in paragraph at lines 20--22
 $
  []
 
-[28 <./db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf>]
+[30 <./db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 53
 [][][]
  []
 
-[29]
+[31]
 Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
@@ -1261,9 +1266,9 @@ Underfull \hbox (badness 10000) detected at line 118
 [][][]
  []
 
-[30]) (./d2/d3f/structathena_1_1backend_1_1generic_1_1_memory_chunk.tex)
+[32]) (./d2/d3f/structathena_1_1backend_1_1generic_1_1_memory_chunk.tex)
 (./dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.tex
-<dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf, id=1541, 501.875pt x 24
+<dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf, id=1577, 501.875pt x 24
 4.81462pt>
 File: dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf Graphic file (type 
 pdf)
@@ -1273,7 +1278,7 @@ Package pdftex.def Info: dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf
 (pdftex.def)             Requested size: 174.98497pt x 85.35826pt.
 )
 (./df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.tex
-<df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf, id=1542, 501.875pt
+<df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf, id=1578, 501.875pt
  x 195.8517pt>
 File: df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf Graphic file (
 type pdf)
@@ -1281,12 +1286,12 @@ type pdf)
 Package pdftex.def Info: df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel
 .pdf  used on input line 6.
 (pdftex.def)             Requested size: 145.82336pt x 56.9055pt.
- [31 <./dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf>]
+ [33 <./dc/d9a/classathena_1_1core_1_1loss_1_1_m_s_e_loss.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 16--18
 [][] \T1/Roboto-LF/bc/n/10 & [] (int, std[]::vector$\OML/cmm/m/it/10 <$ [] $>$
  []
 
-[32 <./df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf>]
+[34 <./df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 49
 [][][]
  []
@@ -1301,25 +1306,25 @@ Underfull \hbox (badness 10000) detected at line 90
 [][][]
  []
 
-[33]
+[35]
 Underfull \hbox (badness 10000) detected at line 114
 [][][]
  []
 
 ) (./d9/dbb/classathena_1_1core_1_1_node.tex
-<d9/dbb/classathena_1_1core_1_1_node.pdf, id=1602, 501.875pt x 122.4073pt>
+<d9/dbb/classathena_1_1core_1_1_node.pdf, id=1637, 501.875pt x 122.4073pt>
 File: d9/dbb/classathena_1_1core_1_1_node.pdf Graphic file (type pdf)
 <use d9/dbb/classathena_1_1core_1_1_node.pdf>
 Package pdftex.def Info: d9/dbb/classathena_1_1core_1_1_node.pdf  used on input
  line 10.
 (pdftex.def)             Requested size: 349.96996pt x 85.35826pt.
- [34 <./d9/dbb/classathena_1_1core_1_1_node.pdf>]
-Underfull \hbox (badness 10000) detected at line 124
+ [36 <./d9/dbb/classathena_1_1core_1_1_node.pdf>] [37]
+Underfull \hbox (badness 10000) detected at line 127
 [][][]
  []
 
-[35]) (./d3/d9b/classathena_1_1core_1_1_op_kernel.tex
-<d3/d9b/classathena_1_1core_1_1_op_kernel.pdf, id=1656, 501.875pt x 33.3245pt>
+) (./d3/d9b/classathena_1_1core_1_1_op_kernel.tex
+<d3/d9b/classathena_1_1core_1_1_op_kernel.pdf, id=1693, 501.875pt x 33.3245pt>
 File: d3/d9b/classathena_1_1core_1_1_op_kernel.pdf Graphic file (type pdf)
 <use d3/d9b/classathena_1_1core_1_1_op_kernel.pdf>
 Package pdftex.def Info: d3/d9b/classathena_1_1core_1_1_op_kernel.pdf  used on 
@@ -1331,7 +1336,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--23
 >$
  []
 
-[36 <./d3/d9b/classathena_1_1core_1_1_op_kernel.pdf>]
+[38 <./d3/d9b/classathena_1_1core_1_1_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 64
 [][][]
  []
@@ -1361,7 +1366,7 @@ Overfull \hbox (84.41833pt too wide) in paragraph at lines 102--103
 []\T1/Roboto-LF/bc/n/10 Implemented in [], [], [],
  []
 
-[37] [38]
+[39] [40]
 Underfull \hbox (badness 10000) detected at line 117
 [][][]
  []
@@ -1373,7 +1378,7 @@ Overfull \hbox (84.41833pt too wide) in paragraph at lines 122--123
 
 ) (./d6/d5b/structathena_1_1backend_1_1generic_1_1_queue_item.tex)
 (./dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.tex
-<dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf, id=1722, 501.87
+<dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf, id=1758, 501.87
 5pt x 175.32501pt>
 File: dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf Graphic fil
 e (type pdf)
@@ -1387,12 +1392,12 @@ Underfull \hbox (badness 3449) in paragraph at lines 20--22
 $
  []
 
-[39 <./dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf>]
+[41 <./dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 53
 [][][]
  []
 
-[40]
+[42]
 Underfull \hbox (badness 10000) detected at line 77
 [][][]
  []
@@ -1402,18 +1407,18 @@ Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
-[41]
+[43]
 Underfull \hbox (badness 10000) detected at line 118
 [][][]
  []
 
-) (./d5/d5e/classathena_1_1core_1_1_session.tex [42]
-Underfull \hbox (badness 10000) detected at line 51
+) (./d5/d5e/classathena_1_1core_1_1_session.tex [44]
+Underfull \hbox (badness 10000) detected at line 57
 [][][]
  []
 
 ) (./d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.tex
-<d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf, id=1793, 501
+<d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf, id=1833, 501
 .875pt x 155.6214pt>
 File: d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf Graphic 
 file (type pdf)
@@ -1423,7 +1428,7 @@ imizer.pdf  used on input line 6.
 (pdftex.def)             Requested size: 183.51596pt x 56.9055pt.
 )
 (./d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.tex
-<d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf, id=1795, 501.
+<d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf, id=1835, 501.
 875pt x 166.60242pt>
 File: d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf Graphic f
 ile (type pdf)
@@ -1431,7 +1436,7 @@ ile (type pdf)
 Package pdftex.def Info: d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_k
 ernel.pdf  used on input line 10.
 (pdftex.def)             Requested size: 171.41635pt x 56.9055pt.
- [43 <./d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf>]
+ [45 <./d2/db8/classathena_1_1core_1_1optimizers_1_1_s_g_d_optimizer.pdf>]
 Underfull \hbox (badness 3449) in paragraph at lines 20--22
 [][] \T1/Roboto-LF/bc/n/10 & [] (int d, std[]::vector$\OML/cmm/m/it/10 <$ [] $>
 $
@@ -1441,7 +1446,7 @@ $
 Overfull \vbox (16.53047pt too high) has occurred while \output is active []
 
 
-[44 <./d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf>]
+[46 <./d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.pdf>]
 Underfull \hbox (badness 10000) detected at line 53
 [][][]
  []
@@ -1456,14 +1461,14 @@ Underfull \hbox (badness 10000) detected at line 94
 [][][]
  []
 
-[45]
+[47]
 Underfull \hbox (badness 10000) detected at line 118
 [][][]
  []
 
 ) (./d7/d12/structathena_1_1backend_1_1generic_1_1_swap_record.tex)
-(./d4/d6b/classathena_1_1core_1_1_tensor.tex [46])
-(./d0/d92/classathena_1_1core_1_1_tensor_shape.tex [47]
+(./d4/d6b/classathena_1_1core_1_1_tensor.tex [48])
+(./d0/d92/classathena_1_1core_1_1_tensor_shape.tex [49]
 Underfull \hbox (badness 10000) detected at line 56
 [][][]
  []
@@ -1483,7 +1488,7 @@ Underfull \hbox (badness 10000) detected at line 108
 [][][]
  []
 
-[48]
+[50]
 Underfull \hbox (badness 10000) detected at line 121
 [][][]
  []
@@ -1494,14 +1499,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 130--131
 :allocate(), athena[]::backend[]::[]Abstract[]Memory[]Manager[]
  []
 
-) (./db/db3/classathena_1_1backend_1_1_virtual_memory.tex [49]
+) (./db/db3/classathena_1_1backend_1_1_virtual_memory.tex [51]
 Underfull \hbox (badness 10000) detected at line 38
 [][][]
  []
 
-) (./da/def/structathena_1_1backend_1_1_v_memory_block.tex [50])
+) (./da/def/structathena_1_1backend_1_1_v_memory_block.tex [52])
 (./dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.tex
-<dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.pdf, id=1939, 
+<dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.pdf, id=1979, 
 501.875pt x 157.44823pt>
 File: dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.pdf Graph
 ic file (type pdf)
@@ -1509,8 +1514,8 @@ ic file (type pdf)
 Package pdftex.def Info: dd/de7/classathena_1_1core_1_1initializers_1_1_void_in
 itializer.pdf  used on input line 10.
 (pdftex.def)             Requested size: 181.38704pt x 56.9055pt.
- [51 <./dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.pdf>]) 
-[52]
+ [53 <./dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.pdf>]) 
+[54]
 (./refman.ind
 Underfull \hbox (badness 10000) in paragraph at lines 14--16
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
@@ -1522,58 +1527,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--43
 ger,
  []
 
-[53
+[55
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
+Underfull \hbox (badness 10000) in paragraph at lines 136--138
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--142
+Underfull \hbox (badness 10000) in paragraph at lines 141--143
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 220--222
+Underfull \hbox (badness 10000) in paragraph at lines 221--223
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--228
+Underfull \hbox (badness 10000) in paragraph at lines 227--229
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--248
+Underfull \hbox (badness 10000) in paragraph at lines 247--249
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 261--263
+Underfull \hbox (badness 10000) in paragraph at lines 264--266
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--281
+Underfull \hbox (badness 10000) in paragraph at lines 282--284
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--298
+Underfull \hbox (badness 10000) in paragraph at lines 299--301
 []| \T1/Roboto-LF/bc/n/10 athena[]::backend[]::generic[]::[]Generic[]Memory[]
  []
 
-[54])
+[56])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
  (./refman.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 183.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 183.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 3578626E012D28F5DBF72385C89F9F04;37633.
+(rerunfilecheck)             Checksum: C82B815F05CF5983A2BF4C9F0FB4B2DB;38061.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1581,10 +1586,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
  ) 
 Here is how much of TeX's memory you used:
- 16179 strings out of 492649
- 269699 string characters out of 6129622
- 344739 words of memory out of 5000000
- 19163 multiletter control sequences out of 15000+600000
+ 16207 strings out of 492649
+ 270620 string characters out of 6129622
+ 345014 words of memory out of 5000000
+ 19170 multiletter control sequences out of 15000+600000
  88531 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  53i,16n,92p,1287b,654s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1598,16 +1603,17 @@ ve/2018/texmf-dist/fonts/enc/dvips/roboto/rbto_bergpl.enc}{/usr/local/texlive/2
 018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/20
 18/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2018
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2018/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-
-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2018/texmf-di
-st/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts
-/type1/urw/courier/ucrro8a.pfb>
-Output written on refman.pdf (61 pages, 361369 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2018/texmf-di
+st/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2018/texmf-dist
+/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
+ype1/urw/courier/ucrro8a.pfb>
+Output written on refman.pdf (63 pages, 376030 bytes).
 PDF statistics:
- 2318 PDF objects out of 2487 (max. 8388607)
- 2169 compressed objects within 22 object streams
- 562 named destinations out of 1000 (max. 500000)
- 1407 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2369 PDF objects out of 2487 (max. 8388607)
+ 2216 compressed objects within 23 object streams
+ 583 named destinations out of 1000 (max. 500000)
+ 1423 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -44,6 +44,8 @@ namespace athena::backend {
 
         size_t curMemoryUsage;
 
+        std::vector<athena::core::Tensor*> tensors;
+
     public:
 
         VirtualMemory ();
@@ -67,6 +69,7 @@ namespace athena::backend {
          */
         void free ( vm_word virtualAddress );
 
+        athena::core::Tensor* getTensor ( vm_word address );
     };
 }
 

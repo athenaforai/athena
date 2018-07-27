@@ -96,8 +96,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f81ba3b4a6291f37a33f7eb903ecdfe"><td class="memItemLeft" align="right" valign="top"><a id="a1f81ba3b4a6291f37a33f7eb903ecdfe"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GradientDescent</b> (<a class="el" href="../../d7/d32/classathena_1_1core_1_1loss_1_1_abstract_loss_function.html">athena::core::loss::AbstractLossFunction</a> *loss, float learningRate)</td></tr>
 <tr class="separator:a1f81ba3b4a6291f37a33f7eb903ecdfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9ecd3b02a82c86bfaaa3d93789d2d5a"><td class="memItemLeft" align="right" valign="top"><a id="ab9ecd3b02a82c86bfaaa3d93789d2d5a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>prepare</b> () override</td></tr>
+<tr class="memitem:ab9ecd3b02a82c86bfaaa3d93789d2d5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.html#ab9ecd3b02a82c86bfaaa3d93789d2d5a">prepare</a> () override</td></tr>
 <tr class="separator:ab9ecd3b02a82c86bfaaa3d93789d2d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1403aaa8543b4f50e783ae19b26e2ea4"><td class="memItemLeft" align="right" valign="top"><a id="a1403aaa8543b4f50e783ae19b26e2ea4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>minimize</b> () override</td></tr>
@@ -141,7 +140,70 @@ unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>lastResultCe
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
 <p class="definition">Definition at line <a class="el" href="../../d7/d64/_gradient_descent_8h_source.html#l00012">12</a> of file <a class="el" href="../../d7/d64/_gradient_descent_8h_source.html">GradientDescent.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab9ecd3b02a82c86bfaaa3d93789d2d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ecd3b02a82c86bfaaa3d93789d2d5a">&#9670;&nbsp;</a></span>prepare()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void athena::core::optimizers::GradientDescent::prepare </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Generate bytecode for backpropagation </p>
+<p>The whole algorithm: </p><ol>
+<li>
+Calculate actual error E  </li>
+<li>
+Let's Q - queue of nodes, EQ - queue of errors <ol>
+<li>
+\( node \rightarrow Q \)  </li>
+<li>
+\( E \rightarrow EQ \)  </li>
+</ol>
+</li>
+<li>
+For each node N in Q <ol>
+<li>
+\( EQ \rightarrow E \)  </li>
+<li>
+If this is variable node, adjust weights: \( N = N - \alpha * E \)  </li>
+<li>
+If this is regular node, for each incoming node I: <ol>
+<li>
+If I is constant, skip  </li>
+<li>
+\( E_i = D_i \odot E \), where \( E_i \) is the new error value, \( D_i \) - derivative of N with respect to I, \( \odot \) - Hadamard (elementwise) product.  </li>
+<li>
+\( E_i \rightarrow EQ \)  </li>
+<li>
+\( I \rightarrow Q \)  </li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+<p>Implements <a class="el" href="../../d5/d97/classathena_1_1core_1_1optimizers_1_1_abstract_optimizer.html">athena::core::optimizers::AbstractOptimizer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="../../d1/d7e/_gradient_descent_8cpp_source.html#l00015">15</a> of file <a class="el" href="../../d1/d7e/_gradient_descent_8cpp_source.html">GradientDescent.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>core/optimizers/<a class="el" href="../../d7/d64/_gradient_descent_8h_source.html">GradientDescent.h</a></li>
 <li>core/optimizers/<a class="el" href="../../d1/d7e/_gradient_descent_8cpp_source.html">GradientDescent.cpp</a></li>
 </ul>
