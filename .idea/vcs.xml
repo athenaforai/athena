@@ -3,7 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/gtest" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/libs/openblas" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/libs/openblas/src/OpenBLAS" vcs="Git" />
   </component>
 </project>

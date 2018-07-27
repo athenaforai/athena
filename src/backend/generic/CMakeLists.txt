@@ -18,14 +18,16 @@ function(getopenblas)
                         BUILD_IN_SOURCE TRUE
                         BUILD_COMMAND "make"
 
-                        INSTALL_COMMAND ${MAKE_EXE} PREFIX=${PROJECT_SOURCE_DIR}/libs/openblas install
+                        INSTALL_COMMAND ${MAKE_EXE} PREFIX=${PROJECT_SOURCE_DIR}/libs/src/openblas install
 
                         )
     externalproject_get_property(OpenBLAS SOURCE_DIR)
     add_dependencies(athena OpenBLAS)
-    target_include_directories(athena PUBLIC ${PROJECT_SOURCE_DIR}/libs/openblas/include)
+    target_include_directories(athena PUBLIC
+                               ${PROJECT_SOURCE_DIR}/libs/src/openblas/include)
     target_compile_definitions(athena PUBLIC -DFORCE_OPENBLAS)
-    set(BLAS_LIBRARIES ${PROJECT_SOURCE_DIR}/libs/openblas/lib/libopenblas.a PARENT_SCOPE)
+    set(BLAS_LIBRARIES ${PROJECT_SOURCE_DIR}/libs/src/openblas/lib/libopenblas.a
+        PARENT_SCOPE)
 endfunction(getopenblas)
 
 
@@ -40,11 +42,11 @@ function(getblis)
                         UPDATE_COMMAND ""
                         PATCH_COMMAND ""
 
-                        PREFIX ${PROJECT_SOURCE_DIR}/libs
+                        PREFIX ${PROJECT_SOURCE_DIR}/libs/src/
                         SOURCE_DIR "blis"
                         INSTALL_DIR "blis"
 
-                        CONFIGURE_COMMAND ./configure --prefix=${PROJECT_SOURCE_DIR}/libs/blis/include/blis/ --enable-cblas auto
+                        CONFIGURE_COMMAND ./configure --prefix=${PROJECT_SOURCE_DIR}/libs/src/blis/include/blis/ --enable-cblas auto
 
                         BUILD_IN_SOURCE TRUE
                         BUILD_COMMAND "make"
@@ -53,9 +55,10 @@ function(getblis)
                         )
     externalproject_get_property(blis SOURCE_DIR)
     add_dependencies(athena blis)
-    target_include_directories(athena PUBLIC ${PROJECT_SOURCE_DIR}/libs/blis/include/blis/include/blis)
+    target_include_directories(athena PUBLIC ${PROJECT_SOURCE_DIR}/libs/src/blis/include/blis/include/blis)
     target_compile_definitions(athena PUBLIC -DFORCE_BLIS)
-    set(BLAS_LIBRARIES ${PROJECT_SOURCE_DIR}/libs/blis/include/blis/lib/libblis.a PARENT_SCOPE)
+    set(BLAS_LIBRARIES ${PROJECT_SOURCE_DIR}/libs/src/blis/include/blis/lib/libblis.a
+        PARENT_SCOPE)
 endfunction(getblis)
 
 
