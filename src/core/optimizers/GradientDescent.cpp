@@ -173,9 +173,6 @@ athena::core::optimizers::GradientDescent::getByteCode (
 
             bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
             bytecode.push_back( scaledErrorTensor->getStartAddress());
-
-            bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
-            bytecode.push_back( error->getStartAddress());
         } else {
 
             for ( unsigned long i = 0; i < n->getIncomingNodes().size(); i++ ) {
@@ -216,15 +213,15 @@ athena::core::optimizers::GradientDescent::getByteCode (
                 bytecode.push_back( inDerivTensorAddress );
                 bytecode.push_back( newErrTensor->getStartAddress());
 
-                bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
-                bytecode.push_back( error->getStartAddress());
-
                 errorsQueue.push( newErrTensor );
                 nodesQueue.push( incomingNode );
 
             }
 
         }
+
+        bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
+        bytecode.push_back( error->getStartAddress());
     }
 
     return std::make_tuple( bytecode, static_cast<unsigned long>(0));
