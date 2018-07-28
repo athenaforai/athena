@@ -17,7 +17,7 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
                 std::end( this->bytecode ), std::begin( bytecode ),
                 std::end( bytecode ));
         this->resultCell = resultCell;
-        this->resultShape = shape;
+        this->resultShape = *shape;
     }
 
 //    executorService = new athena::backend::ExecutorService(
@@ -27,16 +27,16 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
 
 }
 
-std::tuple< std::vector< vm_word >, athena::core::TensorShape, vm_word >
+std::tuple< std::vector< vm_word >, athena::core::TensorShape*, vm_word >
 athena::core::Session::getByteCode ( Node* logits ) {
 
     std::vector< vm_word > curBC;
     vm_word resultCell = 0;
-    TensorShape resultShape;
+    TensorShape * resultShape;
 
     if ( logits->isInputNode()) {
         auto inpNode = dynamic_cast<InputNode*>(logits);
-        resultShape = inpNode->getData()->getShape();
+        resultShape = new TensorShape(inpNode->getData()->getShape());
         resultCell = virtualMemory->allocate( inpNode->getData());
         inpNode->setMappedMemCell( resultCell );
         headNodes.push_back( inpNode );
@@ -68,18 +68,18 @@ athena::core::Session::getByteCode ( Node* logits ) {
                             std::end( curBC ), std::begin( predBC ),
                             std::end( predBC ));
                     resCells.push_back( predResCell );
-                    predShapes.push_back( predShape );
+                    predShapes.push_back( *predShape );
                 }
             }
 
-            resultShape = logits->getOp()->getOutputShape( predShapes );
-            auto resultTensor = new Tensor( resultShape, DataType::FLOAT ); // todo TYPE
+            resultShape = new TensorShape(logits->getOp()->getOutputShape( predShapes ));
+            auto resultTensor = new Tensor( *resultShape, DataType::FLOAT ); // todo TYPE
             resultCell = virtualMemory->allocate( resultTensor );
 
             curBC.push_back( static_cast<vm_word>( OpCode::ALLOC ));
-            curBC.push_back( resultShape.dimensions());
-            for ( unsigned int d = 0; d < resultShape.dimensions(); d++ ) {
-                curBC.push_back( resultShape.dim( d ));
+            curBC.push_back( resultShape->dimensions());
+            for ( unsigned int d = 0; d < resultShape->dimensions(); d++ ) {
+                curBC.push_back( resultShape->dim( d ));
             }
             curBC.push_back( resultCell );
 

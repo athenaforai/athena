@@ -44,7 +44,7 @@ namespace athena::core {
          * @param logits sub-graph
          * @return bytecode
          */
-        std::tuple< std::vector< vm_word >, TensorShape, vm_word >
+        std::tuple< std::vector< vm_word >, TensorShape*, vm_word >
         getByteCode ( Node* logits );
 
         athena::backend::AbstractExecutor* executor {};
