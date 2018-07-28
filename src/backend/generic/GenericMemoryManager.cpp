@@ -124,6 +124,14 @@ void* athena::backend::generic::GenericMemoryManager::getPhysicalAddress (
 void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word address,
                                                                    unsigned long length ) {
 
+    for ( vm_word a : lockedList ) {
+        if ( a == address ) {
+            return;
+        }
+    }
+
+    lockedList.push_back( address );
+
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
@@ -160,6 +168,22 @@ athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
 }
 
 void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) {
+
+    long idx = -1;
+
+    for ( int i = 0; i < lockedList.size(); i++ ) {
+        if ( lockedList[i] == address ) {
+            idx = i;
+            break;
+        }
+    }
+
+    if ( idx == -1 ) {
+        return;
+    }
+
+    lockedList.erase( std::begin(lockedList) + idx );
+
     memoryChunksLock.lock();
 
     auto cur = memoryChunksHead;
@@ -230,6 +254,14 @@ void athena::backend::generic::GenericMemoryManager::setMemSize ( size_t memSize
 void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         vm_word address,
         unsigned long length ) {
+
+    for ( vm_word a : lockedList ) {
+        if ( a == address ) {
+            return;
+        }
+    }
+
+    lockedList.push_back( address );
 
     auto item = new QueueItem();
     item->address = address;

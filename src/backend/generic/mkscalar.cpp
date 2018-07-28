@@ -13,7 +13,8 @@ namespace athena::backend::generic {
                     unsigned long s,
                     athena::core::Tensor* res ) {
 //        auto f = new float[1];
+        auto scalar = reinterpret_cast<float*>(&s);
         auto f = memoryManager->getPhysicalAddress( res->getStartAddress());
-        memcpy( f, reinterpret_cast<float*>(&s), sizeof( float ));
+        memcpy( f, scalar, sizeof( float ));
     }
 }

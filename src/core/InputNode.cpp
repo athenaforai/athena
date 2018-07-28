@@ -40,3 +40,7 @@ athena::core::initializers::AbstractInitializer*
 athena::core::InputNode::getInitializer () {
     return initializer;
 }
+
+bool athena::core::InputNode::isGarbage () {
+    return false;
+}

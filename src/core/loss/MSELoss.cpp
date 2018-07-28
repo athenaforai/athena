@@ -24,7 +24,7 @@ athena::core::loss::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
     bytecode.push_back( args[ 1 ] );
     bytecode.push_back( resultCell );
 
-    return std::vector< vm_word >();
+    return bytecode;
 }
 
 std::vector< unsigned long >
@@ -38,7 +38,7 @@ athena::core::loss::MSEOpKernel::getDerivativeBytecode ( int d,
     bytecode.push_back( args[ 1 ] );
     bytecode.push_back( resultCell );
 
-    return std::vector< vm_word >();
+    return bytecode;
 }
 
 athena::core::TensorShape &athena::core::loss::MSEOpKernel::getOutputShape (

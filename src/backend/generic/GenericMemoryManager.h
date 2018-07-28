@@ -76,6 +76,9 @@ namespace athena::backend::generic {
 
         std::vector< bool > laneFinished;
 
+        // хранит список загруженных тензоров, скорее всего костыль
+        std::vector<vm_word> lockedList;
+
         /**
          * This is a thread function for memory lane-threads. It loads data to
          * RAM and notifies corresponding threads

@@ -64,11 +64,15 @@ athena::core::optimizers::GradientDescent::getByteCode (
     auto lossShape = TensorShape( { 1 } );
 
     auto lossTensor = new Tensor( lossShape, lastRes->getType());
-
-    std::vector<vm_word> lossArgs (2);
-
     session->getMemory()->allocate( lossTensor );
-    auto label = dynamic_cast<InputNode*>(node->getIncomingNodes()[ 2 ]);
+
+    bytecode.push_back( static_cast<vm_word>(OpCode::ALLOC));
+    bytecode.push_back( lossShape.dimensions());
+    bytecode.push_back( 1 ); // todo update
+    bytecode.push_back( lossTensor->getStartAddress());
+
+    std::vector< vm_word > lossArgs;
+    auto label = dynamic_cast<InputNode*>(node->getIncomingNodes()[ 1 ]);
     session->getMemory()->allocate( label->getData());
 
     lossArgs.push_back( lastRes->getStartAddress());
@@ -82,10 +86,35 @@ athena::core::optimizers::GradientDescent::getByteCode (
 
     // todo calculate derivative
 
+    std::vector< TensorShape > tmp;
+    tmp.push_back( lastRes->getShape());
+    tmp.push_back( lossTensor->getShape());
+    auto lossDerivativeShape = node->getOp()->getDerivativeShape( 0, tmp );
+
+    auto lossDerivativeTensor = new Tensor( lossDerivativeShape, lastRes->getType());
+
+    session->getMemory()->allocate( lossDerivativeTensor );
+
+    bytecode.push_back( static_cast<vm_word>(OpCode::ALLOC));
+    bytecode.push_back( lossDerivativeShape.dimensions());
+    for ( unsigned long i = 0; i < lossDerivativeShape.dimensions(); i++ ) {
+        bytecode.push_back( lossDerivativeShape.dim( i ));
+    }
+    bytecode.push_back( lossDerivativeTensor->getStartAddress());
+
+    auto lossDerivativeBytecode = node->getOp()->getDerivativeBytecode(
+            0, lossArgs,
+            lossDerivativeTensor->getStartAddress());
+
+    bytecode.insert( std::end( bytecode ), std::begin( lossDerivativeBytecode ),
+                     std::end( lossDerivativeBytecode ));
+
+    node->addDerivative( lossDerivativeTensor->getStartAddress());
+
     // 2.
 
-    std::queue<Node*> nodesQueue;
-    std::queue<Tensor*> errorsQueue;
+    std::queue< Node* > nodesQueue;
+    std::queue< Tensor* > errorsQueue;
 
     nodesQueue.push( node );
     errorsQueue.push( lossTensor );
@@ -103,8 +132,9 @@ athena::core::optimizers::GradientDescent::getByteCode (
     bytecode.push_back( alphaTensor->getStartAddress());
 
     bytecode.push_back( static_cast<vm_word>(OpCode::MKSCALAR));
-    float mlr = -learningRate;
-    vm_word a = *reinterpret_cast<vm_word*>(&mlr);
+    auto *mlr = new float[1];
+    mlr[0] = -learningRate;
+    vm_word a = *reinterpret_cast<vm_word*>(mlr);
     bytecode.push_back( a );
     bytecode.push_back( alphaTensor->getStartAddress());
 
@@ -140,6 +170,12 @@ athena::core::optimizers::GradientDescent::getByteCode (
             bytecode.push_back( inN->getData()->getStartAddress());
             bytecode.push_back( scaledErrorTensor->getStartAddress());
             bytecode.push_back( inN->getData()->getStartAddress());
+
+            bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
+            bytecode.push_back( scaledErrorTensor->getStartAddress());
+
+            bytecode.push_back( static_cast<vm_word>(OpCode::DEL));
+            bytecode.push_back( error->getStartAddress());
         } else {
 
             for ( unsigned long i = 0; i < n->getIncomingNodes().size(); i++ ) {
@@ -160,6 +196,14 @@ athena::core::optimizers::GradientDescent::getByteCode (
 
                 auto newErrTensor = new Tensor( error->getShape(), error->getType());
                 session->getMemory()->allocate( newErrTensor );
+
+                bytecode.push_back( static_cast<vm_word>(OpCode::ALLOC));
+                bytecode.push_back( newErrTensor->getShape().dimensions());
+                for ( unsigned long j = 0;
+                      j < newErrTensor->getShape().dimensions(); j++ ) {
+                    bytecode.push_back( newErrTensor->getShape().dim( j ));
+                }
+                bytecode.push_back( newErrTensor->getStartAddress());
 
                 if ( error->getShape().dimensions() == 1 &&
                      error->getShape().dim( 0 ) == 1 ) {
@@ -189,13 +233,12 @@ athena::core::optimizers::GradientDescent::getByteCode (
 void athena::core::optimizers::GradientDescent::minimize () {
 
     auto label = dynamic_cast<InputNode*>(loss->getIncomingNodes()[ 1 ]);
-//
-//    session->getExecutorService()->setMemoryCell( label->getMappedMemCell(),
-//                                                  label->getData());
-//
-//    session->getExecutorService()->setBytecode( bytecode );
-//
-//    session->getExecutorService()->execute();
+
+    label->getInitializer()->initialize( session->getExecutor()->getMemoryManager(),
+                                         label->getData());
+
+    session->getExecutor()->setBytecode( bytecode );
+    session->getExecutor()->execute();
 
 
 }

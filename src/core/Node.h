@@ -63,7 +63,7 @@ namespace athena::core {
 
         void updateUsageCount ();
 
-        bool isGarbage ();
+        virtual bool isGarbage ();
 
         void setPersistResult();
 

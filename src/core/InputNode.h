@@ -79,6 +79,8 @@ namespace athena::core {
         setInitializer ( athena::core::initializers::AbstractInitializer* initializer );
 
         athena::core::initializers::AbstractInitializer* getInitializer ();
+
+        bool isGarbage() override;
     };
 }
 
