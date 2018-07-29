@@ -14,7 +14,7 @@
 #ifndef ATHENA_OPCODE_PARSER_H
 #define ATHENA_OPCODE_PARSER_H
 
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <vector>
 
 namespace athena::backend {
@@ -30,7 +30,7 @@ namespace athena::backend {
      */
     unsigned int parse (
             std::vector< vm_word > &bytecode, unsigned long &next_word,
-            OpCode &new_word, vm_word* args, unsigned int &argc
+            OpCode &new_word, vm_word* args, unsigned long &argc
     );
 }
 #endif //ATHENA_OPCODE_PARSER_H

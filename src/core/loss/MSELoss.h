@@ -32,15 +32,15 @@ namespace athena::core::loss {
                 int,
                 std::vector< athena::core::TensorShape > &shapes ) override ;
 
-        std::vector< unsigned long >
+        std::vector< vm_word >
         getOpBytecode (
-                std::vector< unsigned long > args,
-                unsigned long resultCell
+                std::vector< vm_word > args,
+                vm_word resultCell
         ) override ;
 
-        std::vector< unsigned long > getDerivativeBytecode (
-                int d, std::vector< unsigned long > args,
-                unsigned long resultCell
+        std::vector< vm_word > getDerivativeBytecode (
+                int d, std::vector< vm_word > args,
+                vm_word resultCell
         ) override ;
     };
 

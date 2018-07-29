@@ -23,7 +23,7 @@ namespace athena::core::kernels {
      */
     class ScaleOpKernel : public athena::core::OpKernel {
     public:
-        ScaleOpKernel () : OpKernel( OpCode::SCALE, "scale" ) {}
+        ScaleOpKernel () : OpKernel( "scale" ) {}
 
         int getOperandsCount () override;
 

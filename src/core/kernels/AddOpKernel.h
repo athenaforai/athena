@@ -23,7 +23,7 @@ namespace athena::core::kernels {
      */
     class AddOpKernel : public OpKernel {
     public:
-        AddOpKernel () : OpKernel( OpCode::ADD, "add" ) {};
+        AddOpKernel () : OpKernel(  "add" ) {};
 
         int getOperandsCount () override;
 

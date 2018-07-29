@@ -19,7 +19,7 @@
 #include <core/Tensor.h>
 #include <utility>
 #include <vector>
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <backend/VMState.h>
 #include "CPUDevice.h"
 

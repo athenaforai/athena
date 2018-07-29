@@ -11,14 +11,14 @@
  * the License.
  */
 
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <vector>
 #include "opcode_parser.h"
 
 namespace athena::backend {
     unsigned int parse (
             std::vector< vm_word > &bytecode, unsigned long &next_word,
-            OpCode &new_word, vm_word* args, unsigned int &argc
+            OpCode &new_word, vm_word* args, unsigned long &argc
     ) {
 
         vm_word opcode = bytecode[ next_word ];

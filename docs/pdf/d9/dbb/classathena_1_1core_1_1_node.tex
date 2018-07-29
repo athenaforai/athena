@@ -32,8 +32,8 @@ std\+::string {\bfseries get\+Name} ()
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_a290e21f4231f4193c2877b8b85c1864a}\label{classathena_1_1core_1_1_node_a290e21f4231f4193c2877b8b85c1864a}} 
 void {\bfseries add\+Derivative} (unsigned long d)
 \item 
-\mbox{\Hypertarget{classathena_1_1core_1_1_node_a5f737753ebd25e521c0ac8a995ca7625}\label{classathena_1_1core_1_1_node_a5f737753ebd25e521c0ac8a995ca7625}} 
-unsigned long {\bfseries get\+Derivative} (int i)
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a21a8fca47b39e7b21631b5cbc02dbeda}\label{classathena_1_1core_1_1_node_a21a8fca47b39e7b21631b5cbc02dbeda}} 
+vm\+\_\+word {\bfseries get\+Derivative} (unsigned long i)
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_af0d6ae48f88c47a04c592c71c4b119e7}\label{classathena_1_1core_1_1_node_af0d6ae48f88c47a04c592c71c4b119e7}} 
 void {\bfseries set\+Calculated} (unsigned long res\+Cell)
@@ -42,13 +42,13 @@ void {\bfseries set\+Calculated} (unsigned long res\+Cell)
 bool {\bfseries is\+Calculated} ()
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_ae2568f40260ef891d79618c16d2fc1a8}\label{classathena_1_1core_1_1_node_ae2568f40260ef891d79618c16d2fc1a8}} 
-unsigned long {\bfseries get\+Result} ()
+vm\+\_\+word {\bfseries get\+Result} ()
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_ae160501f8419f9874bd71aefe6daa3dc}\label{classathena_1_1core_1_1_node_ae160501f8419f9874bd71aefe6daa3dc}} 
 void {\bfseries update\+Usage\+Count} ()
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_ad0e6344fe6940e59d79eb4b05a7a5b96}\label{classathena_1_1core_1_1_node_ad0e6344fe6940e59d79eb4b05a7a5b96}} 
-bool {\bfseries is\+Garbage} ()
+virtual bool {\bfseries is\+Garbage} ()
 \item 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_adf4b0a1427264f01de4e6d93e6349f18}\label{classathena_1_1core_1_1_node_adf4b0a1427264f01de4e6d93e6349f18}} 
 void {\bfseries set\+Persist\+Result} ()
@@ -94,7 +94,7 @@ bool {\bfseries persist\+Result}
 \subsection{Detailed Description}
 A basic element of execution graph Each node has pointers to its predecessors and successors. It encapsulates operation and data. 
 
-Definition at line 16 of file Node.\+h.
+Definition at line 29 of file Node.\+h.
 
 
 
@@ -116,7 +116,7 @@ Reimplemented in \mbox{\hyperlink{classathena_1_1core_1_1_input_node_aaec12f4c76
 
 
 
-Definition at line 13 of file Node.\+cpp.
+Definition at line 22 of file Node.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1_node_a6ae012557fc6b29127366b1e92801d4a}\label{classathena_1_1core_1_1_node_a6ae012557fc6b29127366b1e92801d4a}} 
 \index{athena\+::core\+::\+Node@{athena\+::core\+::\+Node}!is\+Input\+Node@{is\+Input\+Node}}
@@ -133,7 +133,7 @@ Reimplemented in \mbox{\hyperlink{classathena_1_1core_1_1_input_node_a2548b569a3
 
 
 
-Definition at line 24 of file Node.\+cpp.
+Definition at line 33 of file Node.\+cpp.
 
 
 

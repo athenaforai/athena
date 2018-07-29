@@ -15,7 +15,7 @@
 #define ATHENA_VIRTUALMEMORY_H
 
 #include <core/Tensor.h>
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <climits>
 
 namespace athena::backend {

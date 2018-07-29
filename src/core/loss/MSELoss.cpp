@@ -17,7 +17,7 @@ athena::core::loss::MSELoss::MSELoss () :
         AbstractLossFunction( new MSEOpKernel()) {};
 
 athena::core::loss::MSEOpKernel::MSEOpKernel () :
-        OpKernel( OpCode::ADD, "mseloss" ) {}
+        OpKernel( "mseloss" ) {}
 
 int athena::core::loss::MSEOpKernel::getOperandsCount () {
     return 1;
@@ -25,7 +25,7 @@ int athena::core::loss::MSEOpKernel::getOperandsCount () {
 
 std::vector< vm_word >
 athena::core::loss::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
-                                                       unsigned long resultCell ) {
+                                                 vm_word resultCell ) {
 
     std::vector< vm_word > bytecode;
     bytecode.push_back( static_cast<vm_word>(OpCode::MSE));
@@ -36,10 +36,10 @@ athena::core::loss::MSEOpKernel::getOpBytecode ( std::vector< vm_word > args,
     return bytecode;
 }
 
-std::vector< unsigned long >
+std::vector< vm_word >
 athena::core::loss::MSEOpKernel::getDerivativeBytecode ( int d,
-                                                               std::vector< unsigned long > args,
-                                                               unsigned long resultCell ) {
+                                                         std::vector< vm_word > args,
+                                                         vm_word resultCell ) {
     // todo depending on d the result needs to be scaled by -1
     std::vector< vm_word > bytecode;
     bytecode.push_back( static_cast<vm_word>(OpCode::MSE_DERIV));

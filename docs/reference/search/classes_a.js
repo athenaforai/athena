@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['tensor',['Tensor',['../d4/d6b/classathena_1_1core_1_1_tensor.html',1,'athena::core']]],
-  ['tensorshape',['TensorShape',['../d0/d92/classathena_1_1core_1_1_tensor_shape.html',1,'athena::core']]]
+  ['scaleopkernel',['ScaleOpKernel',['../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html',1,'athena::core::kernels']]],
+  ['session',['Session',['../d5/d5e/classathena_1_1core_1_1_session.html',1,'athena::core']]],
+  ['sigmoidopkernel',['SigmoidOpKernel',['../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html',1,'athena::core::kernels']]],
+  ['swaprecord',['SwapRecord',['../d7/d12/structathena_1_1backend_1_1generic_1_1_swap_record.html',1,'athena::backend::generic']]]
 ];

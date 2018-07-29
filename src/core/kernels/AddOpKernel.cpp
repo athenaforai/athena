@@ -20,10 +20,10 @@ int athena::core::kernels::AddOpKernel::getOperandsCount () {
 }
 
 
-std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
-        std::vector< unsigned long > args,
-        unsigned long resultCell ) {
-    std::vector< unsigned long > bytecode;
+std::vector< vm_word > athena::core::kernels::AddOpKernel::getOpBytecode (
+        std::vector< vm_word > args,
+        vm_word resultCell ) {
+    std::vector< vm_word > bytecode;
 
     bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
 
@@ -35,13 +35,13 @@ std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
     return bytecode;
 }
 
-std::vector< unsigned long >
+std::vector< vm_word >
 athena::core::kernels::AddOpKernel::getDerivativeBytecode (
         int d,
-        std::vector< unsigned long > args,
-        unsigned long resultCell ) {
-    std::vector< unsigned long > bytecode;
-    bytecode.push_back( static_cast<int>(OpCode::MKSCALAR));
+        std::vector< vm_word > args,
+        vm_word resultCell ) {
+    std::vector< vm_word > bytecode;
+    bytecode.push_back( static_cast<vm_word>(OpCode::MKSCALAR));
 
     float unit = 1;
     auto u = reinterpret_cast<vm_word*>(&unit);

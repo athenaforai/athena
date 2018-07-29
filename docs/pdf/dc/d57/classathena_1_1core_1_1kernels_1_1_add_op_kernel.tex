@@ -19,10 +19,10 @@ int \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a
 \item 
 \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} \& \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}{get\+Derivative\+Shape}} (int d, std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{athena\+::core\+::\+Tensor\+Shape}} $>$ \&shapes) override
 \item 
-\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a6aa2ce3c6d4c2b2eeaf99a83189e1f70}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a6aa2ce3c6d4c2b2eeaf99a83189e1f70}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a2e9cba4fb486be4c9c47ad04967f6817}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a2e9cba4fb486be4c9c47ad04967f6817}} 
 std\+::vector$<$ vm\+\_\+word $>$ {\bfseries get\+Op\+Bytecode} (std\+::vector$<$ vm\+\_\+word $>$ args, vm\+\_\+word result\+Cell) override
 \item 
-std\+::vector$<$ vm\+\_\+word $>$ \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}{get\+Derivative\+Bytecode}} (int d, std\+::vector$<$ vm\+\_\+word $>$ args, vm\+\_\+word result\+Cell) override
+std\+::vector$<$ vm\+\_\+word $>$ \mbox{\hyperlink{classathena_1_1core_1_1kernels_1_1_add_op_kernel_ae318f1b376859d8177c401de17ca956a}{get\+Derivative\+Bytecode}} (int d, std\+::vector$<$ vm\+\_\+word $>$ args, vm\+\_\+word result\+Cell) override
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -30,16 +30,16 @@ std\+::vector$<$ vm\+\_\+word $>$ \mbox{\hyperlink{classathena_1_1core_1_1kernel
 \subsection{Detailed Description}
 Performs sum of 2 given Tensors 
 
-Definition at line 11 of file Add\+Op\+Kernel.\+h.
+Definition at line 24 of file Add\+Op\+Kernel.\+h.
 
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a97ac0c3c61c772563221c3148d553841}} 
+\mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_ae318f1b376859d8177c401de17ca956a}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_ae318f1b376859d8177c401de17ca956a}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Derivative\+Bytecode@{get\+Derivative\+Bytecode}}
 \index{get\+Derivative\+Bytecode@{get\+Derivative\+Bytecode}!athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}}
 \subsubsection{\texorpdfstring{get\+Derivative\+Bytecode()}{getDerivativeBytecode()}}
-{\footnotesize\ttfamily std\+::vector$<$ unsigned long $>$ athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Derivative\+Bytecode (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{std\+::vector$<$ vm\+\_\+word $>$}]{args,  }\item[{vm\+\_\+word}]{result\+Cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily std\+::vector$<$ vm\+\_\+word $>$ athena\+::core\+::kernels\+::\+Add\+Op\+Kernel\+::get\+Derivative\+Bytecode (\begin{DoxyParamCaption}\item[{int}]{d,  }\item[{std\+::vector$<$ vm\+\_\+word $>$}]{args,  }\item[{vm\+\_\+word}]{result\+Cell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 Generates bytecode to calculate partial derivative 
 \begin{DoxyParams}{Parameters}
@@ -59,7 +59,7 @@ Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_ad500db1afc5a7c10a
 
 
 
-Definition at line 30 of file Add\+Op\+Kernel.\+cpp.
+Definition at line 39 of file Add\+Op\+Kernel.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a240d13047b8fd7676bf1f9d2bc94298f}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Derivative\+Shape@{get\+Derivative\+Shape}}
@@ -83,7 +83,7 @@ Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_ad95af6dd184ce7ee9
 
 
 
-Definition at line 52 of file Add\+Op\+Kernel.\+cpp.
+Definition at line 61 of file Add\+Op\+Kernel.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a296a0c69a7b906037324cce2b64827e1}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Operands\+Count@{get\+Operands\+Count}}
@@ -100,7 +100,7 @@ Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_add97d4c132d80ecd9
 
 
 
-Definition at line 9 of file Add\+Op\+Kernel.\+cpp.
+Definition at line 18 of file Add\+Op\+Kernel.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}\label{classathena_1_1core_1_1kernels_1_1_add_op_kernel_a687d68d7374e9546f01cefcbfb382d04}} 
 \index{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel@{athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}!get\+Output\+Shape@{get\+Output\+Shape}}
@@ -124,7 +124,7 @@ Implements \mbox{\hyperlink{classathena_1_1core_1_1_op_kernel_a762e541463ffd089b
 
 
 
-Definition at line 47 of file Add\+Op\+Kernel.\+cpp.
+Definition at line 56 of file Add\+Op\+Kernel.\+cpp.
 
 
 

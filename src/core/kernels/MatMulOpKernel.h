@@ -28,7 +28,7 @@ namespace athena::core::kernels {
      */
     class MatMulOpKernel : public athena::core::OpKernel {
     public:
-        MatMulOpKernel () : OpKernel( OpCode::MATMUL, "matmul" ) {};
+        MatMulOpKernel () : OpKernel(  "matmul" ) {};
 
         int getOperandsCount () override;
 

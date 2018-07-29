@@ -90,12 +90,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a73815358c436f8f6dd73d49d4d5d189d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab24e17b8e8b2f8278b56b84dfdda42a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/db3/classathena_1_1backend_1_1_virtual_memory.html#ab24e17b8e8b2f8278b56b84dfdda42a3">free</a> (vm_word virtualAddress)</td></tr>
 <tr class="separator:ab24e17b8e8b2f8278b56b84dfdda42a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa85218abc6c263090922c84453adee2e"><td class="memItemLeft" align="right" valign="top"><a id="aa85218abc6c263090922c84453adee2e"></a>
+<a class="el" href="../../d4/d6b/classathena_1_1core_1_1_tensor.html">athena::core::Tensor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getTensor</b> (vm_word address)</td></tr>
+<tr class="separator:aa85218abc6c263090922c84453adee2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Virtual memory is an abstraction of storage resources that are actually available on a given machine. Each thread has its own address space. In Athena's VM address space is linear. This means that valid addresses are 0 to 2^64 - 1. Address 0 is reserved for NULL value. When Tensor is initialized, it is given with a continuous block of virtual addresses. When one actually needs to access Tensor's data, Memory Manager allocates physical memory and converts virtual addresses to physical ones. This helps Athena to run in low-memory conditions. This class is heavily used in Session class to generate bytecode. <br />
  To discover more about Virtual Memory see article on <a href="https://en.wikipedia.org/wiki/Virtual_memory">Wikipedia</a> </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d0/d78/_virtual_memory_8h_source.html#l00036">36</a> of file <a class="el" href="../../d0/d78/_virtual_memory_8h_source.html">VirtualMemory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d0/d78/_virtual_memory_8h_source.html#l00045">45</a> of file <a class="el" href="../../d0/d78/_virtual_memory_8h_source.html">VirtualMemory.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a22be58a8e0cb574a7d46d4095cb64ac5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22be58a8e0cb574a7d46d4095cb64ac5">&#9670;&nbsp;</a></span>allocate()</h2>
@@ -120,7 +123,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Virtual Address of 0 element of Tensor </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00020">20</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00028">28</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
 
 </div>
 </div>
@@ -146,7 +149,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00137">137</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
 
 </div>
 </div>
@@ -172,7 +175,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00087">87</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html#l00097">97</a> of file <a class="el" href="../../dd/d8a/_virtual_memory_8cpp_source.html">VirtualMemory.cpp</a>.</p>
 
 </div>
 </div>

@@ -33,7 +33,7 @@ void athena::core::optimizers::GradientDescent::prepare () {
 
 }
 
-std::tuple< std::vector< unsigned long >, unsigned long >
+std::tuple< std::vector< vm_word >, vm_word >
 athena::core::optimizers::GradientDescent::getByteCode (
         athena::core::loss::AbstractLossFunction* node ) {
 
@@ -223,7 +223,7 @@ athena::core::optimizers::GradientDescent::getByteCode (
         bytecode.push_back( error->getStartAddress());
     }
 
-    return std::make_tuple( bytecode, static_cast<unsigned long>(0));
+    return std::make_tuple( bytecode, static_cast<vm_word>(0));
 }
 
 void athena::core::optimizers::GradientDescent::minimize () {

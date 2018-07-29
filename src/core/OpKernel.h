@@ -18,7 +18,7 @@
 #include <utility>
 #include <vector>
 
-#include "opcodes.h"
+#include "backend/opcodes.h"
 #include <core/TensorShape.h>
 
 namespace athena::core {
@@ -28,11 +28,9 @@ namespace athena::core {
      */
     class OpKernel {
     protected:
-        OpCode opCode;
         std::string name;
     public:
-        explicit OpKernel ( OpCode opCode, std::string name ) :
-                opCode( opCode ), name( std::move( name )) {};
+        explicit OpKernel ( std::string name ) : name( std::move( name )) {};
 
         /**
          * There can be unary, binary and other operations

@@ -66,13 +66,13 @@ namespace athena::core {
 
         void addDerivative ( unsigned long d );
 
-        unsigned long getDerivative ( unsigned long i );
+        vm_word getDerivative ( unsigned long i );
 
         void setCalculated ( unsigned long resCell );
 
         bool isCalculated ();
 
-        unsigned long getResult ();
+        vm_word getResult ();
 
         void updateUsageCount ();
 

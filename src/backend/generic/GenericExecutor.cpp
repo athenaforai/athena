@@ -12,7 +12,7 @@
  */
 
 #include "GenericExecutor.h"
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <stdexcept>
 #include <backend/opcode_parser.h>
 #include "ops.h"
@@ -35,8 +35,8 @@ athena::backend::generic::GenericExecutor::getMemoryManager () {
 void athena::backend::generic::GenericExecutor::processBytecode (
         athena::backend::VMState &state, std::vector<vm_word> bytecode ) {
     OpCode op;
-    auto args = new vm_word[10];
-    unsigned int argc = 0;
+    auto *args = new vm_word[10];
+    unsigned long argc = 0;
 
     auto gmm = dynamic_cast<GenericMemoryManager*>(device->getMemoryManager());
 

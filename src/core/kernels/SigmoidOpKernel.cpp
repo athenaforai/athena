@@ -14,7 +14,7 @@
 #include "SigmoidOpKernel.h"
 
 athena::core::kernels::SigmoidOpKernel::SigmoidOpKernel ()
-        : OpKernel( OpCode::SIGMOID, "sigmoid" ) {}
+        : OpKernel( "sigmoid" ) {}
 
 int athena::core::kernels::SigmoidOpKernel::getOperandsCount () {
     return 1;
@@ -23,7 +23,7 @@ int athena::core::kernels::SigmoidOpKernel::getOperandsCount () {
 std::vector< vm_word >
 athena::core::kernels::SigmoidOpKernel::getOpBytecode (
         std::vector< vm_word > args,
-        unsigned long resultCell
+        vm_word resultCell
 ) {
 
     std::vector< vm_word > bytecode;

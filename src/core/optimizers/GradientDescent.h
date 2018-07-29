@@ -22,7 +22,7 @@ namespace athena::core::optimizers {
     protected:
         float learningRate;
 
-        std::tuple< std::vector< unsigned long >, unsigned long > getByteCode (
+        std::tuple< std::vector< vm_word >, vm_word > getByteCode (
                 athena::core::loss::AbstractLossFunction* node
         );
 

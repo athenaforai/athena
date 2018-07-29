@@ -60,7 +60,7 @@ std\+::list$<$ \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+
 \subsection{Detailed Description}
 This class is an interface for physical memory managers. They provide conversion between virtual addresses and physical ones. A typical strategy for memory manager is to allocate as much memory as possible and then provide tensors with it. This class also encapsulates table of \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{athena\+::core\+::\+Tensor}} objects. One can think of it as of variables table in a compiler. 
 
-Definition at line 21 of file Abstract\+Memory\+Manager.\+h.
+Definition at line 30 of file Abstract\+Memory\+Manager.\+h.
 
 
 
@@ -78,7 +78,7 @@ Adds Tensor to table
 \end{DoxyParams}
 
 
-Definition at line 11 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 20 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}\label{classathena_1_1backend_1_1_abstract_memory_manager_ad40a653a8b32410956ba835ca1bb3e5f}} 
 \index{athena\+::backend\+::\+Abstract\+Memory\+Manager@{athena\+::backend\+::\+Abstract\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
@@ -93,7 +93,7 @@ Allocate space in the fastest memory available without loading any data and lock
 \end{DoxyParams}
 
 
-Definition at line 45 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 54 of file Abstract\+Memory\+Manager.\+cpp.
 
 
 
@@ -112,7 +112,7 @@ Allocate space in the fastest memory available without loading any data and lock
 \end{DoxyParams}
 
 
-Definition at line 51 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 60 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}\label{classathena_1_1backend_1_1_abstract_memory_manager_a1b80008e94c21d5ac87f9a45d3f212a8}} 
 \index{athena\+::backend\+::\+Abstract\+Memory\+Manager@{athena\+::backend\+::\+Abstract\+Memory\+Manager}!allocate\+And\+Lock@{allocate\+And\+Lock}}
@@ -177,7 +177,7 @@ Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM)
 \end{DoxyParams}
 
 
-Definition at line 16 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 25 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}\label{classathena_1_1backend_1_1_abstract_memory_manager_a47ea5a77f81f91f803f748720c5c19b5}} 
 \index{athena\+::backend\+::\+Abstract\+Memory\+Manager@{athena\+::backend\+::\+Abstract\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
@@ -192,7 +192,7 @@ Move data to the fastest memory type available (e.\+g. from hard drive to R\+AM)
 \end{DoxyParams}
 
 
-Definition at line 21 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 30 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_memory_manager_a9fe52e4020802d6f526fba06adce8407}\label{classathena_1_1backend_1_1_abstract_memory_manager_a9fe52e4020802d6f526fba06adce8407}} 
 \index{athena\+::backend\+::\+Abstract\+Memory\+Manager@{athena\+::backend\+::\+Abstract\+Memory\+Manager}!load\+And\+Lock@{load\+And\+Lock}}
@@ -219,7 +219,7 @@ Implemented in \mbox{\hyperlink{classathena_1_1backend_1_1generic_1_1_generic_me
 
 Clears table of Tensors 
 
-Definition at line 7 of file Abstract\+Memory\+Manager.\+cpp.
+Definition at line 16 of file Abstract\+Memory\+Manager.\+cpp.
 
 \mbox{\Hypertarget{classathena_1_1backend_1_1_abstract_memory_manager_a18562c6f336ff0f7ff800f877696c851}\label{classathena_1_1backend_1_1_abstract_memory_manager_a18562c6f336ff0f7ff800f877696c851}} 
 \index{athena\+::backend\+::\+Abstract\+Memory\+Manager@{athena\+::backend\+::\+Abstract\+Memory\+Manager}!set\+Data@{set\+Data}}

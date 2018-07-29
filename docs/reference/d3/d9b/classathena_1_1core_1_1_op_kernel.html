@@ -98,9 +98,9 @@ Inheritance diagram for athena::core::OpKernel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1adf0c5c97ce4d3e9c0155ea4bf48ab5"><td class="memItemLeft" align="right" valign="top"><a id="a1adf0c5c97ce4d3e9c0155ea4bf48ab5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>OpKernel</b> (OpCode opCode, std::string name)</td></tr>
-<tr class="separator:a1adf0c5c97ce4d3e9c0155ea4bf48ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a582c69ebeddafd379e264854230d1cb6"><td class="memItemLeft" align="right" valign="top"><a id="a582c69ebeddafd379e264854230d1cb6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>OpKernel</b> (std::string name)</td></tr>
+<tr class="separator:a582c69ebeddafd379e264854230d1cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add97d4c132d80ecd9915acfedf7c9119"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d9b/classathena_1_1core_1_1_op_kernel.html#add97d4c132d80ecd9915acfedf7c9119">getOperandsCount</a> ()=0</td></tr>
 <tr class="separator:add97d4c132d80ecd9915acfedf7c9119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a762e541463ffd089b47a8e6755c30fe1"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d0/d92/classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d9b/classathena_1_1core_1_1_op_kernel.html#a762e541463ffd089b47a8e6755c30fe1">getOutputShape</a> (std::vector&lt; <a class="el" href="../../d0/d92/classathena_1_1core_1_1_tensor_shape.html">athena::core::TensorShape</a> &gt; &amp;shapes)=0</td></tr>
@@ -115,9 +115,6 @@ virtual std::vector&lt; vm_word &gt;&#160;</td><td class="memItemRight" valign="
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae77be87c4209176d927a6d83bcbf3592"><td class="memItemLeft" align="right" valign="top"><a id="ae77be87c4209176d927a6d83bcbf3592"></a>
-OpCode&#160;</td><td class="memItemRight" valign="bottom"><b>opCode</b></td></tr>
-<tr class="separator:ae77be87c4209176d927a6d83bcbf3592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5970ac8cb25cd956112a471d647789be"><td class="memItemLeft" align="right" valign="top"><a id="a5970ac8cb25cd956112a471d647789be"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a5970ac8cb25cd956112a471d647789be"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,7 +122,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Operation skeleton Each operation has OpCode </p>
 
-<p class="definition">Definition at line <a class="el" href="../../d2/dc6/_op_kernel_8h_source.html#l00020">20</a> of file <a class="el" href="../../d2/dc6/_op_kernel_8h_source.html">OpKernel.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="../../d2/dc6/_op_kernel_8h_source.html#l00029">29</a> of file <a class="el" href="../../d2/dc6/_op_kernel_8h_source.html">OpKernel.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad500db1afc5a7c10acff8ecb8f1bee4d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad500db1afc5a7c10acff8ecb8f1bee4d">&#9670;&nbsp;</a></span>getDerivativeBytecode()</h2>
@@ -176,7 +173,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a42d08b8004e8033e01988eb2392215c8">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a38166ae2204692353efa2f6270714a80">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a2d1fc6b2900abc3ebd0466c8de3e68e2">athena::core::loss::MSEOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a97ac0c3c61c772563221c3148d553841">athena::core::kernels::AddOpKernel</a>, and <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad35869239968db73049161acbad05aab">athena::core::kernels::ScaleOpKernel</a>.</p>
+<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a42d08b8004e8033e01988eb2392215c8">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a38166ae2204692353efa2f6270714a80">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a936002563d3ef3a029bbeecbdbd3a509">athena::core::loss::MSEOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#ae318f1b376859d8177c401de17ca956a">athena::core::kernels::AddOpKernel</a>, and <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad35869239968db73049161acbad05aab">athena::core::kernels::ScaleOpKernel</a>.</p>
 
 </div>
 </div>
@@ -222,7 +219,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>New shape </dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#abdb57e6ce0d67ce6263e0716fed25243">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a0ea18b43eb9355d7a855202898ff09fc">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a68a0220e3a3591638c7725b5cb659609">athena::core::loss::MSEOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a240d13047b8fd7676bf1f9d2bc94298f">athena::core::kernels::AddOpKernel</a>, and <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad7c63973c62e28c0ad3d854ce16debf1">athena::core::kernels::ScaleOpKernel</a>.</p>
+<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#abdb57e6ce0d67ce6263e0716fed25243">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#a0ea18b43eb9355d7a855202898ff09fc">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a240d13047b8fd7676bf1f9d2bc94298f">athena::core::kernels::AddOpKernel</a>, <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad7c63973c62e28c0ad3d854ce16debf1">athena::core::kernels::ScaleOpKernel</a>, and <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a68a0220e3a3591638c7725b5cb659609">athena::core::loss::MSEOpKernel</a>.</p>
 
 </div>
 </div>
@@ -250,7 +247,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </div><div class="memdoc">
 <p>There can be unary, binary and other operations </p><dl class="section return"><dt>Returns</dt><dd>Number of operands accepted </dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a75f9e43d1fcecaf9260af31c68cd69db">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#acb639510462e759a92747cec8c32358b">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#ab851ee62ea95c3aab8aab2d28cfa9d04">athena::core::loss::MSEOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a296a0c69a7b906037324cce2b64827e1">athena::core::kernels::AddOpKernel</a>, and <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#a4f9e4fee100ed7f09840fa4b2d55f2bf">athena::core::kernels::ScaleOpKernel</a>.</p>
+<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a75f9e43d1fcecaf9260af31c68cd69db">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#acb639510462e759a92747cec8c32358b">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a296a0c69a7b906037324cce2b64827e1">athena::core::kernels::AddOpKernel</a>, <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#a4f9e4fee100ed7f09840fa4b2d55f2bf">athena::core::kernels::ScaleOpKernel</a>, and <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#ab851ee62ea95c3aab8aab2d28cfa9d04">athena::core::loss::MSEOpKernel</a>.</p>
 
 </div>
 </div>
@@ -286,7 +283,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>New shape </dd></dl>
 
-<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a3a397257c208f55ba5fba4018112a605">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#abd929f41de55a4898a0fce70025c1499">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a23aacffbbc73b177535511702f3c441d">athena::core::loss::MSEOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a687d68d7374e9546f01cefcbfb382d04">athena::core::kernels::AddOpKernel</a>, and <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad1791a60026e90c95f248202e1404a26">athena::core::kernels::ScaleOpKernel</a>.</p>
+<p>Implemented in <a class="el" href="../../db/dc5/classathena_1_1core_1_1kernels_1_1_mat_mul_op_kernel.html#a3a397257c208f55ba5fba4018112a605">athena::core::kernels::MatMulOpKernel</a>, <a class="el" href="../../d0/dac/classathena_1_1core_1_1kernels_1_1_sigmoid_op_kernel.html#abd929f41de55a4898a0fce70025c1499">athena::core::kernels::SigmoidOpKernel</a>, <a class="el" href="../../dc/d57/classathena_1_1core_1_1kernels_1_1_add_op_kernel.html#a687d68d7374e9546f01cefcbfb382d04">athena::core::kernels::AddOpKernel</a>, <a class="el" href="../../dd/dba/classathena_1_1core_1_1kernels_1_1_scale_op_kernel.html#ad1791a60026e90c95f248202e1404a26">athena::core::kernels::ScaleOpKernel</a>, and <a class="el" href="../../df/d1d/classathena_1_1core_1_1loss_1_1_m_s_e_op_kernel.html#a23aacffbbc73b177535511702f3c441d">athena::core::loss::MSEOpKernel</a>.</p>
 
 </div>
 </div>

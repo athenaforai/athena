@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['virtualmemory',['VirtualMemory',['../db/db3/classathena_1_1backend_1_1_virtual_memory.html',1,'athena::backend']]],
-  ['vmemoryblock',['VMemoryBlock',['../da/def/structathena_1_1backend_1_1_v_memory_block.html',1,'athena::backend']]],
-  ['voidinitializer',['VoidInitializer',['../dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer.html',1,'athena::core::initializers']]]
+  ['tensor',['Tensor',['../d4/d6b/classathena_1_1core_1_1_tensor.html',1,'athena::core']]],
+  ['tensorshape',['TensorShape',['../d0/d92/classathena_1_1core_1_1_tensor_shape.html',1,'athena::core']]]
 ];

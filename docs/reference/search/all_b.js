@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['prepare',['prepare',['../dd/d53/classathena_1_1core_1_1optimizers_1_1_gradient_descent.html#ab9ecd3b02a82c86bfaaa3d93789d2d5a',1,'athena::core::optimizers::GradientDescent::prepare()'],['../d5/d5e/classathena_1_1core_1_1_session.html#a28b51416420aca2c39d9cf7ee81fe41d',1,'athena::core::Session::prepare()']]],
-  ['processqueue',['processQueue',['../d6/d21/classathena_1_1backend_1_1generic_1_1_generic_memory_manager.html#a978be661a46caaa8f6ef40a2c45a014e',1,'athena::backend::generic::GenericMemoryManager']]]
+  ['opcodes_2eh',['opcodes.h',['../d3/de6/opcodes_8h.html',1,'']]],
+  ['operator_21_3d',['operator!=',['../d0/d92/classathena_1_1core_1_1_tensor_shape.html#acdb5b20f9922cb4d7ee29a868fd05b1b',1,'athena::core::TensorShape']]],
+  ['operator_3d_3d',['operator==',['../d0/d92/classathena_1_1core_1_1_tensor_shape.html#aa42737e3e51e76507bb60791889d4d9b',1,'athena::core::TensorShape']]],
+  ['opkernel',['OpKernel',['../d3/d9b/classathena_1_1core_1_1_op_kernel.html',1,'athena::core']]]
 ];
