@@ -34,9 +34,6 @@ namespace athena::core {
 
         TensorShape resultShape;
 
-//        std::vector< bool > memory_map;
-//        std::stack< unsigned long > free_mem;
-
         unsigned long maxMemSize;
 
         /**
@@ -70,10 +67,6 @@ namespace athena::core {
         Tensor* run ();
 
         unsigned long getResultCell ();
-
-//        unsigned long getFreeMemCell (); // todo replace with memory manager
-
-//        athena::backend::ExecutorService* getExecutorService();
 
         void setExecutor ( athena::backend::AbstractExecutor* exec );
 

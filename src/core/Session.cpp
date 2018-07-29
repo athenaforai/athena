@@ -19,12 +19,6 @@ void athena::core::Session::prepare ( athena::core::Node* logits ) {
         this->resultCell = resultCell;
         this->resultShape = *shape;
     }
-
-//    executorService = new athena::backend::ExecutorService(
-//            bytecode, maxMemSize,
-//            resultCell
-//    );
-
 }
 
 std::tuple< std::vector< vm_word >, athena::core::TensorShape*, vm_word >
@@ -91,7 +85,6 @@ athena::core::Session::getByteCode ( Node* logits ) {
                     std::end( op_bytecode ));
 
             for ( int i = 0; i < logits->getIncomingNodes().size(); i++ ) {
-//                vm_word derivCell = getFreeMemCell();
                 auto derivShape = logits->getOp()->getDerivativeShape( i, predShapes );
                 auto derivTensor = new Tensor( derivShape, DataType::FLOAT ); // todo type
                 vm_word derivCell = virtualMemory->allocate( derivTensor );
@@ -150,7 +143,3 @@ athena::backend::VirtualMemory* athena::core::Session::getMemory () {
 athena::backend::AbstractExecutor* athena::core::Session::getExecutor () {
     return executor;
 }
-
-//athena::backend::ExecutorService* athena::core::Session::getExecutorService () {
-//    return executorService;
-//}

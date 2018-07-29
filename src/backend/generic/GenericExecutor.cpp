@@ -21,9 +21,6 @@ void athena::backend::generic::GenericExecutor::execute () {
     while ( parse( bytecode, ip, op, args, argc ) <= bytecode.size()) {
         switch ( op ) {
             case OpCode::ADD: {
-//                Tensor* a = memory[ args[ 0 ]];
-//                Tensor* b = memory[ args[ 1 ]];
-                /*memory[ args[ 2 ]] =*/
                 gmm->loadAndLock( args[ 0 ] );
                 gmm->loadAndLock( args[ 1 ] );
                 gmm->allocateAndLock( args[ 2 ] );

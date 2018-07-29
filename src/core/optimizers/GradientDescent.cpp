@@ -28,16 +28,6 @@ std::tuple< std::vector< unsigned long >, unsigned long >
 athena::core::optimizers::GradientDescent::getByteCode (
         athena::core::loss::AbstractLossFunction* node ) {
 
-    /*
-     * todo:
-     * for every incoming node
-     * 1) Pop error from errorCells
-     * 2) Multiply error cell by corresponding derivative of curNode
-     * 3) Push result back to queue
-     * 4) If current incoming node is InputNode and it is not frozen, update values
-     * 5) Else push current incoming node to queue
-     */
-
     std::vector< vm_word > bytecode;
 
     /*
