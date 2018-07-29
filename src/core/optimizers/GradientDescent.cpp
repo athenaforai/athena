@@ -189,7 +189,7 @@ athena::core::optimizers::GradientDescent::getByteCode (
                     }
                 }
 
-                vm_word inDerivTensorAddress = node->getDerivative( i );
+                vm_word inDerivTensorAddress = n->getDerivative( i );
 
                 auto newErrTensor = new Tensor( error->getShape(), error->getType());
                 session->getMemory()->allocate( newErrTensor );

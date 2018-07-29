@@ -18,7 +18,7 @@ void athena::backend::generic::GenericExecutor::execute () {
 
     auto gmm = dynamic_cast<GenericMemoryManager*>(device->getMemoryManager());
 
-    while ( parse( bytecode, ip, op, args, argc ) < bytecode.size()) {
+    while ( parse( bytecode, ip, op, args, argc ) <= bytecode.size()) {
         switch ( op ) {
             case OpCode::ADD: {
 //                Tensor* a = memory[ args[ 0 ]];
