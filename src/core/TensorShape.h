@@ -9,21 +9,54 @@
 #include <array>
 
 namespace athena::core {
+
+    /**
+     * Class represents size parameters for Tensor
+     */
     class TensorShape {
     private:
-        std::vector<unsigned int> shape;
+        std::vector< size_t > shape;
     public:
-        explicit TensorShape(std::vector<unsigned int> shape) : shape(std::move(shape)) {};
-        TensorShape(unsigned int* shape, unsigned int length);
+        explicit TensorShape ( std::vector< size_t > shape ) :
+                shape( std::move( shape )) {};
 
-        unsigned int dimensions() const;
-        unsigned int dim(unsigned int n) const;
-        unsigned int total_size();
-        const std::vector<unsigned int>& getShape() const;
+        TensorShape() = default;
 
-        bool operator==(const TensorShape &) const;
-        bool operator!=(const TensorShape &rhs) const;
-//        friend bool operator!=(const TensorShape &, const TensorShape &);
+        TensorShape ( unsigned long* shape, unsigned long length );
+
+        TensorShape ( const TensorShape & );
+
+        TensorShape &operator= ( const TensorShape & );
+
+        /**
+         * @return Number of dimensions in Tensor
+         */
+        unsigned long dimensions () const;
+
+        /**
+         * Gives size for certain dimension
+         * @param n Dimension index ( 0 <= d < dimensions )
+         * @return Size of dimension n
+         */
+        unsigned long dim ( unsigned long n ) const;
+
+        /**
+         * @return Total number of elements in Tensor
+         */
+        unsigned long totalSize () const;
+
+        const std::vector< unsigned long > &getShape () const;
+
+        /**
+         * @return True if dimensions are equal, else False
+         */
+        bool operator== ( const TensorShape & ) const;
+
+        /**
+         * @param rhs TensorShape to be compared with
+         * @return True if dimensions are different, else False
+         */
+        bool operator!= ( const TensorShape &rhs ) const;
     };
 }
 

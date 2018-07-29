@@ -1,0 +1,43 @@
+//
+// Created by Александр Баташев on 01.07.2018.
+//
+
+#ifndef ATHENA_SIGMOIDOPKERNEL_H
+#define ATHENA_SIGMOIDOPKERNEL_H
+
+
+#include <core/OpKernel.h>
+
+namespace athena::core::kernels {
+
+    /**
+     * Apply sigmoid function to every element of Tensor.
+     * See https://en.wikipedia.org/wiki/Sigmoid_function for more info
+     */
+    class SigmoidOpKernel : public OpKernel {
+    public:
+        SigmoidOpKernel ();
+
+        int getOperandsCount () override;
+
+        athena::core::TensorShape &getOutputShape (
+                std::vector< athena::core::TensorShape > &shapes ) override;
+
+        athena::core::TensorShape &
+        getDerivativeShape ( int d,
+                             std::vector< athena::core::TensorShape > &shapes ) override;
+
+        std::vector< vm_word >
+        getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) override;
+
+        std::vector< vm_word > getDerivativeBytecode (
+                int d, std::vector< vm_word > args,
+                vm_word resultCell
+        ) override;
+
+    };
+
+}
+
+
+#endif //ATHENA_SIGMOIDOPKERNEL_H

@@ -4,13 +4,30 @@
 #include <core/OpKernel.h>
 
 namespace athena::core::kernels {
+
+    /**
+     * Performs sum of 2 given Tensors
+     */
     class AddOpKernel : public OpKernel {
     public:
-        AddOpKernel() : OpKernel(OpCode::ADD, "add") {};
-        int getOperandsCount() override;
-        int* getOutputShape(int* shape, int dim) override;
+        AddOpKernel () : OpKernel( OpCode::ADD, "add" ) {};
 
-        std::vector<int> getOpBytecode(std::vector<int> args, unsigned long resultCell) override;
+        int getOperandsCount () override;
+
+        athena::core::TensorShape &getOutputShape (
+                std::vector< athena::core::TensorShape > &shapes ) override;
+
+        athena::core::TensorShape &getDerivativeShape (
+                int d,
+                std::vector< athena::core::TensorShape > &shapes ) override;
+
+        std::vector< vm_word >
+        getOpBytecode ( std::vector< vm_word > args, vm_word resultCell ) override;
+
+        std::vector< vm_word > getDerivativeBytecode (
+                int d, std::vector< vm_word > args,
+                vm_word resultCell
+        ) override;
     };
 }
 

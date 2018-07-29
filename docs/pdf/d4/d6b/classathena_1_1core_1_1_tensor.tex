@@ -1,0 +1,42 @@
+\hypertarget{classathena_1_1core_1_1_tensor}{}\section{athena\+:\+:core\+:\+:Tensor Class Reference}
+\label{classathena_1_1core_1_1_tensor}\index{athena\+::core\+::\+Tensor@{athena\+::core\+::\+Tensor}}
+
+
+{\ttfamily \#include $<$Tensor.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_a73df0da6b63c55ef90c4941aa23acc54}\label{classathena_1_1core_1_1_tensor_a73df0da6b63c55ef90c4941aa23acc54}} 
+{\bfseries Tensor} (const \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{Tensor\+Shape}} \&shape, Data\+Type data\+Type)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_af07b079821aadb1ec80c98b14617f2cb}\label{classathena_1_1core_1_1_tensor_af07b079821aadb1ec80c98b14617f2cb}} 
+const \mbox{\hyperlink{classathena_1_1core_1_1_tensor_shape}{Tensor\+Shape}} \& {\bfseries get\+Shape} () const
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_ac808b57b581b28ef78244bdc1f7eba0e}\label{classathena_1_1core_1_1_tensor_ac808b57b581b28ef78244bdc1f7eba0e}} 
+Data\+Type {\bfseries get\+Type} () const
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_ae864cbc773fa869a90bce479f03dbf68}\label{classathena_1_1core_1_1_tensor_ae864cbc773fa869a90bce479f03dbf68}} 
+vm\+\_\+word {\bfseries get\+Start\+Address} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_a863c18e892c319b1e7fd359ddc7282ca}\label{classathena_1_1core_1_1_tensor_a863c18e892c319b1e7fd359ddc7282ca}} 
+void {\bfseries set\+Start\+Address} (vm\+\_\+word address)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_tensor_a98c05789432a4201a92ed2f7221d6882}\label{classathena_1_1core_1_1_tensor_a98c05789432a4201a92ed2f7221d6882}} 
+\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (unsigned int idx)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+In mathematics {\bfseries tensor} is an abstract object, expressing some definite type of multi-\/linear concept. See \href{https://en.wikipedia.org/wiki/Tensor_(intrinsic_definition)}{\tt Wikipedia} for more info. 
+
+In Athena \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} is an abstraction to represent data inside computational graph. A 1-\/dimensional \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} is either scalar or vector. A 2-\/dimensional \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} is a matrix. 
+
+Definition at line 29 of file Tensor.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/Tensor.\+h\item 
+core/Tensor.\+cpp\end{DoxyCompactItemize}

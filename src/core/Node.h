@@ -15,32 +15,58 @@ namespace athena::core {
      */
     class Node {
     protected:
-        std::vector<Node*> incomingNodes;
-        std::vector<Node*> outcomingNodes;
+        std::vector< Node* > incomingNodes;
+        std::vector< Node* > outcomingNodes;
         OpKernel* operation;
         std::string name;
-        std::string getRandomNodeName();
+
+        std::string getRandomNodeName ();
+
+        bool calculated;
+        std::vector< vm_word > derivatives;
+        unsigned long resultCell;
+
+        unsigned long usageCount;
+
+        bool persistResult;
     public:
-        explicit Node(OpKernel*);
+        explicit Node ( OpKernel* );
 
         /**
          * Makes a new oriented edge in execution graph
          * from predecessor to this node
          * @param predecessor A predecessor node
          */
-        virtual void after(Node* predecessor);
+        virtual void after ( Node* predecessor );
 
         /**
          * Check if it is an input node
          * @return false
          */
-        virtual bool isInputNode();
+        virtual bool isInputNode ();
 
-        OpKernel* getOp();
+        OpKernel* getOp ();
 
-        std::vector<Node*>& getIncomingNodes();
+        std::vector< Node* > &getIncomingNodes ();
 
-        std::string getName();
+        std::string getName ();
+
+        void addDerivative ( unsigned long d );
+
+        unsigned long getDerivative ( unsigned long i );
+
+        void setCalculated ( unsigned long resCell );
+
+        bool isCalculated ();
+
+        unsigned long getResult ();
+
+        void updateUsageCount ();
+
+        virtual bool isGarbage ();
+
+        void setPersistResult();
+
     };
 }
 

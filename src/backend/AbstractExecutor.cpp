@@ -3,3 +3,7 @@
 //
 
 #include "AbstractExecutor.h"
+
+void athena::backend::AbstractExecutor::setBytecode ( std::vector< vm_word > &bytecode ) {
+    this->bytecode = bytecode;
+}

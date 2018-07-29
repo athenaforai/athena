@@ -6,26 +6,54 @@
 #include <vector>
 #include "AddOpKernel.h"
 
-int athena::core::kernels::AddOpKernel::getOperandsCount() {
+int athena::core::kernels::AddOpKernel::getOperandsCount () {
     return 2;
 }
 
-int *athena::core::kernels::AddOpKernel::getOutputShape(int *shape, int dim) {
-    auto newShape = new int[dim];
-    std::copy(shape, shape + dim, newShape);
-    return newShape;
-}
 
-std::vector<int> athena::core::kernels::AddOpKernel::getOpBytecode(std::vector<int> args, unsigned long resultCell) {
-    std::vector<int> bytecode;
+std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
+        std::vector< unsigned long > args,
+        unsigned long resultCell ) {
+    std::vector< unsigned long > bytecode;
 
-    bytecode.push_back(static_cast<int>(opCode));
+    bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
 
-    for (int arg : args) {
-        bytecode.push_back(arg);
-    }
+    bytecode.push_back( args[ 0 ] );
+    bytecode.push_back( args[ 1 ] );
 
-    bytecode.push_back(static_cast<int>(resultCell));
+    bytecode.push_back( resultCell );
 
     return bytecode;
+}
+
+std::vector< unsigned long >
+athena::core::kernels::AddOpKernel::getDerivativeBytecode (
+        int d,
+        std::vector< unsigned long > args,
+        unsigned long resultCell ) {
+    std::vector< unsigned long > bytecode;
+    bytecode.push_back( static_cast<int>(OpCode::MKSCALAR));
+
+    float unit = 1;
+    auto u = reinterpret_cast<vm_word*>(&unit);
+
+    bytecode.push_back( *u );
+    bytecode.push_back( resultCell );
+
+    return bytecode;
+
+}
+
+athena::core::TensorShape &athena::core::kernels::AddOpKernel::getOutputShape (
+        std::vector< athena::core::TensorShape > &shapes ) {
+    return shapes[ 0 ];
+}
+
+athena::core::TensorShape &athena::core::kernels::AddOpKernel::getDerivativeShape (
+        int d,
+        std::vector< athena::core::TensorShape > &shapes
+) {
+
+    return shapes[d];
+
 }

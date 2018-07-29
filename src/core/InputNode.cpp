@@ -3,36 +3,44 @@
 //
 
 #include "InputNode.h"
-#include <stdexcept>
 
-bool athena::core::InputNode::isInputNode() {
+//athena::core::InputNode::InputNode(athena::core::OpKernel *op) : Node(op) {
+//}
+
+bool athena::core::InputNode::isInputNode () {
     return true;
 }
 
-void athena::core::InputNode::setMappedMemCell(unsigned long cell) {
+void athena::core::InputNode::setMappedMemCell ( unsigned long cell ) {
     mappedMemCell = cell;
 }
 
-unsigned long athena::core::InputNode::getMappedMemCell() {
+unsigned long athena::core::InputNode::getMappedMemCell () {
     return mappedMemCell;
 }
 
-athena::core::Tensor *athena::core::InputNode::getData() {
+athena::core::Tensor* athena::core::InputNode::getData () {
     return this->input;
 }
 
-athena::core::InputNode *athena::core::InputNode::placeholder(const TensorShape &inputShape) {
-    return new InputNode(inputShape);
+bool athena::core::InputNode::isFrozen () {
+    return _isFrozen;
 }
 
-void athena::core::InputNode::setData(athena::core::Tensor *data) {
-    if (data != nullptr) {
-        if (data->getShape() == initialShape) {
-            this->input = data;
-        } else {
-            throw std::runtime_error("InputNode can't change its shape");
-        }
-    } else {
-        this->input = nullptr;
-    }
+void athena::core::InputNode::setFrozen ( bool frozen ) {
+    _isFrozen = frozen;
+}
+
+void athena::core::InputNode::setInitializer (
+        athena::core::initializers::AbstractInitializer* initializer ) {
+    this->initializer = initializer;
+}
+
+athena::core::initializers::AbstractInitializer*
+athena::core::InputNode::getInitializer () {
+    return initializer;
+}
+
+bool athena::core::InputNode::isGarbage () {
+    return false;
 }

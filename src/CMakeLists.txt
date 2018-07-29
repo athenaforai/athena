@@ -1,4 +1,4 @@
-add_library(athena STATIC)
+add_library(athena STATIC core/kernels/ScaleOpKernel.cpp core/kernels/ScaleOpKernel.h backend/generic/scale.cpp)
 
 add_subdirectory(core)
 add_subdirectory(ops)

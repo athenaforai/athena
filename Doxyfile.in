@@ -1,0 +1,47 @@
+DOXYFILE_ENCODING      = UTF-8
+
+PROJECT_NAME           = Athena
+PROJECT_NUMBER         = @ATHENA_VERSION@
+
+CREATE_SUBDIRS         = YES
+ALLOW_UNICODE_NAMES    = YES
+OUTPUT_LANGUAGE        = English
+
+SOURCE_BROWSER         = YES
+VERBATIM_HEADERS       = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_LINK_SOURCE = YES
+
+ABBREVIATE_BRIEF       = "The $name class" \
+                         "The $name widget" \
+                         "The $name file" \
+                         is \
+                         provides \
+                         specifies \
+                         contains \
+                         represents \
+                         a \
+                         an \
+                         the
+
+ALWAYS_DETAILED_SEC    = YES
+
+STRIP_FROM_PATH        = @CMAKE_CURRENT_SOURCE_DIR@/src/
+
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+
+INPUT = @CMAKE_CURRENT_SOURCE_DIR@/src/
+
+FILE_PATTERNS          = *.cpp *.h
+
+RECURSIVE              = YES
+
+HTML_OUTPUT = @CMAKE_CURRENT_SOURCE_DIR@/docs/reference/
+USE_MATHJAX = YES
+
+LATEX_OUTPUT = @CMAKE_CURRENT_SOURCE_DIR@/docs/pdf/
+LATEX_BIB_STYLE = ieeetr
+LATEX_CMD_NAME = pdflatex
+USE_PDFLATEX = YES
+LATEX_HEADER = @CMAKE_CURRENT_SOURCE_DIR@/docsrc/styles.tex

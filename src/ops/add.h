@@ -4,6 +4,7 @@
 
 #ifndef ATHENA_ADD_H
 #define ATHENA_ADD_H
+
 #include <core/Node.h>
 
 namespace athena::ops {
@@ -13,6 +14,6 @@ namespace athena::ops {
      * @param b Second tensor
      * @return Result a+b tensor
      */
-    athena::core::Node *add(athena::core::Node *a, athena::core::Node *b);
+    athena::core::Node* add ( athena::core::Node* a, athena::core::Node* b );
 }
 #endif //ATHENA_ADD_H
