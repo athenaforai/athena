@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 27.05.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #include <gtest/gtest.h>
 #include <core/Tensor.h>
@@ -62,23 +71,4 @@ TEST( add_op_test, add_1d ) {
     ASSERT_FLOAT_EQ(*res, 8.0f);
 
     gmm->deinit();
-
-
-//    size_t i[] = {3};
-//    TensorShape shape(i, 1);
-//    float af[] = {1, 2, 3};
-//    Tensor a(shape, DataType::FLOAT, reinterpret_cast<u_char *>(af));
-//
-//    float bf[] = {4, 5, 6};
-//    Tensor b(shape, DataType::FLOAT, reinterpret_cast<u_char *>(bf));
-//
-//    auto c = add(&a, &b);
-//
-//    float res[] = {5, 7, 9};
-//    unsigned int idx[] = {0};
-//    auto *cres = reinterpret_cast<unsigned char *>(res);
-//    for (unsigned int j = 0; j < 3 * sizeof(float); j++) {
-////        idx[0] = j;
-//        EXPECT_EQ(cres[j], c->raw()[j]);
-//    }
 }

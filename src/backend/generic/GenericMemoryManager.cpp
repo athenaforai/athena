@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 27.06.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #include "GenericMemoryManager.h"
 #include <fstream>
@@ -143,9 +152,6 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     while ( !item->notified ) {
-
-//        item->m = std::move(m);
-
         item->loadHandle.wait( lock );
     }
 
