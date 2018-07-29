@@ -11,6 +11,7 @@
 #include <utility>
 #include <vector>
 #include <core/opcodes.h>
+#include <backend/VMState.h>
 #include "CPUDevice.h"
 
 namespace athena::backend::generic {
@@ -39,21 +40,14 @@ namespace athena::backend::generic {
      */
     class GenericExecutor : public athena::backend::AbstractExecutor {
     private:
-//        athena::core::Tensor** memory;
-//        int* intRegisters {};
-//        std::stack< int > intStack;
-
-//        std::vector< vm_word > &bytecode;
 
         CPUDevice* device;
+
+        void processBytecode ( VMState &state, std::vector<vm_word> bytecode );
     public:
         explicit GenericExecutor (
                 CPUDevice* cpuDevice
         ) : AbstractExecutor(), device( cpuDevice ) {};
-
-//        void execute () override;
-//
-//        AbstractMemoryManager* getMemoryManager() override ;
 
         void execute () override ;
 

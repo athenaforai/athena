@@ -9,6 +9,7 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/AbstractMemoryManager.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/VMState.h
                )
 
 

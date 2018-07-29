@@ -11,14 +11,27 @@
 using namespace athena::core;
 
 void athena::backend::generic::GenericExecutor::execute () {
-    unsigned int ip = 0;
+
+    VMState state;
+
+    processBytecode( state, this->bytecode );
+
+}
+
+athena::backend::AbstractMemoryManager*
+athena::backend::generic::GenericExecutor::getMemoryManager () {
+    return device->getMemoryManager();
+}
+
+void athena::backend::generic::GenericExecutor::processBytecode (
+        athena::backend::VMState &state, std::vector<vm_word> bytecode ) {
     OpCode op;
     auto args = new vm_word[10];
     unsigned int argc = 0;
 
     auto gmm = dynamic_cast<GenericMemoryManager*>(device->getMemoryManager());
 
-    while ( parse( bytecode, ip, op, args, argc ) <= bytecode.size()) {
+    while ( parse( bytecode, state.IP, op, args, argc ) <= bytecode.size()) {
         switch ( op ) {
             case OpCode::ADD: {
                 gmm->loadAndLock( args[ 0 ] );
@@ -169,9 +182,9 @@ void athena::backend::generic::GenericExecutor::execute () {
                 gmm->loadAndLock( args[ 1 ] );
                 gmm->allocateAndLock( args[ 2 ] );
                 hadamard( gmm,
-                     gmm->getTensor( args[ 0 ] ),
-                     gmm->getTensor( args[ 1 ] ),
-                     gmm->getTensor( args[ 2 ] ));
+                          gmm->getTensor( args[ 0 ] ),
+                          gmm->getTensor( args[ 1 ] ),
+                          gmm->getTensor( args[ 2 ] ));
 
                 gmm->unlock( args[ 0 ] );
                 gmm->unlock( args[ 1 ] );
@@ -182,10 +195,4 @@ void athena::backend::generic::GenericExecutor::execute () {
                 throw std::runtime_error( "Unknown instruction" );
         }
     }
-
-}
-
-athena::backend::AbstractMemoryManager*
-athena::backend::generic::GenericExecutor::getMemoryManager () {
-    return device->getMemoryManager();
 }

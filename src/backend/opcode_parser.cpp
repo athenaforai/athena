@@ -8,7 +8,7 @@
 
 namespace athena::backend {
     unsigned int parse (
-            std::vector< vm_word > &bytecode, unsigned int &next_word,
+            std::vector< vm_word > &bytecode, unsigned long &next_word,
             OpCode &new_word, vm_word* args, unsigned int &argc
     ) {
 
