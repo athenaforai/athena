@@ -18,7 +18,7 @@
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( transpose_op_test, transpose_2x2 ) {
+TEST( copy_op_test, copy_2x2 ) {
     auto tensorShape = new TensorShape( { 2, 2 } );
     auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
     auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
@@ -32,16 +32,6 @@ TEST( transpose_op_test, transpose_2x2 ) {
 
     gmm->addTensor( tensor1 );
     gmm->allocateAndLock( tensor1 );
-
-    /*float f1[] = { 1 };       //NOT WORKED
-    float f2[] = { 2 };
-    float f3[] = { 3 };
-    float f4[] = { 4 };
-
-    gmm->setData( 1, 0, 4, f1 );
-    gmm->setData( 5, 0, 4, f2 );
-    gmm->setData( 9, 0, 4, f3 );
-    gmm->setData( 13, 0, 4, f4 );*/
 
     float f[2][2];
     f[0][0] = 1.0f;
@@ -57,22 +47,14 @@ TEST( transpose_op_test, transpose_2x2 ) {
     gmm->allocateAndLock( tensor3 );
     gmm->loadAndLock( tensor1 );
 
-    transpose(gmm, tensor1, tensor3);
+    copy(gmm, tensor1, tensor3);
 
     float res[2][2];
 
-    /*gmm->getData( 17, 0, 4, res );        //NOT WORKED
-    ASSERT_FLOAT_EQ(*res, 1.0f);
-    gmm->getData( 21, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 3.0f);
-    gmm->getData( 25, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 2.0f);
-    gmm->getData( 29, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 4.0f);*/
     gmm->getData(17, 0, 16, res);
     ASSERT_FLOAT_EQ(res[0][0], 1.0f);
-    ASSERT_FLOAT_EQ(res[0][1], 3.0f);
-    ASSERT_FLOAT_EQ(res[1][0], 2.0f);
+    ASSERT_FLOAT_EQ(res[0][1], 2.0f);
+    ASSERT_FLOAT_EQ(res[1][0], 3.0f);
     ASSERT_FLOAT_EQ(res[1][1], 4.0f);
 
     gmm->getData(1, 0, 16, res);
@@ -81,9 +63,9 @@ TEST( transpose_op_test, transpose_2x2 ) {
     ASSERT_FLOAT_EQ(res[1][0], 3.0f);
     ASSERT_FLOAT_EQ(res[1][1], 4.0f);
 
-
     gmm->unlock( tensor1->getStartAddress());
     gmm->unlock( tensor3->getStartAddress());
 
     gmm->deinit();
+
 }
