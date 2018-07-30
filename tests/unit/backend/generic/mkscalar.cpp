@@ -33,14 +33,11 @@ TEST( mkscalar_op_test, mkscalar_12_1_float ) {
 
     float a = 12.1;
     auto *ul = reinterpret_cast<unsigned long*>(&a);
-
     mkscalar(gmm, *ul, tensor3);
 
     float res[1];
-
     gmm->getData(1, 0, 4, res);
     ASSERT_FLOAT_EQ(*res, 12.1f);
-
     gmm->unlock( tensor3->getStartAddress());
 
     gmm->deinit();

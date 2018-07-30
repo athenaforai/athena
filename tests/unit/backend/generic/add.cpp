@@ -37,9 +37,7 @@ TEST( add_op_test, add_1d ) {
     gmm->allocateAndLock( tensor1 );
 
     float f1[] = { 3 };
-
     gmm->setData( 1, 0, 4, f1 );
-
     gmm->unlock( tensor1->getStartAddress());
 
 
@@ -47,11 +45,8 @@ TEST( add_op_test, add_1d ) {
     gmm->allocateAndLock( tensor2 );
 
     float f2[] = { 5 };
-
     gmm->setData( 5, 0, 4, f2 );
-
     gmm->unlock( tensor2->getStartAddress());
-
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );

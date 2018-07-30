@@ -32,37 +32,30 @@ TEST( copy_op_test, copy_2x2 ) {
 
     gmm->addTensor( tensor1 );
     gmm->allocateAndLock( tensor1 );
-
     float f[2][2];
     f[0][0] = 1.0f;
     f[0][1] = 2.0f;
     f[1][0] = 3.0f;
     f[1][1] = 4.0f;
-
     gmm->setData( 1, 0, 16, f );
-
     gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
     gmm->loadAndLock( tensor1 );
-
     copy(gmm, tensor1, tensor3);
 
     float res[2][2];
-
     gmm->getData(17, 0, 16, res);
     ASSERT_FLOAT_EQ(res[0][0], 1.0f);
     ASSERT_FLOAT_EQ(res[0][1], 2.0f);
     ASSERT_FLOAT_EQ(res[1][0], 3.0f);
     ASSERT_FLOAT_EQ(res[1][1], 4.0f);
-
     gmm->getData(1, 0, 16, res);
     ASSERT_FLOAT_EQ(res[0][0], 1.0f);
     ASSERT_FLOAT_EQ(res[0][1], 2.0f);
     ASSERT_FLOAT_EQ(res[1][0], 3.0f);
     ASSERT_FLOAT_EQ(res[1][1], 4.0f);
-
     gmm->unlock( tensor1->getStartAddress());
     gmm->unlock( tensor3->getStartAddress());
 
