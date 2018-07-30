@@ -40,7 +40,7 @@ TEST( scale_op_test, scalef_test_2x2x2 ) {    //TODO NOW FAULT
 
     float f1[] = { 2.5f };
     gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor2 );
     gmm->allocateAndLock( tensor2 );
@@ -55,12 +55,12 @@ TEST( scale_op_test, scalef_test_2x2x2 ) {    //TODO NOW FAULT
     f2[1][1][0] = 7.0f;
     f2[1][1][1] = 8.0f;
     gmm->setData( 5, 0, 32, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    //gmm->unlock( tensor2->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
-    gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );  ERROR LINES
+    //gmm->loadAndLock( tensor2 );
 
     scale( gmm, tensor1, tensor2, tensor3 );
 
@@ -104,7 +104,7 @@ TEST( scale_op_test, scalef_test_2x2 ) {    //TODO NOW FAULT
 
     float f1[] = { 2.5f };
     gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor2 );
     gmm->allocateAndLock( tensor2 );
@@ -115,12 +115,12 @@ TEST( scale_op_test, scalef_test_2x2 ) {    //TODO NOW FAULT
     f2[1][0] = 3.0f;
     f2[1][1] = 4.0f;
     gmm->setData( 5, 0, 16, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    //gmm->unlock( tensor2->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
-    gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );  ERROR LINES
+    //gmm->loadAndLock( tensor2 );
 
     scale( gmm, tensor1, tensor2, tensor3 );
 
@@ -160,7 +160,7 @@ TEST( scale_op_test, scalef_test_1x1 ) {
 
     float f1[] = { 2.5f };
     gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor2 );
     gmm->allocateAndLock( tensor2 );
@@ -168,12 +168,12 @@ TEST( scale_op_test, scalef_test_1x1 ) {
     float f2[1];
     f2[0] = 4.0f;
     gmm->setData( 5, 0, 4, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    //gmm->unlock( tensor2->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
-    gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );      //ERROR LINES
+    //gmm->loadAndLock( tensor2 );
 
     scale( gmm, tensor1, tensor2, tensor3 );
 

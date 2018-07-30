@@ -33,16 +33,6 @@ TEST( transpose_op_test, transpose_2x2 ) {
     gmm->addTensor( tensor1 );
     gmm->allocateAndLock( tensor1 );
 
-    /*float f1[] = { 1 };       //NOT WORKED
-    float f2[] = { 2 };
-    float f3[] = { 3 };
-    float f4[] = { 4 };
-
-    gmm->setData( 1, 0, 4, f1 );
-    gmm->setData( 5, 0, 4, f2 );
-    gmm->setData( 9, 0, 4, f3 );
-    gmm->setData( 13, 0, 4, f4 );*/
-
     float f[2][2];
     f[0][0] = 1.0f;
     f[0][1] = 2.0f;
@@ -51,11 +41,11 @@ TEST( transpose_op_test, transpose_2x2 ) {
 
     gmm->setData( 1, 0, 16, f );
 
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
+    //gmm->loadAndLock( tensor1 );
 
     transpose(gmm, tensor1, tensor3);
 

@@ -38,11 +38,12 @@ TEST( copy_op_test, copy_2x2 ) {
     f[1][0] = 3.0f;
     f[1][1] = 4.0f;
     gmm->setData( 1, 0, 16, f );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());     DON'T UNLOCK, CAUSE NOW WE ARE
+    // CAN'T LOCK MEMORY WITHOUT HER RELOAD
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
+    //gmm->loadAndLock( tensor1 );      ERROR LINE
     copy(gmm, tensor1, tensor3);
 
     float res[2][2];

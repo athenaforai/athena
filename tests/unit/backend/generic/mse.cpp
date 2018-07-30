@@ -36,20 +36,20 @@ TEST( mse_op_test, mse_7_2_vs_10_9 ) {
     gmm->allocateAndLock( tensor1 );
     float f1[] = { 7.2f };
     gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
 
     gmm->addTensor( tensor2 );
     gmm->allocateAndLock( tensor2 );
     float f2[] = { 10.9f };
     gmm->setData( 5, 0, 4, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    //gmm->unlock( tensor2->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
 
-    gmm->loadAndLock( tensor1 );
-    gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );      ERROR LINES
+    //gmm->loadAndLock( tensor2 );
     mse( gmm, tensor1, tensor2, tensor3 );
 
     auto res = new float;

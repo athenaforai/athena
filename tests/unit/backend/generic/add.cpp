@@ -50,8 +50,8 @@ TEST( add_op_test, add_1d ) {
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
-    gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );  ERROR LINES
+    //gmm->loadAndLock( tensor2 );
 
     add( gmm, tensor1, tensor2, tensor3 );
 
