@@ -13,6 +13,7 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
+#include <iostream>
 #include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
@@ -206,9 +207,11 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         vm_word address,
         unsigned long length ) {
 
+    std::cout<<"MA" << std::endl;
     if ( !isInitialized ) {
         throw std::runtime_error("GenericMemoryManager is not initialized");
     }
+    std::cout<<"DONT" << std::endl;
 
     auto item = new QueueItem();
     item->address = address;
@@ -222,15 +225,24 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
+    std::cout<<"F** STIV, NO!" << std::endl;
+    std::cout<<item->notified << std::endl;
 #ifdef __APPLE__
     while (!item->notified)
         item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
 #else
+    //std::unique_lock< std::mutex > lock2( this->memoryChunksLock );
+    //item->loadHandle.wait(lock2, [item]{ return !item->notified; } );
+    //while (!item->notified)
+    //    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+    //item->loadHandle.wait(lock, [item]{ return !item->notified; } );
     while (!item->notified)
-        item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+        item->loadHandle.wait(lock);
 #endif
-
+    std::cout<<item->notified << std::endl;
+    std::cout<<"BUU" << std::endl;
     lock.unlock();
+    std::cout <<"MAZAFACKA" << std::endl;
 
 }
 

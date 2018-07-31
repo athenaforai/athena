@@ -165,6 +165,12 @@ namespace athena::backend::generic {
 
         void getData ( vm_word tensorAddress, vm_word offset, vm_word length,
                        void* data ) override;
+
+#ifdef TEST_ENVIRONMENT
+
+
+
+#endif
     };
 }
 
