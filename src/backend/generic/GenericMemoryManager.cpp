@@ -82,21 +82,22 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
-    item->m = new std::mutex;
+//    item->m = new std::mutex;
 
     loadQueue.push( item );
-    std::unique_lock< std::mutex > lock( *item->m );
+//    std::unique_lock< std::mutex > lock( *item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
-#ifdef __APPLE__
-    while (!item->notified)
-        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
-#else
-    while (!item->notified)
-        item->loadHandle.wait(lock, [item]{ return !item->notified; } );
-#endif
-    lock.unlock();
+//#ifdef __APPLE__
+//    while (!item->notified)
+//        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
+//#else
+//    while (!item->notified)
+//        item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+//#endif
+    item->loadHandle.wait();
+//    lock.unlock();
 
 }
 
@@ -214,26 +215,31 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
     item->address = address;
     item->length = length;
     item->alloc = true;
-    item->m = new std::mutex;
+//    item->m = new std::mutex;
 
     loadQueue.push( item );
 
-    std::unique_lock< std::mutex > lock( *item->m );
+//    std::unique_lock< std::mutex > lock( *item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
-#ifdef __APPLE__
-    while (!item->notified)
-        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
-#else
-    //std::unique_lock< std::mutex > lock2( this->memoryChunksLock );
-    //item->loadHandle.wait(lock2, [item]{ return !item->notified; } );
-    //while (!item->notified)
-    //    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
-    //item->loadHandle.wait(lock, [item]{ return !item->notified; } );
-    while (!item->notified)
-        item->loadHandle.wait(lock);
-#endif
+
+    while ( !item->notified ) {
+        item->loadHandle.wait();
+    }
+
+//#ifdef __APPLE__
+//    while (!item->notified)
+//        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
+//#else
+//    //std::unique_lock< std::mutex > lock2( this->memoryChunksLock );
+//    //item->loadHandle.wait(lock2, [item]{ return !item->notified; } );
+//    //while (!item->notified)
+//    //    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+//    //item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+//    while (!item->notified)
+//        item->loadHandle.wait(lock);
+//#endif
 
 }
 
@@ -289,7 +295,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
         memoryChunksLock.unlock();
 
         item->notified = true;
-        item->loadHandle.notify_all();
+        item->loadHandle.notifyAll();
 
     } else {
 
@@ -363,7 +369,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
 
 
         item->notified = true;
-        item->loadHandle.notify_all();
+        item->loadHandle.notifyAll();
     }
 }
 

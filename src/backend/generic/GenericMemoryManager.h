@@ -18,10 +18,11 @@
 #include <backend/AbstractMemoryManager.h>
 #include <thread>
 #include <queue>
-#include <condition_variable>
+//#include <condition_variable>
 #include <thread>
 #include <string>
-#include <hermes/spinlock.h>
+#include <hermes/synchronize/SpinLock.h>
+#include <hermes/synchronize/ConditionVariable.h>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -62,8 +63,8 @@ namespace athena::backend::generic {
         vm_word address;
         size_t length;
         bool alloc = false;
-        std::condition_variable loadHandle;
-        std::mutex *m;
+        hermes::ConditionVariable loadHandle;
+//        std::mutex *m;
         bool notified = false;
     };
 
@@ -94,7 +95,7 @@ namespace athena::backend::generic {
 #endif
         void* memory;
 
-        hermes::spinlock memoryChunksLock;
+        hermes::SpinLock memoryChunksLock;
 
         std::vector< std::thread > memLanes;
 
