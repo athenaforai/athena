@@ -13,7 +13,7 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
-//#include <cstring>
+#include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
     if (!isInitialized) {
@@ -295,7 +295,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
         memoryChunksLock.unlock();
 
         item->notified = true;
-        item->loadHandle.notifyAll();
+        item->loadHandle.notify();
 
     } else {
 
@@ -369,7 +369,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
 
 
         item->notified = true;
-        item->loadHandle.notifyAll();
+        item->loadHandle.notify();
     }
 }
 
