@@ -97,6 +97,8 @@ namespace athena::backend::generic {
 
         std::vector< bool > laneFinished;
 
+        bool isInitialized;
+
         /**
          * This is a thread function for memory lane-threads. It loads data to
          * RAM and notifies corresponding threads

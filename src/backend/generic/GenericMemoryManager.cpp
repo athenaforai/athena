@@ -16,22 +16,26 @@
 #include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
-    memory = malloc( allocatedMemory );
+    if (!isInitialized) {
+        memory = malloc( allocatedMemory );
 
 
-    laneFinished.push_back( false );
-    std::thread thr( &GenericMemoryManager::allocationThreadFunc, this, 0 );
+        laneFinished.push_back( false );
+        std::thread thr( &GenericMemoryManager::allocationThreadFunc, this, 0 );
 
-    memLanes.push_back( std::move( thr ));
+        memLanes.push_back( std::move( thr ));
 
-    memoryChunksHead = new MemoryChunk;
-    memoryChunksHead->virtualAddress = 0;
-    memoryChunksHead->isFree = true;
-    memoryChunksHead->isLocked = false;
-    memoryChunksHead->begin = memory;
-    memoryChunksHead->length = allocatedMemory;
-    memoryChunksHead->next = nullptr;
-    memoryChunksHead->prev = nullptr;
+        memoryChunksHead = new MemoryChunk;
+        memoryChunksHead->virtualAddress = 0;
+        memoryChunksHead->isFree = true;
+        memoryChunksHead->isLocked = false;
+        memoryChunksHead->begin = memory;
+        memoryChunksHead->length = allocatedMemory;
+        memoryChunksHead->next = nullptr;
+        memoryChunksHead->prev = nullptr;
+
+        isInitialized = true;
+    }
 }
 
 void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int laneId ) {
@@ -51,19 +55,29 @@ void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int 
 void* athena::backend::generic::GenericMemoryManager::getPhysicalAddress (
         vm_word virtualAddress ) {
 
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
+
+    memoryChunksLock.lock();
     MemoryChunk* cur = memoryChunksHead;
     while ( cur != nullptr ) {
         if ( cur->virtualAddress == virtualAddress ) {
-            return cur->begin;
+            break;
         }
         cur = cur->next;
     }
+    memoryChunksLock.unlock();
 
-    return nullptr;
+    return cur == nullptr ? nullptr : cur->begin;
 }
 
 void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word address,
                                                                    unsigned long length ) {
+
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
 
     auto item = new QueueItem();
     item->address = address;
@@ -88,20 +102,24 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
 }
 
 void athena::backend::generic::GenericMemoryManager::deinit () {
-    for ( auto &&i : laneFinished ) {
-        i = true;
+    if (isInitialized) {
+        for ( auto &&i : laneFinished ) {
+            i = true;
+        }
+
+        for ( auto &memLane : memLanes ) {
+            memLane.join();
+        }
+
+        memLanes.clear();
+        laneFinished.clear();
+
+        delete reinterpret_cast<u_char*>(memory);
+
+        memory = nullptr;
+
+        isInitialized = false;
     }
-
-    for ( auto &memLane : memLanes ) {
-        memLane.join();
-    }
-
-    memLanes.clear();
-    laneFinished.clear();
-
-    delete reinterpret_cast<u_char*>(memory);
-
-    memory = nullptr;
 }
 
 athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
@@ -109,6 +127,10 @@ athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
 }
 
 void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) {
+
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
 
     memoryChunksLock.lock();
 
@@ -153,6 +175,10 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
 
 void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word address ) {
 
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
+
     memoryChunksLock.lock();
 
     auto cur = memoryChunksHead;
@@ -180,6 +206,10 @@ void athena::backend::generic::GenericMemoryManager::setMemSize ( size_t memSize
 void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         vm_word address,
         unsigned long length ) {
+
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
 
     auto item = new QueueItem();
     item->address = address;
@@ -210,6 +240,10 @@ void athena::backend::generic::GenericMemoryManager::setData ( vm_word tensorAdd
                                                                vm_word length,
                                                                void* data ) {
 
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
+
     auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
     auto bData = reinterpret_cast<u_char*>(data);
 
@@ -221,6 +255,10 @@ void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAdd
                                                                vm_word offset,
                                                                vm_word length,
                                                                void* data ) {
+
+    if ( !isInitialized ) {
+        throw std::runtime_error("GenericMemoryManager is not initialized");
+    }
 
     auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
     auto bData = reinterpret_cast<u_char*>(data);
@@ -327,4 +365,8 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
     }
 }
 
-athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;
+athena::backend::generic::GenericMemoryManager::GenericMemoryManager () {
+    isInitialized = false;
+    memory = nullptr;
+    allocatedMemory = 0;
+};
