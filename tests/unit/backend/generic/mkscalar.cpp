@@ -42,4 +42,6 @@ TEST( mkscalar_op_test, mkscalar_12_1_float ) {
 
     gmm->deinit();
 
+    delete gmm;
+
 }

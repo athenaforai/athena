@@ -30,6 +30,8 @@ namespace athena::backend::generic {
         auto resData = reinterpret_cast<float*>(
                 memoryManager->getPhysicalAddress(res->getStartAddress()));
 
+        resData[0] = 0;
+
 #pragma omp parallel for
         for ( int i = 0; i < x->getShape().totalSize(); i++ ) {
             resData[ 0 ] += std::pow( xData[ i ] - yData[ i ], 2.0f );

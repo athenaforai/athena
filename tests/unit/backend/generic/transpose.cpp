@@ -41,11 +41,11 @@ TEST( transpose_op_test, transpose_2x2 ) {
 
     gmm->setData( 1, 0, 16, f );
 
-    //gmm->unlock( tensor1->getStartAddress());
+    gmm->unlock( tensor1->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    //gmm->loadAndLock( tensor1 );
+    gmm->loadAndLock( tensor1 );
 
     transpose(gmm, tensor1, tensor3);
 

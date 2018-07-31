@@ -22,6 +22,10 @@
 #include <thread>
 #include <string>
 
+#ifdef TEST_ENVIRONMENT
+#include <gtest/gtest.h>
+#endif
+
 namespace athena::backend::generic {
 
     /**
@@ -72,7 +76,15 @@ namespace athena::backend::generic {
     class GenericMemoryManager : public AbstractMemoryManager {
     protected:
         std::list< SwapRecord* > swapRecords;
+
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
         MemoryChunk* memoryChunksHead;
+
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
         void* memory;
 
         std::mutex memoryChunksLock;
@@ -85,15 +97,22 @@ namespace athena::backend::generic {
 
         std::vector< bool > laneFinished;
 
-        // хранит список загруженных тензоров, скорее всего костыль
-        std::vector<vm_word> lockedList;
-
         /**
          * This is a thread function for memory lane-threads. It loads data to
          * RAM and notifies corresponding threads
          * @param laneId
          */
-        void processQueue ( int laneId );
+        void allocationThreadFunc ( int laneId );
+
+
+        /**
+         * This method does actual physical memory allocation
+         * @param item
+         */
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
+        void processQueueItem(QueueItem* item);
 
     public:
 

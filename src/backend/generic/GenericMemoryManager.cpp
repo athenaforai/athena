@@ -20,7 +20,7 @@ void athena::backend::generic::GenericMemoryManager::init () {
 
 
     laneFinished.push_back( false );
-    std::thread thr( &GenericMemoryManager::processQueue, this, 0 );
+    std::thread thr( &GenericMemoryManager::allocationThreadFunc, this, 0 );
 
     memLanes.push_back( std::move( thr ));
 
@@ -34,7 +34,7 @@ void athena::backend::generic::GenericMemoryManager::init () {
     memoryChunksHead->prev = nullptr;
 }
 
-void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId ) {
+void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int laneId ) {
 
     while ( !laneFinished[ laneId ] ) {
         // todo concurrency
@@ -42,77 +42,7 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
             auto item = loadQueue.front();
             loadQueue.pop();
 
-            memoryChunksLock.lock();
-            MemoryChunk* cur = memoryChunksHead;
-
-            // select the first suitable memory chunk
-            // todo better strategy to choose memory chunks
-                    //TODO CHECK CONDITION IN WHILE(...)
-            while ( cur != nullptr &&
-                    ( cur->length <= item->length
-                      && ( !cur->isFree || !cur->isLocked ))) {
-                cur = cur->next;
-            }
-
-            if ( cur == nullptr ) {
-                throw std::runtime_error( "Out of memory error!" );
-            }
-            if ( cur->length > item->length ) {     //TODO BUT IF IT FALSE?
-                auto newChunk = new MemoryChunk;
-                newChunk->begin = cur->begin;
-                newChunk->length = item->length;
-                newChunk->virtualAddress = item->address;
-                newChunk->prev = cur->prev;
-
-                if ( cur->prev != nullptr ) {
-                    cur->prev->next = newChunk;
-                }
-
-                auto freeChunk = new MemoryChunk;
-                freeChunk->virtualAddress = 0;
-                freeChunk->begin = reinterpret_cast<char*>(newChunk->begin) +
-                                   newChunk->length;
-                freeChunk->isFree = true;
-                freeChunk->length = cur->length - newChunk->length;
-                freeChunk->prev = newChunk;
-                newChunk->next = freeChunk;
-                freeChunk->next = cur->next;
-                if ( cur->next != nullptr ) {
-                    cur->next->prev = freeChunk;
-                }
-
-                if ( cur == memoryChunksHead ) {
-                    memoryChunksHead = newChunk;
-                }
-
-                cur->prev = nullptr;
-                cur->next = nullptr;
-                delete cur;
-
-                cur = newChunk;
-            }
-
-            cur->isFree = false;
-            cur->virtualAddress = item->address;
-
-            memoryChunksLock.unlock();
-
-            if ( !item->alloc ) {
-                for ( SwapRecord* record : swapRecords ) {
-                    if ( record->address == item->address ) {
-                        std::ifstream inp;
-                        inp.open( record->filename );
-
-                        inp.read( reinterpret_cast<char*>(cur->begin), cur->length );
-
-                        inp.close();
-                    }
-                }
-            }
-
-
-            item->notified = true;
-            item->loadHandle.notify_all();
+            processQueueItem( item );
         }
     }
 
@@ -134,14 +64,6 @@ void* athena::backend::generic::GenericMemoryManager::getPhysicalAddress (
 
 void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word address,
                                                                    unsigned long length ) {
-
-    for ( vm_word a : lockedList ) {
-        if ( a == address ) {
-            return;
-        }
-    }
-
-    lockedList.push_back( address );
 
     auto item = new QueueItem();
     item->address = address;
@@ -168,7 +90,12 @@ void athena::backend::generic::GenericMemoryManager::deinit () {
         memLane.join();
     }
 
+    memLanes.clear();
+    laneFinished.clear();
+
     delete reinterpret_cast<u_char*>(memory);
+
+    memory = nullptr;
 }
 
 athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
@@ -176,21 +103,6 @@ athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
 }
 
 void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) {
-
-    long idx = -1;
-
-    for ( int i = 0; i < lockedList.size(); i++ ) {
-        if ( lockedList[i] == address ) {
-            idx = i;
-            break;
-        }
-    }
-
-    if ( idx == -1 ) {
-        return;
-    }
-
-    lockedList.erase( std::begin(lockedList) + idx );
 
     memoryChunksLock.lock();
 
@@ -263,14 +175,6 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         vm_word address,
         unsigned long length ) {
 
-    for ( vm_word a : lockedList ) {
-        if ( a == address ) {
-            return;
-        }
-    }
-
-    lockedList.push_back( address );
-
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
@@ -312,4 +216,101 @@ void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAdd
 
 }
 
+void athena::backend::generic::GenericMemoryManager::processQueueItem (
+        athena::backend::generic::QueueItem *item ) {
+    memoryChunksLock.lock();
+    MemoryChunk* cur = memoryChunksHead;
+
+    // check if the element is already in the memory
+
+    while (cur != nullptr) {
+        if ( cur->virtualAddress == item->address ) {
+            break;
+        }
+        cur = cur->next;
+    }
+
+    if ( cur != nullptr ) {
+        cur->isLocked = true;
+
+        memoryChunksLock.unlock();
+
+        item->notified = true;
+        item->loadHandle.notify_all();
+
+    } else {
+
+        cur = memoryChunksHead;
+
+        // select the first suitable memory chunk
+        // todo better strategy to choose memory chunks
+        //TODO CHECK CONDITION IN WHILE(...)
+        while ( cur != nullptr &&
+                ( cur->length <= item->length
+                  && ( !cur->isFree || !cur->isLocked ))) {
+            cur = cur->next;
+        }
+
+        if ( cur == nullptr ) {
+            throw std::runtime_error( "Out of memory error!" );
+        }
+        if ( cur->length > item->length ) {     //TODO BUT IF IT FALSE?
+            auto newChunk = new MemoryChunk;
+            newChunk->begin = cur->begin;
+            newChunk->length = item->length;
+            newChunk->virtualAddress = item->address;
+            newChunk->prev = cur->prev;
+
+            if ( cur->prev != nullptr ) {
+                cur->prev->next = newChunk;
+            }
+
+            auto freeChunk = new MemoryChunk;
+            freeChunk->virtualAddress = 0;
+            freeChunk->begin = reinterpret_cast<char*>(newChunk->begin) +
+                               newChunk->length;
+            freeChunk->isFree = true;
+            freeChunk->length = cur->length - newChunk->length;
+            freeChunk->prev = newChunk;
+            newChunk->next = freeChunk;
+            freeChunk->next = cur->next;
+            if ( cur->next != nullptr ) {
+                cur->next->prev = freeChunk;
+            }
+
+            if ( cur == memoryChunksHead ) {
+                memoryChunksHead = newChunk;
+            }
+
+            cur->prev = nullptr;
+            cur->next = nullptr;
+            delete cur;
+
+            cur = newChunk;
+        }
+
+        cur->isFree = false;
+        cur->isLocked = true;
+        cur->virtualAddress = item->address;
+
+        memoryChunksLock.unlock();
+
+        if ( !item->alloc ) {
+            for ( SwapRecord* record : swapRecords ) {
+                if ( record->address == item->address ) {
+                    std::ifstream inp;
+                    inp.open( record->filename );
+
+                    inp.read( reinterpret_cast<char*>(cur->begin), cur->length );
+
+                    inp.close();
+                }
+            }
+        }
+
+
+        item->notified = true;
+        item->loadHandle.notify_all();
+    }
+}
 athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;
