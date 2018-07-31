@@ -20,14 +20,28 @@ using namespace athena::core;
 
 namespace athena::backend::generic {
 
-    TEST( generic_memory_manager_tests, add_get_Test ) {
+    class GenericMemoryManagerTest : public ::testing::Test {
+    protected:
+        GenericMemoryManager* gmm {};
+
+        void SetUp () override {
+            gmm = new GenericMemoryManager();
+            gmm->setMemSize( 1000 );
+            gmm->init();
+        }
+
+        void TearDown () override {
+            delete gmm;
+        }
+
+    };
+
+    TEST_F( GenericMemoryManagerTest, add_get_Test ) {
 
         auto tensorShape = new TensorShape( { 3, 2 } );
         auto tensor = new Tensor( *tensorShape, DataType::FLOAT );
 
         tensor->setStartAddress( 1 );
-
-        auto gmm = new GenericMemoryManager();
 
         gmm->addTensor( tensor );
 
@@ -35,20 +49,16 @@ namespace athena::backend::generic {
 
         ASSERT_EQ( tensor, t2 );
 
-        delete gmm;
+        gmm->deleteFromMem( tensor->getStartAddress());
 
     }
 
-    TEST( generic_memory_manager_tests, physical_addres_Test ) {
+    TEST_F( GenericMemoryManagerTest, physical_addres_Test ) {
 
         auto tensorShape = new TensorShape( { 3 } );
         auto tensor = new Tensor( *tensorShape, DataType::FLOAT );
 
         tensor->setStartAddress( 1 );
-
-        auto gmm = new GenericMemoryManager();
-        gmm->setMemSize( 1000000 );
-        gmm->init();
 
         gmm->addTensor( tensor );
         gmm->allocateAndLock( tensor );
@@ -57,35 +67,28 @@ namespace athena::backend::generic {
 
         gmm->setData( 1, 0, 12, f );
 
-    gmm->unlock( tensor->getStartAddress());
+        gmm->unlock( tensor->getStartAddress());
 
-        auto rf =
-                reinterpret_cast<float*>(gmm->getPhysicalAddress(
-                        tensor->getStartAddress()));
+        auto rf = reinterpret_cast<float*>(gmm->getPhysicalAddress(
+                tensor->getStartAddress()));
 
-    gmm->loadAndLock( tensor );
-    gmm->getData( 1, 0, 12, rf );
+        gmm->loadAndLock( tensor );
+        gmm->getData( 1, 0, 12, rf );
         gmm->unlock( tensor->getStartAddress());
 
         for ( int i = 0; i < 3; i++ ) {
             EXPECT_FLOAT_EQ( f[ i ], rf[ i ] );
         }
 
-        gmm->deinit();
-
-        delete gmm;
+        gmm->deleteFromMem( tensor->getStartAddress());
     }
 
-    TEST( generic_memory_manager_tests, set_get_data_Test ) {
+    TEST_F( GenericMemoryManagerTest, set_get_data_Test ) {
 
         auto tensorShape = new TensorShape( { 3 } );
         auto tensor = new Tensor( *tensorShape, DataType::FLOAT );
 
         tensor->setStartAddress( 1 );
-
-        auto gmm = new GenericMemoryManager();
-        gmm->setMemSize( 1000000 );
-        gmm->init();
 
         gmm->addTensor( tensor );
         gmm->allocateAndLock( tensor );
@@ -106,12 +109,10 @@ namespace athena::backend::generic {
             EXPECT_FLOAT_EQ( f[ i ], rf[ i ] );
         }
 
-        gmm->deinit();
-
-        delete gmm;
+        gmm->deleteFromMem( tensor->getStartAddress());
     }
 
-    TEST( generic_memory_manager_tests, queue_item_properly_allocated ) {
+    TEST_F( GenericMemoryManagerTest, queue_item_properly_allocated ) {
 
         auto item = new QueueItem();
         item->address = 1;
@@ -133,15 +134,16 @@ namespace athena::backend::generic {
             cur = cur->next;
         }
 
-        ASSERT_NE(cur, nullptr);
-        ASSERT_EQ(cur->isLocked, true);
-        ASSERT_EQ(cur->isFree, false);
-        ASSERT_EQ(cur->begin, gmm->memory);
-        ASSERT_NE(cur->next, nullptr);
-        ASSERT_EQ(cur->length, item->length);
+        ASSERT_NE( cur, nullptr );
+        ASSERT_EQ( cur->isLocked, true );
+        ASSERT_EQ( cur->isFree, false );
+        ASSERT_EQ( cur->begin, gmm->memory );
+        ASSERT_NE( cur->next, nullptr );
+        ASSERT_EQ( cur->length, item->length );
 
         ASSERT_EQ( reinterpret_cast<u_char*>(cur->next->begin), reinterpret_cast<u_char*>
-        (cur->begin) + cur->length);
+                                                                (cur->begin) +
+                                                                cur->length );
 
         gmm->deinit();
 

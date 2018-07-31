@@ -30,6 +30,7 @@ namespace athena::backend::generic {
         GenericMemoryManager* memoryManager;
     public:
         CPUDevice ();
+        ~CPUDevice ();
 
         AbstractMemoryManager* getMemoryManager() override ;
 

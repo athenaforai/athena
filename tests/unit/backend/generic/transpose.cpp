@@ -14,66 +14,61 @@
 #include <gtest/gtest.h>
 #include <core/Tensor.h>
 #include <backend/generic/ops.h>
+#include "GenericExecutorTest.h"
 
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( transpose_op_test, transpose_2x2 ) {
-    auto tensorShape = new TensorShape( { 2, 2 } );
-    auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
-    auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
+namespace athena::backend::generic {
 
-    tensor1->setStartAddress( 1 );
-    tensor3->setStartAddress( 17 );
+    TEST_F( GenericExecutorTest, transpose_2x2 ) {
+        auto tensorShape = new TensorShape( { 2, 2 } );
+        auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
+        auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
 
-    auto gmm = new GenericMemoryManager();
-    gmm->setMemSize( 1000000 );
-    gmm->init();
+        tensor1->setStartAddress( 1 );
+        tensor3->setStartAddress( 17 );
 
-    gmm->addTensor( tensor1 );
-    gmm->allocateAndLock( tensor1 );
+        auto gmm = dynamic_cast<GenericMemoryManager*>(executor->getMemoryManager());
 
-    float f[2][2];
-    f[0][0] = 1.0f;
-    f[0][1] = 2.0f;
-    f[1][0] = 3.0f;
-    f[1][1] = 4.0f;
+        gmm->addTensor( tensor1 );
+        gmm->allocateAndLock( tensor1 );
 
-    gmm->setData( 1, 0, 16, f );
+        float f[2][2];
+        f[ 0 ][ 0 ] = 1.0f;
+        f[ 0 ][ 1 ] = 2.0f;
+        f[ 1 ][ 0 ] = 3.0f;
+        f[ 1 ][ 1 ] = 4.0f;
 
-    gmm->unlock( tensor1->getStartAddress());
+        gmm->setData( 1, 0, 16, f );
 
-    gmm->addTensor( tensor3 );
-    gmm->allocateAndLock( tensor3 );
-    gmm->loadAndLock( tensor1 );
+        gmm->unlock( tensor1->getStartAddress());
 
-    transpose(gmm, tensor1, tensor3);
+        gmm->addTensor( tensor3 );
+        gmm->allocateAndLock( tensor3 );
+        gmm->loadAndLock( tensor1 );
 
-    float res[2][2];
+        transpose( gmm, tensor1, tensor3 );
 
-    /*gmm->getData( 17, 0, 4, res );        //NOT WORKED
-    ASSERT_FLOAT_EQ(*res, 1.0f);
-    gmm->getData( 21, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 3.0f);
-    gmm->getData( 25, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 2.0f);
-    gmm->getData( 29, 0, 4, res );
-    ASSERT_FLOAT_EQ(*res, 4.0f);*/
-    gmm->getData(17, 0, 16, res);
-    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
-    ASSERT_FLOAT_EQ(res[0][1], 3.0f);
-    ASSERT_FLOAT_EQ(res[1][0], 2.0f);
-    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
+        float res[2][2];
 
-    gmm->getData(1, 0, 16, res);
-    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
-    ASSERT_FLOAT_EQ(res[0][1], 2.0f);
-    ASSERT_FLOAT_EQ(res[1][0], 3.0f);
-    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
+        gmm->getData( 17, 0, 16, res );
+        ASSERT_FLOAT_EQ( res[ 0 ][ 0 ], 1.0f );
+        ASSERT_FLOAT_EQ( res[ 0 ][ 1 ], 3.0f );
+        ASSERT_FLOAT_EQ( res[ 1 ][ 0 ], 2.0f );
+        ASSERT_FLOAT_EQ( res[ 1 ][ 1 ], 4.0f );
+
+        gmm->getData( 1, 0, 16, res );
+        ASSERT_FLOAT_EQ( res[ 0 ][ 0 ], 1.0f );
+        ASSERT_FLOAT_EQ( res[ 0 ][ 1 ], 2.0f );
+        ASSERT_FLOAT_EQ( res[ 1 ][ 0 ], 3.0f );
+        ASSERT_FLOAT_EQ( res[ 1 ][ 1 ], 4.0f );
 
 
-    gmm->unlock( tensor1->getStartAddress());
-    gmm->unlock( tensor3->getStartAddress());
+        gmm->unlock( tensor1->getStartAddress());
+        gmm->unlock( tensor3->getStartAddress());
 
-    gmm->deinit();
+        gmm->deleteFromMem( tensor1->getStartAddress());
+        gmm->deleteFromMem( tensor3->getStartAddress());
+    }
 }

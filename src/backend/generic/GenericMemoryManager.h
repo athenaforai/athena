@@ -74,6 +74,12 @@ namespace athena::backend::generic {
      * to RAM if needed.
      */
     class GenericMemoryManager : public AbstractMemoryManager {
+
+#ifdef TEST_ENVIRONMENT
+        friend class GenericMemoryManagerTest;
+        FRIEND_TEST( GenericMemoryManagerTest, queue_item_properly_allocated );
+#endif
+
     protected:
         std::list< SwapRecord* > swapRecords;
 

@@ -14,11 +14,13 @@
 #include <gtest/gtest.h>
 #include <core/Tensor.h>
 #include <backend/generic/ops.h>
+#include "GenericExecutorTest.h"
 
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( matmul_op_test, matmul_unit ){
+namespace athena::backend::generic {
+    TEST_F( GenericExecutorTest, matmul_unit ) {
 //    TensorShape shape ( { 3, 3 } );
 //
 //    float data1[] = { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
@@ -36,5 +38,6 @@ TEST( matmul_op_test, matmul_unit ){
 //    }
 
 
+    }
 }
 

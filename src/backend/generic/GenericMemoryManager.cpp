@@ -84,9 +84,7 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
     item->length = length;
 
     loadQueue.push( item );
-
-    std::mutex m;
-    std::unique_lock< std::mutex > lock( m );
+    std::unique_lock< std::mutex > lock( item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
@@ -218,8 +216,7 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
 
     loadQueue.push( item );
 
-    std::mutex m;
-    std::unique_lock< std::mutex > lock( m );
+    std::unique_lock< std::mutex > lock( item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7

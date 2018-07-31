@@ -23,6 +23,10 @@
 #include <backend/VMState.h>
 #include "CPUDevice.h"
 
+#ifdef TEST_ENVIRONMENT
+#include <gtest/gtest.h>
+#endif
+
 namespace athena::backend::generic {
 
     /**
@@ -48,6 +52,18 @@ namespace athena::backend::generic {
      * </p>
      */
     class GenericExecutor : public athena::backend::AbstractExecutor {
+#ifdef TEST_ENVIRONMENT
+        friend class GenericExecutorTest;
+        FRIEND_TEST( GenericExecutorTest, add_1d );
+        FRIEND_TEST( GenericExecutorTest, copy_2x2 );
+        FRIEND_TEST( GenericExecutorTest, matmul_unit );
+        FRIEND_TEST( GenericExecutorTest, mkscalar_12_1_float );
+        FRIEND_TEST( GenericExecutorTest, mse_7_2_vs_10_9 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_2x2x2 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_2x2 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_1x1 );
+#endif
+
     private:
 
         CPUDevice* device;
@@ -57,6 +73,8 @@ namespace athena::backend::generic {
         explicit GenericExecutor (
                 CPUDevice* cpuDevice
         ) : AbstractExecutor(), device( cpuDevice ) {};
+
+        ~GenericExecutor ();
 
         void execute () override ;
 

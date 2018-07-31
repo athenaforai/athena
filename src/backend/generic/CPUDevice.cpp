@@ -20,9 +20,14 @@ athena::backend::generic::CPUDevice::CPUDevice () : AbstractDevice() {
     memorySize = 1024 * 1024 * 1024; // 1 GB todo replace with real mem size
     memoryManager = new GenericMemoryManager();
     memoryManager->setMemSize( memorySize );
+    memoryManager->init();
 }
 
 athena::backend::AbstractMemoryManager*
 athena::backend::generic::CPUDevice::getMemoryManager () {
     return memoryManager;
+}
+
+athena::backend::generic::CPUDevice::~CPUDevice () {
+    delete memoryManager;
 }
