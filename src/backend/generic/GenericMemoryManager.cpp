@@ -75,9 +75,15 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
     std::unique_lock< std::mutex > lock( m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
-    while ( !item->notified ) {
-        item->loadHandle.wait( lock );
-    }
+    // todo this is temp fix for https://github.com/athenaml/athena/issues/7
+#ifdef __APPLE__
+    item->loadHandle.wait_for( lock, std::chrono::seconds( 3 ), [ item ] {
+        return !item->notified;
+    } );
+#else
+    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+#endif
+    lock.unlock();
 
 }
 
@@ -131,7 +137,7 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
         record = new SwapRecord;
         record->address = address;
         record->length = cur->length;
-        record->filename = std::to_string(address) + ".swap"; // todo unique names
+        record->filename = std::to_string( address ) + ".swap"; // todo unique names
 
         swapRecords.push_back( record );
     }
@@ -186,9 +192,16 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
     std::unique_lock< std::mutex > lock( m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
-    while ( !item->notified ) {
-        item->loadHandle.wait( lock );
-    }
+    // todo this is temp fix for https://github.com/athenaml/athena/issues/7
+#ifdef __APPLE__
+    item->loadHandle.wait_for( lock, std::chrono::seconds( 3 ), [ item ] {
+        return !item->notified;
+    } );
+#else
+    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+#endif
+
+    lock.unlock();
 
 }
 
@@ -217,13 +230,13 @@ void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAdd
 }
 
 void athena::backend::generic::GenericMemoryManager::processQueueItem (
-        athena::backend::generic::QueueItem *item ) {
+        athena::backend::generic::QueueItem* item ) {
     memoryChunksLock.lock();
     MemoryChunk* cur = memoryChunksHead;
 
     // check if the element is already in the memory
 
-    while (cur != nullptr) {
+    while ( cur != nullptr ) {
         if ( cur->virtualAddress == item->address ) {
             break;
         }
@@ -313,4 +326,5 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
         item->loadHandle.notify_all();
     }
 }
+
 athena::backend::generic::GenericMemoryManager::GenericMemoryManager () = default;
