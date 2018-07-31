@@ -208,4 +208,5 @@ void athena::backend::generic::GenericExecutor::processBytecode (
 
 athena::backend::generic::GenericExecutor::~GenericExecutor () {
     delete device;
+    device = nullptr;
 }

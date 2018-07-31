@@ -33,13 +33,11 @@ using namespace athena::backend::generic;
 TEST( vm_test, vm_test_simple_Test ) {
     Session sess;
 
-    CPUDevice device;
+    auto device = new CPUDevice();
 
-    GenericExecutor executor(&device);
+    GenericExecutor executor(device);
 
     sess.setExecutor( &executor );
-
-    dynamic_cast<GenericMemoryManager*>(device.getMemoryManager())->init();
 
     TensorShape shape( { 3 } );
 
@@ -64,22 +62,20 @@ TEST( vm_test, vm_test_simple_Test ) {
     sess.prepare( logits );
 
     // todo Костыль. Нужен нормальный интерфейс
-    device.getMemoryManager()->addTensor( a );
-    device.getMemoryManager()->addTensor( b );
+    device->getMemoryManager()->addTensor( a );
+    device->getMemoryManager()->addTensor( b );
 
     auto resTensor = sess.run();
 
     auto resf = new float[3];
 
-    device.getMemoryManager()->loadAndLock( resTensor );
-    device.getMemoryManager()->getData(
+    device->getMemoryManager()->loadAndLock( resTensor );
+    device->getMemoryManager()->getData(
             resTensor->getStartAddress(),
             0,
             12,
             reinterpret_cast<void*>(resf)
             );
-
-    dynamic_cast<GenericMemoryManager*>(device.getMemoryManager())->deinit();
 
     float corr[] = {3, 5, 7};
 
@@ -92,13 +88,11 @@ TEST( vm_test, vm_test_simple_Test ) {
 TEST( vm_test, vm_test_backprop_Test ) {
     Session sess;
 
-    CPUDevice device;
+    auto device = new CPUDevice();
 
-    GenericExecutor executor(&device);
+    GenericExecutor executor(device);
 
     sess.setExecutor( &executor );
-
-    dynamic_cast<GenericMemoryManager*>(device.getMemoryManager())->init();
 
     TensorShape shape( { 1 } );
 
@@ -123,8 +117,8 @@ TEST( vm_test, vm_test_backprop_Test ) {
     sess.prepare( logits );
 
     // todo Костыль. Нужен нормальный интерфейс
-    device.getMemoryManager()->addTensor( a );
-    device.getMemoryManager()->addTensor( b );
+    device->getMemoryManager()->addTensor( a );
+    device->getMemoryManager()->addTensor( b );
 
     float corr[] = {8};
 
@@ -144,30 +138,30 @@ TEST( vm_test, vm_test_backprop_Test ) {
     gd->init( &sess );
     gd->prepare();
 
-    device.getMemoryManager()->addTensor( labelTensor );
+    device->getMemoryManager()->addTensor( labelTensor );
 
     auto resa = new float[1];
     auto resb = new float[1];
 
     sess.run();
 
-    device.getMemoryManager()->loadAndLock( a );
-    device.getMemoryManager()->getData(
+    device->getMemoryManager()->loadAndLock( a );
+    device->getMemoryManager()->getData(
             a->getStartAddress(),
             0,
             4,
             reinterpret_cast<void*>(resa)
     );
-    device.getMemoryManager()->unlock( a->getStartAddress());
+    device->getMemoryManager()->unlock( a->getStartAddress());
 
-    device.getMemoryManager()->loadAndLock( b );
-    device.getMemoryManager()->getData(
+    device->getMemoryManager()->loadAndLock( b );
+    device->getMemoryManager()->getData(
             b->getStartAddress(),
             0,
             4,
             reinterpret_cast<void*>(resb)
     );
-    device.getMemoryManager()->unlock( b->getStartAddress());
+    device->getMemoryManager()->unlock( b->getStartAddress());
 
     EXPECT_FLOAT_EQ(resa[0], 1);
     EXPECT_FLOAT_EQ(resb[0], 2);
@@ -176,23 +170,21 @@ TEST( vm_test, vm_test_backprop_Test ) {
 
 
 
-    device.getMemoryManager()->loadAndLock( a );
-    device.getMemoryManager()->getData(
+    device->getMemoryManager()->loadAndLock( a );
+    device->getMemoryManager()->getData(
             a->getStartAddress(),
             0,
             4,
             reinterpret_cast<void*>(resa)
     );
 
-    device.getMemoryManager()->loadAndLock( b );
-    device.getMemoryManager()->getData(
+    device->getMemoryManager()->loadAndLock( b );
+    device->getMemoryManager()->getData(
             b->getStartAddress(),
             0,
             4,
             reinterpret_cast<void*>(resb)
     );
-
-    dynamic_cast<GenericMemoryManager*>(device.getMemoryManager())->deinit();
 
 
     EXPECT_FLOAT_EQ(resa[0], 3.5f);

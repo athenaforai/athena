@@ -302,7 +302,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
         if ( cur == nullptr ) {
             throw std::runtime_error( "Out of memory error!" );
         }
-        if ( cur->length > item->length ) {     //TODO BUT IF IT FALSE?
+        if ( cur->length > item->length ) {
             auto newChunk = new MemoryChunk;
             newChunk->begin = cur->begin;
             newChunk->length = item->length;
