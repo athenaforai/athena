@@ -25,6 +25,7 @@ void athena::backend::generic::GenericMemoryManager::init () {
     memLanes.push_back( std::move( thr ));
 
     memoryChunksHead = new MemoryChunk;
+    memoryChunksHead->virtualAddress = 0;
     memoryChunksHead->isFree = true;
     memoryChunksHead->isLocked = false;
     memoryChunksHead->begin = memory;
@@ -46,6 +47,7 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
 
             // select the first suitable memory chunk
             // todo better strategy to choose memory chunks
+                    //TODO CHECK CONDITION IN WHILE(...)
             while ( cur != nullptr &&
                     ( cur->length <= item->length
                       && ( !cur->isFree || !cur->isLocked ))) {
@@ -55,7 +57,7 @@ void athena::backend::generic::GenericMemoryManager::processQueue ( int laneId )
             if ( cur == nullptr ) {
                 throw std::runtime_error( "Out of memory error!" );
             }
-            if ( cur->length > item->length ) {
+            if ( cur->length > item->length ) {     //TODO BUT IF IT FALSE?
                 auto newChunk = new MemoryChunk;
                 newChunk->begin = cur->begin;
                 newChunk->length = item->length;

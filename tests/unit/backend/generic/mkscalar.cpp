@@ -18,52 +18,28 @@
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( add_op_test, add_1d ) {
-
+TEST( mkscalar_op_test, mkscalar_12_1_float ) {
     auto tensorShape = new TensorShape( { 1 } );
-    auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
-    auto tensor2 = new Tensor( *tensorShape, DataType::FLOAT );
     auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
 
-    tensor1->setStartAddress( 1 );
-    tensor2->setStartAddress( 5 );
-    tensor3->setStartAddress( 9 );
+    tensor3->setStartAddress( 1 );
 
     auto gmm = new GenericMemoryManager();
     gmm->setMemSize( 1000000 );
     gmm->init();
 
-    gmm->addTensor( tensor1 );
-    gmm->allocateAndLock( tensor1 );
-
-    float f1[] = { 3 };
-    gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
-
-
-    gmm->addTensor( tensor2 );
-    gmm->allocateAndLock( tensor2 );
-
-    float f2[] = { 5 };
-    gmm->setData( 5, 0, 4, f2 );
-    gmm->unlock( tensor2->getStartAddress());
-
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    //gmm->loadAndLock( tensor1 );  ERROR LINES
-    //gmm->loadAndLock( tensor2 );
 
-    add( gmm, tensor1, tensor2, tensor3 );
+    float a = 12.1;
+    auto *ul = reinterpret_cast<unsigned long*>(&a);
+    mkscalar(gmm, *ul, tensor3);
 
-    auto res = new float;
-
-    gmm->getData( 9, 0, 4, res );
-
-    gmm->unlock( tensor1->getStartAddress());
-    gmm->unlock( tensor2->getStartAddress());
+    float res[1];
+    gmm->getData(1, 0, 4, res);
+    ASSERT_FLOAT_EQ(*res, 12.1f);
     gmm->unlock( tensor3->getStartAddress());
 
-    ASSERT_FLOAT_EQ(*res, 8.0f);
-
     gmm->deinit();
+
 }

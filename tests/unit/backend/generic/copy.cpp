@@ -18,16 +18,13 @@
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( add_op_test, add_1d ) {
-
-    auto tensorShape = new TensorShape( { 1 } );
+TEST( copy_op_test, copy_2x2 ) {
+    auto tensorShape = new TensorShape( { 2, 2 } );
     auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
-    auto tensor2 = new Tensor( *tensorShape, DataType::FLOAT );
     auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
 
     tensor1->setStartAddress( 1 );
-    tensor2->setStartAddress( 5 );
-    tensor3->setStartAddress( 9 );
+    tensor3->setStartAddress( 17 );
 
     auto gmm = new GenericMemoryManager();
     gmm->setMemSize( 1000000 );
@@ -35,35 +32,34 @@ TEST( add_op_test, add_1d ) {
 
     gmm->addTensor( tensor1 );
     gmm->allocateAndLock( tensor1 );
-
-    float f1[] = { 3 };
-    gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
-
-
-    gmm->addTensor( tensor2 );
-    gmm->allocateAndLock( tensor2 );
-
-    float f2[] = { 5 };
-    gmm->setData( 5, 0, 4, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    float f[2][2];
+    f[0][0] = 1.0f;
+    f[0][1] = 2.0f;
+    f[1][0] = 3.0f;
+    f[1][1] = 4.0f;
+    gmm->setData( 1, 0, 16, f );
+    //gmm->unlock( tensor1->getStartAddress());     DON'T UNLOCK, CAUSE NOW WE ARE
+    // CAN'T LOCK MEMORY WITHOUT HER RELOAD
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    //gmm->loadAndLock( tensor1 );  ERROR LINES
-    //gmm->loadAndLock( tensor2 );
+    //gmm->loadAndLock( tensor1 );      ERROR LINE
+    copy(gmm, tensor1, tensor3);
 
-    add( gmm, tensor1, tensor2, tensor3 );
-
-    auto res = new float;
-
-    gmm->getData( 9, 0, 4, res );
-
+    float res[2][2];
+    gmm->getData(17, 0, 16, res);
+    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
+    ASSERT_FLOAT_EQ(res[0][1], 2.0f);
+    ASSERT_FLOAT_EQ(res[1][0], 3.0f);
+    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
+    gmm->getData(1, 0, 16, res);
+    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
+    ASSERT_FLOAT_EQ(res[0][1], 2.0f);
+    ASSERT_FLOAT_EQ(res[1][0], 3.0f);
+    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
     gmm->unlock( tensor1->getStartAddress());
-    gmm->unlock( tensor2->getStartAddress());
     gmm->unlock( tensor3->getStartAddress());
 
-    ASSERT_FLOAT_EQ(*res, 8.0f);
-
     gmm->deinit();
+
 }

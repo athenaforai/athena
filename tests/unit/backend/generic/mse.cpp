@@ -4,9 +4,9 @@
  *
  * Licensed under MIT license.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * Unless required by applicable law or agreed to in writing, software 
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT 
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the 
  * License for the specific language governing permissions and limitations under
  * the License.
  */
@@ -18,8 +18,7 @@
 using namespace athena::core;
 using namespace athena::backend::generic;
 
-TEST( add_op_test, add_1d ) {
-
+TEST( mse_op_test, mse_7_2_vs_10_9 ) {
     auto tensorShape = new TensorShape( { 1 } );
     auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
     auto tensor2 = new Tensor( *tensorShape, DataType::FLOAT );
@@ -35,25 +34,23 @@ TEST( add_op_test, add_1d ) {
 
     gmm->addTensor( tensor1 );
     gmm->allocateAndLock( tensor1 );
-
-    float f1[] = { 3 };
+    float f1[] = { 7.2f };
     gmm->setData( 1, 0, 4, f1 );
-    gmm->unlock( tensor1->getStartAddress());
+    //gmm->unlock( tensor1->getStartAddress());
 
 
     gmm->addTensor( tensor2 );
     gmm->allocateAndLock( tensor2 );
-
-    float f2[] = { 5 };
+    float f2[] = { 10.9f };
     gmm->setData( 5, 0, 4, f2 );
-    gmm->unlock( tensor2->getStartAddress());
+    //gmm->unlock( tensor2->getStartAddress());
 
     gmm->addTensor( tensor3 );
     gmm->allocateAndLock( tensor3 );
-    //gmm->loadAndLock( tensor1 );  ERROR LINES
-    //gmm->loadAndLock( tensor2 );
 
-    add( gmm, tensor1, tensor2, tensor3 );
+    //gmm->loadAndLock( tensor1 );      ERROR LINES
+    //gmm->loadAndLock( tensor2 );
+    mse( gmm, tensor1, tensor2, tensor3 );
 
     auto res = new float;
 
@@ -63,7 +60,7 @@ TEST( add_op_test, add_1d ) {
     gmm->unlock( tensor2->getStartAddress());
     gmm->unlock( tensor3->getStartAddress());
 
-    ASSERT_FLOAT_EQ(*res, 8.0f);
+    ASSERT_FLOAT_EQ(*res, 13.69);
 
     gmm->deinit();
 }

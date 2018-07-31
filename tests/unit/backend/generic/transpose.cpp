@@ -19,17 +19,61 @@ using namespace athena::core;
 using namespace athena::backend::generic;
 
 TEST( transpose_op_test, transpose_2x2 ) {
-//    TensorShape shape( { 2, 2 } );
-//    float data[] = { 1, 2, 3, 4 };
-//    float transposed[] = { 1, 3, 2, 4 };
-//
-//    Tensor a( shape, DataType::FLOAT, reinterpret_cast<unsigned char*>(data));
-//    auto b = transpose( &a );
-//
-//    auto res = reinterpret_cast<float*>(b->raw());
-//
-//    for ( int i = 0; i < 4; i++ ) {
-//        ASSERT_FLOAT_EQ( transposed[ i ], res[ i ] );
-//    }
+    auto tensorShape = new TensorShape( { 2, 2 } );
+    auto tensor1 = new Tensor( *tensorShape, DataType::FLOAT );
+    auto tensor3 = new Tensor( *tensorShape, DataType::FLOAT );
 
+    tensor1->setStartAddress( 1 );
+    tensor3->setStartAddress( 17 );
+
+    auto gmm = new GenericMemoryManager();
+    gmm->setMemSize( 1000000 );
+    gmm->init();
+
+    gmm->addTensor( tensor1 );
+    gmm->allocateAndLock( tensor1 );
+
+    float f[2][2];
+    f[0][0] = 1.0f;
+    f[0][1] = 2.0f;
+    f[1][0] = 3.0f;
+    f[1][1] = 4.0f;
+
+    gmm->setData( 1, 0, 16, f );
+
+    //gmm->unlock( tensor1->getStartAddress());
+
+    gmm->addTensor( tensor3 );
+    gmm->allocateAndLock( tensor3 );
+    //gmm->loadAndLock( tensor1 );
+
+    transpose(gmm, tensor1, tensor3);
+
+    float res[2][2];
+
+    /*gmm->getData( 17, 0, 4, res );        //NOT WORKED
+    ASSERT_FLOAT_EQ(*res, 1.0f);
+    gmm->getData( 21, 0, 4, res );
+    ASSERT_FLOAT_EQ(*res, 3.0f);
+    gmm->getData( 25, 0, 4, res );
+    ASSERT_FLOAT_EQ(*res, 2.0f);
+    gmm->getData( 29, 0, 4, res );
+    ASSERT_FLOAT_EQ(*res, 4.0f);*/
+    gmm->getData(17, 0, 16, res);
+    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
+    ASSERT_FLOAT_EQ(res[0][1], 3.0f);
+    ASSERT_FLOAT_EQ(res[1][0], 2.0f);
+    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
+
+    gmm->getData(1, 0, 16, res);
+    ASSERT_FLOAT_EQ(res[0][0], 1.0f);
+    ASSERT_FLOAT_EQ(res[0][1], 2.0f);
+    ASSERT_FLOAT_EQ(res[1][0], 3.0f);
+    ASSERT_FLOAT_EQ(res[1][1], 4.0f);
+
+
+    gmm->unlock( tensor1->getStartAddress());
+    gmm->unlock( tensor3->getStartAddress());
+
+    gmm->deinit();
 }
