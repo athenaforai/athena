@@ -62,7 +62,7 @@ namespace athena::backend::generic {
         size_t length;
         bool alloc = false;
         std::condition_variable loadHandle;
-        std::mutex m;
+        std::mutex *m;
         bool notified = false;
     };
 

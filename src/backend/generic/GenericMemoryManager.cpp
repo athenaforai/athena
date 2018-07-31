@@ -82,18 +82,19 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
+    item->m = new std::mutex;
 
     loadQueue.push( item );
-    std::unique_lock< std::mutex > lock( item->m );
+    std::unique_lock< std::mutex > lock( *item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
 #ifdef __APPLE__
-    item->loadHandle.wait_for( lock, std::chrono::seconds( 3 ), [ item ] {
-        return !item->notified;
-    } );
+    while (!item->notified)
+        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
 #else
-    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+    while (!item->notified)
+        item->loadHandle.wait(lock, [item]{ return !item->notified; } );
 #endif
     lock.unlock();
 
@@ -213,19 +214,20 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
     item->address = address;
     item->length = length;
     item->alloc = true;
+    item->m = new std::mutex;
 
     loadQueue.push( item );
 
-    std::unique_lock< std::mutex > lock( item->m );
+    std::unique_lock< std::mutex > lock( *item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
 #ifdef __APPLE__
-    item->loadHandle.wait_for( lock, std::chrono::seconds( 3 ), [ item ] {
-        return !item->notified;
-    } );
+    while (!item->notified)
+        item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
 #else
-    item->loadHandle.wait(lock, [item]{ return !item->notified; } );
+    while (!item->notified)
+        item->loadHandle.wait(lock, [item]{ return !item->notified; } );
 #endif
 
     lock.unlock();
