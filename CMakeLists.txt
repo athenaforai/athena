@@ -11,6 +11,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z")
 add_subdirectory(src)
 
 add_subdirectory(libs/gtest)
+add_subdirectory(libs/hermes)
+target_include_directories(athena PUBLIC libs/hermes/include)
 
 enable_testing()
 add_subdirectory(tests)

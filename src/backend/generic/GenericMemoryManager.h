@@ -21,6 +21,7 @@
 #include <condition_variable>
 #include <thread>
 #include <string>
+#include <hermes/spinlock.h>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -93,7 +94,7 @@ namespace athena::backend::generic {
 #endif
         void* memory;
 
-        std::mutex memoryChunksLock;
+        hermes::spinlock memoryChunksLock;
 
         std::vector< std::thread > memLanes;
 

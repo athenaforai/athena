@@ -5,7 +5,7 @@
  * Licensed under MIT license.
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an “AS IS” BASIS, WITHOUTщд
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
@@ -13,8 +13,7 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
-#include <iostream>
-#include <cstring>
+//#include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
     if (!isInitialized) {
@@ -207,11 +206,9 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         vm_word address,
         unsigned long length ) {
 
-    std::cout<<"MA" << std::endl;
     if ( !isInitialized ) {
         throw std::runtime_error("GenericMemoryManager is not initialized");
     }
-    std::cout<<"DONT" << std::endl;
 
     auto item = new QueueItem();
     item->address = address;
@@ -225,8 +222,6 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7
-    std::cout<<"F** STIV, NO!" << std::endl;
-    std::cout<<item->notified << std::endl;
 #ifdef __APPLE__
     while (!item->notified)
         item->loadHandle.wait_for( lock, std::chrono::seconds( 15 ));
@@ -239,10 +234,6 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
     while (!item->notified)
         item->loadHandle.wait(lock);
 #endif
-    std::cout<<item->notified << std::endl;
-    std::cout<<"BUU" << std::endl;
-    lock.unlock();
-    std::cout <<"MAZAFACKA" << std::endl;
 
 }
 
