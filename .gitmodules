@@ -4,4 +4,4 @@
 	branch = master
 [submodule "docs"]
 	path = docs
-	url = git@github.com:athenaml/docs.git
+	url = https://github.com/athenaml/docs.git
