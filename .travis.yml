@@ -32,4 +32,4 @@ script:
  - cd build
  - /usr/local/cmake/bin/cmake ..
  - make
- - ctest
+ - ctest --verbose
