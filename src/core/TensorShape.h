@@ -16,6 +16,8 @@
 
 #include <vector>
 #include <array>
+#include <utility>
+#include <backend/opcodes.h>
 
 namespace athena::core {
 
@@ -24,9 +26,9 @@ namespace athena::core {
      */
     class TensorShape {
     private:
-        std::vector< size_t > shape;
+        std::vector< vm_word > shape;
     public:
-        explicit TensorShape ( std::vector< size_t > shape ) :
+        explicit TensorShape ( std::vector< vm_word > shape ) :
                 shape( std::move( shape )) {};
 
         TensorShape() = default;
@@ -54,7 +56,7 @@ namespace athena::core {
          */
         unsigned long totalSize () const;
 
-        const std::vector< unsigned long > &getShape () const;
+        const std::vector< vm_word > &getShape () const;
 
         /**
          * @return True if dimensions are equal, else False

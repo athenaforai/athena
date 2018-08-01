@@ -31,7 +31,7 @@ namespace athena::core {
     }
 
     Tensor &Tensor::operator[] ( unsigned int idx ) {
-        std::vector<unsigned long> dims;
+        std::vector<vm_word> dims;
 
         for ( int i = 1; i < shape.dimensions(); i++ ) {
             dims.push_back( shape.dim( static_cast<unsigned long>(i)));

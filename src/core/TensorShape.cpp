@@ -22,8 +22,12 @@ unsigned long athena::core::TensorShape::totalSize () const {
     return ts;
 }
 
-athena::core::TensorShape::TensorShape ( unsigned long* shape, unsigned long length ) {
-    this->shape.insert( std::end( this->shape ), shape, shape + length );
+athena::core::TensorShape::TensorShape ( vm_word* shape, unsigned long length ) {
+//    this->shape.insert( std::end( this->shape ), shape,
+//                         static_cast<const vm_word>(shape + length));
+    for( unsigned long i = 0; i < length; i++) {
+        this->shape.push_back(shape[i]);
+    }
 }
 
 unsigned long athena::core::TensorShape::dimensions () const {
@@ -43,9 +47,7 @@ athena::core::TensorShape::operator== ( const athena::core::TensorShape &rhs ) c
     if ( dimensions() != rhs.dimensions()) {
         return false;
     } else {
-        for (
-                unsigned long i = 0; i < dimensions(); i++
-                ) {
+        for ( unsigned long i = 0; i < dimensions(); i++ ) {
             if ( dim( i ) != rhs.dim( i )) {
                 return false;
             }

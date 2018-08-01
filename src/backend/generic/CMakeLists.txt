@@ -13,10 +13,10 @@ function(getopenblas)
                         SOURCE_DIR "openblas"
                         INSTALL_DIR "openblas"
 
-                        CONFIGURE_COMMAND ""
+                        CONFIGURE_COMMAND "cmake . -G Ninja -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_C_COMPILER=clang-cl -DCMAKE_Fortran_COMPILER=flang -DBUILD_WITHOUT_LAPACK=no -DNOFORTRAN=0 -DDYNAMIC_ARCH=ON -DCMAKE_BUILD_TYPE=Release"
 
                         BUILD_IN_SOURCE TRUE
-                        BUILD_COMMAND "make"
+                        BUILD_COMMAND "cmake --build . --config Release"
 
                         INSTALL_COMMAND ${MAKE_EXE} PREFIX=${PROJECT_SOURCE_DIR}/libs/src/openblas install
 
@@ -80,6 +80,11 @@ else ()
         message(STATUS "Apple Accelerate Framework will be used")
     endif ()
     find_package(BLAS)
+    if (NOT BLAS_FOUND)
+#        message(STATUS
+#                "No BLAS installation found. OpenBLAS will be downloaded and compiled")
+        getblis()
+    endif()
 endif ()
 
 target_sources(athena PUBLIC
