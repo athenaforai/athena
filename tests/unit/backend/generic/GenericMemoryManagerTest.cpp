@@ -119,10 +119,6 @@ namespace athena::backend::generic {
         item->length = 10;
         item->alloc = true;
 
-        auto gmm = new GenericMemoryManager();
-        gmm->setMemSize( 1000000 );
-        gmm->init();
-
         gmm->processQueueItem( item );
 
         auto cur = gmm->memoryChunksHead;
@@ -144,10 +140,6 @@ namespace athena::backend::generic {
         ASSERT_EQ( reinterpret_cast<u_char*>(cur->next->begin), reinterpret_cast<u_char*>
                                                                 (cur->begin) +
                                                                 cur->length );
-
-        gmm->deinit();
-
-        delete gmm;
 
     }
 }
