@@ -28,9 +28,10 @@ namespace athena::backend {
      * @param argc Number of args (Return value)
      * @return Position of next start value
      */
-    unsigned int parse (
-            std::vector< vm_word > &bytecode, unsigned long &next_word,
-            OpCode &new_word, vm_word* args, unsigned long &argc
+    unsigned long parse (
+            std::vector< vm_word > &bytecode, vm_word &next_word,
+            vm_word &new_word, vm_word* args, unsigned long &argc,
+            BasicOpCodeParams** parameters
     );
 }
 #endif //ATHENA_OPCODE_PARSER_H

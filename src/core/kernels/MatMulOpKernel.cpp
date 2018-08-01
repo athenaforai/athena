@@ -24,7 +24,7 @@ athena::core::kernels::MatMulOpKernel::getOpBytecode (
 
     std::vector< vm_word > bytecode;
 
-    bytecode.push_back( static_cast<vm_word>(OpCode::MATMUL));
+    bytecode.push_back( OpCode::MATMUL);
     bytecode.push_back( 0 );
     bytecode.push_back( args[ 0 ] );
     bytecode.push_back( 0 );
@@ -42,10 +42,10 @@ athena::core::kernels::MatMulOpKernel::getDerivativeBytecode ( int d,
     std::vector< vm_word > bytecode;
 
     if ( d == 0 ) {
-        bytecode.push_back( static_cast<vm_word>(OpCode::COPY));
+        bytecode.push_back( OpCode::COPY);
         bytecode.push_back( args[ 0 ] );
     } else {
-        bytecode.push_back( static_cast<vm_word>(OpCode::TRANSPOSE));
+        bytecode.push_back( OpCode::TRANSPOSE);
         bytecode.push_back( args[ 1 ] );
     }
     bytecode.push_back( resultCell );

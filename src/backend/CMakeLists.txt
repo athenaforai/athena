@@ -11,6 +11,7 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/opcode_parser.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/VMState.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.cpp
                )
 
 

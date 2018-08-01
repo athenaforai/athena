@@ -12,6 +12,7 @@
  */
 
 #include "SigmoidOpKernel.h"
+#include <backend/opcodes.h>
 
 athena::core::kernels::SigmoidOpKernel::SigmoidOpKernel ()
         : OpKernel( "sigmoid" ) {}
@@ -42,7 +43,7 @@ athena::core::kernels::SigmoidOpKernel::getDerivativeBytecode (
 ) {
 
     std::vector< vm_word > bytecode;
-    bytecode.push_back( static_cast<vm_word>(OpCode::SIGMOID_DERIV));
+    bytecode.push_back( OpCode::SIGMOID_DERIV);
     bytecode.push_back( args[ 0 ] );
     bytecode.push_back( resultCell );
 

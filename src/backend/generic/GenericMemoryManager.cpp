@@ -42,6 +42,7 @@ void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int 
 
     while ( !laneFinished[ laneId ] ) {
         // todo concurrency
+
         if ( !loadQueue.empty()) {
             auto item = loadQueue.front();
             loadQueue.pop();
@@ -82,10 +83,8 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
-//    item->m = new std::mutex;
 
     loadQueue.push( item );
-//    std::unique_lock< std::mutex > lock( *item->m );
 
     item->loadHandle.wait();
 
@@ -205,11 +204,8 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
     item->address = address;
     item->length = length;
     item->alloc = true;
-//    item->m = new std::mutex;
 
     loadQueue.push( item );
-
-//    std::unique_lock< std::mutex > lock( *item->m );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
     // todo this is temp fix for https://github.com/athenaml/athena/issues/7

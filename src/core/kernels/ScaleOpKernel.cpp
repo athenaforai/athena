@@ -23,7 +23,7 @@ athena::core::kernels::ScaleOpKernel::getOpBytecode (
         vm_word resultCell ) {
     std::vector< vm_word > bytecode;
 
-    bytecode.push_back( static_cast<vm_word>(OpCode::SCALE));
+    bytecode.push_back( OpCode::SCALE);
     bytecode.push_back( args[ 0 ] );
     bytecode.push_back( args[ 1 ] );
     bytecode.push_back( resultCell );

@@ -25,7 +25,7 @@ std::vector< vm_word > athena::core::kernels::AddOpKernel::getOpBytecode (
         vm_word resultCell ) {
     std::vector< vm_word > bytecode;
 
-    bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
+    bytecode.push_back( OpCode::ADD);
 
     bytecode.push_back( args[ 0 ] );
     bytecode.push_back( args[ 1 ] );
@@ -41,7 +41,7 @@ athena::core::kernels::AddOpKernel::getDerivativeBytecode (
         std::vector< vm_word > args,
         vm_word resultCell ) {
     std::vector< vm_word > bytecode;
-    bytecode.push_back( static_cast<vm_word>(OpCode::MKSCALAR));
+    bytecode.push_back( OpCode::MKSCALAR);
 
     float unit = 1;
     auto u = reinterpret_cast<vm_word*>(&unit);

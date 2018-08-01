@@ -18,7 +18,7 @@
 #include <utility>
 #include <vector>
 
-#include "backend/opcodes.h"
+#include <backend/opcodes.h>
 #include <core/TensorShape.h>
 
 namespace athena::core {

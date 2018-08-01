@@ -11,13 +11,15 @@
  * the License.
  */
 
+#pragma once
 #ifndef ATHENA_OPCODES_H
 #define ATHENA_OPCODES_H
+
+#include <vector>
 
 typedef unsigned long vm_word;
 
 /**
- * \enum OpCode
  * \file opcodes.h
  * <p>OpCode specifies digital codes for Athena VM's operations. Operation is
  * encoded with operation code and its parameters. Bits 0..31 (assuming little-endian)
@@ -118,27 +120,61 @@ typedef unsigned long vm_word;
  * </tr>
  * </table>
  */
-enum class OpCode : vm_word {
-    DEL = 0x0000000000,
-    PUSH = 0x0100000000,
-    POP = 0x0200000000,
-    JMP = 0x0300000000,
-    ADD = 0x0400000000,
-    MATMUL = 0x0500000000,
-    MKSCALAR = 0x0600000000,
-    SCALE = 0x0700000000,
-    SIGMOID = 0x0800000000,
-    SIGMOID_DERIV = 0x0900000000,
-    TRANSPOSE = 0x0A00000000,
-    COPY = 0x0B00000000,
-    MSE = 0x0C00000000,
-    MSE_DERIV = 0x0D00000000,
-    ALLOC = 0x0E00000000,
-    MUL = 0x0F00000000,
-    HADAMARD = 0x1000000000
+class OpCode {
+public:
+    static const vm_word DEL;
+    static const vm_word PUSH;
+    static const vm_word POP;
+    static const vm_word JMP;
+    static const vm_word ADD;
+    static const vm_word MATMUL;
+    static const vm_word MKSCALAR;
+    static const vm_word SCALE;
+    static const vm_word SIGMOID;
+    static const vm_word SIGMOID_DERIV;
+    static const vm_word TRANSPOSE;
+    static const vm_word COPY;
+    static const vm_word MSE;
+    static const vm_word MSE_DERIV;
+    static const vm_word ALLOC;
+    static const vm_word MUL;
+    static const vm_word HADAMARD;
 };
 
-struct BasicOpCodeParams{
+class OpCodeParams {
+public:
+    // Common parameters
+    // Result value addressing modes
+    /**
+     * Access result Tensor directly by virtual address
+     */
+    static const vm_word RES_ADDR_DIRECT = 0b00000000000000000000000000000000;
+    /**
+     * Get virtual address of Subtensor with respect to current batch number
+     */
+    static const vm_word RES_ADDR_BATCH = 0b00000000000000000000000000000001;
 
+    // Arguments values addressing modes
+    /**
+     * Access result Tensor directly by virtual address
+     */
+    static const vm_word ARG_ADDR_DIRECT = 0b00000000000000000000000000000000;
+    /**
+     * Get virtual address of Subtensor with respect to current batch number
+     */
+    static const vm_word ARG_ADDR_BATCH = 0b00000000000000000000000000001000;
+
+    // MKSCALAR parameters
+    static const vm_word MKSCALAR_FLOAT = 0b00000000000000000000000000000000;
+    static const vm_word MKSCALAR_DOUBLE = 0b00000000000000000000000001000000;
+    static const vm_word MKSCALAR_HALF = 0b00000000000000000000000010000000;
 };
+
+struct BasicOpCodeParams {
+    vm_word resAddrMode = OpCodeParams::RES_ADDR_DIRECT;
+    vm_word argAddrMode = OpCodeParams::ARG_ADDR_DIRECT;
+};
+
+vm_word buildOpCode ( vm_word opCode, std::vector< vm_word > parameters );
+
 #endif //ATHENA_OPCODES_H
