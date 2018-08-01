@@ -22,7 +22,8 @@
 #include <thread>
 #include <string>
 #include <hermes/synchronize/SpinLock.h>
-#include <hermes/synchronize/ConditionVariable.h>
+//#include <hermes/synchronize/ConditionVariable.h>
+#include <hermes/synchronize/SCV.h>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -63,7 +64,7 @@ namespace athena::backend::generic {
         vm_word address;
         size_t length;
         bool alloc = false;
-        hermes::ConditionVariable loadHandle;
+        hermes::SCV loadHandle;
 //        std::mutex *m;
         bool notified = false;
     };
