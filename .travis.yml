@@ -58,8 +58,9 @@ install:
 
 
 script:
+ - cd ${TRAVIS_BUILD_DIR}
  - mkdir build
  - cd build
- - /usr/local/cmake/bin/cmake ..
+ - cmake ..
  - make
  - ctest --verbose
