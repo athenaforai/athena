@@ -1,4 +1,4 @@
-#language: cpp
+language: cpp
 sudo: false
 notifications:
   email: false
@@ -10,17 +10,17 @@ dist: trusty
 matrix:
   include:
     # clang on macOS
-  - env: CXX=clang++-6.0
-    os: osx
+  - os: osx
     compiler: clang
     osx_image: xcode8.3
 
-  - env: CXX=clang++-6.0
-    os: osx
+  - os: osx
     compiler: clang
     osx_image: xcode9.4
 
   - env: CXX=clang++-6.0
+    before_install:
+      - export CXX=clang++-6.0
     addons:
       apt:
         update: true
@@ -32,6 +32,8 @@ matrix:
           - llvm-toolchain-trusty-6.0
 
   - env: CXX=g++-8
+    before_install:
+    - export CXX=g++-8
     addons:
     apt:
       update: true
