@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 28.06.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #ifndef ATHENA_GRADIENTDESCENT_H
 #define ATHENA_GRADIENTDESCENT_H
@@ -13,7 +22,7 @@ namespace athena::core::optimizers {
     protected:
         float learningRate;
 
-        std::tuple< std::vector< unsigned long >, unsigned long > getByteCode (
+        std::tuple< std::vector< vm_word >, vm_word > getByteCode (
                 athena::core::loss::AbstractLossFunction* node
         );
 

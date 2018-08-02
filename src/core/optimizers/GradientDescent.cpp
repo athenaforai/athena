@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 28.06.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #include <queue>
 #include <tuple>
@@ -24,7 +33,7 @@ void athena::core::optimizers::GradientDescent::prepare () {
 
 }
 
-std::tuple< std::vector< unsigned long >, unsigned long >
+std::tuple< std::vector< vm_word >, vm_word >
 athena::core::optimizers::GradientDescent::getByteCode (
         athena::core::loss::AbstractLossFunction* node ) {
 
@@ -214,7 +223,7 @@ athena::core::optimizers::GradientDescent::getByteCode (
         bytecode.push_back( error->getStartAddress());
     }
 
-    return std::make_tuple( bytecode, static_cast<unsigned long>(0));
+    return std::make_tuple( bytecode, static_cast<vm_word>(0));
 }
 
 void athena::core::optimizers::GradientDescent::minimize () {

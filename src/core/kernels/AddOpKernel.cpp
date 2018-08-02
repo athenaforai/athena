@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 25.05.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #include <algorithm>
 #include <vector>
@@ -11,12 +20,12 @@ int athena::core::kernels::AddOpKernel::getOperandsCount () {
 }
 
 
-std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
-        std::vector< unsigned long > args,
-        unsigned long resultCell ) {
-    std::vector< unsigned long > bytecode;
+std::vector< vm_word > athena::core::kernels::AddOpKernel::getOpBytecode (
+        std::vector< vm_word > args,
+        vm_word resultCell ) {
+    std::vector< vm_word > bytecode;
 
-    bytecode.push_back( static_cast<vm_word>(OpCode::ADD));
+    bytecode.push_back( OpCode::ADD);
 
     bytecode.push_back( args[ 0 ] );
     bytecode.push_back( args[ 1 ] );
@@ -26,13 +35,13 @@ std::vector< unsigned long > athena::core::kernels::AddOpKernel::getOpBytecode (
     return bytecode;
 }
 
-std::vector< unsigned long >
+std::vector< vm_word >
 athena::core::kernels::AddOpKernel::getDerivativeBytecode (
         int d,
-        std::vector< unsigned long > args,
-        unsigned long resultCell ) {
-    std::vector< unsigned long > bytecode;
-    bytecode.push_back( static_cast<int>(OpCode::MKSCALAR));
+        std::vector< vm_word > args,
+        vm_word resultCell ) {
+    std::vector< vm_word > bytecode;
+    bytecode.push_back( OpCode::MKSCALAR);
 
     float unit = 1;
     auto u = reinterpret_cast<vm_word*>(&unit);

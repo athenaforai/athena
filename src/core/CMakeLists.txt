@@ -13,7 +13,6 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/InputNode.h
                ${CMAKE_CURRENT_SOURCE_DIR}/Session.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/Session.h
-               ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
                )
 
 add_subdirectory(kernels)

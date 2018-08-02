@@ -1,0 +1,59 @@
+\hypertarget{classathena_1_1core_1_1initializers_1_1_data_initializer}{}\section{athena\+:\+:core\+:\+:initializers\+:\+:Data\+Initializer Class Reference}
+\label{classathena_1_1core_1_1initializers_1_1_data_initializer}\index{athena\+::core\+::initializers\+::\+Data\+Initializer@{athena\+::core\+::initializers\+::\+Data\+Initializer}}
+Inheritance diagram for athena\+:\+:core\+:\+:initializers\+:\+:Data\+Initializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d6/d27/classathena_1_1core_1_1initializers_1_1_data_initializer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_data_initializer_a84b8be47f01caffa74db33ffc254dd43}\label{classathena_1_1core_1_1initializers_1_1_data_initializer_a84b8be47f01caffa74db33ffc254dd43}} 
+{\bfseries Data\+Initializer} (const \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_data_initializer}{Data\+Initializer}} \&src)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_data_initializer_abab352c808648db98422d1c436589d9e}\label{classathena_1_1core_1_1initializers_1_1_data_initializer_abab352c808648db98422d1c436589d9e}} 
+\mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_data_initializer}{Data\+Initializer}} \& {\bfseries operator=} (const \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_data_initializer}{Data\+Initializer}} \&src)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_data_initializer_a9ea7f09748c0ca5dff13607b9076cb39}\label{classathena_1_1core_1_1initializers_1_1_data_initializer_a9ea7f09748c0ca5dff13607b9076cb39}} 
+void {\bfseries set\+Data} (void $\ast$ptr, size\+\_\+t length)
+\item 
+void \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_data_initializer_a984213526b2741e423f230098c71520a}{initialize}} (\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$manager, \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$tensor) override
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 23 of file Data\+Initializer.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_data_initializer_a984213526b2741e423f230098c71520a}\label{classathena_1_1core_1_1initializers_1_1_data_initializer_a984213526b2741e423f230098c71520a}} 
+\index{athena\+::core\+::initializers\+::\+Data\+Initializer@{athena\+::core\+::initializers\+::\+Data\+Initializer}!initialize@{initialize}}
+\index{initialize@{initialize}!athena\+::core\+::initializers\+::\+Data\+Initializer@{athena\+::core\+::initializers\+::\+Data\+Initializer}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void athena\+::core\+::initializers\+::\+Data\+Initializer\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Loads data into memory. This method {\bfseries must not} be called by developers. It is automatically called during initialization process. 
+\begin{DoxyParams}{Parameters}
+{\em manager} & Memory manager for the current device \\
+\hline
+{\em tensor} & A pointer to a \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} object, that current initializer is assigned to \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_abstract_initializer_a9c0f0c57add306c9da8ffe8797532f62}{athena\+::core\+::initializers\+::\+Abstract\+Initializer}}.
+
+
+
+Definition at line 16 of file Data\+Initializer.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/initializers/Data\+Initializer.\+h\item 
+core/initializers/Data\+Initializer.\+cpp\end{DoxyCompactItemize}

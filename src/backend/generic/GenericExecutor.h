@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 26.05.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #ifndef ATHENA_GENERICEXECUTOR_H
 #define ATHENA_GENERICEXECUTOR_H
@@ -10,8 +19,13 @@
 #include <core/Tensor.h>
 #include <utility>
 #include <vector>
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
+#include <backend/VMState.h>
 #include "CPUDevice.h"
+
+#ifdef TEST_ENVIRONMENT
+#include <gtest/gtest.h>
+#endif
 
 namespace athena::backend::generic {
 
@@ -38,22 +52,29 @@ namespace athena::backend::generic {
      * </p>
      */
     class GenericExecutor : public athena::backend::AbstractExecutor {
-    private:
-//        athena::core::Tensor** memory;
-//        int* intRegisters {};
-//        std::stack< int > intStack;
+#ifdef TEST_ENVIRONMENT
+        friend class GenericExecutorTest;
+        FRIEND_TEST( GenericExecutorTest, add_1d );
+        FRIEND_TEST( GenericExecutorTest, copy_2x2 );
+        FRIEND_TEST( GenericExecutorTest, matmul_unit );
+        FRIEND_TEST( GenericExecutorTest, mkscalar_12_1_float );
+        FRIEND_TEST( GenericExecutorTest, mse_7_2_vs_10_9 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_2x2x2 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_2x2 );
+        FRIEND_TEST( GenericExecutorTest, scalef_test_1x1 );
+#endif
 
-//        std::vector< vm_word > &bytecode;
+    private:
 
         CPUDevice* device;
+
+        void processBytecode ( VMState &state, std::vector<vm_word> bytecode );
     public:
         explicit GenericExecutor (
                 CPUDevice* cpuDevice
         ) : AbstractExecutor(), device( cpuDevice ) {};
 
-//        void execute () override;
-//
-//        AbstractMemoryManager* getMemoryManager() override ;
+        ~GenericExecutor ();
 
         void execute () override ;
 

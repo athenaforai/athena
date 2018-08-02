@@ -6,3 +6,4 @@ add_subdirectory(backend)
 
 target_include_directories(athena PUBLIC .)
 target_link_libraries(athena ${BACKEND_LIBS})
+target_link_libraries(athena hermes)

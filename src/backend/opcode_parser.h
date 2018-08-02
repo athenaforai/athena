@@ -1,11 +1,20 @@
-//
-// Created by Александр Баташев on 01.07.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #ifndef ATHENA_OPCODE_PARSER_H
 #define ATHENA_OPCODE_PARSER_H
 
-#include <core/opcodes.h>
+#include <backend/opcodes.h>
 #include <vector>
 
 namespace athena::backend {
@@ -19,9 +28,10 @@ namespace athena::backend {
      * @param argc Number of args (Return value)
      * @return Position of next start value
      */
-    unsigned int parse (
-            std::vector< vm_word > &bytecode, unsigned int &next_word,
-            OpCode &new_word, vm_word* args, unsigned int &argc
+    unsigned long parse (
+            std::vector< vm_word > &bytecode, vm_word &next_word,
+            vm_word &new_word, vm_word* args, unsigned long &argc,
+            BasicOpCodeParams** parameters
     );
 }
 #endif //ATHENA_OPCODE_PARSER_H

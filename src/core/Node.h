@@ -1,3 +1,16 @@
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 #ifndef ATHENA_NODE_H
 #define ATHENA_NODE_H
 
@@ -53,13 +66,13 @@ namespace athena::core {
 
         void addDerivative ( unsigned long d );
 
-        unsigned long getDerivative ( unsigned long i );
+        vm_word getDerivative ( unsigned long i );
 
         void setCalculated ( unsigned long resCell );
 
         bool isCalculated ();
 
-        unsigned long getResult ();
+        vm_word getResult ();
 
         void updateUsageCount ();
 

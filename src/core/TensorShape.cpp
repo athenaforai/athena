@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 26.05.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #include <iostream>
 #include "TensorShape.h"
@@ -13,8 +22,12 @@ unsigned long athena::core::TensorShape::totalSize () const {
     return ts;
 }
 
-athena::core::TensorShape::TensorShape ( unsigned long* shape, unsigned long length ) {
-    this->shape.insert( std::end( this->shape ), shape, shape + length );
+athena::core::TensorShape::TensorShape ( vm_word* shape, unsigned long length ) {
+//    this->shape.insert( std::end( this->shape ), shape,
+//                         static_cast<const vm_word>(shape + length));
+    for( unsigned long i = 0; i < length; i++) {
+        this->shape.push_back(shape[i]);
+    }
 }
 
 unsigned long athena::core::TensorShape::dimensions () const {
@@ -34,9 +47,7 @@ athena::core::TensorShape::operator== ( const athena::core::TensorShape &rhs ) c
     if ( dimensions() != rhs.dimensions()) {
         return false;
     } else {
-        for (
-                unsigned long i = 0; i < dimensions(); i++
-                ) {
+        for ( unsigned long i = 0; i < dimensions(); i++ ) {
             if ( dim( i ) != rhs.dim( i )) {
                 return false;
             }

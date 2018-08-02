@@ -5,6 +5,10 @@
     <libraryRoots>
       <file path="$PROJECT_DIR$/libs" />
     </libraryRoots>
+    <excludeRoots>
+      <file path="$PROJECT_DIR$/docs" />
+      <file path="$PROJECT_DIR$/docsrc" />
+    </excludeRoots>
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />

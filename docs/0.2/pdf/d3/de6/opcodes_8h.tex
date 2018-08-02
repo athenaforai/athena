@@ -1,0 +1,85 @@
+\hypertarget{opcodes_8h}{}\section{backend/opcodes.h File Reference}
+\label{opcodes_8h}\index{backend/opcodes.\+h@{backend/opcodes.\+h}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_basic_op_code_params}{Basic\+Op\+Code\+Params}}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{opcodes_8h_a5a975f74794b1c1323c2326d6df3936c}\label{opcodes_8h_a5a975f74794b1c1323c2326d6df3936c}} 
+typedef unsigned long {\bfseries vm\+\_\+word}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{opcodes_8h_ab4eaff209a7eecdbee9daf57866c6fdb}\label{opcodes_8h_ab4eaff209a7eecdbee9daf57866c6fdb}} 
+enum {\bfseries Op\+Code} \+: vm\+\_\+word \{ \newline
+{\bfseries D\+EL} = 0x0000000000, 
+\newline
+{\bfseries P\+U\+SH} = 0x0100000000, 
+\newline
+{\bfseries P\+OP} = 0x0200000000, 
+\newline
+{\bfseries J\+MP} = 0x0300000000, 
+\newline
+{\bfseries A\+DD} = 0x0400000000, 
+\newline
+{\bfseries M\+A\+T\+M\+UL} = 0x0500000000, 
+\newline
+{\bfseries M\+K\+S\+C\+A\+L\+AR} = 0x0600000000, 
+\newline
+{\bfseries S\+C\+A\+LE} = 0x0700000000, 
+\newline
+{\bfseries S\+I\+G\+M\+O\+ID} = 0x0800000000, 
+\newline
+{\bfseries S\+I\+G\+M\+O\+I\+D\+\_\+\+D\+E\+R\+IV} = 0x0900000000, 
+\newline
+{\bfseries T\+R\+A\+N\+S\+P\+O\+SE} = 0x0\+A00000000, 
+\newline
+{\bfseries C\+O\+PY} = 0x0\+B00000000, 
+\newline
+{\bfseries M\+SE} = 0x0\+C00000000, 
+\newline
+{\bfseries M\+S\+E\+\_\+\+D\+E\+R\+IV} = 0x0\+D00000000, 
+\newline
+{\bfseries A\+L\+L\+OC} = 0x0\+E00000000, 
+\newline
+{\bfseries M\+UL} = 0x0\+F00000000, 
+\newline
+{\bfseries H\+A\+D\+A\+M\+A\+RD} = 0x1000000000
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Op\+Code specifies digital codes for Athena VM\textquotesingle{}s operations. Operation is encoded with operation code and its parameters. Bits 0..31 (assuming little-\/endian) are used by operation code. Bits 32..63 are used by operation parameters.
+
+\subparagraph*{Description of Athena VM operations}
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Operation }&\textbf{ Description }&\textbf{ Parameters }&\textbf{ Arguments  }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ Operation }&\textbf{ Description }&\textbf{ Parameters }&\textbf{ Arguments  }\\\cline{1-4}
+\endhead
+A\+DD &Produces sum of two Tensors &&3 arguments\+: pointers to two summands and result Tensor  \\\cline{1-4}
+M\+A\+T\+M\+UL &Produces product of two matrix Tensors &todo describe 2 parameters\+: transpose args &3 arguments\+: pointers to two matrices and result Tensor  \\\cline{1-4}
+M\+K\+S\+C\+A\+L\+AR &Creates Tensor from scalar constant &todo describe 1 parameter\+: data type &2 arguments\+: scalar and result Tensor  \\\cline{1-4}
+S\+C\+A\+LE &Multiplies every Tensor element by scalar &No parameters &3 arguments\+: pointers to scalar Tensor, source Tensor and result Tensor  \\\cline{1-4}
+S\+I\+G\+M\+O\+ID &Applies sigmoid function to every element of Tensor &No parameters &2 arguments\+: source Tensor and result Tensor  \\\cline{1-4}
+S\+I\+G\+M\+O\+I\+D\+\_\+\+D\+E\+R\+IV &Calculates derivative of sigmoid function &No parameters &2 arguments\+: source Tensor and result Tensor  \\\cline{1-4}
+T\+R\+A\+N\+S\+P\+O\+SE &Transpose matrix Tensor &No parameters &2 arguments\+: source Tensor and result Tensor  \\\cline{1-4}
+T\+R\+A\+N\+S\+P\+O\+SE &Transpose matrix Tensor &No parameters &2 arguments\+: source Tensor and result Tensor  \\\cline{1-4}
+C\+O\+PY &Copy Tensor &No parameters &2 arguments\+: source Tensor and result Tensor  \\\cline{1-4}
+M\+SE &Calculate minimal squared error &No parameters &3 arguments\+: produced Tensor, label Tensor and result Tensor  \\\cline{1-4}
+M\+S\+E\+\_\+\+D\+E\+R\+IV &Calculate derivative of minimal squared error &No parameters &3 arguments\+: produced Tensor, label Tensor and result Tensor  \\\cline{1-4}
+A\+L\+L\+OC &Allocate memory for Tensor &todo describe one parameter\+: data type &First argument always specifies number of dimensions, last arg specifies virtual address of new Tensor.  \\\cline{1-4}
+M\+UL &Multiply two Tensors &No parameters &3 arguments\+: multiplier Tensors and result Tensor  \\\cline{1-4}
+H\+A\+D\+A\+M\+A\+RD &Do element-\/wise multiplication of two matrices &No parameters &3 arguments\+: multiplier Tensors and result Tensor  \\\cline{1-4}
+\end{longtabu}

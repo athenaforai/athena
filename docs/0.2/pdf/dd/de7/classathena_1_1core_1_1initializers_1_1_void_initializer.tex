@@ -1,0 +1,54 @@
+\hypertarget{classathena_1_1core_1_1initializers_1_1_void_initializer}{}\section{athena\+:\+:core\+:\+:initializers\+:\+:Void\+Initializer Class Reference}
+\label{classathena_1_1core_1_1initializers_1_1_void_initializer}\index{athena\+::core\+::initializers\+::\+Void\+Initializer@{athena\+::core\+::initializers\+::\+Void\+Initializer}}
+
+
+{\ttfamily \#include $<$Void\+Initializer.\+h$>$}
+
+Inheritance diagram for athena\+:\+:core\+:\+:initializers\+:\+:Void\+Initializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{dd/de7/classathena_1_1core_1_1initializers_1_1_void_initializer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_void_initializer_adcb637175e8cad5841cb21e53e0e138f}{initialize}} (\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$, \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$) override
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_void_initializer}{Void\+Initializer}} is the simplest initializer possible. It does not initialize \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} in any way. It is the default initializer for newly created \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} 
+
+Definition at line 25 of file Void\+Initializer.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1core_1_1initializers_1_1_void_initializer_adcb637175e8cad5841cb21e53e0e138f}\label{classathena_1_1core_1_1initializers_1_1_void_initializer_adcb637175e8cad5841cb21e53e0e138f}} 
+\index{athena\+::core\+::initializers\+::\+Void\+Initializer@{athena\+::core\+::initializers\+::\+Void\+Initializer}!initialize@{initialize}}
+\index{initialize@{initialize}!athena\+::core\+::initializers\+::\+Void\+Initializer@{athena\+::core\+::initializers\+::\+Void\+Initializer}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void athena\+::core\+::initializers\+::\+Void\+Initializer\+::initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1backend_1_1_abstract_memory_manager}{athena\+::backend\+::\+Abstract\+Memory\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} $\ast$}]{tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Loads data into memory. This method {\bfseries must not} be called by developers. It is automatically called during initialization process. 
+\begin{DoxyParams}{Parameters}
+{\em manager} & Memory manager for the current device \\
+\hline
+{\em tensor} & A pointer to a \mbox{\hyperlink{classathena_1_1core_1_1_tensor}{Tensor}} object, that current initializer is assigned to \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classathena_1_1core_1_1initializers_1_1_abstract_initializer_a9c0f0c57add306c9da8ffe8797532f62}{athena\+::core\+::initializers\+::\+Abstract\+Initializer}}.
+
+
+
+Definition at line 16 of file Void\+Initializer.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/initializers/Void\+Initializer.\+h\item 
+core/initializers/Void\+Initializer.\+cpp\end{DoxyCompactItemize}

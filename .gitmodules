@@ -2,3 +2,9 @@
 	path = libs/gtest
 	url = https://github.com/google/googletest.git
 	branch = master
+[submodule "docs"]
+	path = docs
+	url = https://github.com/athenaml/docs.git
+[submodule "libs/hermes"]
+	path = libs/hermes
+	url = https://github.com/athenaml/hermes.git

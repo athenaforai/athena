@@ -1,6 +1,15 @@
-//
-// Created by Александр Баташев on 27.06.2018.
-//
+/*
+ * Copyright (c) 2018 Athena. All rights reserved.
+ * https://athenaproject.ml
+ *
+ * Licensed under MIT license.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an “AS IS” BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 #ifndef ATHENA_GENERICMEMORYMANAGER_H
 #define ATHENA_GENERICMEMORYMANAGER_H
@@ -9,9 +18,17 @@
 #include <backend/AbstractMemoryManager.h>
 #include <thread>
 #include <queue>
-#include <condition_variable>
+//#include <condition_variable>
 #include <thread>
 #include <string>
+#include <hermes/synchronize/SpinLock.h>
+//#include <hermes/synchronize/ConditionVariable.h>
+#include <hermes/synchronize/SCV.h>
+#include <hermes/thread/Thread.h>
+
+#ifdef TEST_ENVIRONMENT
+#include <gtest/gtest.h>
+#endif
 
 namespace athena::backend::generic {
 
@@ -48,8 +65,8 @@ namespace athena::backend::generic {
         vm_word address;
         size_t length;
         bool alloc = false;
-        std::condition_variable loadHandle;
-        std::mutex m;
+        hermes::SCV loadHandle;
+//        std::mutex *m;
         bool notified = false;
     };
 
@@ -61,14 +78,28 @@ namespace athena::backend::generic {
      * to RAM if needed.
      */
     class GenericMemoryManager : public AbstractMemoryManager {
+
+#ifdef TEST_ENVIRONMENT
+        friend class GenericMemoryManagerTest;
+        FRIEND_TEST( GenericMemoryManagerTest, queue_item_properly_allocated );
+#endif
+
     protected:
         std::list< SwapRecord* > swapRecords;
+
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
         MemoryChunk* memoryChunksHead;
+
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
         void* memory;
 
-        std::mutex memoryChunksLock;
+        hermes::SpinLock memoryChunksLock;
 
-        std::vector< std::thread > memLanes;
+        std::vector< hermes::Thread* > memLanes;
 
         size_t allocatedMemory;
 
@@ -76,15 +107,27 @@ namespace athena::backend::generic {
 
         std::vector< bool > laneFinished;
 
-        // хранит список загруженных тензоров, скорее всего костыль
-        std::vector<vm_word> lockedList;
+        bool isInitialized;
 
         /**
          * This is a thread function for memory lane-threads. It loads data to
          * RAM and notifies corresponding threads
          * @param laneId
          */
-        void processQueue ( int laneId );
+        void allocationThreadFunc ( int laneId );
+
+
+        /**
+         * This method does actual physical memory allocation
+         * @param item
+         */
+#ifdef TEST_ENVIRONMENT
+        FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
+#endif
+        void processQueueItem(QueueItem* item);
+
+//        // todo костыль
+//        static void allocationThreadFuncHelper ( GenericMemoryManager* ctx, int id );
 
     public:
 
@@ -129,6 +172,12 @@ namespace athena::backend::generic {
 
         void getData ( vm_word tensorAddress, vm_word offset, vm_word length,
                        void* data ) override;
+
+#ifdef TEST_ENVIRONMENT
+
+
+
+#endif
     };
 }
 
