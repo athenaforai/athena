@@ -56,7 +56,7 @@ install:
   else
     brew install cmake || brew upgrade cmake
   fi
-- pip install codecov
+- pip install --user codecov
 - cmake --version
 
 
