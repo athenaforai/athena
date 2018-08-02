@@ -1,0 +1,320 @@
+\begin{theindex}
+
+  \item {add\+Tensor}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{10}
+  \item {after}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{29}
+    \subitem {athena\+::core\+::\+Node}, \hyperpage{38}
+  \item {allocate}
+    \subitem {athena\+::backend\+::\+Virtual\+Memory}, \hyperpage{52}
+  \item {allocate\+And\+Lock}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{10}, \hyperpage{12}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{22, 23}
+  \item {allocation\+Thread\+Func}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{23}
+  \item {athena\+::backend\+::\+Abstract\+Device}, \hyperpage{5}
+  \item {athena\+::backend\+::\+Abstract\+Executor}, \hyperpage{6}
+    \subitem {execute}, \hyperpage{6}
+    \subitem {get\+Memory\+Manager}, \hyperpage{6}
+    \subitem {set\+Bytecode}, \hyperpage{7}
+  \item {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{9}
+    \subitem {add\+Tensor}, \hyperpage{10}
+    \subitem {allocate\+And\+Lock}, \hyperpage{10}, \hyperpage{12}
+    \subitem {delete\+From\+Mem}, \hyperpage{12}
+    \subitem {get\+Physical\+Address}, \hyperpage{12}
+    \subitem {load\+And\+Lock}, \hyperpage{13}
+    \subitem {reset\+Table}, \hyperpage{14}
+    \subitem {set\+Data}, \hyperpage{14}
+    \subitem {unlock}, \hyperpage{14}
+  \item {athena\+::backend\+::\+V\+M\+State}, \hyperpage{54}
+    \subitem {BC}, \hyperpage{54}
+    \subitem {BP}, \hyperpage{54}
+    \subitem {IP}, \hyperpage{54}
+  \item {athena\+::backend\+::\+V\+Memory\+Block}, \hyperpage{53}
+  \item {athena\+::backend\+::\+Virtual\+Memory}, \hyperpage{52}
+    \subitem {allocate}, \hyperpage{52}
+    \subitem {free}, \hyperpage{52, 53}
+  \item {athena\+::backend\+::generic\+::\+C\+P\+U\+Device}, 
+		\hyperpage{18}
+  \item {athena\+::backend\+::generic\+::\+Generic\+Executor}, 
+		\hyperpage{20}
+    \subitem {execute}, \hyperpage{20}
+    \subitem {get\+Memory\+Manager}, \hyperpage{20}
+  \item {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{21}
+    \subitem {allocate\+And\+Lock}, \hyperpage{22, 23}
+    \subitem {allocation\+Thread\+Func}, \hyperpage{23}
+    \subitem {deinit}, \hyperpage{24}
+    \subitem {delete\+From\+Mem}, \hyperpage{24}
+    \subitem {get\+Physical\+Address}, \hyperpage{24}
+    \subitem {init}, \hyperpage{25}
+    \subitem {load\+And\+Lock}, \hyperpage{25, 26}
+    \subitem {process\+Queue\+Item}, \hyperpage{26}
+    \subitem {set\+Data}, \hyperpage{26}
+    \subitem {unlock}, \hyperpage{27}
+  \item {athena\+::backend\+::generic\+::\+Memory\+Chunk}, 
+		\hyperpage{34}
+  \item {athena\+::backend\+::generic\+::\+Queue\+Item}, \hyperpage{42}
+  \item {athena\+::backend\+::generic\+::\+Swap\+Record}, 
+		\hyperpage{48}
+  \item {athena\+::core\+::\+Input\+Node}, \hyperpage{29}
+    \subitem {after}, \hyperpage{29}
+    \subitem {get\+Data}, \hyperpage{29}
+    \subitem {get\+Mapped\+Mem\+Cell}, \hyperpage{30}
+    \subitem {is\+Frozen}, \hyperpage{30}
+    \subitem {is\+Input\+Node}, \hyperpage{30}
+    \subitem {set\+Frozen}, \hyperpage{30}
+    \subitem {set\+Mapped\+Mem\+Cell}, \hyperpage{31}
+  \item {athena\+::core\+::\+Node}, \hyperpage{37}
+    \subitem {after}, \hyperpage{38}
+    \subitem {is\+Input\+Node}, \hyperpage{38}
+  \item {athena\+::core\+::\+Op\+Kernel}, \hyperpage{39}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{39}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{40}
+    \subitem {get\+Operands\+Count}, \hyperpage{40}
+    \subitem {get\+Output\+Shape}, \hyperpage{40}
+  \item {athena\+::core\+::\+Session}, \hyperpage{45}
+    \subitem {prepare}, \hyperpage{45}
+    \subitem {run}, \hyperpage{46}
+  \item {athena\+::core\+::\+Tensor}, \hyperpage{49}
+  \item {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{49}
+    \subitem {dim}, \hyperpage{50}
+    \subitem {dimensions}, \hyperpage{50}
+    \subitem {operator!=}, \hyperpage{51}
+    \subitem {operator==}, \hyperpage{51}
+    \subitem {total\+Size}, \hyperpage{51}
+  \item {athena\+::core\+::initializers\+::\+Abstract\+Initializer}, 
+		\hyperpage{7}
+    \subitem {initialize}, \hyperpage{8}
+  \item {athena\+::core\+::initializers\+::\+Data\+Initializer}, 
+		\hyperpage{19}
+    \subitem {initialize}, \hyperpage{19}
+  \item {athena\+::core\+::initializers\+::\+Void\+Initializer}, 
+		\hyperpage{55}
+    \subitem {initialize}, \hyperpage{55}
+  \item {athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}, 
+		\hyperpage{15}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{16}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{16}
+    \subitem {get\+Operands\+Count}, \hyperpage{17}
+    \subitem {get\+Output\+Shape}, \hyperpage{17}
+  \item {athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}, 
+		\hyperpage{31}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{32}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{32}
+    \subitem {get\+Operands\+Count}, \hyperpage{33}
+    \subitem {get\+Output\+Shape}, \hyperpage{33}
+  \item {athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}, 
+		\hyperpage{42}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{43}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{43}
+    \subitem {get\+Operands\+Count}, \hyperpage{44}
+    \subitem {get\+Output\+Shape}, \hyperpage{44}
+  \item {athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}, 
+		\hyperpage{46}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{47}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{47}
+    \subitem {get\+Operands\+Count}, \hyperpage{47}
+    \subitem {get\+Output\+Shape}, \hyperpage{48}
+  \item {athena\+::core\+::loss\+::\+Abstract\+Loss\+Function}, 
+		\hyperpage{8}
+  \item {athena\+::core\+::loss\+::\+M\+S\+E\+Loss}, \hyperpage{34}
+  \item {athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}, 
+		\hyperpage{35}
+    \subitem {get\+Derivative\+Bytecode}, \hyperpage{35}
+    \subitem {get\+Derivative\+Shape}, \hyperpage{36}
+    \subitem {get\+Operands\+Count}, \hyperpage{36}
+    \subitem {get\+Output\+Shape}, \hyperpage{36}
+  \item {athena\+::core\+::optimizers\+::\+Abstract\+Optimizer}, 
+		\hyperpage{15}
+  \item {athena\+::core\+::optimizers\+::\+Gradient\+Descent}, 
+		\hyperpage{27}
+    \subitem {prepare}, \hyperpage{28}
+
+  \indexspace
+
+  \item {backend/opcodes.\+h}, \hyperpage{56}
+  \item {Basic\+Op\+Code\+Params}, \hyperpage{18}
+  \item {BC}
+    \subitem {athena\+::backend\+::\+V\+M\+State}, \hyperpage{54}
+  \item {BP}
+    \subitem {athena\+::backend\+::\+V\+M\+State}, \hyperpage{54}
+
+  \indexspace
+
+  \item {deinit}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{24}
+  \item {delete\+From\+Mem}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{12}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{24}
+  \item {dim}
+    \subitem {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{50}
+  \item {dimensions}
+    \subitem {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{50}
+
+  \indexspace
+
+  \item {execute}
+    \subitem {athena\+::backend\+::\+Abstract\+Executor}, \hyperpage{6}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Executor}, 
+		\hyperpage{20}
+
+  \indexspace
+
+  \item {free}
+    \subitem {athena\+::backend\+::\+Virtual\+Memory}, 
+		\hyperpage{52, 53}
+
+  \indexspace
+
+  \item {get\+Data}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{29}
+  \item {get\+Derivative\+Bytecode}
+    \subitem {athena\+::core\+::\+Op\+Kernel}, \hyperpage{39}
+    \subitem {athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}, 
+		\hyperpage{16}
+    \subitem {athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}, 
+		\hyperpage{32}
+    \subitem {athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}, 
+		\hyperpage{43}
+    \subitem {athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}, 
+		\hyperpage{47}
+    \subitem {athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}, 
+		\hyperpage{35}
+  \item {get\+Derivative\+Shape}
+    \subitem {athena\+::core\+::\+Op\+Kernel}, \hyperpage{40}
+    \subitem {athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}, 
+		\hyperpage{16}
+    \subitem {athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}, 
+		\hyperpage{32}
+    \subitem {athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}, 
+		\hyperpage{43}
+    \subitem {athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}, 
+		\hyperpage{47}
+    \subitem {athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}, 
+		\hyperpage{36}
+  \item {get\+Mapped\+Mem\+Cell}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{30}
+  \item {get\+Memory\+Manager}
+    \subitem {athena\+::backend\+::\+Abstract\+Executor}, \hyperpage{6}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Executor}, 
+		\hyperpage{20}
+  \item {get\+Operands\+Count}
+    \subitem {athena\+::core\+::\+Op\+Kernel}, \hyperpage{40}
+    \subitem {athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}, 
+		\hyperpage{17}
+    \subitem {athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}, 
+		\hyperpage{33}
+    \subitem {athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}, 
+		\hyperpage{44}
+    \subitem {athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}, 
+		\hyperpage{47}
+    \subitem {athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}, 
+		\hyperpage{36}
+  \item {get\+Output\+Shape}
+    \subitem {athena\+::core\+::\+Op\+Kernel}, \hyperpage{40}
+    \subitem {athena\+::core\+::kernels\+::\+Add\+Op\+Kernel}, 
+		\hyperpage{17}
+    \subitem {athena\+::core\+::kernels\+::\+Mat\+Mul\+Op\+Kernel}, 
+		\hyperpage{33}
+    \subitem {athena\+::core\+::kernels\+::\+Scale\+Op\+Kernel}, 
+		\hyperpage{44}
+    \subitem {athena\+::core\+::kernels\+::\+Sigmoid\+Op\+Kernel}, 
+		\hyperpage{48}
+    \subitem {athena\+::core\+::loss\+::\+M\+S\+E\+Op\+Kernel}, 
+		\hyperpage{36}
+  \item {get\+Physical\+Address}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{12}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{24}
+
+  \indexspace
+
+  \item {init}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{25}
+  \item {initialize}
+    \subitem {athena\+::core\+::initializers\+::\+Abstract\+Initializer}, 
+		\hyperpage{8}
+    \subitem {athena\+::core\+::initializers\+::\+Data\+Initializer}, 
+		\hyperpage{19}
+    \subitem {athena\+::core\+::initializers\+::\+Void\+Initializer}, 
+		\hyperpage{55}
+  \item {IP}
+    \subitem {athena\+::backend\+::\+V\+M\+State}, \hyperpage{54}
+  \item {is\+Frozen}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{30}
+  \item {is\+Input\+Node}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{30}
+    \subitem {athena\+::core\+::\+Node}, \hyperpage{38}
+
+  \indexspace
+
+  \item {load\+And\+Lock}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{13}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{25, 26}
+
+  \indexspace
+
+  \item {operator!=}
+    \subitem {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{51}
+  \item {operator==}
+    \subitem {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{51}
+
+  \indexspace
+
+  \item {prepare}
+    \subitem {athena\+::core\+::\+Session}, \hyperpage{45}
+    \subitem {athena\+::core\+::optimizers\+::\+Gradient\+Descent}, 
+		\hyperpage{28}
+  \item {process\+Queue\+Item}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{26}
+
+  \indexspace
+
+  \item {reset\+Table}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{14}
+  \item {run}
+    \subitem {athena\+::core\+::\+Session}, \hyperpage{46}
+
+  \indexspace
+
+  \item {set\+Bytecode}
+    \subitem {athena\+::backend\+::\+Abstract\+Executor}, \hyperpage{7}
+  \item {set\+Data}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{14}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{26}
+  \item {set\+Frozen}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{30}
+  \item {set\+Mapped\+Mem\+Cell}
+    \subitem {athena\+::core\+::\+Input\+Node}, \hyperpage{31}
+
+  \indexspace
+
+  \item {total\+Size}
+    \subitem {athena\+::core\+::\+Tensor\+Shape}, \hyperpage{51}
+
+  \indexspace
+
+  \item {unlock}
+    \subitem {athena\+::backend\+::\+Abstract\+Memory\+Manager}, 
+		\hyperpage{14}
+    \subitem {athena\+::backend\+::generic\+::\+Generic\+Memory\+Manager}, 
+		\hyperpage{27}
+
+\end{theindex}

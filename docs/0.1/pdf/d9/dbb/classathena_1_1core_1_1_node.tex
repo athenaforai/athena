@@ -1,0 +1,143 @@
+\hypertarget{classathena_1_1core_1_1_node}{}\section{athena\+:\+:core\+:\+:Node Class Reference}
+\label{classathena_1_1core_1_1_node}\index{athena\+::core\+::\+Node@{athena\+::core\+::\+Node}}
+
+
+{\ttfamily \#include $<$Node.\+h$>$}
+
+Inheritance diagram for athena\+:\+:core\+:\+:Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d9/dbb/classathena_1_1core_1_1_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a7c8ca7c16db4d9d55b2ea3f4336e73ec}\label{classathena_1_1core_1_1_node_a7c8ca7c16db4d9d55b2ea3f4336e73ec}} 
+{\bfseries Node} (\mbox{\hyperlink{classathena_1_1core_1_1_op_kernel}{Op\+Kernel}} $\ast$)
+\item 
+virtual void \mbox{\hyperlink{classathena_1_1core_1_1_node_aefef588463c8e215e998415a7cc6b320}{after}} (\mbox{\hyperlink{classathena_1_1core_1_1_node}{Node}} $\ast$predecessor)
+\item 
+virtual bool \mbox{\hyperlink{classathena_1_1core_1_1_node_a6ae012557fc6b29127366b1e92801d4a}{is\+Input\+Node}} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a185a846d26ff9e8bbe21c03ce32aca47}\label{classathena_1_1core_1_1_node_a185a846d26ff9e8bbe21c03ce32aca47}} 
+\mbox{\hyperlink{classathena_1_1core_1_1_op_kernel}{Op\+Kernel}} $\ast$ {\bfseries get\+Op} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_ae4e0e34ffc5d79c5a18d33847cc80331}\label{classathena_1_1core_1_1_node_ae4e0e34ffc5d79c5a18d33847cc80331}} 
+std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_node}{Node}} $\ast$$>$ \& {\bfseries get\+Incoming\+Nodes} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a28043abbb7dc60c6a510839928fa2408}\label{classathena_1_1core_1_1_node_a28043abbb7dc60c6a510839928fa2408}} 
+std\+::string {\bfseries get\+Name} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a290e21f4231f4193c2877b8b85c1864a}\label{classathena_1_1core_1_1_node_a290e21f4231f4193c2877b8b85c1864a}} 
+void {\bfseries add\+Derivative} (unsigned long d)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a5f737753ebd25e521c0ac8a995ca7625}\label{classathena_1_1core_1_1_node_a5f737753ebd25e521c0ac8a995ca7625}} 
+unsigned long {\bfseries get\+Derivative} (int i)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_af0d6ae48f88c47a04c592c71c4b119e7}\label{classathena_1_1core_1_1_node_af0d6ae48f88c47a04c592c71c4b119e7}} 
+void {\bfseries set\+Calculated} (unsigned long res\+Cell)
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_af75ed35cf7ec81f686292b1cef4c549d}\label{classathena_1_1core_1_1_node_af75ed35cf7ec81f686292b1cef4c549d}} 
+bool {\bfseries is\+Calculated} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_ae2568f40260ef891d79618c16d2fc1a8}\label{classathena_1_1core_1_1_node_ae2568f40260ef891d79618c16d2fc1a8}} 
+unsigned long {\bfseries get\+Result} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_ae160501f8419f9874bd71aefe6daa3dc}\label{classathena_1_1core_1_1_node_ae160501f8419f9874bd71aefe6daa3dc}} 
+void {\bfseries update\+Usage\+Count} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_ad0e6344fe6940e59d79eb4b05a7a5b96}\label{classathena_1_1core_1_1_node_ad0e6344fe6940e59d79eb4b05a7a5b96}} 
+bool {\bfseries is\+Garbage} ()
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_adf4b0a1427264f01de4e6d93e6349f18}\label{classathena_1_1core_1_1_node_adf4b0a1427264f01de4e6d93e6349f18}} 
+void {\bfseries set\+Persist\+Result} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_aa2aee4b3d80299df55739295d8f7040a}\label{classathena_1_1core_1_1_node_aa2aee4b3d80299df55739295d8f7040a}} 
+std\+::string {\bfseries get\+Random\+Node\+Name} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_aa46df2cfca5ac1bb88d683e52614397e}\label{classathena_1_1core_1_1_node_aa46df2cfca5ac1bb88d683e52614397e}} 
+std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_node}{Node}} $\ast$$>$ {\bfseries incoming\+Nodes}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a156010639b24e35c17cbe15de5078bbb}\label{classathena_1_1core_1_1_node_a156010639b24e35c17cbe15de5078bbb}} 
+std\+::vector$<$ \mbox{\hyperlink{classathena_1_1core_1_1_node}{Node}} $\ast$$>$ {\bfseries outcoming\+Nodes}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a27276034dd9d663c195e6233d32013be}\label{classathena_1_1core_1_1_node_a27276034dd9d663c195e6233d32013be}} 
+\mbox{\hyperlink{classathena_1_1core_1_1_op_kernel}{Op\+Kernel}} $\ast$ {\bfseries operation}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a4f2c3e1d4c44cf45bfa78909d4df3777}\label{classathena_1_1core_1_1_node_a4f2c3e1d4c44cf45bfa78909d4df3777}} 
+std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a9b66b2c502174ec4253540e785ed65d1}\label{classathena_1_1core_1_1_node_a9b66b2c502174ec4253540e785ed65d1}} 
+bool {\bfseries calculated}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a753a10d861a9e65c0ceac674a64f93b2}\label{classathena_1_1core_1_1_node_a753a10d861a9e65c0ceac674a64f93b2}} 
+std\+::vector$<$ vm\+\_\+word $>$ {\bfseries derivatives}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a3b79e7b88f22fac99cca9323bd2fb644}\label{classathena_1_1core_1_1_node_a3b79e7b88f22fac99cca9323bd2fb644}} 
+unsigned long {\bfseries result\+Cell}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_ad8f1fef6f146b1fcc73b9333a5dc3fa0}\label{classathena_1_1core_1_1_node_ad8f1fef6f146b1fcc73b9333a5dc3fa0}} 
+unsigned long {\bfseries usage\+Count}
+\item 
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_af1bbfd345484381b1ec5ef9aa880db22}\label{classathena_1_1core_1_1_node_af1bbfd345484381b1ec5ef9aa880db22}} 
+bool {\bfseries persist\+Result}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A basic element of execution graph Each node has pointers to its predecessors and successors. It encapsulates operation and data. 
+
+Definition at line 16 of file Node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_aefef588463c8e215e998415a7cc6b320}\label{classathena_1_1core_1_1_node_aefef588463c8e215e998415a7cc6b320}} 
+\index{athena\+::core\+::\+Node@{athena\+::core\+::\+Node}!after@{after}}
+\index{after@{after}!athena\+::core\+::\+Node@{athena\+::core\+::\+Node}}
+\subsubsection{\texorpdfstring{after()}{after()}}
+{\footnotesize\ttfamily void athena\+::core\+::\+Node\+::after (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classathena_1_1core_1_1_node}{Node}} $\ast$}]{predecessor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Makes a new oriented edge in execution graph from predecessor to this node 
+\begin{DoxyParams}{Parameters}
+{\em predecessor} & A predecessor node \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{classathena_1_1core_1_1_input_node_aaec12f4c76b6d9890efe1fb4337a1b61}{athena\+::core\+::\+Input\+Node}}.
+
+
+
+Definition at line 13 of file Node.\+cpp.
+
+\mbox{\Hypertarget{classathena_1_1core_1_1_node_a6ae012557fc6b29127366b1e92801d4a}\label{classathena_1_1core_1_1_node_a6ae012557fc6b29127366b1e92801d4a}} 
+\index{athena\+::core\+::\+Node@{athena\+::core\+::\+Node}!is\+Input\+Node@{is\+Input\+Node}}
+\index{is\+Input\+Node@{is\+Input\+Node}!athena\+::core\+::\+Node@{athena\+::core\+::\+Node}}
+\subsubsection{\texorpdfstring{is\+Input\+Node()}{isInputNode()}}
+{\footnotesize\ttfamily bool athena\+::core\+::\+Node\+::is\+Input\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Check if it is an input node \begin{DoxyReturn}{Returns}
+false 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classathena_1_1core_1_1_input_node_a2548b569a336b75c0005295833052979}{athena\+::core\+::\+Input\+Node}}.
+
+
+
+Definition at line 24 of file Node.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+core/Node.\+h\item 
+core/Node.\+cpp\end{DoxyCompactItemize}
