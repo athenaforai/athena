@@ -30,6 +30,19 @@ const vm_word OpCode::ALLOC = 0x0E00000000;
 const vm_word OpCode::MUL = 0x0F00000000;
 const vm_word OpCode::HADAMARD = 0x100000000;
 
+
+const vm_word OpCodeParams::RES_ADDR_DIRECT = 0b00000000000000000000000000000000;
+const vm_word OpCodeParams::RES_ADDR_BATCH = 0b00000000000000000000000000000001;
+const vm_word OpCodeParams::ARG_ADDR_DIRECT = 0b00000000000000000000000000000000;
+const vm_word OpCodeParams::ARG_ADDR_BATCH = 0b00000000000000000000000000001000;
+const vm_word OpCodeParams::MKSCALAR_FLOAT = 0b00000000000000000000000000000000;
+const vm_word OpCodeParams::MKSCALAR_DOUBLE = 0b00000000000000000000000001000000;
+const vm_word OpCodeParams::MKSCALAR_HALF = 0b00000000000000000000000010000000;
+
+const vm_word OpCodeParams::MATMUL_TRANSPOSE_FIRST = 0b00000000000000000000000001000000;
+const vm_word OpCodeParams::MATMUL_TRANSPOSE_SECOND = 0b00000000000000000000000010000000;
+
+
 vm_word buildOpCode ( vm_word opCode, std::vector< vm_word > parameters ) {
     vm_word res = opCode;
     for ( vm_word param : parameters ) {

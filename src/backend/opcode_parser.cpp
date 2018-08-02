@@ -37,12 +37,18 @@ namespace athena::backend {
             args[ 2 ] = bytecode[ ++next_word ];
         } else if ( opcode == OpCode::MATMUL ) {
             new_word = OpCode::MATMUL;
-            argc = 5;
+            argc = 3;
             args[ 0 ] = bytecode[ ++next_word ];
             args[ 1 ] = bytecode[ ++next_word ];
             args[ 2 ] = bytecode[ ++next_word ];
-            args[ 3 ] = bytecode[ ++next_word ];
-            args[ 4 ] = bytecode[ ++next_word ];
+//            args[ 3 ] = bytecode[ ++next_word ];
+//            args[ 4 ] = bytecode[ ++next_word ];
+            auto mm = new MatMulParams;
+            mm->transposeFirstArg =
+                    static_cast<bool>(params & OpCodeParams::MATMUL_TRANSPOSE_FIRST);
+            mm->transposeSecondArg =
+                    static_cast<bool>(params & OpCodeParams::MATMUL_TRANSPOSE_SECOND);
+            parameters = reinterpret_cast<BasicOpCodeParams**>(&mm);
         } else if ( opcode == OpCode::SIGMOID ) {
             new_word = OpCode::SIGMOID;
             argc = 2;

@@ -24,6 +24,7 @@
 #include <hermes/synchronize/SpinLock.h>
 //#include <hermes/synchronize/ConditionVariable.h>
 #include <hermes/synchronize/SCV.h>
+#include <hermes/thread/Thread.h>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -98,7 +99,7 @@ namespace athena::backend::generic {
 
         hermes::SpinLock memoryChunksLock;
 
-        std::vector< std::thread > memLanes;
+        std::vector< hermes::Thread* > memLanes;
 
         size_t allocatedMemory;
 
@@ -124,6 +125,9 @@ namespace athena::backend::generic {
         FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
 #endif
         void processQueueItem(QueueItem* item);
+
+//        // todo костыль
+//        static void allocationThreadFuncHelper ( GenericMemoryManager* ctx, int id );
 
     public:
 

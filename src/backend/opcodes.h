@@ -148,31 +148,41 @@ public:
     /**
      * Access result Tensor directly by virtual address
      */
-    static const vm_word RES_ADDR_DIRECT = 0b00000000000000000000000000000000;
+    static const vm_word RES_ADDR_DIRECT;
     /**
      * Get virtual address of Subtensor with respect to current batch number
      */
-    static const vm_word RES_ADDR_BATCH = 0b00000000000000000000000000000001;
+    static const vm_word RES_ADDR_BATCH;
 
     // Arguments values addressing modes
     /**
      * Access result Tensor directly by virtual address
      */
-    static const vm_word ARG_ADDR_DIRECT = 0b00000000000000000000000000000000;
+    static const vm_word ARG_ADDR_DIRECT;
     /**
      * Get virtual address of Subtensor with respect to current batch number
      */
-    static const vm_word ARG_ADDR_BATCH = 0b00000000000000000000000000001000;
+    static const vm_word ARG_ADDR_BATCH;
 
     // MKSCALAR parameters
-    static const vm_word MKSCALAR_FLOAT = 0b00000000000000000000000000000000;
-    static const vm_word MKSCALAR_DOUBLE = 0b00000000000000000000000001000000;
-    static const vm_word MKSCALAR_HALF = 0b00000000000000000000000010000000;
+    static const vm_word MKSCALAR_FLOAT;
+    static const vm_word MKSCALAR_DOUBLE;
+    static const vm_word MKSCALAR_HALF;
+
+    // MATMUL parameters
+    static const vm_word MATMUL_TRANSPOSE_FIRST;
+    static const vm_word MATMUL_TRANSPOSE_SECOND;
+
 };
 
 struct BasicOpCodeParams {
     vm_word resAddrMode = OpCodeParams::RES_ADDR_DIRECT;
     vm_word argAddrMode = OpCodeParams::ARG_ADDR_DIRECT;
+};
+
+struct MatMulParams : BasicOpCodeParams {
+    bool transposeFirstArg = false;
+    bool transposeSecondArg = false;
 };
 
 vm_word buildOpCode ( vm_word opCode, std::vector< vm_word > parameters );

@@ -58,15 +58,15 @@ void athena::backend::generic::GenericExecutor::processBytecode (
         } else if ( op == OpCode::MATMUL ) {
 
             gmm->loadAndLock( args[ 1 ] );
-            gmm->loadAndLock( args[ 3 ] );
-            gmm->allocateAndLock( args[ 4 ] );
+            gmm->loadAndLock( args[ 2 ] );
+            gmm->allocateAndLock( args[ 3 ] );
 
-            auto aTransp = static_cast<bool>(args[ 0 ]);
+            auto mm = reinterpret_cast<MatMulParams*>(params);
+
             Tensor* a = gmm->getTensor( args[ 1 ] );
-            auto bTransp = static_cast<bool>( args[ 2 ]);
             Tensor* b = gmm->getTensor( args[ 3 ] );
             Tensor* res = gmm->getTensor( args[ 4 ] );
-            matmul( gmm, aTransp, a, bTransp, b, res );
+            matmul( gmm, mm->transposeFirstArg, a, mm->transposeSecondArg, b, res );
 
             gmm->unlock( args[ 1 ] );
             gmm->unlock( args[ 3 ] );

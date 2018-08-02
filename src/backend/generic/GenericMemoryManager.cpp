@@ -21,9 +21,9 @@ void athena::backend::generic::GenericMemoryManager::init () {
 
 
         laneFinished.push_back( false );
-        std::thread thr( &GenericMemoryManager::allocationThreadFunc, this, 0 );
 
-        memLanes.push_back( std::move( thr ));
+        memLanes.push_back(new hermes::Thread(
+                &GenericMemoryManager::allocationThreadFunc, this, 0 ));
 
         memoryChunksHead = new MemoryChunk;
         memoryChunksHead->virtualAddress = 0;
@@ -97,7 +97,7 @@ void athena::backend::generic::GenericMemoryManager::deinit () {
         }
 
         for ( auto &memLane : memLanes ) {
-            memLane.join();
+            memLane->join();
         }
 
         memLanes.clear();
@@ -148,7 +148,7 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
         record = new SwapRecord;
         record->address = address;
         record->length = cur->length;
-        record->filename = std::to_string( address ) + ".swap"; // todo unique names
+        record->filename = std::to_string( address ) + ".swap";
 
         swapRecords.push_back( record );
     }
@@ -349,4 +349,9 @@ athena::backend::generic::GenericMemoryManager::GenericMemoryManager () {
     isInitialized = false;
     memory = nullptr;
     allocatedMemory = 0;
-};
+}
+
+//void athena::backend::generic::GenericMemoryManager::allocationThreadFuncHelper (
+//        athena::backend::generic::GenericMemoryManager* ctx, int id ) {
+//    ctx->allocationThreadFunc( id );
+//};
