@@ -56,6 +56,7 @@ install:
   else
     brew install cmake || brew upgrade cmake
   fi
+- pip install codecov
 - cmake --version
 
 
@@ -63,6 +64,13 @@ script:
  - cd ${TRAVIS_BUILD_DIR}
  - mkdir build
  - cd build
+ - export CXXFLAGS="${CXXFLAGS} -fprofile-instr-generate -fcoverage-mapping"
+ - export LDFLAGS="-fprofile-instr-generate"
  - cmake ..
  - make
  - ctest --verbose
+ - llvm-profdata merge -output=code.profdata code-*.profraw
+ - llvm-cov show ./runTests -instr-profile=default.profdata > coverage.txt
+
+after_success:
+ - codecov
