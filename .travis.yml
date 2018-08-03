@@ -18,10 +18,10 @@ matrix:
     compiler: clang
     osx_image: xcode9.4
 
-  - env: CXX=clang++-6.0 CC=clang-6.0
-    before_install:
-    - export CXX=clang++-6.0
-    - export CC=clang-6.0
+  - compiler: clang-6.0
+    env:
+    - C_COMPILER=clang-6.0
+    - CXX_COMPILER=clang++-6.0
     addons:
       apt:
         update: true
@@ -31,15 +31,18 @@ matrix:
         sources:
         - ubuntu-toolchain-r-test
         - llvm-toolchain-trusty-6.0
+    before_install:
+    - . ./setup_cxx.sh 6.0.0 /usr
 
-  - before_script:
-    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-    - update-alternatives --config gcc
+  - compiler: gcc-8
+    env:
+    - C_COMPILER=gcc-8
+    - CXX_COMPILER=g++-8
     addons:
     apt:
       update: true
       packages:
-      - g++-7.0
+      - g++-8
       - libopenblas-dev
       - lcov
       sources:
