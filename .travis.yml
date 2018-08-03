@@ -18,9 +18,10 @@ matrix:
     compiler: clang
     osx_image: xcode9.4
 
-  - env: CXX=clang++-6.0
+  - env: CXX=clang++-6.0 CC=clang-6.0
     before_install:
       - export CXX=clang++-6.0
+      - export CC=clang-6.0
     addons:
       apt:
         update: true
@@ -31,18 +32,19 @@ matrix:
           - ubuntu-toolchain-r-test
           - llvm-toolchain-trusty-6.0
 
-  - env: CXX=g++-8
+  - env: CXX=g++-7
     before_install:
-    - export CXX=g++-8
+    - export CXX=g++-7
+    - export CC=gcc-7
     addons:
     apt:
       update: true
       packages:
-      - g++-8.0
+      - g++-7.0
       - libopenblas-dev
+      - lcov
       sources:
       - ubuntu-toolchain-r-test
-      - llvm-toolchain-trusty-6.0
 
 
 install:
@@ -50,13 +52,12 @@ install:
 - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
 - |
   if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
-    CMAKE_URL="https://cmake.org/files/v3.10/cmake-3.10.0-Linux-x86_64.tar.gz"
+    CMAKE_URL="https://cmake.org/files/v3.12/cmake-3.12.0-Linux-x86_64.tar.gz"
     mkdir cmake && travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C cmake
     export PATH=${DEPS_DIR}/cmake/bin:${PATH}
   else
     brew install cmake || brew upgrade cmake
   fi
-- pip install --user codecov
 - cmake --version
 
 
@@ -64,13 +65,16 @@ script:
  - cd ${TRAVIS_BUILD_DIR}
  - mkdir build
  - cd build
- - export CXXFLAGS="${CXXFLAGS} -fprofile-instr-generate -fcoverage-mapping"
- - export LDFLAGS="-fprofile-instr-generate"
  - cmake ..
  - make
  - ctest --verbose
- - llvm-profdata merge -output=code.profdata code-*.profraw
- - llvm-cov show ./runTests -instr-profile=default.profdata > coverage.txt
 
 after_success:
- - codecov
+ - |
+   if [[ "${CXX}" == "gcc-7" ]]; then
+    cd ${TRAVIS_BUILD_DIR}
+    lcov --directory . --capture --output-file coverage.info # capture coverage info
+    lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+    lcov --list coverage.info #debug info
+   fi
+ - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
