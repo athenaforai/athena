@@ -117,9 +117,9 @@ namespace athena::backend::generic {
         auto item = new QueueItem();
         item->address = 1;
         item->length = 10;
-        item->alloc = true;
+        item->type = QueueItemType::ALLOCATE;
 
-        gmm->processQueueItem( item );
+        gmm->allocateQueueItem( item );
 
         auto cur = gmm->memoryChunksHead;
 
