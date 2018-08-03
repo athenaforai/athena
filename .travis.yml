@@ -32,10 +32,7 @@ matrix:
           - ubuntu-toolchain-r-test
           - llvm-toolchain-trusty-6.0
 
-  - before_install:
-    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-    - update-alternatives --config gcc
-    addons:
+  - addons:
     apt:
       update: true
       packages:
@@ -44,6 +41,9 @@ matrix:
       - lcov
       sources:
       - ubuntu-toolchain-r-test
+  - before_script:
+   - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+   - update-alternatives --config gcc
 
 
 install:
