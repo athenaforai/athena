@@ -34,7 +34,8 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
       before_install:
-      - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.0 /usr
+        - export CXX=clang++-6.0
+        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.0 /usr
 
     - os: linux
       name: "linux with gcc 8"
@@ -50,9 +51,6 @@ matrix:
             - g++-8
             - libopenblas-dev
             - lcov
-
-before_install:
-  - eval "${MATRIX_EVAL}"
 
 install:
   - DEPS_DIR="${HOME}/deps"
