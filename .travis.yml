@@ -9,7 +9,7 @@ dist: trusty
 
 matrix:
   include:
-    # clang on macOS
+  # clang on macOS
   - os: osx
     compiler: clang
     osx_image: xcode8.3
@@ -20,30 +20,30 @@ matrix:
 
   - env: CXX=clang++-6.0 CC=clang-6.0
     before_install:
-      - export CXX=clang++-6.0
-      - export CC=clang-6.0
+    - export CXX=clang++-6.0
+    - export CC=clang-6.0
     addons:
       apt:
         update: true
-        sources:
-        - ubuntu-toolchain-r-test
-        - llvm-toolchain-trusty-6.0
         packages:
         - clang-6.0
         - libopenblas-dev
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-6.0
 
-  - addons:
+  - before_script:
+    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+    - update-alternatives --config gcc
+    addons:
     apt:
       update: true
-      sources:
-      - ubuntu-toolchain-r-test
       packages:
       - g++-7.0
       - libopenblas-dev
       - lcov
-  - before_script:
-   - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-   - update-alternatives --config gcc
+      sources:
+      - ubuntu-toolchain-r-test
 
 
 install:
@@ -61,19 +61,19 @@ install:
 
 
 script:
- - cd ${TRAVIS_BUILD_DIR}
- - mkdir build
- - cd build
- - cmake ..
- - make
- - ctest --verbose
+- cd ${TRAVIS_BUILD_DIR}
+- mkdir build
+- cd build
+- cmake ..
+- make
+- ctest --verbose
 
 after_success:
- - |
-   if [[ "${CXX}" == "gcc-7" ]]; then
-    cd ${TRAVIS_BUILD_DIR}
-    lcov --directory . --capture --output-file coverage.info # capture coverage info
-    lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
-    lcov --list coverage.info #debug info
-   fi
- - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+- |
+  if [[ "${CXX}" == "gcc-7" ]]; then
+   cd ${TRAVIS_BUILD_DIR}
+   lcov --directory . --capture --output-file coverage.info # capture coverage info
+   lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter out system
+   lcov --list coverage.info #debug info
+  fi
+- bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
