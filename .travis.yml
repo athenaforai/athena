@@ -24,23 +24,23 @@ matrix:
       - export CC=clang-6.0
     addons:
       apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        - llvm-toolchain-trusty-6.0
         update: true
         packages:
         - clang-6.0
         - libopenblas-dev
-        sources:
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-trusty-6.0
 
   - addons:
     apt:
+      sources:
+      - ubuntu-toolchain-r-test
       update: true
       packages:
       - g++-7.0
       - libopenblas-dev
       - lcov
-      sources:
-      - ubuntu-toolchain-r-test
   - before_script:
    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
    - update-alternatives --config gcc
