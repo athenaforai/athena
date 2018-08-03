@@ -18,12 +18,12 @@
 #include <backend/AbstractMemoryManager.h>
 #include <thread>
 #include <queue>
-//#include <condition_variable>
 #include <thread>
 #include <string>
 #include <hermes/synchronize/SpinLock.h>
-//#include <hermes/synchronize/ConditionVariable.h>
-#include <hermes/synchronize/SCV.h>
+#include <hermes/synchronize/Mutex.h>
+#include <hermes/synchronize/ConditionVariable.h>
+#include <hermes/synchronize/Semaphore.h>
 #include <hermes/thread/Thread.h>
 
 #ifdef TEST_ENVIRONMENT
@@ -55,6 +55,14 @@ namespace athena::backend::generic {
         bool isLocked;
         MemoryChunk* next;
         MemoryChunk* prev;
+        bool hasChanged;
+    };
+
+    enum struct QueueItemType {
+        ALLOCATE,
+        LOAD,
+        UNLOCK,
+        DELETE
     };
 
     /**
@@ -64,9 +72,8 @@ namespace athena::backend::generic {
     struct QueueItem {
         vm_word address;
         size_t length;
-        bool alloc = false;
-        hermes::SCV loadHandle;
-//        std::mutex *m;
+        QueueItemType type;
+        hermes::ConditionVariable loadHandle;
         bool notified = false;
     };
 
@@ -109,6 +116,9 @@ namespace athena::backend::generic {
 
         bool isInitialized;
 
+        hermes::Mutex queueMutex;
+        hermes::Semaphore queueSemaphore;
+
         /**
          * This is a thread function for memory lane-threads. It loads data to
          * RAM and notifies corresponding threads
@@ -124,10 +134,13 @@ namespace athena::backend::generic {
 #ifdef TEST_ENVIRONMENT
         FRIEND_TEST(generic_memory_manager_tests, queue_item_properly_allocated);
 #endif
-        void processQueueItem(QueueItem* item);
+        void allocateQueueItem ( QueueItem* item );
 
-//        // todo костыль
-//        static void allocationThreadFuncHelper ( GenericMemoryManager* ctx, int id );
+        void unlockQueueItem ( QueueItem* item );
+
+        void deleteQueueItem(QueueItem* item);
+
+        void pushQueueItem ( QueueItem* item );
 
     public:
 

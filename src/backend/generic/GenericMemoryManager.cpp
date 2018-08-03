@@ -13,16 +13,15 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
-#include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
-    if (!isInitialized) {
+    if ( !isInitialized ) {
         memory = malloc( allocatedMemory );
 
 
         laneFinished.push_back( false );
 
-        memLanes.push_back(new hermes::Thread(
+        memLanes.push_back( new hermes::Thread(
                 &GenericMemoryManager::allocationThreadFunc, this, 0 ));
 
         memoryChunksHead = new MemoryChunk;
@@ -41,14 +40,33 @@ void athena::backend::generic::GenericMemoryManager::init () {
 void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int laneId ) {
 
     while ( !laneFinished[ laneId ] ) {
-        // todo concurrency
 
+        queueSemaphore.enter();
+        queueMutex.lock();
+        QueueItem* item = nullptr;
         if ( !loadQueue.empty()) {
-            auto item = loadQueue.front();
+            item = loadQueue.front();
             loadQueue.pop();
-
-            processQueueItem( item );
         }
+        queueMutex.unlock();
+
+        if ( item != nullptr ) {
+            try {
+                if ( item->type == QueueItemType::ALLOCATE ||
+                     item->type == QueueItemType::LOAD ) {
+                    allocateQueueItem( item );
+                } else if ( item->type == QueueItemType::UNLOCK ) {
+                    unlockQueueItem( item );
+                } else if ( item->type == QueueItemType::DELETE ) {
+                    deleteQueueItem( item );
+                }
+            } catch ( const std::exception &e ) {
+            }
+
+            item->notified = true;
+            item->loadHandle.notifyAll();
+        }
+
     }
 
 }
@@ -57,7 +75,7 @@ void* athena::backend::generic::GenericMemoryManager::getPhysicalAddress (
         vm_word virtualAddress ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
     memoryChunksLock.lock();
@@ -77,23 +95,30 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
                                                                    unsigned long length ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
+    item->type = QueueItemType::LOAD;
 
-    loadQueue.push( item );
+    pushQueueItem( item );
 
-    item->loadHandle.wait();
+    item->loadHandle.wait( [ item ] () -> bool {
+        return item->notified;
+    } );
 
 }
 
 void athena::backend::generic::GenericMemoryManager::deinit () {
-    if (isInitialized) {
+    if ( isInitialized ) {
         for ( auto &&i : laneFinished ) {
             i = true;
+        }
+
+        for ( int i = 0; i < memLanes.size(); i++ ) {
+            queueSemaphore.leave();
         }
 
         for ( auto &memLane : memLanes ) {
@@ -118,73 +143,36 @@ athena::backend::generic::GenericMemoryManager::~GenericMemoryManager () {
 void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
-    memoryChunksLock.lock();
+    auto item = new QueueItem;
+    item->address = address;
+    item->type = QueueItemType::UNLOCK;
 
-    auto cur = memoryChunksHead;
+    pushQueueItem( item );
 
-    while ( cur != nullptr && cur->virtualAddress == address ) {
-        cur = cur->next;
-    }
+    item->loadHandle.wait( [ item ] () -> bool {
+        return item->notified;
+    } );
 
-    if ( cur == nullptr ) {
-        throw std::runtime_error( "Address not found" );
-    }
-
-    memoryChunksLock.unlock();
-
-    SwapRecord* record = nullptr;
-
-    for ( SwapRecord* r : swapRecords ) {
-        if ( r->address == address ) {
-            record = r;
-            break;
-        }
-    }
-
-    if ( record == nullptr ) {
-        record = new SwapRecord;
-        record->address = address;
-        record->length = cur->length;
-        record->filename = std::to_string( address ) + ".swap";
-
-        swapRecords.push_back( record );
-    }
-
-    std::ofstream ofs( record->filename );
-    ofs.write( reinterpret_cast<char*>(cur->begin), cur->length );
-    ofs.close();
-
-    memoryChunksLock.lock();
-    cur->isLocked = false;
-    memoryChunksLock.unlock();
 }
 
 void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word address ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
-    memoryChunksLock.lock();
+    auto item = new QueueItem;
+    item->address = address;
+    item->type = QueueItemType::DELETE;
 
-    auto cur = memoryChunksHead;
+    pushQueueItem( item );
 
-    while ( cur != nullptr && cur->virtualAddress == address ) {
-        cur = cur->next;
-    }
-
-    if ( cur == nullptr ) {
-        return;
-    }
-
-    // todo remove swap records, merge memory chunks
-
-    cur->isFree = true;
-
-    memoryChunksLock.unlock();
+    item->loadHandle.wait( [ item ] () -> bool {
+        return item->notified;
+    } );
 
 }
 
@@ -197,21 +185,20 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
         unsigned long length ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
     auto item = new QueueItem();
     item->address = address;
     item->length = length;
-    item->alloc = true;
+    item->type = QueueItemType::ALLOCATE;
 
-    loadQueue.push( item );
+    pushQueueItem( item );
 
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
-    // todo this is temp fix for https://github.com/athenaml/athena/issues/7
-
-
-    item->loadHandle.wait();
+    item->loadHandle.wait( [ item ] () -> bool {
+        return item->notified;
+    } );
 
 }
 
@@ -221,7 +208,7 @@ void athena::backend::generic::GenericMemoryManager::setData ( vm_word tensorAdd
                                                                void* data ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
     auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
@@ -237,7 +224,7 @@ void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAdd
                                                                void* data ) {
 
     if ( !isInitialized ) {
-        throw std::runtime_error("GenericMemoryManager is not initialized");
+        throw std::runtime_error( "GenericMemoryManager is not initialized" );
     }
 
     auto addr = reinterpret_cast<u_char*>(getPhysicalAddress( tensorAddress ));
@@ -247,13 +234,14 @@ void athena::backend::generic::GenericMemoryManager::getData ( vm_word tensorAdd
 
 }
 
-void athena::backend::generic::GenericMemoryManager::processQueueItem (
+void athena::backend::generic::GenericMemoryManager::allocateQueueItem (
         athena::backend::generic::QueueItem* item ) {
-    memoryChunksLock.lock();
+
     MemoryChunk* cur = memoryChunksHead;
 
     // check if the element is already in the memory
 
+    memoryChunksLock.lock();
     while ( cur != nullptr ) {
         if ( cur->virtualAddress == item->address ) {
             break;
@@ -261,21 +249,19 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
         cur = cur->next;
     }
 
-    if ( cur != nullptr ) {
+    if ( cur != nullptr && !cur->isFree ) {
         cur->isLocked = true;
-
-        memoryChunksLock.unlock();
-
-        item->notified = true;
-        item->loadHandle.notify();
-
+    }
+    memoryChunksLock.unlock();
+    if ( cur != nullptr ) {
+        return;
     } else {
 
         cur = memoryChunksHead;
 
         // select the first suitable memory chunk
         // todo better strategy to choose memory chunks
-        //TODO CHECK CONDITION IN WHILE(...)
+        memoryChunksLock.lock();
         while ( cur != nullptr &&
                 ( cur->length <= item->length
                   && ( !cur->isFree || !cur->isLocked ))) {
@@ -326,7 +312,7 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
 
         memoryChunksLock.unlock();
 
-        if ( !item->alloc ) {
+        if ( item->type == QueueItemType::LOAD ) {
             for ( SwapRecord* record : swapRecords ) {
                 if ( record->address == item->address ) {
                     std::ifstream inp;
@@ -338,10 +324,6 @@ void athena::backend::generic::GenericMemoryManager::processQueueItem (
                 }
             }
         }
-
-
-        item->notified = true;
-        item->loadHandle.notify();
     }
 }
 
@@ -351,7 +333,112 @@ athena::backend::generic::GenericMemoryManager::GenericMemoryManager () {
     allocatedMemory = 0;
 }
 
-//void athena::backend::generic::GenericMemoryManager::allocationThreadFuncHelper (
-//        athena::backend::generic::GenericMemoryManager* ctx, int id ) {
-//    ctx->allocationThreadFunc( id );
-//};
+void athena::backend::generic::GenericMemoryManager::unlockQueueItem (
+        athena::backend::generic::QueueItem* item ) {
+    MemoryChunk* cur = memoryChunksHead;
+
+    memoryChunksLock.lock();
+    while ( cur != nullptr ) {
+        if ( cur->virtualAddress == item->address ) {
+            break;
+        }
+        cur = cur->next;
+    }
+    memoryChunksLock.unlock();
+
+    if ( cur != nullptr ) {
+
+        if ( cur->hasChanged ) {
+            SwapRecord* record = nullptr;
+
+            for ( SwapRecord* r : swapRecords ) {
+                if ( r->address == item->address ) {
+                    record = r;
+                    break;
+                }
+            }
+
+            if ( record == nullptr ) {
+                record = new SwapRecord;
+                record->address = item->address;
+                record->length = cur->length;
+                record->filename = std::to_string( item->address ) + ".swap";
+
+                swapRecords.push_back( record );
+            }
+
+            std::ofstream ofs( record->filename );
+            ofs.write( reinterpret_cast<char*>(cur->begin), cur->length );
+            ofs.close();
+
+            cur->hasChanged = false;
+        }
+
+        memoryChunksLock.lock();
+        cur->isLocked = false;
+        memoryChunksLock.unlock();
+    }
+}
+
+void athena::backend::generic::GenericMemoryManager::deleteQueueItem (
+        athena::backend::generic::QueueItem* item ) {
+
+    MemoryChunk* cur = memoryChunksHead;
+
+    memoryChunksLock.lock();
+    while ( cur != nullptr ) {
+        if ( cur->virtualAddress == item->address ) {
+            break;
+        }
+        cur = cur->next;
+    }
+
+    if ( cur != nullptr ) {
+        cur->isFree = true;
+        cur->isLocked = false;
+
+        if ( cur->next != nullptr && cur->next->isFree ) {
+            cur->length += cur->next->length;
+
+            MemoryChunk* tmp = cur->next;
+
+            cur->next = tmp->next;
+            if ( tmp->next != nullptr ) {
+                tmp->next->prev = cur;
+            }
+
+            tmp->next = nullptr;
+            tmp->prev = nullptr;
+            delete tmp;
+        }
+
+        if ( cur->prev != nullptr && cur->prev->isFree ) {
+            cur->length += cur->prev->length;
+
+            MemoryChunk* tmp = cur->prev;
+
+            cur->prev = tmp->prev;
+            if ( tmp->prev != nullptr ) {
+                tmp->prev->next = cur;
+            }
+
+            tmp->next = nullptr;
+            tmp->prev = nullptr;
+
+            delete tmp;
+        }
+    }
+
+    memoryChunksLock.unlock();
+
+}
+
+void athena::backend::generic::GenericMemoryManager::pushQueueItem (
+        athena::backend::generic::QueueItem* item ) {
+
+    queueMutex.lock();
+    loadQueue.push( item );
+    queueMutex.unlock();
+    queueSemaphore.leave();
+
+}
