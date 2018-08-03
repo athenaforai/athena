@@ -25,7 +25,7 @@ matrix:
       env:
         - C_COMPILER=clang-6.0
         - CXX_COMPILER=clang++-6.0
-        - CI_CXX_FLAGS=-std=c++17 -stdlib=libc++ -lc++experimental
+        - CI_CXX_FLAGS="-std=c++17 -stdlib=libc++ -lc++experimental"
       addons:
         apt:
           packages:
@@ -36,6 +36,7 @@ matrix:
             - llvm-toolchain-trusty-6.0
       before_install:
         - export CXX=clang++-6.0 CC=clang-6.0
+        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
 
     - os: linux
       name: "linux with gcc 8"
@@ -43,7 +44,8 @@ matrix:
       env:
         - C_COMPILER=gcc-8
         - CXX_COMPILER=g++-8
-        - CI_CXX_FLAGS=-std=c++17 -stdlib=libc++ -lc++experimental
+        - CI_CXX_FLAGS="-std=c++17 -stdlib=libc++ -lc++experimental"
+        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
       addons:
         apt:
           sources:
