@@ -25,7 +25,7 @@ matrix:
       env:
         - C_COMPILER=clang-6.0
         - CXX_COMPILER=clang++-6.0
-        - CI_CXX_FLAGS="-std=c++17 -stdlib=libc++ -lc++experimental"
+        - CI_CXX_FLAGS="-std=c++17 -stdlib=libc++"
       addons:
         apt:
           packages:
@@ -44,8 +44,7 @@ matrix:
       env:
         - C_COMPILER=gcc-8
         - CXX_COMPILER=g++-8
-        - CI_CXX_FLAGS="-std=c++17 -stdlib=libc++ -lc++experimental"
-        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
+        - CI_CXX_FLAGS=-stdlib=libc++
       addons:
         apt:
           sources:
@@ -54,6 +53,8 @@ matrix:
             - g++-8
             - libopenblas-dev
             - lcov
+      before_install:
+      - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
 
 install:
   - DEPS_DIR="${HOME}/deps"
