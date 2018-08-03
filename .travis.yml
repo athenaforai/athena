@@ -52,6 +52,9 @@ matrix:
             - g++-8
             - libopenblas-dev
             - lcov
+      before_install:
+        - export CC=gcc-8
+        - export CXX=g++-8
 
 install:
   - DEPS_DIR="${HOME}/deps"
