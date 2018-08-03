@@ -20,7 +20,6 @@
 #include <queue>
 #include <thread>
 #include <string>
-#include <hermes/synchronize/SpinLock.h>
 #include <hermes/synchronize/Mutex.h>
 #include <hermes/synchronize/ConditionVariable.h>
 #include <hermes/synchronize/Semaphore.h>
@@ -104,7 +103,7 @@ namespace athena::backend::generic {
 #endif
         void* memory;
 
-        hermes::SpinLock memoryChunksLock;
+        hermes::Mutex memoryChunksLock;
 
         std::vector< hermes::Thread* > memLanes;
 
