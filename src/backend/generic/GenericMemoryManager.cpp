@@ -13,6 +13,7 @@
 
 #include "GenericMemoryManager.h"
 #include <fstream>
+#include <cstring>
 
 void athena::backend::generic::GenericMemoryManager::init () {
     if ( !isInitialized ) {
