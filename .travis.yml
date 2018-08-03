@@ -34,8 +34,8 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
       before_install:
-        - export CXX=clang++-6.0
-        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.0 /usr
+        - export CXX=clang++-6.0 CC=clang-6.0
+#        - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.0 /usr
 
     - os: linux
       name: "linux with gcc 8"
