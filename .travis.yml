@@ -8,16 +8,19 @@ notifications:
 
 matrix:
   include:
-  # clang on macOS
+
   - os: osx
+    name: "macOS with XCode 8.3"
     compiler: clang
     osx_image: xcode8.3
 
   - os: osx
+    name: "macOS with XCode 9.4"
     compiler: clang
     osx_image: xcode9.4
 
   - os: linux
+    name: "linux with clang 6.0"
     compiler: clang-6.0
     env:
     - C_COMPILER=clang-6.0
@@ -34,6 +37,7 @@ matrix:
     - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.0 /usr
 
   - os: linux
+    name: "linux with gcc 8"
     compiler: gcc-8
     env:
     - C_COMPILER=gcc-8
@@ -47,6 +51,8 @@ matrix:
       sources:
       - ubuntu-toolchain-r-test
 
+before_install:
+  - eval "${MATRIX_EVAL}"
 
 install:
 - DEPS_DIR="${HOME}/deps"
