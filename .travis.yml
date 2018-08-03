@@ -24,19 +24,19 @@ matrix:
       - export CC=clang-6.0
     addons:
       apt:
+        update: true
         sources:
         - ubuntu-toolchain-r-test
         - llvm-toolchain-trusty-6.0
-        update: true
         packages:
         - clang-6.0
         - libopenblas-dev
 
   - addons:
     apt:
+      update: true
       sources:
       - ubuntu-toolchain-r-test
-      update: true
       packages:
       - g++-7.0
       - libopenblas-dev
