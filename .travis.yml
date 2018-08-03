@@ -34,8 +34,8 @@ matrix:
 
   - env: CXX=g++-7
     before_install:
-    - export CXX=g++-7
-    - export CC=gcc-7
+    - update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 --slave /usr/bin/g++ g++ /usr/bin/g++-7
+    - update-alternatives --config gcc
     addons:
     apt:
       update: true
