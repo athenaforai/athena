@@ -80,6 +80,10 @@ script:
   - export CXXFLAGS=${CI_CXX_FLAGS}
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
   - make
+  - |
+    if [[ "${USE_GCOV}" == "true" ]]; then
+      make athena_coverage
+    fi
   - ctest --verbose
 
 after_success:

@@ -14,7 +14,9 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     enable_testing()
     add_subdirectory(tests)
 
-    if (CodeCoverage MATCHES ON)
+    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage)
+
+    if ($ENV{USE_GCOV})
         include(CodeCoverage)
         setup_target_for_coverage(${PROJECT_NAME}_coverage runTests coverage)
         setup_target_for_coverage_cobertura(${PROJECT_NAME}_cobertura runTests coverage
