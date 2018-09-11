@@ -39,23 +39,23 @@ matrix:
         - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
 
     - os: linux
-      name: "linux with gcc 8"
-      compiler: gcc-8
+      name: "linux with gcc 7"
+      compiler: gcc-7
       env:
-        - C_COMPILER=gcc-8
-        - CXX_COMPILER=g++-8
+        - C_COMPILER=gcc-7
+        - CXX_COMPILER=g++-7
         - USE_CCOV=true
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-8
+            - g++-7
             - libopenblas-dev
             - lcov
       before_install:
-        - export CC=gcc-8
-        - export CXX=g++-8
+        - export CC=gcc-7
+        - export CXX=g++-7
 
 install:
   - DEPS_DIR="${HOME}/deps"
