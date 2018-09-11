@@ -31,7 +31,6 @@ matrix:
           packages:
             - clang-6.0
             - libopenblas-dev
-            - libomp-dev
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
@@ -53,7 +52,6 @@ matrix:
             - g++-8
             - libopenblas-dev
             - lcov
-            - libomp-dev
       before_install:
         - export CC=gcc-8
         - export CXX=g++-8
@@ -68,7 +66,9 @@ install:
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     else
       brew install cmake || brew upgrade cmake
+      brew install llvm
       brew install libomp
+      brew install clang-omp
     fi
   - cmake --version
 

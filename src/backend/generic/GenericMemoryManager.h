@@ -21,6 +21,8 @@
 #include <thread>
 #include <string>
 #include <backend/Semaphore.h>
+#include <mutex>
+#include <condition_variable>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
