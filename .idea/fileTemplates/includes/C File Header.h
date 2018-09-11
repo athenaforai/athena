@@ -1,7 +1,7 @@
 #if ($HEADER_COMMENTS)
 /*
  * Copyright (c) $YEAR Athena. All rights reserved.
- * https://athenaproject.ml
+ * https://athenaframework.ml
  *
  * Licensed under MIT license.
  *
