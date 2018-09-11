@@ -19,8 +19,6 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     if ($ENV{USE_GCOV})
         include(CodeCoverage)
         setup_target_for_coverage(${PROJECT_NAME}_coverage runTests coverage)
-        setup_target_for_coverage_cobertura(${PROJECT_NAME}_cobertura runTests coverage
-                                            --gtest_output=xml:coverage.junit.xml)
     endif()
 endif()
 

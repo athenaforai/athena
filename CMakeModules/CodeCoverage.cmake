@@ -144,28 +144,21 @@ FUNCTION(SETUP_TARGET_FOR_COVERAGE _targetname _testrunner _outputname)
                       # Run tests
                       COMMAND ${test_command} ${ARGV3}
 
-                      COMMAND lcov --version
-                      COMMAND gcov --version
-                      COMMAND g++ --version
-
                       # Capturing lcov counters and generating report
-                      COMMAND ${LCOV_PATH} --directory . --base-directory . --capture --output-file coverage.info
-                      COMMAND ${LCOV_PATH} --remove coverage.info '/usr*' '*/test/*' '*/ext/*' -o coverage.info
-
-                      #COMMAND ${LCOV_PATH} --directory . --capture --output-file ${coverage_info}
-                      #COMMAND ${LCOV_PATH} --remove ${coverage_info} 'tests/*' '/usr/*' --output-file ${coverage_cleaned}
-                      #COMMAND ${GENHTML_PATH} -o ${_outputname} ${coverage_cleaned}
-                      #COMMAND ${CMAKE_COMMAND} -E remove ${coverage_info} ${coverage_cleaned}
+                      COMMAND ${LCOV_PATH} --directory . --capture --output-file ${coverage_info}
+                      COMMAND ${LCOV_PATH} --remove ${coverage_info} 'tests/*' '/usr/*' --output-file ${coverage_cleaned}
+                      COMMAND ${GENHTML_PATH} -o ${_outputname} ${coverage_cleaned}
+                      COMMAND ${CMAKE_COMMAND} -E remove ${coverage_info} ${coverage_cleaned}
 
                       WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                       COMMENT "Resetting code coverage counters to zero.\nProcessing code coverage counters and generating report."
                       )
 
     # Show info where to find the report
-    #ADD_CUSTOM_COMMAND(TARGET ${_targetname} POST_BUILD
-    #	COMMAND ;
-    #	COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
-    #)
+    ADD_CUSTOM_COMMAND(TARGET ${_targetname} POST_BUILD
+                       COMMAND ;
+                       COMMENT "Open ./${_outputname}/index.html in your browser to view the coverage report."
+                       )
 
 ENDFUNCTION() # SETUP_TARGET_FOR_COVERAGE
 

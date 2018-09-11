@@ -80,6 +80,7 @@ script:
   - export CXXFLAGS=${CI_CXX_FLAGS}
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
   - make
+  - make athena_coverage || echo "No coverage target found"
   - ctest --verbose
 
 after_success:
