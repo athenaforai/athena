@@ -9,7 +9,7 @@ target_link_libraries(runTests gtest gtest_main)
 target_link_libraries(runTests athena)
 
 add_test(
-        NAME runTests
+        NAME UnitTests
         COMMAND runTests
 )
 

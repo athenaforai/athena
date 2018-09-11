@@ -6,6 +6,6 @@ target_link_libraries(runIntegrationTests gtest gtest_main)
 target_link_libraries(runIntegrationTests athena)
 
 add_test(
-        NAME runIntegrationTests
+        NAME IntegrationTest
         COMMAND runIntegrationTests
 )
