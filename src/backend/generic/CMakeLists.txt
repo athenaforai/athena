@@ -109,7 +109,7 @@ if(APPLE)
     endif()
 endif()
 
-find_package(OpenMP REQUIRED)
+find_package(OpenMP)
 
 if (APPLE)
     set(OpenMP_CXX_LIB_NAMES omp)
@@ -134,6 +134,9 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/mul.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/hadamard.cpp
                )
-#target_link_libraries(athena PUBLIC OpenMP::OpenMP_CXX)
 
-set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} ${OpenMP_CXX_LIB_NAMES} PARENT_SCOPE)
+set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)
+
+if (OpenMP_CXX_FOUND)
+    set(GENERIC_BACKEND_LIBS ${GENERIC_BACKEND_LIBS} ${OpenMP_CXX_LIB_NAMES} PARENT_SCOPE)
+endif()
