@@ -80,7 +80,7 @@ script:
   - export CXXFLAGS=${CI_CXX_FLAGS}
   - cmake -DCMAKE_BUILD_TYPE=Debug ..
   - make
-  - make coverage || make test
+  - make athena_coverage || make test
 
 after_success:
   - |
