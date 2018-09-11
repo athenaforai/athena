@@ -9,8 +9,6 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 add_subdirectory(src)
 
 add_subdirectory(libs/gtest)
-add_subdirectory(libs/hermes)
-target_include_directories(athena PUBLIC libs/hermes/include)
 
 enable_testing()
 add_subdirectory(tests)

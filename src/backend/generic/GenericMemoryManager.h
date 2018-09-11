@@ -20,7 +20,7 @@
 #include <queue>
 #include <thread>
 #include <string>
-#include <hermes/synchronize/Semaphore.h>
+#include <backend/Semaphore.h>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -114,7 +114,7 @@ namespace athena::backend::generic {
         bool isInitialized;
 
         std::mutex queueMutex;
-        hermes::Semaphore queueSemaphore;
+        athena::backend::Semaphore queueSemaphore;
 
         /**
          * This is a thread function for memory lane-threads. It loads data to
