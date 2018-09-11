@@ -16,7 +16,7 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
 
     if ($ENV{USE_GCOV})
         include(CodeCoverage)
-        set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_COVERAGE})
+        set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -g -O0 -fprofile-arcs -ftest-coverage --coverage)
         set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcov" )
         setup_target_for_coverage(${PROJECT_NAME}_coverage runTests coverage)
     endif()

@@ -87,6 +87,7 @@ after_success:
   - |
     if [[ "${CXX}" == "g++-8" ]]; then
      cd ${TRAVIS_BUILD_DIR}
+     cd build
      lcov --directory . --capture --output-file coverage.info
      lcov --remove coverage.info '/usr/*' --output-file coverage.info
      lcov --list coverage.info
