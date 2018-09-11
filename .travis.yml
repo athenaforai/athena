@@ -31,7 +31,6 @@ matrix:
           packages:
             - clang-6.0
             - libopenblas-dev
-            - libomp-dev
           sources:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-6.0
@@ -45,6 +44,7 @@ matrix:
       env:
         - C_COMPILER=gcc-8
         - CXX_COMPILER=g++-8
+        - USE_GCOV=true
       addons:
         apt:
           sources:
@@ -69,7 +69,7 @@ install:
       brew install cmake || brew upgrade cmake
       brew install llvm
       brew install libomp
-      export ATHENA_FLAGS="-DOpenMP_CXX_FLAGS="-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include" -DOpenMP_CXX_LIB_NAMES="omp" -DOpenMP_omp_LIBRARY=/usr/local/opt/libomp/lib/libomp.dylib"
+      export ATHENA_FLAGS='-DOpenMP_CXX_FLAGS="-Xpreprocessor -fopenmp -I/usr/local/opt/libomp/include" -DOpenMP_CXX_LIB_NAMES="omp" -DOpenMP_omp_LIBRARY=/usr/local/opt/libomp/lib/libomp.dylib'
     fi
   - cmake --version
 

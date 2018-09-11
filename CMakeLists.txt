@@ -8,10 +8,19 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(src)
 
-add_subdirectory(libs/gtest)
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    add_subdirectory(libs/gtest)
 
-enable_testing()
-add_subdirectory(tests)
+    enable_testing()
+    add_subdirectory(tests)
+
+    if (CodeCoverage MATCHES ON)
+        include(CodeCoverage)
+        setup_target_for_coverage(${PROJECT_NAME}_coverage runTests coverage)
+        setup_target_for_coverage_cobertura(${PROJECT_NAME}_cobertura runTests coverage
+                                            --gtest_output=xml:coverage.junit.xml)
+    endif()
+endif()
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
