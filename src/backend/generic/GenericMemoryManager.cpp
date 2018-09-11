@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018 Athena. All rights reserved.
- * https://athenaproject.ml
+ * https://athenaframework.ml
  *
  * Licensed under MIT license.
  *
@@ -22,7 +22,7 @@ void athena::backend::generic::GenericMemoryManager::init () {
 
         laneFinished.push_back( false );
 
-        memLanes.push_back( new hermes::Thread(
+        memLanes.push_back( new std::thread(
                 &GenericMemoryManager::allocationThreadFunc, this, 0 ));
 
         memoryChunksHead = new MemoryChunk;
@@ -65,7 +65,7 @@ void athena::backend::generic::GenericMemoryManager::allocationThreadFunc ( int 
             }
 
             item->notified = true;
-            item->loadHandle.notifyAll();
+            item->loadHandle.notify_all();
         }
 
     }
@@ -106,7 +106,9 @@ void athena::backend::generic::GenericMemoryManager::loadAndLock ( vm_word addre
 
     pushQueueItem( item );
 
-    item->loadHandle.wait( [ item ] () -> bool {
+    std::unique_lock<std::mutex> lock(item->handleMutex);
+
+    item->loadHandle.wait( lock, [ item ] () -> bool {
         return item->notified;
     } );
 
@@ -153,7 +155,9 @@ void athena::backend::generic::GenericMemoryManager::unlock ( vm_word address ) 
 
     pushQueueItem( item );
 
-    item->loadHandle.wait( [ item ] () -> bool {
+    std::unique_lock<std::mutex> lock(item->handleMutex);
+
+    item->loadHandle.wait( lock, [ item ] () -> bool {
         return item->notified;
     } );
 
@@ -171,7 +175,9 @@ void athena::backend::generic::GenericMemoryManager::deleteFromMem ( vm_word add
 
     pushQueueItem( item );
 
-    item->loadHandle.wait( [ item ] () -> bool {
+    std::unique_lock<std::mutex> lock(item->handleMutex);
+
+    item->loadHandle.wait( lock, [ item ] () -> bool {
         return item->notified;
     } );
 
@@ -196,8 +202,10 @@ void athena::backend::generic::GenericMemoryManager::allocateAndLock (
 
     pushQueueItem( item );
 
+    std::unique_lock<std::mutex> lock(item->handleMutex);
+
     // See https://en.wikipedia.org/wiki/Spurious_wakeup for more info
-    item->loadHandle.wait( [ item ] () -> bool {
+    item->loadHandle.wait( lock, [ item ] () -> bool {
         return item->notified;
     } );
 

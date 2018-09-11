@@ -88,6 +88,33 @@ else ()
     endif()
 endif ()
 
+if(APPLE)
+    set(OPENMP_LIBRARIES "/usr/local/opt/libomp/lib")
+    set(OPENMP_INCLUDES "/usr/local/opt/libomp/include")
+    if(CMAKE_C_COMPILER_ID MATCHES "Clang")
+        set(OpenMP_C "${CMAKE_C_COMPILER}")
+        set(OpenMP_C_FLAGS "-fopenmp=libomp -Wno-unused-command-line-argument")
+        set(OpenMP_C_LIB_NAMES "libomp")
+        set(OpenMP_libomp_LIBRARY ${OpenMP_C_LIB_NAMES})
+        set(OpenMP_libgomp_LIBRARY ${OpenMP_C_LIB_NAMES})
+        set(OpenMP_libiomp5_LIBRARY ${OpenMP_C_LIB_NAMES})
+    endif()
+    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        set(OpenMP_CXX "${CMAKE_CXX_COMPILER}")
+        set(OpenMP_CXX_FLAGS "-fopenmp=libomp -Wno-unused-command-line-argument")
+        set(OpenMP_CXX_LIB_NAMES "libomp")
+        set(OpenMP_libomp_LIBRARY ${OpenMP_CXX_LIB_NAMES})
+        set(OpenMP_libgomp_LIBRARY ${OpenMP_CXX_LIB_NAMES})
+        set(OpenMP_libiomp5_LIBRARY ${OpenMP_CXX_LIB_NAMES})
+    endif()
+endif()
+
+find_package(OpenMP)
+
+if (APPLE)
+    set(OpenMP_CXX_LIB_NAMES omp)
+endif()
+
 target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.cpp
                ${CMAKE_CURRENT_SOURCE_DIR}/GenericExecutor.h
@@ -108,4 +135,8 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/hadamard.cpp
                )
 
-set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} PARENT_SCOPE)
+if (OpenMP_CXX_FOUND)
+    set(OMP ${OpenMP_CXX_LIB_NAMES})
+endif()
+
+set(GENERIC_BACKEND_LIBS ${BLAS_LIBRARIES} ${OMP} PARENT_SCOPE)

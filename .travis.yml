@@ -39,22 +39,23 @@ matrix:
         - . ${TRAVIS_BUILD_DIR}/setup_cxx.sh 6.0.1 /usr
 
     - os: linux
-      name: "linux with gcc 8"
-      compiler: gcc-8
+      name: "linux with gcc 7"
+      compiler: gcc-7
       env:
-        - C_COMPILER=gcc-8
-        - CXX_COMPILER=g++-8
+        - C_COMPILER=gcc-7
+        - CXX_COMPILER=g++-7
+        - USE_CCOV=true
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-8
+            - g++-7
             - libopenblas-dev
             - lcov
       before_install:
-        - export CC=gcc-8
-        - export CXX=g++-8
+        - export CC=gcc-7
+        - export CXX=g++-7
 
 install:
   - DEPS_DIR="${HOME}/deps"
@@ -66,6 +67,8 @@ install:
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     else
       brew install cmake || brew upgrade cmake
+      brew install llvm
+      brew install libomp
     fi
   - cmake --version
 
@@ -75,14 +78,15 @@ script:
   - mkdir build
   - cd build
   - export CXXFLAGS=${CI_CXX_FLAGS}
-  - cmake ..
+  - cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_OUTPUT_EXTENSION_REPLACE=ON ..
   - make
-  - ctest --verbose
+  - make test
 
 after_success:
   - |
     if [[ "${CXX}" == "g++-8" ]]; then
      cd ${TRAVIS_BUILD_DIR}
+     cd build
      lcov --directory . --capture --output-file coverage.info
      lcov --remove coverage.info '/usr/*' --output-file coverage.info
      lcov --list coverage.info

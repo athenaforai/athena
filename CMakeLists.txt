@@ -8,12 +8,19 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 
 add_subdirectory(src)
 
-add_subdirectory(libs/gtest)
-add_subdirectory(libs/hermes)
-target_include_directories(athena PUBLIC libs/hermes/include)
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    add_subdirectory(libs/gtest)
 
-enable_testing()
-add_subdirectory(tests)
+    enable_testing()
+    add_subdirectory(tests)
+
+    if ($ENV{USE_CCOV})
+        include(CodeCoverage)
+        target_compile_options(runTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
+        target_compile_options(runIntegrationTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
+#        set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcov" )
+    endif()
+endif()
 
 find_package(Doxygen)
 if(DOXYGEN_FOUND)

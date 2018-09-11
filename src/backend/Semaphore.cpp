@@ -1,6 +1,5 @@
-#if ($HEADER_COMMENTS)
 /*
- * Copyright (c) $YEAR Athena. All rights reserved.
+ * Copyright (c) 2018 Athena. All rights reserved.
  * https://athenaframework.ml
  *
  * Licensed under MIT license.
@@ -11,5 +10,18 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-#end
 
+#include "Semaphore.h"
+
+void athena::backend::Semaphore::enter () {
+    std::unique_lock<decltype(mutex)> lock(mutex);
+    while(!count) // Handle spurious wake-ups.
+        condition.wait(lock);
+    --count;
+}
+
+void athena::backend::Semaphore::leave () {
+    std::unique_lock<decltype(mutex)> lock(mutex);
+    ++count;
+    condition.notify_one();
+}

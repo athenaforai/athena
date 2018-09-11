@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018 Athena. All rights reserved.
- * https://athenaproject.ml
+ * https://athenaframework.ml
  *
  * Licensed under MIT license.
  *
@@ -20,10 +20,9 @@
 #include <queue>
 #include <thread>
 #include <string>
-#include <hermes/synchronize/Mutex.h>
-#include <hermes/synchronize/ConditionVariable.h>
-#include <hermes/synchronize/Semaphore.h>
-#include <hermes/thread/Thread.h>
+#include <backend/Semaphore.h>
+#include <mutex>
+#include <condition_variable>
 
 #ifdef TEST_ENVIRONMENT
 #include <gtest/gtest.h>
@@ -72,7 +71,8 @@ namespace athena::backend::generic {
         vm_word address;
         size_t length;
         QueueItemType type;
-        hermes::ConditionVariable loadHandle;
+        std::condition_variable loadHandle;
+        std::mutex handleMutex;
         bool notified = false;
     };
 
@@ -103,9 +103,9 @@ namespace athena::backend::generic {
 #endif
         void* memory;
 
-        hermes::Mutex memoryChunksLock;
+        std::mutex memoryChunksLock;
 
-        std::vector< hermes::Thread* > memLanes;
+        std::vector< std::thread* > memLanes;
 
         size_t allocatedMemory;
 
@@ -115,8 +115,8 @@ namespace athena::backend::generic {
 
         bool isInitialized;
 
-        hermes::Mutex queueMutex;
-        hermes::Semaphore queueSemaphore;
+        std::mutex queueMutex;
+        athena::backend::Semaphore queueSemaphore;
 
         /**
          * This is a thread function for memory lane-threads. It loads data to

@@ -12,6 +12,8 @@ target_sources(athena PUBLIC
                ${CMAKE_CURRENT_SOURCE_DIR}/VMState.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.h
                ${CMAKE_CURRENT_SOURCE_DIR}/opcodes.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/Semaphore.cpp
+               ${CMAKE_CURRENT_SOURCE_DIR}/Semaphore.h
                )
 
 

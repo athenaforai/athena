@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2018 Athena. All rights reserved.
- * https://athenaproject.ml
+ * https://athenaframework.ml
  *
  * Licensed under MIT license.
  *
