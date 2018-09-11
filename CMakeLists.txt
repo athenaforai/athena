@@ -17,7 +17,10 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     if ($ENV{USE_GCOV})
         include(CodeCoverage)
         APPEND_COVERAGE_COMPILER_FLAGS()
-        setup_target_for_coverage_lcov(${PROJECT_NAME}_coverage runTests coverage)
+        setup_target_for_coverage_lcov(
+                NAME ${PROJECT_NAME}_coverage
+                EXECUTABLE ctest
+                DEPENDENCIES runTests runIntegrationTests)
 
         set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcov" )
     endif()
