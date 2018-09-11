@@ -13,6 +13,6 @@ add_test(
         COMMAND runTests
 )
 
-if($ENV{USE_GCOV})
+if($ENV{USE_CCOV})
     target_link_libraries(runTests gcov)
 endif()

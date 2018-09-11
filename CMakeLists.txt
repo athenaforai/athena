@@ -18,6 +18,7 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
         include(CodeCoverage)
         target_compile_options(runTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
         target_compile_options(runIntegrationTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
+        set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcov" )
     endif()
 endif()
 
