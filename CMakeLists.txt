@@ -14,16 +14,10 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     enable_testing()
     add_subdirectory(tests)
 
-    if ($ENV{USE_GCOV})
+    if ($ENV{USE_CCOV})
         include(CodeCoverage)
-        add_compile_options(-g -O0 --coverage -fprofile-arcs -ftest-coverage)
-#        APPEND_COVERAGE_COMPILER_FLAGS()
-#        setup_target_for_coverage_lcov(
-#                NAME ${PROJECT_NAME}_coverage
-#                EXECUTABLE ctest
-#                DEPENDENCIES runTests runIntegrationTests)
-#
-#        set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -lcov" )
+        target_compile_options(runTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
+        target_compile_options(runIntegrationTests PUBLIC -g -O0 --coverage -fprofile-arcs -ftest-coverage)
     endif()
 endif()
 

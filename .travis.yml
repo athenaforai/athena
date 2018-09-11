@@ -44,7 +44,7 @@ matrix:
       env:
         - C_COMPILER=gcc-8
         - CXX_COMPILER=g++-8
-        - USE_GCOV=true
+        - USE_CCOV=true
       addons:
         apt:
           sources:
